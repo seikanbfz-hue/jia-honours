@@ -1,0 +1,19 @@
+name = "jia-honours"
+pages_build_output_dir = "."
+compatibility_date = "2026-06-01"
+
+# After creating a D1 database, fill in database_id or configure binding in the Cloudflare dashboard.
+[[d1_databases]]
+binding = "DB"
+database_name = "jia_honours_db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[vars]
+# Set real values in Cloudflare dashboard. Do not commit your real secret in public repositories.
+SESSION_SECRET = "REPLACE_WITH_A_LONG_RANDOM_SECRET"
+ADMIN_EMAILS = "your-admin-email@example.com"
+
+# Email verification provider
+RESEND_API_KEY = "REPLACE_WITH_RESEND_API_KEY"
+EMAIL_FROM = "Jia Honours <verify@jia-honours.com>"
+SITE_NAME = "Jia Honours"
