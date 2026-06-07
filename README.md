@@ -33,3 +33,4 @@
 ## 成熟会员系统版本
 
 本包包含 Cloudflare Pages Functions 与 D1 数据库后端。请阅读 `README_PRODUCTION_AUTH.md` 并先运行 `schema.sql`。
+Redeploy after D1 binding.
