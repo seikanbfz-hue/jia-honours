@@ -313,6 +313,35 @@
       .form { padding:22px 22px max(22px, calc(22px + env(safe-area-inset-bottom))); }
     }
 
+
+
+    .member-profile-form { padding:30px; }
+    .profile-form-head { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; margin-bottom:18px; }
+    .profile-form-head b { color:var(--gold); letter-spacing:.18em; font-size:12px; text-transform:uppercase; }
+    .profile-form-head h3 { margin:8px 0 8px; font-size:28px; line-height:1.2; }
+    .profile-form-head p { margin:0; color:var(--muted); font-size:14px; line-height:1.7; }
+    .profile-form-notice {
+      background:#f8f1dd; border:1px solid rgba(201,166,78,.42); color:#5f4b1e;
+      border-radius:18px; padding:14px 16px; margin:0 0 18px; line-height:1.75; font-size:14px;
+    }
+    .profile-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .profile-form-grid label { margin:0; }
+    .profile-form-grid label span { display:block; margin-bottom:7px; }
+    .profile-form-grid .full { grid-column:1 / -1; }
+    textarea {
+      width:100%; margin-top:0; border:1px solid var(--line); border-radius:14px;
+      padding:13px 14px; font-size:14px; outline:none; min-height:112px; resize:vertical;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC",Arial,sans-serif;
+    }
+    textarea:focus { border-color:var(--navy); box-shadow:0 0 0 4px rgba(11,47,87,.12); }
+    .profile-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:18px; }
+    .profile-saved-note { color:var(--muted); font-size:12px; line-height:1.6; }
+    @media (max-width: 680px) {
+      .profile-form-grid { grid-template-columns:1fr; }
+      .profile-form-grid .full { grid-column:auto; }
+      .member-profile-form { padding:24px; }
+    }
+
     .muted-note { color:var(--muted); font-size:12px; text-align:center; margin-top:14px; line-height:1.6; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC",Arial,sans-serif; }
     .hidden { display:none !important; }
 
@@ -616,11 +645,32 @@
             <br>
             <button class="btn light square" onclick="logout()">退出登录</button>
           </div>
-          <div class="member-cards sans">
-            <div class="mini-card"><b>资料完善</b><h3>待完善</h3><p>下一步可加入头像、身份说明、所属机构等字段。</p></div>
-            <div class="mini-card"><b>授与申请</b><h3>未提交</h3><p>提供线上申请表、上传资料和审查状态。</p></div>
-            <div class="mini-card"><b>我的证书记录</b><h3>暂无记录</h3><p>正式授与后显示等级、日期、证书编号和 PDF。</p></div>
-            <div class="mini-card"><b>内部公告</b><h3>0 条</h3><p>发布仪式通知、佩用规则更新和文书版本更新。</p></div>
+          <div class="card member-profile-form sans">
+            <div class="profile-form-head">
+              <div>
+                <b data-i18n="profileFormEyebrow">Profile Details</b>
+                <h3 data-i18n="profileFormTitle">个人详细资料</h3>
+                <p data-i18n="profileFormLead">这里可以在登录后继续补充会员资料。保存后资料会写入 D1 数据库，不会公开显示在首页。</p>
+              </div>
+            </div>
+            <div class="msg" id="profileFormMsg"></div>
+            <form id="memberProfileForm" onsubmit="saveMemberProfile(event)">
+              <div class="profile-form-notice" data-i18n="profileFormNotice">目前大龙凤章及龙凤章不接受个人主动申请。填写本表格仅用于成为正式会员，并方便今后会员活动、联络与发展。</div>
+              <div class="profile-form-grid">
+                <label><span data-i18n="profileDisplayName">姓名</span><input id="mpDisplayName" type="text" autocomplete="name" required></label>
+                <label><span data-i18n="profileNameEn">英文姓名</span><input id="mpNameEn" type="text" autocomplete="name" required></label>
+                <label><span data-i18n="profileNationality">国籍</span><input id="mpNationality" type="text" required></label>
+                <label><span data-i18n="profileResidenceCountry">现居住国家</span><input id="mpResidenceCountry" type="text" required></label>
+                <label><span data-i18n="profileOccupation">职业</span><input id="mpOccupation" type="text" required></label>
+                <label><span data-i18n="profileNobleTitleStatus">是否拥有贵族头衔</span><select id="mpNobleTitleStatus" class="field-select" required><option value="" data-i18n="profileSelectPlaceholder">请选择</option><option value="yes" data-i18n="profileYes">有</option><option value="no" data-i18n="profileNo">无</option><option value="undisclosed" data-i18n="profileUndisclosed">不便公开</option></select></label>
+                <label><span data-i18n="profileHonoursRecordStatus">是否有授勋记录</span><select id="mpHonoursRecordStatus" class="field-select" required><option value="" data-i18n="profileSelectPlaceholder">请选择</option><option value="yes" data-i18n="profileYes">有</option><option value="no" data-i18n="profileNo">无</option><option value="undisclosed" data-i18n="profileUndisclosed">不便公开</option></select></label>
+                <label class="full"><span data-i18n="profileBiography">个人简介（350字以内）</span><textarea id="mpBiography" maxlength="350" oninput="updateBioCount()" required></textarea><small class="profile-saved-note" id="profileBioCount">0 / 350</small></label>
+              </div>
+              <div class="profile-actions">
+                <button class="btn square" type="submit" id="profileSaveBtn" data-i18n="profileSaveButton">保存并成为正式会员</button>
+                <span class="profile-saved-note" id="profileUpdatedAt"></span>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -836,6 +886,66 @@
       }
     };
 
+
+
+    Object.assign(I18N.zh, {
+      profileFormEyebrow:"Member Profile",
+      profileFormTitle:"正式会员资料",
+      profileFormLead:"填写以下资料后，账号状态将更新为正式会员。资料仅用于会员管理、后续活动联络与组织发展，不会公开显示在首页。",
+      profileFormNotice:"目前大龙凤章及龙凤章不接受个人主动申请。填写本表格仅用于成为正式会员，并方便今后会员活动、联络与发展。",
+      profileDisplayName:"姓名",
+      profileNameEn:"英文姓名",
+      profileNationality:"国籍",
+      profileResidenceCountry:"现居住国家",
+      profileOccupation:"职业",
+      profileNobleTitleStatus:"是否拥有贵族头衔",
+      profileHonoursRecordStatus:"是否有授勋记录",
+      profileBiography:"个人简介（350字以内）",
+      profileSelectPlaceholder:"请选择",
+      profileYes:"有",
+      profileNo:"无",
+      profileUndisclosed:"不便公开",
+      profileSaveButton:"保存并成为正式会员"
+    });
+    Object.assign(I18N.ja, {
+      profileFormEyebrow:"Member Profile",
+      profileFormTitle:"正式会員情報",
+      profileFormLead:"以下の情報を入力すると、アカウント状態が正式会員に更新されます。入力内容は会員管理、今後の活動連絡、組織運営のために使用され、トップページには公開されません。",
+      profileFormNotice:"現在、大龍鳳章および龍鳳章は個人からの申請を受け付けていません。本フォームは正式会員になるため、また今後の会員活動と発展に役立てるためのものです。",
+      profileDisplayName:"氏名",
+      profileNameEn:"英語氏名",
+      profileNationality:"国籍",
+      profileResidenceCountry:"現在の居住国",
+      profileOccupation:"職業",
+      profileNobleTitleStatus:"貴族称号の有無",
+      profileHonoursRecordStatus:"受勲歴の有無",
+      profileBiography:"プロフィール（350字以内）",
+      profileSelectPlaceholder:"選択してください",
+      profileYes:"あり",
+      profileNo:"なし",
+      profileUndisclosed:"非公開",
+      profileSaveButton:"保存して正式会員になる"
+    });
+    Object.assign(I18N.en, {
+      profileFormEyebrow:"Member Profile",
+      profileFormTitle:"Formal Member Profile",
+      profileFormLead:"After completing the profile, your account status will be updated to Formal Member. The information is used for member administration, future member activities, and organizational development, and is not published on the homepage.",
+      profileFormNotice:"At present, the Order of the Great Dragon and Phoenix and the Dragon and Phoenix Medal do not accept individual applications. This form is for becoming a formal member and for supporting future member activities and development.",
+      profileDisplayName:"Name",
+      profileNameEn:"English Name",
+      profileNationality:"Nationality",
+      profileResidenceCountry:"Current Country of Residence",
+      profileOccupation:"Occupation",
+      profileNobleTitleStatus:"Do you hold a noble title?",
+      profileHonoursRecordStatus:"Do you have an honours record?",
+      profileBiography:"Biography (within 350 characters)",
+      profileSelectPlaceholder:"Please select",
+      profileYes:"Yes",
+      profileNo:"No",
+      profileUndisclosed:"Prefer not to disclose",
+      profileSaveButton:"Save and Become Formal Member"
+    });
+
     const COUNTRY_CODES = [{"iso": "JP", "code": "+81", "zh": "日本", "ja": "日本", "en": "Japan"}, {"iso": "CN", "code": "+86", "zh": "中国", "ja": "中国", "en": "China"}, {"iso": "US", "code": "+1", "zh": "美国", "ja": "アメリカ合衆国", "en": "United States"}, {"iso": "HK", "code": "+852", "zh": "中国香港特别行政区", "ja": "中華人民共和国香港特別行政区", "en": "Hong Kong SAR China"}, {"iso": "MO", "code": "+853", "zh": "中国澳门特别行政区", "ja": "中華人民共和国マカオ特別行政区", "en": "Macao SAR China"}, {"iso": "TW", "code": "+886", "zh": "台湾", "ja": "台湾", "en": "Taiwan"}, {"iso": "KR", "code": "+82", "zh": "韩国", "ja": "韓国", "en": "South Korea"}, {"iso": "SG", "code": "+65", "zh": "新加坡", "ja": "シンガポール", "en": "Singapore"}, {"iso": "GB", "code": "+44", "zh": "英国", "ja": "イギリス", "en": "United Kingdom"}, {"iso": "FR", "code": "+33", "zh": "法国", "ja": "フランス", "en": "France"}, {"iso": "DE", "code": "+49", "zh": "德国", "ja": "ドイツ", "en": "Germany"}, {"iso": "IT", "code": "+39", "zh": "意大利", "ja": "イタリア", "en": "Italy"}, {"iso": "AU", "code": "+61", "zh": "澳大利亚", "ja": "オーストラリア", "en": "Australia"}, {"iso": "CA", "code": "+1", "zh": "加拿大", "ja": "カナダ", "en": "Canada"}, {"iso": "AF", "code": "+93", "zh": "阿富汗", "ja": "アフガニスタン", "en": "Afghanistan"}, {"iso": "AL", "code": "+355", "zh": "阿尔巴尼亚", "ja": "アルバニア", "en": "Albania"}, {"iso": "DZ", "code": "+213", "zh": "阿尔及利亚", "ja": "アルジェリア", "en": "Algeria"}, {"iso": "AS", "code": "+1", "zh": "美属萨摩亚", "ja": "米領サモア", "en": "American Samoa"}, {"iso": "AD", "code": "+376", "zh": "安道尔", "ja": "アンドラ", "en": "Andorra"}, {"iso": "AO", "code": "+244", "zh": "安哥拉", "ja": "アンゴラ", "en": "Angola"}, {"iso": "AI", "code": "+1", "zh": "安圭拉", "ja": "アンギラ", "en": "Anguilla"}, {"iso": "AG", "code": "+1", "zh": "安提瓜和巴布达", "ja": "アンティグア・バーブーダ", "en": "Antigua & Barbuda"}, {"iso": "AR", "code": "+54", "zh": "阿根廷", "ja": "アルゼンチン", "en": "Argentina"}, {"iso": "AM", "code": "+374", "zh": "亚美尼亚", "ja": "アルメニア", "en": "Armenia"}, {"iso": "AW", "code": "+297", "zh": "阿鲁巴", "ja": "アルバ", "en": "Aruba"}, {"iso": "AT", "code": "+43", "zh": "奥地利", "ja": "オーストリア", "en": "Austria"}, {"iso": "AZ", "code": "+994", "zh": "阿塞拜疆", "ja": "アゼルバイジャン", "en": "Azerbaijan"}, {"iso": "BS", "code": "+1", "zh": "巴哈马", "ja": "バハマ", "en": "Bahamas"}, {"iso": "BH", "code": "+973", "zh": "巴林", "ja": "バーレーン", "en": "Bahrain"}, {"iso": "BD", "code": "+880", "zh": "孟加拉国", "ja": "バングラデシュ", "en": "Bangladesh"}, {"iso": "BB", "code": "+1", "zh": "巴巴多斯", "ja": "バルバドス", "en": "Barbados"}, {"iso": "BY", "code": "+375", "zh": "白俄罗斯", "ja": "ベラルーシ", "en": "Belarus"}, {"iso": "BE", "code": "+32", "zh": "比利时", "ja": "ベルギー", "en": "Belgium"}, {"iso": "BZ", "code": "+501", "zh": "伯利兹", "ja": "ベリーズ", "en": "Belize"}, {"iso": "BJ", "code": "+229", "zh": "贝宁", "ja": "ベナン", "en": "Benin"}, {"iso": "BM", "code": "+1", "zh": "百慕大", "ja": "バミューダ", "en": "Bermuda"}, {"iso": "BT", "code": "+975", "zh": "不丹", "ja": "ブータン", "en": "Bhutan"}, {"iso": "BO", "code": "+591", "zh": "玻利维亚", "ja": "ボリビア", "en": "Bolivia"}, {"iso": "BA", "code": "+387", "zh": "波斯尼亚和黑塞哥维那", "ja": "ボスニア・ヘルツェゴビナ", "en": "Bosnia & Herzegovina"}, {"iso": "BW", "code": "+267", "zh": "博茨瓦纳", "ja": "ボツワナ", "en": "Botswana"}, {"iso": "BR", "code": "+55", "zh": "巴西", "ja": "ブラジル", "en": "Brazil"}, {"iso": "IO", "code": "+246", "zh": "英属印度洋领地", "ja": "英領インド洋地域", "en": "British Indian Ocean Territory"}, {"iso": "VG", "code": "+1", "zh": "英属维尔京群岛", "ja": "英領ヴァージン諸島", "en": "British Virgin Islands"}, {"iso": "BN", "code": "+673", "zh": "文莱", "ja": "ブルネイ", "en": "Brunei"}, {"iso": "BG", "code": "+359", "zh": "保加利亚", "ja": "ブルガリア", "en": "Bulgaria"}, {"iso": "BF", "code": "+226", "zh": "布基纳法索", "ja": "ブルキナファソ", "en": "Burkina Faso"}, {"iso": "BI", "code": "+257", "zh": "布隆迪", "ja": "ブルンジ", "en": "Burundi"}, {"iso": "KH", "code": "+855", "zh": "柬埔寨", "ja": "カンボジア", "en": "Cambodia"}, {"iso": "CM", "code": "+237", "zh": "喀麦隆", "ja": "カメルーン", "en": "Cameroon"}, {"iso": "CV", "code": "+238", "zh": "佛得角", "ja": "カーボベルデ", "en": "Cape Verde"}, {"iso": "BQ", "code": "+599", "zh": "荷属加勒比区", "ja": "オランダ領カリブ", "en": "Caribbean Netherlands"}, {"iso": "KY", "code": "+1", "zh": "开曼群岛", "ja": "ケイマン諸島", "en": "Cayman Islands"}, {"iso": "CF", "code": "+236", "zh": "中非共和国", "ja": "中央アフリカ共和国", "en": "Central African Republic"}, {"iso": "TD", "code": "+235", "zh": "乍得", "ja": "チャド", "en": "Chad"}, {"iso": "CL", "code": "+56", "zh": "智利", "ja": "チリ", "en": "Chile"}, {"iso": "CX", "code": "+61", "zh": "圣诞岛", "ja": "クリスマス島", "en": "Christmas Island"}, {"iso": "CC", "code": "+61", "zh": "科科斯（基林）群岛", "ja": "ココス(キーリング)諸島", "en": "Cocos (Keeling) Islands"}, {"iso": "CO", "code": "+57", "zh": "哥伦比亚", "ja": "コロンビア", "en": "Colombia"}, {"iso": "KM", "code": "+269", "zh": "科摩罗", "ja": "コモロ", "en": "Comoros"}, {"iso": "CG", "code": "+242", "zh": "刚果（布）", "ja": "コンゴ共和国(ブラザビル)", "en": "Congo - Brazzaville"}, {"iso": "CD", "code": "+243", "zh": "刚果（金）", "ja": "コンゴ民主共和国(キンシャサ)", "en": "Congo - Kinshasa"}, {"iso": "CK", "code": "+682", "zh": "库克群岛", "ja": "クック諸島", "en": "Cook Islands"}, {"iso": "CR", "code": "+506", "zh": "哥斯达黎加", "ja": "コスタリカ", "en": "Costa Rica"}, {"iso": "HR", "code": "+385", "zh": "克罗地亚", "ja": "クロアチア", "en": "Croatia"}, {"iso": "CU", "code": "+53", "zh": "古巴", "ja": "キューバ", "en": "Cuba"}, {"iso": "CW", "code": "+599", "zh": "库拉索", "ja": "キュラソー", "en": "Curaçao"}, {"iso": "CY", "code": "+357", "zh": "塞浦路斯", "ja": "キプロス", "en": "Cyprus"}, {"iso": "CZ", "code": "+420", "zh": "捷克", "ja": "チェコ", "en": "Czechia"}, {"iso": "CI", "code": "+225", "zh": "科特迪瓦", "ja": "コートジボワール", "en": "Côte d’Ivoire"}, {"iso": "DK", "code": "+45", "zh": "丹麦", "ja": "デンマーク", "en": "Denmark"}, {"iso": "DJ", "code": "+253", "zh": "吉布提", "ja": "ジブチ", "en": "Djibouti"}, {"iso": "DM", "code": "+1", "zh": "多米尼克", "ja": "ドミニカ国", "en": "Dominica"}, {"iso": "DO", "code": "+1", "zh": "多米尼加共和国", "ja": "ドミニカ共和国", "en": "Dominican Republic"}, {"iso": "EC", "code": "+593", "zh": "厄瓜多尔", "ja": "エクアドル", "en": "Ecuador"}, {"iso": "EG", "code": "+20", "zh": "埃及", "ja": "エジプト", "en": "Egypt"}, {"iso": "SV", "code": "+503", "zh": "萨尔瓦多", "ja": "エルサルバドル", "en": "El Salvador"}, {"iso": "GQ", "code": "+240", "zh": "赤道几内亚", "ja": "赤道ギニア", "en": "Equatorial Guinea"}, {"iso": "ER", "code": "+291", "zh": "厄立特里亚", "ja": "エリトリア", "en": "Eritrea"}, {"iso": "EE", "code": "+372", "zh": "爱沙尼亚", "ja": "エストニア", "en": "Estonia"}, {"iso": "SZ", "code": "+268", "zh": "斯威士兰", "ja": "エスワティニ", "en": "Eswatini"}, {"iso": "ET", "code": "+251", "zh": "埃塞俄比亚", "ja": "エチオピア", "en": "Ethiopia"}, {"iso": "FK", "code": "+500", "zh": "福克兰群岛", "ja": "フォークランド諸島", "en": "Falkland Islands"}, {"iso": "FO", "code": "+298", "zh": "法罗群岛", "ja": "フェロー諸島", "en": "Faroe Islands"}, {"iso": "FJ", "code": "+679", "zh": "斐济", "ja": "フィジー", "en": "Fiji"}, {"iso": "FI", "code": "+358", "zh": "芬兰", "ja": "フィンランド", "en": "Finland"}, {"iso": "GF", "code": "+594", "zh": "法属圭亚那", "ja": "仏領ギアナ", "en": "French Guiana"}, {"iso": "PF", "code": "+689", "zh": "法属波利尼西亚", "ja": "仏領ポリネシア", "en": "French Polynesia"}, {"iso": "GA", "code": "+241", "zh": "加蓬", "ja": "ガボン", "en": "Gabon"}, {"iso": "GM", "code": "+220", "zh": "冈比亚", "ja": "ガンビア", "en": "Gambia"}, {"iso": "GE", "code": "+995", "zh": "格鲁吉亚", "ja": "ジョージア", "en": "Georgia"}, {"iso": "GH", "code": "+233", "zh": "加纳", "ja": "ガーナ", "en": "Ghana"}, {"iso": "GI", "code": "+350", "zh": "直布罗陀", "ja": "ジブラルタル", "en": "Gibraltar"}, {"iso": "GR", "code": "+30", "zh": "希腊", "ja": "ギリシャ", "en": "Greece"}, {"iso": "GL", "code": "+299", "zh": "格陵兰", "ja": "グリーンランド", "en": "Greenland"}, {"iso": "GD", "code": "+1", "zh": "格林纳达", "ja": "グレナダ", "en": "Grenada"}, {"iso": "GP", "code": "+590", "zh": "瓜德罗普", "ja": "グアドループ", "en": "Guadeloupe"}, {"iso": "GU", "code": "+1", "zh": "关岛", "ja": "グアム", "en": "Guam"}, {"iso": "GT", "code": "+502", "zh": "危地马拉", "ja": "グアテマラ", "en": "Guatemala"}, {"iso": "GG", "code": "+44", "zh": "根西岛", "ja": "ガーンジー", "en": "Guernsey"}, {"iso": "GN", "code": "+224", "zh": "几内亚", "ja": "ギニア", "en": "Guinea"}, {"iso": "GW", "code": "+245", "zh": "几内亚比绍", "ja": "ギニアビサウ", "en": "Guinea-Bissau"}, {"iso": "GY", "code": "+592", "zh": "圭亚那", "ja": "ガイアナ", "en": "Guyana"}, {"iso": "HT", "code": "+509", "zh": "海地", "ja": "ハイチ", "en": "Haiti"}, {"iso": "HN", "code": "+504", "zh": "洪都拉斯", "ja": "ホンジュラス", "en": "Honduras"}, {"iso": "HU", "code": "+36", "zh": "匈牙利", "ja": "ハンガリー", "en": "Hungary"}, {"iso": "IS", "code": "+354", "zh": "冰岛", "ja": "アイスランド", "en": "Iceland"}, {"iso": "IN", "code": "+91", "zh": "印度", "ja": "インド", "en": "India"}, {"iso": "ID", "code": "+62", "zh": "印度尼西亚", "ja": "インドネシア", "en": "Indonesia"}, {"iso": "IR", "code": "+98", "zh": "伊朗", "ja": "イラン", "en": "Iran"}, {"iso": "IQ", "code": "+964", "zh": "伊拉克", "ja": "イラク", "en": "Iraq"}, {"iso": "IE", "code": "+353", "zh": "爱尔兰", "ja": "アイルランド", "en": "Ireland"}, {"iso": "IM", "code": "+44", "zh": "马恩岛", "ja": "マン島", "en": "Isle of Man"}, {"iso": "IL", "code": "+972", "zh": "以色列", "ja": "イスラエル", "en": "Israel"}, {"iso": "JM", "code": "+1", "zh": "牙买加", "ja": "ジャマイカ", "en": "Jamaica"}, {"iso": "JE", "code": "+44", "zh": "泽西岛", "ja": "ジャージー", "en": "Jersey"}, {"iso": "JO", "code": "+962", "zh": "约旦", "ja": "ヨルダン", "en": "Jordan"}, {"iso": "KZ", "code": "+7", "zh": "哈萨克斯坦", "ja": "カザフスタン", "en": "Kazakhstan"}, {"iso": "KE", "code": "+254", "zh": "肯尼亚", "ja": "ケニア", "en": "Kenya"}, {"iso": "KI", "code": "+686", "zh": "基里巴斯", "ja": "キリバス", "en": "Kiribati"}, {"iso": "XK", "code": "+383", "zh": "科索沃", "ja": "コソボ", "en": "Kosovo"}, {"iso": "KW", "code": "+965", "zh": "科威特", "ja": "クウェート", "en": "Kuwait"}, {"iso": "KG", "code": "+996", "zh": "吉尔吉斯斯坦", "ja": "キルギス", "en": "Kyrgyzstan"}, {"iso": "LA", "code": "+856", "zh": "老挝", "ja": "ラオス", "en": "Laos"}, {"iso": "LV", "code": "+371", "zh": "拉脱维亚", "ja": "ラトビア", "en": "Latvia"}, {"iso": "LB", "code": "+961", "zh": "黎巴嫩", "ja": "レバノン", "en": "Lebanon"}, {"iso": "LS", "code": "+266", "zh": "莱索托", "ja": "レソト", "en": "Lesotho"}, {"iso": "LR", "code": "+231", "zh": "利比里亚", "ja": "リベリア", "en": "Liberia"}, {"iso": "LY", "code": "+218", "zh": "利比亚", "ja": "リビア", "en": "Libya"}, {"iso": "LI", "code": "+423", "zh": "列支敦士登", "ja": "リヒテンシュタイン", "en": "Liechtenstein"}, {"iso": "LT", "code": "+370", "zh": "立陶宛", "ja": "リトアニア", "en": "Lithuania"}, {"iso": "LU", "code": "+352", "zh": "卢森堡", "ja": "ルクセンブルク", "en": "Luxembourg"}, {"iso": "MG", "code": "+261", "zh": "马达加斯加", "ja": "マダガスカル", "en": "Madagascar"}, {"iso": "MW", "code": "+265", "zh": "马拉维", "ja": "マラウイ", "en": "Malawi"}, {"iso": "MY", "code": "+60", "zh": "马来西亚", "ja": "マレーシア", "en": "Malaysia"}, {"iso": "MV", "code": "+960", "zh": "马尔代夫", "ja": "モルディブ", "en": "Maldives"}, {"iso": "ML", "code": "+223", "zh": "马里", "ja": "マリ", "en": "Mali"}, {"iso": "MT", "code": "+356", "zh": "马耳他", "ja": "マルタ", "en": "Malta"}, {"iso": "MH", "code": "+692", "zh": "马绍尔群岛", "ja": "マーシャル諸島", "en": "Marshall Islands"}, {"iso": "MQ", "code": "+596", "zh": "马提尼克", "ja": "マルティニーク", "en": "Martinique"}, {"iso": "MR", "code": "+222", "zh": "毛里塔尼亚", "ja": "モーリタニア", "en": "Mauritania"}, {"iso": "MU", "code": "+230", "zh": "毛里求斯", "ja": "モーリシャス", "en": "Mauritius"}, {"iso": "YT", "code": "+262", "zh": "马约特", "ja": "マヨット", "en": "Mayotte"}, {"iso": "MX", "code": "+52", "zh": "墨西哥", "ja": "メキシコ", "en": "Mexico"}, {"iso": "FM", "code": "+691", "zh": "密克罗尼西亚", "ja": "ミクロネシア連邦", "en": "Micronesia"}, {"iso": "MD", "code": "+373", "zh": "摩尔多瓦", "ja": "モルドバ", "en": "Moldova"}, {"iso": "MC", "code": "+377", "zh": "摩纳哥", "ja": "モナコ", "en": "Monaco"}, {"iso": "MN", "code": "+976", "zh": "蒙古", "ja": "モンゴル", "en": "Mongolia"}, {"iso": "ME", "code": "+382", "zh": "黑山", "ja": "モンテネグロ", "en": "Montenegro"}, {"iso": "MS", "code": "+1", "zh": "蒙特塞拉特", "ja": "モントセラト", "en": "Montserrat"}, {"iso": "MA", "code": "+212", "zh": "摩洛哥", "ja": "モロッコ", "en": "Morocco"}, {"iso": "MZ", "code": "+258", "zh": "莫桑比克", "ja": "モザンビーク", "en": "Mozambique"}, {"iso": "MM", "code": "+95", "zh": "缅甸", "ja": "ミャンマー (ビルマ)", "en": "Myanmar (Burma)"}, {"iso": "NA", "code": "+264", "zh": "纳米比亚", "ja": "ナミビア", "en": "Namibia"}, {"iso": "NR", "code": "+674", "zh": "瑙鲁", "ja": "ナウル", "en": "Nauru"}, {"iso": "NP", "code": "+977", "zh": "尼泊尔", "ja": "ネパール", "en": "Nepal"}, {"iso": "NL", "code": "+31", "zh": "荷兰", "ja": "オランダ", "en": "Netherlands"}, {"iso": "NC", "code": "+687", "zh": "新喀里多尼亚", "ja": "ニューカレドニア", "en": "New Caledonia"}, {"iso": "NZ", "code": "+64", "zh": "新西兰", "ja": "ニュージーランド", "en": "New Zealand"}, {"iso": "NI", "code": "+505", "zh": "尼加拉瓜", "ja": "ニカラグア", "en": "Nicaragua"}, {"iso": "NE", "code": "+227", "zh": "尼日尔", "ja": "ニジェール", "en": "Niger"}, {"iso": "NG", "code": "+234", "zh": "尼日利亚", "ja": "ナイジェリア", "en": "Nigeria"}, {"iso": "NU", "code": "+683", "zh": "纽埃", "ja": "ニウエ", "en": "Niue"}, {"iso": "NF", "code": "+672", "zh": "诺福克岛", "ja": "ノーフォーク島", "en": "Norfolk Island"}, {"iso": "KP", "code": "+850", "zh": "朝鲜", "ja": "北朝鮮", "en": "North Korea"}, {"iso": "MK", "code": "+389", "zh": "北马其顿", "ja": "北マケドニア", "en": "North Macedonia"}, {"iso": "MP", "code": "+1", "zh": "北马里亚纳群岛", "ja": "北マリアナ諸島", "en": "Northern Mariana Islands"}, {"iso": "NO", "code": "+47", "zh": "挪威", "ja": "ノルウェー", "en": "Norway"}, {"iso": "OM", "code": "+968", "zh": "阿曼", "ja": "オマーン", "en": "Oman"}, {"iso": "PK", "code": "+92", "zh": "巴基斯坦", "ja": "パキスタン", "en": "Pakistan"}, {"iso": "PW", "code": "+680", "zh": "帕劳", "ja": "パラオ", "en": "Palau"}, {"iso": "PS", "code": "+970", "zh": "巴勒斯坦领土", "ja": "パレスチナ自治区", "en": "Palestinian Territories"}, {"iso": "PA", "code": "+507", "zh": "巴拿马", "ja": "パナマ", "en": "Panama"}, {"iso": "PG", "code": "+675", "zh": "巴布亚新几内亚", "ja": "パプアニューギニア", "en": "Papua New Guinea"}, {"iso": "PY", "code": "+595", "zh": "巴拉圭", "ja": "パラグアイ", "en": "Paraguay"}, {"iso": "PE", "code": "+51", "zh": "秘鲁", "ja": "ペルー", "en": "Peru"}, {"iso": "PH", "code": "+63", "zh": "菲律宾", "ja": "フィリピン", "en": "Philippines"}, {"iso": "PL", "code": "+48", "zh": "波兰", "ja": "ポーランド", "en": "Poland"}, {"iso": "PT", "code": "+351", "zh": "葡萄牙", "ja": "ポルトガル", "en": "Portugal"}, {"iso": "PR", "code": "+1", "zh": "波多黎各", "ja": "プエルトリコ", "en": "Puerto Rico"}, {"iso": "QA", "code": "+974", "zh": "卡塔尔", "ja": "カタール", "en": "Qatar"}, {"iso": "RO", "code": "+40", "zh": "罗马尼亚", "ja": "ルーマニア", "en": "Romania"}, {"iso": "RU", "code": "+7", "zh": "俄罗斯", "ja": "ロシア", "en": "Russia"}, {"iso": "RW", "code": "+250", "zh": "卢旺达", "ja": "ルワンダ", "en": "Rwanda"}, {"iso": "RE", "code": "+262", "zh": "留尼汪", "ja": "レユニオン", "en": "Réunion"}, {"iso": "WS", "code": "+685", "zh": "萨摩亚", "ja": "サモア", "en": "Samoa"}, {"iso": "SM", "code": "+378", "zh": "圣马力诺", "ja": "サンマリノ", "en": "San Marino"}, {"iso": "SA", "code": "+966", "zh": "沙特阿拉伯", "ja": "サウジアラビア", "en": "Saudi Arabia"}, {"iso": "SN", "code": "+221", "zh": "塞内加尔", "ja": "セネガル", "en": "Senegal"}, {"iso": "RS", "code": "+381", "zh": "塞尔维亚", "ja": "セルビア", "en": "Serbia"}, {"iso": "SC", "code": "+248", "zh": "塞舌尔", "ja": "セーシェル", "en": "Seychelles"}, {"iso": "SL", "code": "+232", "zh": "塞拉利昂", "ja": "シエラレオネ", "en": "Sierra Leone"}, {"iso": "SX", "code": "+1", "zh": "荷属圣马丁", "ja": "シント・マールテン", "en": "Sint Maarten"}, {"iso": "SK", "code": "+421", "zh": "斯洛伐克", "ja": "スロバキア", "en": "Slovakia"}, {"iso": "SI", "code": "+386", "zh": "斯洛文尼亚", "ja": "スロベニア", "en": "Slovenia"}, {"iso": "SB", "code": "+677", "zh": "所罗门群岛", "ja": "ソロモン諸島", "en": "Solomon Islands"}, {"iso": "SO", "code": "+252", "zh": "索马里", "ja": "ソマリア", "en": "Somalia"}, {"iso": "ZA", "code": "+27", "zh": "南非", "ja": "南アフリカ", "en": "South Africa"}, {"iso": "SS", "code": "+211", "zh": "南苏丹", "ja": "南スーダン", "en": "South Sudan"}, {"iso": "ES", "code": "+34", "zh": "西班牙", "ja": "スペイン", "en": "Spain"}, {"iso": "LK", "code": "+94", "zh": "斯里兰卡", "ja": "スリランカ", "en": "Sri Lanka"}, {"iso": "BL", "code": "+590", "zh": "圣巴泰勒米", "ja": "サン・バルテルミー", "en": "St. Barthélemy"}, {"iso": "SH", "code": "+290", "zh": "圣赫勒拿", "ja": "セントヘレナ", "en": "St. Helena"}, {"iso": "KN", "code": "+1", "zh": "圣基茨和尼维斯", "ja": "セントクリストファー・ネーヴィス", "en": "St. Kitts & Nevis"}, {"iso": "LC", "code": "+1", "zh": "圣卢西亚", "ja": "セントルシア", "en": "St. Lucia"}, {"iso": "MF", "code": "+590", "zh": "法属圣马丁", "ja": "サン・マルタン", "en": "St. Martin"}, {"iso": "PM", "code": "+508", "zh": "圣皮埃尔和密克隆群岛", "ja": "サンピエール島・ミクロン島", "en": "St. Pierre & Miquelon"}, {"iso": "VC", "code": "+1", "zh": "圣文森特和格林纳丁斯", "ja": "セントビンセント及びグレナディーン諸島", "en": "St. Vincent & Grenadines"}, {"iso": "SD", "code": "+249", "zh": "苏丹", "ja": "スーダン", "en": "Sudan"}, {"iso": "SR", "code": "+597", "zh": "苏里南", "ja": "スリナム", "en": "Suriname"}, {"iso": "SJ", "code": "+47", "zh": "斯瓦尔巴和扬马延", "ja": "スバールバル諸島・ヤンマイエン島", "en": "Svalbard & Jan Mayen"}, {"iso": "SE", "code": "+46", "zh": "瑞典", "ja": "スウェーデン", "en": "Sweden"}, {"iso": "CH", "code": "+41", "zh": "瑞士", "ja": "スイス", "en": "Switzerland"}, {"iso": "SY", "code": "+963", "zh": "叙利亚", "ja": "シリア", "en": "Syria"}, {"iso": "ST", "code": "+239", "zh": "圣多美和普林西比", "ja": "サントメ・プリンシペ", "en": "São Tomé & Príncipe"}, {"iso": "TJ", "code": "+992", "zh": "塔吉克斯坦", "ja": "タジキスタン", "en": "Tajikistan"}, {"iso": "TZ", "code": "+255", "zh": "坦桑尼亚", "ja": "タンザニア", "en": "Tanzania"}, {"iso": "TH", "code": "+66", "zh": "泰国", "ja": "タイ", "en": "Thailand"}, {"iso": "TL", "code": "+670", "zh": "东帝汶", "ja": "東ティモール", "en": "Timor-Leste"}, {"iso": "TG", "code": "+228", "zh": "多哥", "ja": "トーゴ", "en": "Togo"}, {"iso": "TK", "code": "+690", "zh": "托克劳", "ja": "トケラウ", "en": "Tokelau"}, {"iso": "TO", "code": "+676", "zh": "汤加", "ja": "トンガ", "en": "Tonga"}, {"iso": "TT", "code": "+1", "zh": "特立尼达和多巴哥", "ja": "トリニダード・トバゴ", "en": "Trinidad & Tobago"}, {"iso": "TN", "code": "+216", "zh": "突尼斯", "ja": "チュニジア", "en": "Tunisia"}, {"iso": "TM", "code": "+993", "zh": "土库曼斯坦", "ja": "トルクメニスタン", "en": "Turkmenistan"}, {"iso": "TC", "code": "+1", "zh": "特克斯和凯科斯群岛", "ja": "タークス・カイコス諸島", "en": "Turks & Caicos Islands"}, {"iso": "TV", "code": "+688", "zh": "图瓦卢", "ja": "ツバル", "en": "Tuvalu"}, {"iso": "TR", "code": "+90", "zh": "土耳其", "ja": "トルコ", "en": "Türkiye"}, {"iso": "VI", "code": "+1", "zh": "美属维尔京群岛", "ja": "米領ヴァージン諸島", "en": "U.S. Virgin Islands"}, {"iso": "UG", "code": "+256", "zh": "乌干达", "ja": "ウガンダ", "en": "Uganda"}, {"iso": "UA", "code": "+380", "zh": "乌克兰", "ja": "ウクライナ", "en": "Ukraine"}, {"iso": "AE", "code": "+971", "zh": "阿拉伯联合酋长国", "ja": "アラブ首長国連邦", "en": "United Arab Emirates"}, {"iso": "UY", "code": "+598", "zh": "乌拉圭", "ja": "ウルグアイ", "en": "Uruguay"}, {"iso": "UZ", "code": "+998", "zh": "乌兹别克斯坦", "ja": "ウズベキスタン", "en": "Uzbekistan"}, {"iso": "VU", "code": "+678", "zh": "瓦努阿图", "ja": "バヌアツ", "en": "Vanuatu"}, {"iso": "VA", "code": "+39", "zh": "梵蒂冈", "ja": "バチカン市国", "en": "Vatican City"}, {"iso": "VE", "code": "+58", "zh": "委内瑞拉", "ja": "ベネズエラ", "en": "Venezuela"}, {"iso": "VN", "code": "+84", "zh": "越南", "ja": "ベトナム", "en": "Vietnam"}, {"iso": "WF", "code": "+681", "zh": "瓦利斯和富图纳", "ja": "ウォリス・フツナ", "en": "Wallis & Futuna"}, {"iso": "EH", "code": "+212", "zh": "西撒哈拉", "ja": "西サハラ", "en": "Western Sahara"}, {"iso": "YE", "code": "+967", "zh": "也门", "ja": "イエメン", "en": "Yemen"}, {"iso": "ZM", "code": "+260", "zh": "赞比亚", "ja": "ザンビア", "en": "Zambia"}, {"iso": "ZW", "code": "+263", "zh": "津巴布韦", "ja": "ジンバブエ", "en": "Zimbabwe"}, {"iso": "AX", "code": "+358", "zh": "奥兰群岛", "ja": "オーランド諸島", "en": "Åland Islands"}];
 
     function renderCountryCodes(lang = localStorage.getItem("jia_site_lang") || "zh") {
@@ -875,6 +985,35 @@
     };
 
     const TEXT_I18N = {"ja": {"贾氏勋章官方网站｜大龙凤章 · 龙凤章": "賈氏勲章公式サイト｜大龍鳳章 · 龍鳳章", "贾氏勋章官网": "賈氏勲章公式サイト", "大龙凤章 · 龙凤章": "大龍鳳章 · 龍鳳章", "首页": "トップ", "历史渊源": "由来", "勋章制度": "勲章制度", "名誉头衔": "名誉称号", "会员中心": "会員ページ", "登录": "ログイン", "注册": "登録", "退出": "ログアウト", "Official Honours Website": "公式栄誉サイト", "贾氏勋章": "賈氏勲章", "官方网站": "公式サイト", "本网站用于整理贾氏勋章体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、授与文书及相关制度资料。网站内容以礼仪、纪念、感谢、公益与文化承继为中心，构成贾氏私人荣誉体系的官方展示平台。": "本サイトは、賈氏勲章体系の歴史的由来、制度構成、意匠、授与理念を整理し、大龍鳳章、龍鳳章、授与文書および関連資料を紹介する公式サイトです。礼儀、記念、感謝、公益、文化の継承を軸に、賈氏による私的な栄誉・記念体系を分かりやすく示します。", "查看勋章制度 →": "勲章制度を見る →", "注册会员账户": "会員登録", "进入会员中心": "会員ページへ", "礼仪性": "礼儀性", "用于私人家门礼仪中的正式纪念表达。": "私的な家門礼儀の中で、正式な記念表現として用いられます。", "纪念性": "記念性", "围绕关系、贡献、协助、友谊与公益实践。": "関係性、貢献、協力、友誼、公益活動の記録として位置づけられます。", "非公权": "非公的性格", "不构成国家荣典、公权身份或职业资格。": "国家の栄典、公的身分、職業資格を示すものではありません。", "可记录": "記録性", "授与书、纪念文告、合影和网站记录共同建档。": "授与書、記念文、写真、ウェブ上の記録によって保存されます。", "Origin & Position": "由来と位置づけ", "历史渊源与基本立场": "歴史的由来と基本的立場", "贾氏勋章体系以历史记忆、家门礼仪、感谢表达、公益精神与国际友谊为核心。": "賈氏勲章体系は、歴史的記憶、家門礼儀、感謝の表現、公益精神、国際的な友好関係を基礎としています。", "源": "源", "从周代封国记忆到当代家门礼仪传统": "周代の封国記憶から現代の家門礼儀へ", "关于“贾”的早期历史渊源，可上溯至周代贾国与“贾伯”这一历史称谓。在家门传统叙述中，贾国被视为重要的历史身份记忆来源，“贾”也由古代政治地理意义逐渐转化为后世家门文化、姓氏认同与礼仪表达的重要来源。": "「賈」の歴史的由来は、周代の賈国および「賈伯」という称号にまでさかのぼって語られます。賈氏の家門伝統において、賈国は重要な歴史的記憶の源とされ、「賈」という名は、後世の家門文化、姓氏意識、礼儀表現へと受け継がれてきました。", "章": "章", "公开性质说明": "公開上の位置づけ", "本网站所介绍之大龙凤章与龙凤章，为贾氏私人荣誉与纪念体系，用于礼仪、纪念、感谢、合作与公益精神之表达。相关内容不构成国家荣典、公权身份、职业资格或现实政治主张。": "本サイトで紹介する大龍鳳章および龍鳳章は、賈氏による私的な栄誉・記念体系であり、礼儀、記念、感謝、協力、公益精神を表すためのものです。国家の栄典、公的身分、職業資格、または現実政治上の主張を意味するものではありません。", "Honours System": "勲章制度", "勋章与奖章制度": "勲章・賞章制度", "体系包含勋章与奖章两类章饰，大龙凤章设大项链级及一等至五等，龙凤章设金级与银级。": "本体系は勲章と賞章から構成されます。大龍鳳章には大項鏈級および一等から五等、龍鳳章には金級と銀級が設けられています。", "勋": "勲", "勋章序列": "勲章序列", "大龙凤章": "大龍鳳章", "大龙凤章属于贾氏荣誉体系中的高阶勋章，用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设等方面作出重要贡献者。其视觉语言以蓝色章体、八咫乌与中央龙凤纹章为主要识别特征。": "大龍鳳章は、賈氏栄誉体系における高位の勲章であり、公益活動、国際交流、友好協力、文化の継承、家門礼儀の整備などに重要な貢献を行った人物を顕彰するために設けられています。青色の章体、八咫烏、中央の龍鳳紋章を主要な意匠上の特徴としています。", "大项链级": "大項鏈級", "一等": "一等", "二等": "二等", "三等": "三等", "四等": "四等", "五等": "五等", "奖": "賞", "奖章序列": "賞章序列", "龙凤章": "龍鳳章", "龙凤章属于贾氏荣誉体系中的奖章序列，适用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果的感谢与纪念。": "龍鳳章は、賈氏栄誉体系における賞章であり、配慮、支援、協力、奉仕、友誼、段階的な成果に対する感謝と記念のために授与されます。", "金级": "金級", "银级": "銀級", "Honorary Titles": "名誉称号", "名誉头衔制度": "名誉称号制度", "名誉头衔属于贾氏私人荣誉体系中的礼仪性称号。大团长本人为公爵，授予范围限于侯爵以下称号。": "名誉称号は、賈氏の私的栄誉体系における礼儀的な称号です。大団長本人は公爵とし、授与対象となる称号は侯爵以下に限られます。", "爵": "爵", "头衔序列": "称号序列", "名誉爵位称号": "名誉爵位称号", "名誉爵位称号用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。公爵称号为大团长本人头衔，不列入授予名额；对外授予范围限于侯爵以下。相关称号不构成国家贵族身份、公权身份、法律身份、社会特权或继承性贵族权利。": "名誉爵位称号は、賈氏栄誉体系の内部における礼儀、記念、称呼表現のためのものです。公爵称号は大団長本人の称号であり、授与枠には含まれません。対外的に授与する称号は侯爵以下に限られます。これらの称号は、国家の貴族身分、公的身分、法的身分、社会的特権、または世襲的な貴族権利を意味するものではありません。", "名誉侯爵：5人": "名誉侯爵：5名", "名誉伯爵：10人": "名誉伯爵：10名", "名誉子爵：不限": "名誉子爵：制限なし", "名誉男爵：不限": "名誉男爵：制限なし", "名誉骑士：不限": "名誉騎士：制限なし", "授": "授", "授予规则": "授与規則", "独立授予原则": "独立した授与原則", "名誉骑士称号在获得五等大龙凤章时一并授予。": "名誉騎士の称号は、五等大龍鳳章の受章時にあわせて授与されます。", "勋章晋升与名誉爵位称号授予相互独立，二者不构成自动对应关系。": "勲章の昇級と名誉爵位称号の授与は相互に独立しており、自動的な対応関係を構成しません。", "名誉骑士以上、侯爵以下的头衔，由大团长本人直接授予。": "名誉騎士を超え、侯爵以下の称号は、大団長本人により直接授与されます。", "公爵为大团长本人头衔，不作为对外授予称号。": "公爵は大団長本人の称号であり、対外的な授与称号ではありません。", "所有头衔均为私人荣誉与纪念用途，公开说明应保持中性、克制与准确。": "すべての称号は私的栄誉および記念用途のものであり、公開上の説明は中立的で節度があり、正確な表現を基本とします。", "Ceremony": "授与の場面", "授与场景与礼仪意义": "授与の場面と礼儀的意義", "勋章并非权力凭证，而是富有礼仪感的纪念物与感谢物。它可与授与书、纪念文告、合影和口头致辞共同出现，形成完整、正式而清晰的授与仪式。": "勲章は権力を示す証明ではなく、礼儀性を備えた記念品であり、感謝を形にするものです。授与書、記念文、記念写真、挨拶とともに用いられることで、正式で品位ある授与の場を構成します。", "✓ 家族合作": "✓ 家族協力", "✓ 慈善支持": "✓ 慈善支援", "✓ 国际交流协助": "✓ 国際交流支援", "✓ 教育指导": "✓ 教育指導", "✓ 跨文化合作": "✓ 異文化協力", "✓ 友谊与信任": "✓ 友誼と信頼", "大项链级陈列": "大項鏈級の展示", "用于展示大龙凤章在正式礼仪语境中的整体形象。": "正式な礼儀の場における大龍鳳章の全体像を示す展示です。", "Founder Profile": "発起人略歴", "发起人履历": "発起人略歴", "本页面仅公开履历与发起理念，不公开个人邮箱及其他私人联系信息。": "本ページでは略歴と発起理念のみを公開し、個人メールアドレスその他の私的な連絡先は公開していません。", "发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。": "発起理念：歴史的伝統を土台とし、現代の公益活動と国際交流を実践の方向とする。礼儀的な記念を形式とし、感謝と顕彰を内容として、私的な家門文化の枠組みの中で、協力、配慮、善意への敬意を継続的に表す。", "赴日本留学，开始长期生活与学习经历。": "日本へ留学し、長期的な学びと生活の経験を始めました。", "关西大学": "関西大学", "后毕业于关西大学，并持续关注跨文化交流、国际合作与社会公益。": "その後、関西大学を卒業し、異文化交流、国際協力、社会公益に継続的に関心を寄せてきました。", "公益实践": "公益活動", "长期参与慈善事业以及国际交流与合作，并多次受到日本红十字会表彰。": "慈善活動および国際交流・協力に継続的に取り組み、日本赤十字社から複数回表彰を受けています。", "荣誉经历": "栄誉歴", "获意大利萨伏依家授勋骑士荣誉。": "イタリア・サヴォイア家より騎士の栄誉を授与されています。", "发起理念": "発起理念", "以历史传统为根，以现代公益与国际交流为实践方向，以礼仪性纪念为形式。": "歴史的伝統を土台とし、現代の公益活動と国際交流を実践の方向とし、礼儀的な記念を形式とします。", "Member Center": "会員ページ", "注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。": "登録後、会員ページで個人情報、授与申請の状況、証書記録、内部通知を確認できます。正式版では、登録とログインの処理をバックエンドに送信し、会員情報を Cloudflare D1 データベースに保存します。", "注册账户": "登録", "会员登录": "会員ログイン", "受保护页面": "保護ページ", "登录后显示": "ログイン後に表示", "个人资料与内部内容。": "個人情報と内部コンテンツを表示します。", "授与申请": "授与申請", "预留入口": "準備中", "申请表与审查状态。": "申請フォームと審査状況を表示します。", "证书记录": "証書記録", "后续录入": "後日入力", "受章历史与证书资料。": "受章履歴と証書情報を表示します。", "内部通知": "内部通知", "官方公告": "公式通知", "仪式和规则更新。": "式典および規則の更新を表示します。", "会": "会", "会员姓名": "会員名", "会员等级": "会員区分", "普通会员": "一般会員", "账户状态": "アカウント状態", "待完善资料": "情報未完了", "注册日期": "登録日", "退出登录": "ログアウト", "资料完善": "プロフィール整備", "待完善": "未完了", "下一步可加入头像、身份说明、所属机构等字段。": "次の段階で、プロフィール画像、身分説明、所属機関などの項目を追加できます。", "未提交": "未提出", "提供线上申请表、上传资料和审查状态。": "オンライン申請フォーム、資料アップロード、審査状況を提供します。", "我的证书记录": "自分の証書記録", "暂无记录": "記録なし", "正式授与后显示等级、日期、证书编号和 PDF。": "正式授与後、等級、日付、証書番号、PDFを表示します。", "0 条": "0件", "发布仪式通知、佩用规则更新和文书版本更新。": "式典通知、佩用規則、文書版の更新を表示します。", "Public Notice": "公開情報", "公开信息范围": "公開情報の範囲", "当前官网仅公开勋章制度、名誉头衔、授与理念、发起人履历与制度性质说明。姓名、邮箱及其他私人联系信息暂不公开。": "現在、本サイトでは勲章制度、名誉称号、授与理念、発起人略歴、制度の位置づけのみを公開しています。氏名、メールアドレス、その他の私的な連絡先は公開していません。", "私人荣誉与纪念用途": "私的栄誉および記念用途", "大龙凤章与龙凤章用于礼仪、纪念、感谢、合作与公益精神表达，公开说明以中性、克制、准确为原则。": "大龍鳳章および龍鳳章は、礼儀、記念、感謝、協力、公益精神を表すために用いられます。公開上の説明は、中立的で節度があり、正確な表現を基本とします。", "© 贾氏勋章官方网站. All rights reserved.": "© 賈氏勲章公式サイト. All rights reserved.", "大龙凤章 · 龙凤章 · 名誉头衔 · 授与文书 · 会员中心": "大龍鳳章 · 龍鳳章 · 名誉称号 · 授与文書 · 会員ページ", "Member Access": "会員アクセス", "姓名": "氏名", "邮箱": "メールアドレス", "密码": "パスワード", "登录账户": "ログイン", "创建会员账户": "会員登録", "创建账户": "登録", "正式版注册资料将写入 Cloudflare D1 数据库。密码采用加盐哈希保存，登录状态通过 HttpOnly 安全 Cookie 维持。": "正式版では登録情報を Cloudflare D1 データベースに保存します。パスワードはソルト付きハッシュで保存し、ログイン状態は HttpOnly の安全な Cookie によって維持します。", "请填写姓名、邮箱和密码。": "氏名、メールアドレス、パスワードを入力してください。", "请输入有效邮箱地址。": "有効なメールアドレスを入力してください。", "密码至少需要 6 位。": "パスワードは6文字以上で入力してください。", "密码至少需要 8 位。": "パスワードは8文字以上で入力してください。", "这个邮箱已经注册，可以直接登录。": "このメールアドレスはすでに登録されています。ログインしてください。", "注册成功，已进入会员中心。": "登録が完了しました。会員ページへ移動します。", "请输入邮箱和密码。": "メールアドレスとパスワードを入力してください。", "邮箱或密码不正确。": "メールアドレスまたはパスワードが正しくありません。", "登录成功。": "ログインしました。", "操作失败。": "処理に失敗しました。", "请求失败。": "リクエストに失敗しました。", "请求格式不正确。": "リクエスト形式が正しくありません。", "注册失败。": "登録に失敗しました。", "登录失败。": "ログインに失敗しました。", "没有管理员权限。": "管理者権限がありません。", "读取失败。": "読み込みに失敗しました。", "member": "一般会員", "admin": "管理者"}, "en": {"贾氏勋章官方网站｜大龙凤章 · 龙凤章": "Jia Honours Official Website | Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal", "贾氏勋章官网": "Jia Honours", "大龙凤章 · 龙凤章": "Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal", "首页": "Home", "历史渊源": "Origins", "勋章制度": "Honours", "名誉头衔": "Honorary Titles", "会员中心": "Member Center", "登录": "Log in", "注册": "Register", "退出": "Log out", "贾氏勋章": "Jia Honours", "官方网站": "Official Website", "本网站用于整理贾氏勋章体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、授与文书及相关制度资料。网站内容以礼仪、纪念、感谢、公益与文化承继为中心，构成贾氏私人荣誉体系的官方展示平台。": "This website presents the historical background, institutional structure, visual identity, and awarding principles of the Jia honours system. It introduces the Order of the Great Dragon and Phoenix, the Dragon and Phoenix Medal, award documents, and related institutional materials as a private honours platform centered on ceremony, remembrance, gratitude, public service, and cultural continuity.", "查看勋章制度 →": "View Honours →", "注册会员账户": "Create Member Account", "进入会员中心": "Enter Member Center", "礼仪性": "Ceremonial", "用于私人家门礼仪中的正式纪念表达。": "A formal commemorative expression within a private lineage ceremonial context.", "纪念性": "Commemorative", "围绕关系、贡献、协助、友谊与公益实践。": "Recording relationships, contributions, assistance, friendship, and public service.", "非公权": "Non-public authority", "不构成国家荣典、公权身份或职业资格。": "It does not constitute a state honour, public status, or professional qualification.", "可记录": "Recordable", "授与书、纪念文告、合影和网站记录共同建档。": "Certificates, commemorative notices, photographs, and website records form the archive.", "Origin & Position": "Origins & Position", "历史渊源与基本立场": "Historical Origins and Position", "贾氏勋章体系以历史记忆、家门礼仪、感谢表达、公益精神与国际友谊为核心。": "The Jia honours system is centered on historical memory, lineage ceremony, gratitude, public service, and international friendship.", "源": "Origin", "从周代封国记忆到当代家门礼仪传统": "From Zhou-period memory to modern lineage ceremony", "关于“贾”的早期历史渊源，可上溯至周代贾国与“贾伯”这一历史称谓。在家门传统叙述中，贾国被视为重要的历史身份记忆来源，“贾”也由古代政治地理意义逐渐转化为后世家门文化、姓氏认同与礼仪表达的重要来源。": "The early historical background of the name Jia is associated with the Zhou-period state of Jia and the historical title Jia Bo. In lineage tradition, this memory is treated as an important source of historical identity, linking the name Jia with later lineage culture, surname identity, and ceremonial expression.", "章": "Notice", "公开性质说明": "Public Statement of Nature", "本网站所介绍之大龙凤章与龙凤章，为贾氏私人荣誉与纪念体系，用于礼仪、纪念、感谢、合作与公益精神之表达。相关内容不构成国家荣典、公权身份、职业资格或现实政治主张。": "The Order of the Great Dragon and Phoenix and the Dragon and Phoenix Medal introduced on this website are a private honour and commemorative system of the Jia lineage, intended for ceremony, remembrance, gratitude, cooperation, and public-service spirit. They do not constitute state honours, public authority, professional qualifications, or political claims.", "勋章与奖章制度": "Orders and Medals", "体系包含勋章与奖章两类章饰，大龙凤章设大项链级及一等至五等，龙凤章设金级与银级。": "The system includes an order and a medal. The Order of the Great Dragon and Phoenix has the Grand Collar and First to Fifth Classes; the Dragon and Phoenix Medal has Gold and Silver grades.", "勋": "Order", "勋章序列": "Order Sequence", "大龙凤章": "Order of the Great Dragon and Phoenix", "大龙凤章属于贾氏荣誉体系中的高阶勋章，用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设等方面作出重要贡献者。其视觉语言以蓝色章体、八咫乌与中央龙凤纹章为主要识别特征。": "The Order of the Great Dragon and Phoenix is the higher order within the Jia honours system, recognizing important contributions to public service, international exchange, friendly cooperation, cultural continuity, and the development of lineage ceremony. Its visual identity is defined by the blue body, the Yatagarasu, and the central dragon-and-phoenix emblem.", "大项链级": "Grand Collar", "一等": "First Class", "二等": "Second Class", "三等": "Third Class", "四等": "Fourth Class", "五等": "Fifth Class", "奖": "Medal", "奖章序列": "Medal Sequence", "龙凤章": "Dragon and Phoenix Medal", "龙凤章属于贾氏荣誉体系中的奖章序列，适用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果的感谢与纪念。": "The Dragon and Phoenix Medal belongs to the medal sequence of the Jia honours system and is used for gratitude and remembrance in relation to care, support, cooperation, service, friendship, and staged achievements.", "金级": "Gold Grade", "银级": "Silver Grade", "名誉头衔制度": "Honorary Title System", "名誉头衔属于贾氏私人荣誉体系中的礼仪性称号。大团长本人为公爵，授予范围限于侯爵以下称号。": "Honorary titles are ceremonial designations within the private Jia honours system. The Grand Master personally holds the title of Duke, and titles conferred to others are limited to Marquis and below.", "爵": "Title", "头衔序列": "Title Sequence", "名誉爵位称号": "Honorary Dignities", "名誉爵位称号用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。公爵称号为大团长本人头衔，不列入授予名额；对外授予范围限于侯爵以下。相关称号不构成国家贵族身份、公权身份、法律身份、社会特权或继承性贵族权利。": "Honorary dignities are used only for ceremonial, commemorative, and forms-of-address purposes within the Jia honours system. The title of Duke is reserved for the Grand Master and is not included among titles conferred to others. Titles conferred externally are limited to Marquis and below. They do not constitute state nobility, public authority, legal status, social privilege, or hereditary noble rights.", "名誉侯爵：5人": "Honorary Marquis: 5", "名誉伯爵：10人": "Honorary Count: 10", "名誉子爵：不限": "Honorary Viscount: unlimited", "名誉男爵：不限": "Honorary Baron: unlimited", "名誉骑士：不限": "Honorary Knight: unlimited", "授": "Rules", "授予规则": "Awarding Rules", "独立授予原则": "Independent Awarding Principle", "名誉骑士称号在获得五等大龙凤章时一并授予。": "The honorary title of Knight is conferred together with the Fifth Class of the Order of the Great Dragon and Phoenix.", "勋章晋升与名誉爵位称号授予相互独立，二者不构成自动对应关系。": "Promotion within the order and the granting of honorary dignities are independent and do not automatically correspond to one another.", "名誉骑士以上、侯爵以下的头衔，由大团长本人直接授予。": "Honorary titles above Knight and up to Marquis are conferred directly by the Grand Master.", "公爵为大团长本人头衔，不作为对外授予称号。": "The title of Duke is held by the Grand Master and is not conferred externally.", "所有头衔均为私人荣誉与纪念用途，公开说明应保持中性、克制与准确。": "All titles are for private honour and commemorative use; public descriptions should remain neutral, restrained, and accurate.", "授与场景与礼仪意义": "Awarding Occasions and Ceremonial Meaning", "勋章并非权力凭证，而是富有礼仪感的纪念物与感谢物。它可与授与书、纪念文告、合影和口头致辞共同出现，形成完整、正式而清晰的授与仪式。": "The honour is not a credential of authority, but a ceremonial commemorative object and expression of gratitude. It may appear with a certificate, commemorative notice, group photograph, and spoken address to form a complete and dignified ceremony.", "✓ 家族合作": "✓ Family cooperation", "✓ 慈善支持": "✓ Charitable support", "✓ 国际交流协助": "✓ International exchange support", "✓ 教育指导": "✓ Educational guidance", "✓ 跨文化合作": "✓ Cross-cultural cooperation", "✓ 友谊与信任": "✓ Friendship and trust", "大项链级陈列": "Grand Collar Display", "用于展示大龙凤章在正式礼仪语境中的整体形象。": "A display of the Order of the Great Dragon and Phoenix in a formal ceremonial context.", "发起人履历": "Founder Profile", "本页面仅公开履历与发起理念，不公开个人邮箱及其他私人联系信息。": "This page publishes only the profile and founding principles. Personal email and other private contact details are not disclosed.", "发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。": "Founding principle: rooted in historical tradition, oriented toward modern public service and international exchange, using ceremonial commemoration as form and gratitude and recognition as content within a private lineage-cultural framework.", "赴日本留学，开始长期生活与学习经历。": "Went to Japan for study and began a long-term period of learning and life experience.", "关西大学": "Kansai University", "后毕业于关西大学，并持续关注跨文化交流、国际合作与社会公益。": "Later graduated from Kansai University and has continued to focus on cross-cultural exchange, international cooperation, and public service.", "公益实践": "Public Service", "长期参与慈善事业以及国际交流与合作，并多次受到日本红十字会表彰。": "Has long participated in charitable activities as well as international exchange and cooperation, and has received multiple recognitions from the Japanese Red Cross Society.", "荣誉经历": "Honours", "获意大利萨伏依家授勋骑士荣誉。": "Received a knighthood honour from the Italian House of Savoy.", "发起理念": "Founding Principle", "以历史传统为根，以现代公益与国际交流为实践方向，以礼仪性纪念为形式。": "Rooted in historical tradition, oriented toward modern public service and international exchange, and expressed through ceremonial commemoration.", "注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。": "After registration, members can view personal information, application status, certificate records, and internal notices. The production version submits registration and login requests to backend APIs and stores member data in a Cloudflare D1 database.", "注册账户": "Register", "会员登录": "Member Login", "受保护页面": "Protected Pages", "登录后显示": "Visible after login", "个人资料与内部内容。": "Personal information and internal content.", "授与申请": "Award Application", "预留入口": "Reserved entry", "申请表与审查状态。": "Application form and review status.", "证书记录": "Certificate Records", "后续录入": "To be entered", "受章历史与证书资料。": "Award history and certificate information.", "内部通知": "Internal Notices", "官方公告": "Official notices", "仪式和规则更新。": "Ceremony and rule updates.", "会": "M", "会员姓名": "Member Name", "会员等级": "Member Level", "普通会员": "Standard Member", "账户状态": "Account Status", "待完善资料": "Profile incomplete", "注册日期": "Registration Date", "退出登录": "Log out", "资料完善": "Profile Completion", "待完善": "Pending", "下一步可加入头像、身份说明、所属机构等字段。": "Next, fields such as avatar, identity description, and affiliated organization can be added.", "未提交": "Not submitted", "提供线上申请表、上传资料和审查状态。": "Provides an online application form, document upload, and review status.", "我的证书记录": "My Certificate Records", "暂无记录": "No records", "正式授与后显示等级、日期、证书编号和 PDF。": "After formal awarding, class, date, certificate number, and PDF will be displayed.", "0 条": "0 items", "发布仪式通知、佩用规则更新和文书版本更新。": "Publishes ceremony notices, wearing-rule updates, and document version updates.", "公开信息范围": "Scope of Public Information", "当前官网仅公开勋章制度、名誉头衔、授与理念、发起人履历与制度性质说明。姓名、邮箱及其他私人联系信息暂不公开。": "At present, this website publicly displays only the honours system, honorary titles, awarding principles, founder profile, and the statement of institutional nature. Names, email addresses, and other private contact details are not disclosed.", "私人荣誉与纪念用途": "Private Honour and Commemorative Use", "大龙凤章与龙凤章用于礼仪、纪念、感谢、合作与公益精神表达，公开说明以中性、克制、准确为原则。": "The Order of the Great Dragon and Phoenix and the Dragon and Phoenix Medal are used to express ceremony, remembrance, gratitude, cooperation, and public-service spirit. Public descriptions should remain neutral, restrained, and accurate.", "© 贾氏勋章官方网站. All rights reserved.": "© Jia Honours Official Website. All rights reserved.", "大龙凤章 · 龙凤章 · 名誉头衔 · 授与文书 · 会员中心": "Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal · Honorary Titles · Award Documents · Member Center", "姓名": "Name", "邮箱": "Email", "密码": "Password", "登录账户": "Log in", "创建会员账户": "Create Member Account", "创建账户": "Create Account", "正式版注册资料将写入 Cloudflare D1 数据库。密码采用加盐哈希保存，登录状态通过 HttpOnly 安全 Cookie 维持。": "Registration data will be stored in a Cloudflare D1 database. Passwords are stored using salted hashes, and login sessions are maintained through HttpOnly secure cookies.", "请填写姓名、邮箱和密码。": "Please enter your name, email, and password.", "请输入有效邮箱地址。": "Please enter a valid email address.", "密码至少需要 6 位。": "Password must be at least 6 characters.", "密码至少需要 8 位。": "Password must be at least 8 characters.", "这个邮箱已经注册，可以直接登录。": "This email is already registered. Please log in.", "注册成功，已进入会员中心。": "Registration successful. Entering the member center.", "请输入邮箱和密码。": "Please enter your email and password.", "邮箱或密码不正确。": "Email or password is incorrect.", "登录成功。": "Logged in successfully.", "操作失败。": "Operation failed.", "请求失败。": "Request failed.", "请求格式不正确。": "Invalid request format.", "注册失败。": "Registration failed.", "登录失败。": "Login failed.", "没有管理员权限。": "Administrator permission is required.", "读取失败。": "Failed to read data.", "member": "Standard Member", "admin": "Administrator"}};
+
+
+    Object.assign(TEXT_I18N.ja, {
+      "个人资料已保存，账号状态已更新为正式会员。":"個人情報を保存しました。アカウント状態は正式会員に更新されました。",
+      "个人资料已保存。":"個人情報を保存しました。",
+      "请先登录。":"先にログインしてください。",
+      "保存失败。":"保存に失敗しました。",
+      "正在保存资料…":"情報を保存しています…",
+      "正在读取资料…":"情報を読み込んでいます…",
+      "尚未填写正式会员资料。":"正式会員情報はまだ入力されていません。",
+      "请完整填写正式会员资料。":"正式会員情報をすべて入力してください。",
+      "个人简介不能超过 350 字。":"プロフィールは350字以内で入力してください。",
+      "正式会员":"正式会員",
+      "待完善资料":"情報未完了"
+    });
+    Object.assign(TEXT_I18N.en, {
+      "个人资料已保存，账号状态已更新为正式会员。":"Profile saved. Account status has been updated to Formal Member.",
+      "个人资料已保存。":"Profile saved.",
+      "请先登录。":"Please log in first.",
+      "保存失败。":"Failed to save.",
+      "正在保存资料…":"Saving profile…",
+      "正在读取资料…":"Loading profile…",
+      "尚未填写正式会员资料。":"No formal member profile has been entered yet.",
+      "请完整填写正式会员资料。":"Please complete the formal member profile.",
+      "个人简介不能超过 350 字。":"Biography cannot exceed 350 characters.",
+      "正式会员":"Formal Member",
+      "待完善资料":"Profile incomplete"
+    });
+
     let __jiaI18nTextNodes = null;
 
     function __jiaNormalizeText(value) {
@@ -1147,6 +1286,87 @@
       renderSession();
     }
 
+
+
+    const MEMBER_PROFILE_FIELD_IDS = {
+      displayName: "mpDisplayName",
+      nameEn: "mpNameEn",
+      nationality: "mpNationality",
+      residenceCountry: "mpResidenceCountry",
+      occupation: "mpOccupation",
+      nobleTitleStatus: "mpNobleTitleStatus",
+      honoursRecordStatus: "mpHonoursRecordStatus",
+      biography: "mpBiography"
+    };
+
+    function setProfileMsg(text, ok = false) {
+      const el = document.getElementById("profileFormMsg");
+      if (!el) return;
+      el.textContent = text ? translateLiteral(text) : "";
+      el.className = "msg" + (text ? (ok ? " ok" : " error") : "");
+    }
+
+    function updateBioCount() {
+      const bio = document.getElementById("mpBiography");
+      const counter = document.getElementById("profileBioCount");
+      if (bio && counter) counter.textContent = `${bio.value.length} / 350`;
+    }
+
+    function fillMemberProfileForm(profile = {}) {
+      Object.entries(MEMBER_PROFILE_FIELD_IDS).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.value = profile[key] || "";
+      });
+      updateBioCount();
+      const updated = document.getElementById("profileUpdatedAt");
+      if (updated) updated.textContent = profile.updatedAt ? `Last updated: ${profile.updatedAt}` : translateLiteral("尚未填写正式会员资料。");
+    }
+
+    function collectMemberProfileForm() {
+      const data = {};
+      Object.entries(MEMBER_PROFILE_FIELD_IDS).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        data[key] = el ? el.value.trim() : "";
+      });
+      return data;
+    }
+
+    async function loadMemberProfile() {
+      const form = document.getElementById("memberProfileForm");
+      if (!form) return;
+      setProfileMsg("");
+      try {
+        const data = await apiRequest("/api/member/profile", { method: "GET" });
+        fillMemberProfileForm(data.profile || {});
+      } catch (err) {
+        fillMemberProfileForm({});
+      }
+    }
+
+    async function saveMemberProfile(e) {
+      e.preventDefault();
+      const data = collectMemberProfileForm();
+      const requiredKeys = Object.keys(MEMBER_PROFILE_FIELD_IDS);
+      if (requiredKeys.some((key) => !data[key])) return setProfileMsg("请完整填写正式会员资料。");
+      if ((data.biography || "").length > 350) return setProfileMsg("个人简介不能超过 350 字。");
+      const btn = document.getElementById("profileSaveBtn");
+      if (btn) btn.disabled = true;
+      setProfileMsg("正在保存资料…", true);
+      try {
+        const result = await apiRequest("/api/member/profile", {
+          method: "POST",
+          body: JSON.stringify(data)
+        });
+        fillMemberProfileForm(result.profile || {});
+        setProfileMsg("个人资料已保存，账号状态已更新为正式会员。", true);
+        renderSession();
+      } catch (err) {
+        setProfileMsg(err.message || "保存失败。");
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
     async function renderSession() {
       let user = null;
       try {
@@ -1174,6 +1394,7 @@
         document.getElementById("profileRole").textContent = translateLiteral(user.role || "普通会员");
         document.getElementById("profileStatus").textContent = translateLiteral(user.memberStatus || "待完善资料");
         document.getElementById("profileDate").textContent = user.createdAt || "-";
+        await loadMemberProfile();
       } else {
         loggedOut.classList.remove("hidden");
         loggedIn.classList.add("hidden");
