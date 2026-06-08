@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS site_news (
 
 CREATE INDEX IF NOT EXISTS idx_site_news_visibility ON site_news(visibility, is_published, published_at);
 
-INSERT OR IGNORE INTO site_news (
+INSERT INTO site_news (
   id, visibility, title_zh, title_ja, title_en,
   body_zh, body_ja, body_en,
   is_published, is_pinned, published_at, created_at, updated_at
@@ -27,14 +27,14 @@ INSERT OR IGNORE INTO site_news (
   'news_20260608_launch',
   'public',
   '贾氏勋赏官网正式上线',
-  '賈氏勲賞公式サイト正式公開のお知らせ',
+  '賈氏勲賞公式サイト公開のお知らせ',
   'Jia Honours Official Website Launches',
   '自今日起，贾氏勋赏官网正式上线。本网站将作为贾氏勋章制度、家门礼仪、名誉头衔、会员事务与相关通知的公开整理平台，持续记录制度建设、文化承继与公益交流的进展。
 
 感谢各位的关注与支持。网站初建，仍有需要完善之处；若您在浏览过程中发现内容、文字、排版或功能上的不足，欢迎通过官方邮箱 jia.honours@gmail.com 与我们联系。我们将认真参考来信意见，逐步完善网站内容与会员服务。',
-  '本日より、賈氏勲賞公式サイトを正式に公開いたしました。本サイトは、賈氏勲章制度、家門礼儀、名誉称号、会員事項および関連通知を整理し、制度整備、文化の継承、公益交流の歩みを記録していく公式な場となります。
+  '本日、賈氏勲賞公式サイトを公開いたしました。本サイトでは、賈氏勲章制度、家門儀礼、名誉称号、会員に関するお知らせを整理し、制度整備、文化継承、公益交流の歩みを順次記録してまいります。
 
-皆様のご関心とご支援に深く感謝申し上げます。開設初期のため、今後さらに整えるべき点もございます。内容、表記、レイアウト、機能などについてお気づきの点がございましたら、公式連絡先 jia.honours@gmail.com までお知らせください。いただいたご意見を参考に、サイト内容と会員サービスを順次改善してまいります。',
+ご関心をお寄せくださる皆様に、心より御礼申し上げます。開設初期につき、表記、内容、レイアウト、機能面で至らない点が残る場合がございます。お気づきの点がございましたら、公式連絡先 jia.honours@gmail.com までお知らせください。いただいたご意見を参考に、サイト内容と会員向けサービスを整えてまいります。',
   'The Jia Honours official website is now formally online. This website will serve as the official platform for presenting the Jia honours system, family ceremonial framework, honorary titles, membership matters, and related notices, while recording the continuing development of the institution, cultural continuity, and public-service exchange.
 
 We sincerely thank all visitors for their attention and support. As the website has just been launched, there will still be areas to refine. If you notice any issue regarding content, wording, layout, or functionality, please contact us at jia.honours@gmail.com. We will review feedback carefully and continue improving the website and member services step by step.',
@@ -43,4 +43,8 @@ We sincerely thank all visitors for their attention and support. As the website 
   '2026-06-08',
   CURRENT_TIMESTAMP,
   CURRENT_TIMESTAMP
-);
+)
+ON CONFLICT(id) DO UPDATE SET
+  title_ja = excluded.title_ja,
+  body_ja = excluded.body_ja,
+  updated_at = CURRENT_TIMESTAMP;
