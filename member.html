@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>贾氏勋章官方网站｜大龙凤章 · 龙凤章</title>
+  <title>会员中心｜贾氏勋章官方网站</title>
   <style>
     :root {
       --ivory:#fbf8f1;
@@ -445,7 +445,7 @@
 <body>
   <header class="topbar">
     <div class="wrap nav">
-      <a href="#top" class="brand">
+      <a href="index.html#top" class="brand">
         <span class="brand-mark"><img data-i18n-alt="logoAlt" src="assets/logo.png" alt="大龙凤章标志"></span>
         <span>
           <span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span>
@@ -453,11 +453,11 @@
         </span>
       </a>
       <nav class="navlinks sans">
-        <a href="#top" data-i18n="navHome">首页</a>
-        <a href="#origin" data-i18n="navOrigin">历史渊源</a>
-        <a href="#honours" data-i18n="navHonours">勋章制度</a>
-        <a href="#titles" data-i18n="navTitles">名誉头衔</a>
-        <a href="#news" data-i18n="navNews">本家新闻</a>
+        <a href="index.html#top" data-i18n="navHome">首页</a>
+        <a href="index.html#origin" data-i18n="navOrigin">历史渊源</a>
+        <a href="index.html#honours" data-i18n="navHonours">勋章制度</a>
+        <a href="index.html#titles" data-i18n="navTitles">名誉头衔</a>
+        <a href="index.html#news" data-i18n="navNews">本家新闻</a>
         <a href="member.html" data-i18n="navMember">会员中心</a>
       </nav>
       <div class="actions sans">
@@ -482,221 +482,75 @@
   </header>
 
   <main>
-    <section id="top" class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="eyebrow" data-i18n="heroEyebrow">Official Honours Website</div>
-          <h1 data-i18n-html="heroTitle">贾氏勋章<br>官方网站</h1>
-          <p class="lead" data-i18n="heroLead">本网站用于整理贾氏勋章体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、授与文书及相关制度资料。网站内容以礼仪、纪念、感谢、公益与文化承继为中心，构成贾氏私人荣誉体系的官方展示平台。</p>
-          <div class="hero-buttons sans">
-            <a class="btn square" href="#honours" data-i18n="viewHonours">查看勋章制度 →</a>
-            <button class="btn light square" onclick="openAuth('register')" id="registerHero" data-i18n="registerAccount">注册会员账户</button>
-            <a class="btn light square hidden" href="member.html" id="memberHero" data-i18n="enterMember">进入会员中心</a>
-          </div>
-        </div>
-        <div class="hero-card">
-          <img src="assets/grand-collar.jpg" alt="大龙凤章大项链级整体展示" data-i18n-alt="heroImageAlt">
+    <section class="member-page-hero">
+      <div class="wrap">
+        <div class="section-title">
+          <div class="eyebrow">Member Center</div>
+          <h2 data-i18n="memberTitle">会员中心</h2>
+          <p data-i18n="memberLead">注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。</p>
         </div>
       </div>
     </section>
 
-    <div class="stats">
-      <div class="wrap stats-grid sans">
-        <div class="stat"><b data-i18n="principle1Title">礼仪性</b><span data-i18n="principle1Text">用于私人家门礼仪中的正式纪念表达。</span></div>
-        <div class="stat"><b data-i18n="principle2Title">纪念性</b><span data-i18n="principle2Text">围绕关系、贡献、协助、友谊与公益实践。</span></div>
-        <div class="stat"><b data-i18n="principle3Title">非公权</b><span data-i18n="principle3Text">不构成国家荣典、公权身份或职业资格。</span></div>
-        <div class="stat"><b data-i18n="principle4Title">可记录</b><span data-i18n="principle4Text">授与书、纪念文告、合影和网站记录共同建档。</span></div>
-      </div>
-    </div>
-
-    <section id="origin">
-      <div class="wrap two">
-        <div class="sticky">
-          <div class="section-title left">
-            <div class="eyebrow">Origin & Position</div>
-            <h2 data-i18n="originTitle">历史渊源与基本立场</h2>
-            <p data-i18n="originLead">贾氏勋章体系以历史记忆、家门礼仪、感谢表达、公益精神与国际友谊为核心。</p>
+    <section id="member" class="white-section member-page-section">
+      <div class="wrap">
+        <div id="memberLoggedOut" class="member-box">
+          <div>
+            <div class="eyebrow">Member Center</div>
+            <h2 data-i18n="memberTitle">会员中心</h2>
+            <p class="lead" data-i18n="memberLead">注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。</p>
+            <div class="hero-buttons sans">
+              <button class="btn square" onclick="openAuth('register')" data-i18n="registerAccountShort">注册账户</button>
+              <button class="btn light square" onclick="openAuth('login')" data-i18n="memberLogin">会员登录</button>
+            </div>
           </div>
-          <img class="mark-large transparent-mark" data-i18n-alt="logoAlt" src="assets/logo-cutout.png" alt="大龙凤章标志">
+          <div class="member-cards sans">
+            <div class="mini-card"><b>受保护页面</b><h3>登录后显示</h3><p>个人资料与内部内容。</p></div>
+            <div class="mini-card"><b>授与申请</b><h3>预留入口</h3><p>申请表与审查状态。</p></div>
+            <div class="mini-card"><b>证书记录</b><h3>后续录入</h3><p>受章历史与证书资料。</p></div>
+            <div class="mini-card"><b>内部通知</b><h3>官方公告</h3><p>仪式和规则更新。</p></div>
+          </div>
         </div>
-        <div>
+        <div id="memberLoggedIn" class="profile-grid hidden">
           <div class="card">
-            <div class="icon sans">源</div>
-            <h3 data-i18n="originCardTitle">从周代封国记忆到当代家门礼仪传统</h3>
-            <p data-i18n="originCardText">关于“贾”的早期历史渊源，可上溯至周代贾国与“贾伯”这一历史称谓。在家门传统叙述中，贾国被视为重要的历史身份记忆来源，“贾”也由古代政治地理意义逐渐转化为后世家门文化、姓氏认同与礼仪表达的重要来源。</p>
+            <div class="icon sans">会</div>
+            <h3 id="profileName">会员姓名</h3>
+            <p id="profileEmail" class="sans"></p>
+            <div class="rows sans">
+              <div class="row"><span>会员等级</span><b id="profileRole">普通会员</b></div>
+              <div class="row"><span>账户状态</span><b id="profileStatus">待完善资料</b></div>
+              <div class="row"><span>注册日期</span><b id="profileDate">-</b></div>
+            </div>
+            <br>
+            <button class="btn light square" onclick="logout()">退出登录</button>
           </div>
-          <div class="card notice">
-            <div class="icon sans">章</div>
-            <h3 data-i18n="noticeTitle">公开性质说明</h3>
-            <p data-i18n="noticeText">本网站所介绍之大龙凤章与龙凤章，为贾氏私人荣誉与纪念体系，用于礼仪、纪念、感谢、合作与公益精神之表达。相关内容不构成国家荣典、公权身份、职业资格或现实政治主张。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="honours" class="white-section">
-      <div class="wrap">
-        <div class="section-title">
-          <div class="eyebrow">Honours System</div>
-          <h2 data-i18n="honoursTitle">勋章与奖章制度</h2>
-          <p data-i18n="honoursLead">体系包含勋章与奖章两类章饰，大龙凤章设大项链级及一等至五等，龙凤章设金级与银级。</p>
-        </div>
-        <div class="honour-grid">
-          <article class="honour">
-            <div class="honour-head">
-              <div class="icon sans">勋</div>
-              <div class="eyebrow">勋章序列</div>
-              <h3 data-i18n="greatOrderTitle">大龙凤章</h3>
-              <div class="en sans">Order of the Great Dragon and Phoenix</div>
-            </div>
-            <div class="honour-body">
-              <span data-i18n="greatOrderText">大龙凤章属于贾氏荣誉体系中的高阶勋章，用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设等方面作出重要贡献者。其视觉语言以蓝色章体、八咫乌与中央龙凤纹章为主要识别特征。</span>
-              <div class="tags sans"><span class="tag">大项链级</span><span class="tag">一等</span><span class="tag">二等</span><span class="tag">三等</span><span class="tag">四等</span><span class="tag">五等</span></div>
-            </div>
-          </article>
-          <article class="honour">
-            <div class="honour-head">
-              <div class="icon sans">奖</div>
-              <div class="eyebrow">奖章序列</div>
-              <h3 data-i18n="medalTitle">龙凤章</h3>
-              <div class="en sans">Medal of the Dragon and Phoenix</div>
-            </div>
-            <div class="honour-body">
-              <span data-i18n="medalText">龙凤章属于贾氏荣誉体系中的奖章序列，适用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果的感谢与纪念。</span>
-              <div class="tags sans"><span class="tag">金级</span><span class="tag">银级</span></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="titles">
-      <div class="wrap">
-        <div class="section-title">
-          <div class="eyebrow">Honorary Titles</div>
-          <h2 data-i18n="titlesTitle">名誉头衔制度</h2>
-          <p data-i18n="titlesLead">名誉头衔属于贾氏私人荣誉体系中的礼仪性称号。大团长本人为公爵，授予范围限于侯爵以下称号。</p>
-        </div>
-
-        <div class="honour-grid">
-          <article class="honour">
-            <div class="honour-head">
-              <div class="icon sans">爵</div>
-              <div class="eyebrow" data-i18n="titlesSequenceEyebrow">头衔序列</div>
-              <h3 data-i18n="titlesSequenceTitle">名誉爵位称号</h3>
-              <div class="en sans" data-i18n="titlesSequenceSub">Honorary Dignities</div>
-            </div>
-            <div class="honour-body">
-              <span data-i18n="titlesSequenceText">名誉爵位称号用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。公爵称号为大团长本人头衔，不列入授予名额；对外授予范围限于侯爵以下。相关称号不构成国家贵族身份、公权身份、法律身份、社会特权或继承性贵族权利。</span>
-              <div class="tags sans">
-                <span class="tag" data-i18n="titleMarquis">名誉侯爵：5人</span>
-                <span class="tag" data-i18n="titleCount">名誉伯爵：10人</span>
-                <span class="tag" data-i18n="titleViscount">名誉子爵：不限</span>
-                <span class="tag" data-i18n="titleBaron">名誉男爵：不限</span>
-                <span class="tag" data-i18n="titleKnight">名誉骑士：不限</span>
+          <div class="card member-profile-form sans">
+            <div class="profile-form-head">
+              <div>
+                <b data-i18n="profileFormEyebrow">Profile Details</b>
+                <h3 data-i18n="profileFormTitle">个人详细资料</h3>
+                <p data-i18n="profileFormLead">这里可以在登录后继续补充会员资料。保存后资料会写入 D1 数据库，不会公开显示在首页。</p>
               </div>
             </div>
-          </article>
-
-          <article class="honour">
-            <div class="honour-head">
-              <div class="icon sans">授</div>
-              <div class="eyebrow" data-i18n="titlesRulesEyebrow">授予规则</div>
-              <h3 data-i18n="titlesRulesTitle">独立授予原则</h3>
-              <div class="en sans" data-i18n="titlesRulesSub">Awarding Principles</div>
-            </div>
-            <div class="honour-body">
-              <ul class="sans" style="margin:0; padding-left:1.2em; color:#584f45; line-height:1.9;">
-                <li data-i18n="titleRule1">名誉骑士称号在获得五等大龙凤章时一并授予。</li>
-                <li data-i18n="titleRule2">勋章晋升与名誉爵位称号授予相互独立，二者不构成自动对应关系。</li>
-                <li data-i18n="titleRule3">名誉骑士以上、侯爵以下的头衔，由大团长本人直接授予。</li>
-                <li data-i18n="titleRule5">公爵为大团长本人头衔，不作为对外授予称号。</li>
-                <li data-i18n="titleRule4">所有头衔均为私人荣誉与纪念用途，公开说明应保持中性、克制与准确。</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap ceremony">
-        <div>
-          <div class="section-title left">
-            <div class="eyebrow">Ceremony</div>
-            <h2 data-i18n="ceremonyTitle">授与场景与礼仪意义</h2>
-            <p data-i18n="ceremonyText">勋章并非权力凭证，而是富有礼仪感的纪念物与感谢物。它可与授与书、纪念文告、合影和口头致辞共同出现，形成完整、正式而清晰的授与仪式。</p>
-          </div>
-          <div class="check-grid sans">
-            <div class="check" data-i18n="check1">✓ 家族合作</div>
-            <div class="check" data-i18n="check2">✓ 慈善支持</div>
-            <div class="check" data-i18n="check3">✓ 国际交流协助</div>
-            <div class="check" data-i18n="check4">✓ 教育指导</div>
-            <div class="check" data-i18n="check5">✓ 跨文化合作</div>
-            <div class="check" data-i18n="check6">✓ 友谊与信任</div>
-          </div>
-        </div>
-        <div class="image-card">
-          <img src="assets/grand-collar-side.jpg" alt="大项链级侧面展示" data-i18n-alt="collarImageAlt">
-          <div class="body">
-            <h3 data-i18n="collarDisplayTitle">大项链级陈列</h3>
-            <p class="sans" data-i18n="collarDisplayText">用于展示大龙凤章在正式礼仪语境中的整体形象。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="founder" class="founder">
-      <div class="wrap two">
-        <div>
-          <div class="section-title left">
-            <div class="eyebrow">Founder Profile</div>
-            <h2 data-i18n="founderTitle">发起人履历</h2>
-            <p data-i18n="founderLead">本页面暂不公开姓名、电话等私人信息；官方联系邮箱：jia.honours@gmail.com。</p>
-          </div>
-          <div class="card notice">
-            <p data-i18n="founderIdea">发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。</p>
-          </div>
-        </div>
-        <div class="timeline">
-          <div class="time-item"><b>2016</b><span class="sans">赴日本留学，开始长期生活与学习经历。</span></div>
-          <div class="time-item"><b>关西大学</b><span class="sans">后毕业于关西大学，并持续关注跨文化交流、国际合作与社会公益。</span></div>
-          <div class="time-item"><b>公益实践</b><span class="sans">长期参与慈善事业以及国际交流与合作，并多次受到日本红十字会表彰。</span></div>
-          <div class="time-item"><b>荣誉经历</b><span class="sans">获意大利萨伏依家授勋骑士荣誉。</span></div>
-          <div class="time-item"><b>发起理念</b><span class="sans">以历史传统为根，以现代公益与国际交流为实践方向，以礼仪性纪念为形式。</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="news" class="white-section">
-      <div class="wrap">
-        <div class="section-title">
-          <div class="eyebrow" data-i18n="newsEyebrow">House News</div>
-          <h2 data-i18n="newsTitle">本家官网新闻</h2>
-          <p data-i18n="newsLead">这里用于发布贾氏勋赏官网的公开新闻、制度通知与会员限定公告。公开新闻面向所有访问者，会员限定新闻仅在注册并登录后显示。</p>
-        </div>
-        <div class="news-toolbar sans">
-          <span class="news-chip" data-i18n="newsPublicChip">全员公开</span>
-          <span class="news-chip members" data-i18n="newsMembersChip">注册用户限定</span>
-        </div>
-        <div id="newsList" class="news-list sans">
-          <div class="news-placeholder" data-i18n="newsLoading">正在读取新闻与通知…</div>
-        </div>
-        <div id="newsMemberNotice" class="news-login-note sans hidden" data-i18n="newsMemberNotice">登录后可查看仅面向注册用户公开的新闻与通知。</div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="notice-band">
-          <div>
-            <div class="eyebrow">Public Notice</div>
-            <h2 data-i18n="publicTitle">公开信息范围</h2>
-            <p data-i18n="publicText">当前官网仅公开勋章制度、名誉头衔、授与理念、发起人履历与制度性质说明。姓名、邮箱及其他私人联系信息暂不公开。</p>
-          </div>
-          <div class="dark-card">
-            <h3 data-i18n="privateTitle">私人荣誉与纪念用途</h3>
-            <p data-i18n="privateText">大龙凤章与龙凤章用于礼仪、纪念、感谢、合作与公益精神表达，公开说明以中性、克制、准确为原则。</p>
+            <div class="msg" id="profileFormMsg"></div>
+            <form id="memberProfileForm" onsubmit="saveMemberProfile(event)">
+              <div class="profile-form-notice" data-i18n="profileFormNotice">目前大龙凤章及龙凤章不接受个人主动申请。填写本表格仅用于成为正式会员，并方便今后会员活动、联络与发展。</div>
+              <div class="profile-form-grid">
+                <label><span data-i18n="profileDisplayName">姓名</span><input id="mpDisplayName" type="text" autocomplete="name" required></label>
+                <label><span data-i18n="profileNameEn">英文姓名</span><input id="mpNameEn" type="text" autocomplete="name" required></label>
+                <label><span data-i18n="profileNationality">国籍</span><input id="mpNationality" type="text" required></label>
+                <label><span data-i18n="profileResidenceCountry">现居住国家</span><input id="mpResidenceCountry" type="text" required></label>
+                <label><span data-i18n="profileOccupation">职业</span><input id="mpOccupation" type="text" required></label>
+                <label><span data-i18n="profileNobleTitleStatus">是否拥有贵族头衔</span><select id="mpNobleTitleStatus" class="field-select" required><option value="" data-i18n="profileSelectPlaceholder">请选择</option><option value="yes" data-i18n="profileYes">有</option><option value="no" data-i18n="profileNo">无</option><option value="undisclosed" data-i18n="profileUndisclosed">不便公开</option></select></label>
+                <label><span data-i18n="profileHonoursRecordStatus">是否有授勋记录</span><select id="mpHonoursRecordStatus" class="field-select" required><option value="" data-i18n="profileSelectPlaceholder">请选择</option><option value="yes" data-i18n="profileYes">有</option><option value="no" data-i18n="profileNo">无</option><option value="undisclosed" data-i18n="profileUndisclosed">不便公开</option></select></label>
+                <label class="full"><span data-i18n="profileBiography">个人简介（350字以内）</span><textarea id="mpBiography" maxlength="350" oninput="updateBioCount()" required></textarea><small class="profile-saved-note" id="profileBioCount">0 / 350</small></label>
+              </div>
+              <div class="profile-actions">
+                <button class="btn square" type="submit" id="profileSaveBtn" data-i18n="profileSaveButton">保存并成为正式会员</button>
+                <button class="btn light square hidden" type="button" id="profileEditBtn" onclick="enableMemberProfileEdit()" data-i18n="profileEditButton">修改资料</button>
+                <span class="profile-saved-note" id="profileUpdatedAt"></span>
+              </div>
+            </form>
           </div>
         </div>
       </div>
