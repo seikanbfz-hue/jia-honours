@@ -52,7 +52,7 @@
     .brand-mark img { width:42px; height:42px; object-fit:contain; }
     .brand-title { font-size:18px; letter-spacing:.13em; font-weight:700; line-height:1.25; }
     .brand-sub { font-size:12px; color:var(--muted); line-height:1.2; margin-top:2px; }
-    .navlinks { display:flex; align-items:center; gap:24px; color:#4f463d; font-size:14px; }
+    .navlinks { display:flex; align-items:center; gap:18px; color:#4f463d; font-size:14px; }
     .navlinks a:hover { color:var(--navy); }
     .actions { display:flex; align-items:center; gap:10px; }
     .btn {
@@ -342,6 +342,40 @@
       .member-profile-form { padding:24px; }
     }
 
+
+
+    .news-toolbar {
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:-18px 0 30px;
+    }
+    .news-chip {
+      border:1px solid rgba(201,166,78,.35); background:#fff; color:#6e541e;
+      border-radius:999px; padding:8px 13px; font-size:13px; font-weight:800;
+    }
+    .news-chip.members { background:#f8f1dd; }
+    .news-list { display:grid; grid-template-columns:1fr; gap:18px; max-width:920px; margin:0 auto; }
+    .news-card {
+      background:#fff; border:1px solid var(--line); border-radius:28px; padding:30px;
+      box-shadow:0 10px 35px rgba(28,25,23,.055);
+    }
+    .news-card.members-only { border-color:rgba(11,47,87,.18); background:linear-gradient(#fff,#f8fbff); }
+    .news-meta { display:flex; flex-wrap:wrap; gap:10px; align-items:center; color:var(--muted); font-size:13px; margin-bottom:12px; }
+    .news-visibility {
+      display:inline-flex; align-items:center; border-radius:999px; padding:5px 10px;
+      background:#f8f1dd; color:#6e541e; font-weight:800; font-size:12px;
+    }
+    .news-visibility.member { background:#eef4ff; color:#174a7c; }
+    .news-card h3 { margin:0 0 12px; font-size:27px; line-height:1.28; }
+    .news-card p { margin:0; color:#584f45; line-height:1.9; white-space:pre-line; }
+    .news-login-note, .news-placeholder {
+      max-width:920px; margin:18px auto 0; border:1px solid rgba(201,166,78,.35);
+      background:#f8f1dd; color:#5f4b1e; border-radius:18px; padding:14px 16px; line-height:1.75; font-size:14px;
+    }
+    @media (max-width: 680px) {
+      .news-card { padding:24px; border-radius:24px; }
+      .news-card h3 { font-size:22px; }
+      .news-toolbar { justify-content:flex-start; }
+    }
+
     .muted-note { color:var(--muted); font-size:12px; text-align:center; margin-top:14px; line-height:1.6; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC",Arial,sans-serif; }
     .hidden { display:none !important; }
 
@@ -405,6 +439,7 @@
         <a href="#origin" data-i18n="navOrigin">历史渊源</a>
         <a href="#honours" data-i18n="navHonours">勋章制度</a>
         <a href="#titles" data-i18n="navTitles">名誉头衔</a>
+        <a href="#news" data-i18n="navNews">本家新闻</a>
         <a href="#member" data-i18n="navMember">会员中心</a>
       </nav>
       <div class="actions sans">
@@ -413,8 +448,9 @@
           <option value="ja">日本語</option>
           <option value="en">English</option>
         </select>
-        <button class="btn light" onclick="openAuth('login')" data-i18n="login">登录</button>
-        <button class="btn" onclick="openAuth('register')" data-i18n="register">注册</button>
+        <button class="btn light" id="loginTop" onclick="openAuth('login')" data-i18n="login">登录</button>
+        <button class="btn" id="registerTop" onclick="openAuth('register')" data-i18n="register">注册</button>
+        <a class="btn light hidden" id="memberTop" href="#member" data-i18n="enterMember">进入会员中心</a>
         <button class="btn light hidden" id="logoutTop" onclick="logout()" data-i18n="logout">退出</button>
       </div>
       <select class="lang mobile-lang" id="mobileLangSelect" onchange="setLanguage(this.value)" aria-label="Language">
@@ -422,7 +458,8 @@
         <option value="ja">日本語</option>
         <option value="en">English</option>
       </select>
-      <button class="btn light mobile-menu" onclick="openAuth('login')" data-i18n="login">登录</button>
+      <button class="btn light mobile-menu" id="mobileLoginTop" onclick="openAuth('login')" data-i18n="login">登录</button>
+      <a class="btn light mobile-menu hidden" id="mobileMemberTop" href="#member" data-i18n="enterMember">进入会员中心</a>
     </div>
   </header>
 
@@ -597,7 +634,7 @@
           <div class="section-title left">
             <div class="eyebrow">Founder Profile</div>
             <h2 data-i18n="founderTitle">发起人履历</h2>
-            <p data-i18n="founderLead">本页面仅公开履历与发起理念，不公开个人邮箱及其他私人联系信息。</p>
+            <p data-i18n="founderLead">本页面暂不公开姓名、电话等私人信息；官方联系邮箱：jia.honours@gmail.com。</p>
           </div>
           <div class="card notice">
             <p data-i18n="founderIdea">发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。</p>
@@ -610,6 +647,24 @@
           <div class="time-item"><b>荣誉经历</b><span class="sans">获意大利萨伏依家授勋骑士荣誉。</span></div>
           <div class="time-item"><b>发起理念</b><span class="sans">以历史传统为根，以现代公益与国际交流为实践方向，以礼仪性纪念为形式。</span></div>
         </div>
+      </div>
+    </section>
+
+    <section id="news" class="white-section">
+      <div class="wrap">
+        <div class="section-title">
+          <div class="eyebrow" data-i18n="newsEyebrow">House News</div>
+          <h2 data-i18n="newsTitle">本家官网新闻</h2>
+          <p data-i18n="newsLead">这里用于发布贾氏勋赏官网的公开新闻、制度通知与会员限定公告。公开新闻面向所有访问者，会员限定新闻仅在注册并登录后显示。</p>
+        </div>
+        <div class="news-toolbar sans">
+          <span class="news-chip" data-i18n="newsPublicChip">全员公开</span>
+          <span class="news-chip members" data-i18n="newsMembersChip">注册用户限定</span>
+        </div>
+        <div id="newsList" class="news-list sans">
+          <div class="news-placeholder" data-i18n="newsLoading">正在读取新闻与通知…</div>
+        </div>
+        <div id="newsMemberNotice" class="news-login-note sans hidden" data-i18n="newsMemberNotice">登录后可查看仅面向注册用户公开的新闻与通知。</div>
       </div>
     </section>
 
@@ -788,7 +843,7 @@
         ceremonyTitle:"授与场景与礼仪意义", ceremonyText:"勋章并非权力凭证，而是富有礼仪感的纪念物与感谢物。它可与授与书、纪念文告、合影和口头致辞共同出现，形成完整、正式而清晰的授与仪式。",
         check1:"✓ 家族合作", check2:"✓ 慈善支持", check3:"✓ 国际交流协助", check4:"✓ 教育指导", check5:"✓ 跨文化合作", check6:"✓ 友谊与信任",
         collarDisplayTitle:"大项链级陈列", collarDisplayText:"用于展示大龙凤章在正式礼仪语境中的整体形象。",
-        founderTitle:"发起人履历", founderLead:"本页面仅公开履历与发起理念，不公开个人邮箱及其他私人联系信息。",
+        founderTitle:"发起人履历", founderLead:"本页面暂不公开姓名、电话等私人信息；官方联系邮箱：jia.honours@gmail.com。",
         founderIdea:"发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。",
         memberTitle:"会员中心", memberLead:"注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。",
         registerAccountShort:"注册账户", memberLogin:"会员登录",
@@ -889,6 +944,58 @@
 
 
     Object.assign(I18N.zh, {
+      navNews:"本家新闻",
+      founderLead:"本页面暂不公开姓名、电话等私人信息；官方联系邮箱：jia.honours@gmail.com。",
+      publicText:"当前官网公开勋章制度、名誉头衔、授与理念、发起人履历、新闻通知与制度性质说明。姓名、电话等私人信息暂不公开；官方联系邮箱为 jia.honours@gmail.com。",
+      footerLinks:"大龙凤章 · 龙凤章 · 名誉头衔 · 本家新闻 · 会员中心",
+      newsEyebrow:"House News",
+      newsTitle:"本家官网新闻",
+      newsLead:"这里用于发布贾氏勋赏官网的公开新闻、制度通知与会员限定公告。公开新闻面向所有访问者，会员限定新闻仅在注册并登录后显示。",
+      newsPublicChip:"全员公开",
+      newsMembersChip:"注册用户限定",
+      newsLoading:"正在读取新闻与通知…",
+      newsMemberNotice:"登录后可查看仅面向注册用户公开的新闻与通知。",
+      newsEmpty:"暂无新闻与通知。",
+      newsLoadFailed:"新闻读取失败。",
+      newsVisibilityPublic:"全员公开",
+      newsVisibilityMembers:"注册用户限定"
+    });
+    Object.assign(I18N.ja, {
+      navNews:"お知らせ",
+      founderLead:"本ページでは氏名、電話番号などの私的情報を公開していません。公式連絡先：jia.honours@gmail.com。",
+      publicText:"現在、本サイトでは勲章制度、名誉称号、授与理念、発起人略歴、お知らせ、制度の位置づけを公開しています。氏名、電話番号などの私的情報は公開していません。公式連絡先は jia.honours@gmail.com です。",
+      footerLinks:"大龍鳳章 · 龍鳳章 · 名誉称号 · お知らせ · 会員ページ",
+      newsEyebrow:"House News",
+      newsTitle:"本家公式ニュース",
+      newsLead:"ここでは賈氏勲賞公式サイトの公開ニュース、制度に関する通知、会員限定のお知らせを掲載します。公開ニュースはすべての閲覧者に表示され、会員限定ニュースは登録・ログイン後に表示されます。",
+      newsPublicChip:"全体公開",
+      newsMembersChip:"登録会員限定",
+      newsLoading:"ニュースとお知らせを読み込んでいます…",
+      newsMemberNotice:"ログイン後、登録会員向けのニュースとお知らせを確認できます。",
+      newsEmpty:"ニュースとお知らせはまだありません。",
+      newsLoadFailed:"ニュースの読み込みに失敗しました。",
+      newsVisibilityPublic:"全体公開",
+      newsVisibilityMembers:"登録会員限定"
+    });
+    Object.assign(I18N.en, {
+      navNews:"News",
+      founderLead:"This page does not disclose private information such as name or phone number. Official contact: jia.honours@gmail.com.",
+      publicText:"At present, this website publicly displays the honours system, honorary titles, awarding principles, founder profile, news and notices, and the statement of institutional nature. Private information such as name and phone number is not disclosed. Official contact: jia.honours@gmail.com.",
+      footerLinks:"Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal · Honorary Titles · News · Member Center",
+      newsEyebrow:"House News",
+      newsTitle:"Official House News",
+      newsLead:"This section publishes public news, institutional notices, and member-only announcements of the Jia Honours official website. Public news is visible to all visitors, while member-only notices appear after registration and login.",
+      newsPublicChip:"Public",
+      newsMembersChip:"Registered members only",
+      newsLoading:"Loading news and notices…",
+      newsMemberNotice:"Log in to view news and notices available only to registered members.",
+      newsEmpty:"No news or notices yet.",
+      newsLoadFailed:"Failed to load news.",
+      newsVisibilityPublic:"Public",
+      newsVisibilityMembers:"Members only"
+    });
+
+    Object.assign(I18N.zh, {
       profileFormEyebrow:"Member Profile",
       profileFormTitle:"正式会员资料",
       profileFormLead:"填写以下资料后，账号状态将更新为正式会员。资料仅用于会员管理、后续活动联络与组织发展，不会公开显示在首页。",
@@ -984,7 +1091,7 @@
       }
     };
 
-    const TEXT_I18N = {"ja": {"贾氏勋章官方网站｜大龙凤章 · 龙凤章": "賈氏勲章公式サイト｜大龍鳳章 · 龍鳳章", "贾氏勋章官网": "賈氏勲章公式サイト", "大龙凤章 · 龙凤章": "大龍鳳章 · 龍鳳章", "首页": "トップ", "历史渊源": "由来", "勋章制度": "勲章制度", "名誉头衔": "名誉称号", "会员中心": "会員ページ", "登录": "ログイン", "注册": "登録", "退出": "ログアウト", "Official Honours Website": "公式栄誉サイト", "贾氏勋章": "賈氏勲章", "官方网站": "公式サイト", "本网站用于整理贾氏勋章体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、授与文书及相关制度资料。网站内容以礼仪、纪念、感谢、公益与文化承继为中心，构成贾氏私人荣誉体系的官方展示平台。": "本サイトは、賈氏勲章体系の歴史的由来、制度構成、意匠、授与理念を整理し、大龍鳳章、龍鳳章、授与文書および関連資料を紹介する公式サイトです。礼儀、記念、感謝、公益、文化の継承を軸に、賈氏による私的な栄誉・記念体系を分かりやすく示します。", "查看勋章制度 →": "勲章制度を見る →", "注册会员账户": "会員登録", "进入会员中心": "会員ページへ", "礼仪性": "礼儀性", "用于私人家门礼仪中的正式纪念表达。": "私的な家門礼儀の中で、正式な記念表現として用いられます。", "纪念性": "記念性", "围绕关系、贡献、协助、友谊与公益实践。": "関係性、貢献、協力、友誼、公益活動の記録として位置づけられます。", "非公权": "非公的性格", "不构成国家荣典、公权身份或职业资格。": "国家の栄典、公的身分、職業資格を示すものではありません。", "可记录": "記録性", "授与书、纪念文告、合影和网站记录共同建档。": "授与書、記念文、写真、ウェブ上の記録によって保存されます。", "Origin & Position": "由来と位置づけ", "历史渊源与基本立场": "歴史的由来と基本的立場", "贾氏勋章体系以历史记忆、家门礼仪、感谢表达、公益精神与国际友谊为核心。": "賈氏勲章体系は、歴史的記憶、家門礼儀、感謝の表現、公益精神、国際的な友好関係を基礎としています。", "源": "源", "从周代封国记忆到当代家门礼仪传统": "周代の封国記憶から現代の家門礼儀へ", "关于“贾”的早期历史渊源，可上溯至周代贾国与“贾伯”这一历史称谓。在家门传统叙述中，贾国被视为重要的历史身份记忆来源，“贾”也由古代政治地理意义逐渐转化为后世家门文化、姓氏认同与礼仪表达的重要来源。": "「賈」の歴史的由来は、周代の賈国および「賈伯」という称号にまでさかのぼって語られます。賈氏の家門伝統において、賈国は重要な歴史的記憶の源とされ、「賈」という名は、後世の家門文化、姓氏意識、礼儀表現へと受け継がれてきました。", "章": "章", "公开性质说明": "公開上の位置づけ", "本网站所介绍之大龙凤章与龙凤章，为贾氏私人荣誉与纪念体系，用于礼仪、纪念、感谢、合作与公益精神之表达。相关内容不构成国家荣典、公权身份、职业资格或现实政治主张。": "本サイトで紹介する大龍鳳章および龍鳳章は、賈氏による私的な栄誉・記念体系であり、礼儀、記念、感謝、協力、公益精神を表すためのものです。国家の栄典、公的身分、職業資格、または現実政治上の主張を意味するものではありません。", "Honours System": "勲章制度", "勋章与奖章制度": "勲章・賞章制度", "体系包含勋章与奖章两类章饰，大龙凤章设大项链级及一等至五等，龙凤章设金级与银级。": "本体系は勲章と賞章から構成されます。大龍鳳章には大項鏈級および一等から五等、龍鳳章には金級と銀級が設けられています。", "勋": "勲", "勋章序列": "勲章序列", "大龙凤章": "大龍鳳章", "大龙凤章属于贾氏荣誉体系中的高阶勋章，用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设等方面作出重要贡献者。其视觉语言以蓝色章体、八咫乌与中央龙凤纹章为主要识别特征。": "大龍鳳章は、賈氏栄誉体系における高位の勲章であり、公益活動、国際交流、友好協力、文化の継承、家門礼儀の整備などに重要な貢献を行った人物を顕彰するために設けられています。青色の章体、八咫烏、中央の龍鳳紋章を主要な意匠上の特徴としています。", "大项链级": "大項鏈級", "一等": "一等", "二等": "二等", "三等": "三等", "四等": "四等", "五等": "五等", "奖": "賞", "奖章序列": "賞章序列", "龙凤章": "龍鳳章", "龙凤章属于贾氏荣誉体系中的奖章序列，适用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果的感谢与纪念。": "龍鳳章は、賈氏栄誉体系における賞章であり、配慮、支援、協力、奉仕、友誼、段階的な成果に対する感謝と記念のために授与されます。", "金级": "金級", "银级": "銀級", "Honorary Titles": "名誉称号", "名誉头衔制度": "名誉称号制度", "名誉头衔属于贾氏私人荣誉体系中的礼仪性称号。大团长本人为公爵，授予范围限于侯爵以下称号。": "名誉称号は、賈氏の私的栄誉体系における礼儀的な称号です。大団長本人は公爵とし、授与対象となる称号は侯爵以下に限られます。", "爵": "爵", "头衔序列": "称号序列", "名誉爵位称号": "名誉爵位称号", "名誉爵位称号用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。公爵称号为大团长本人头衔，不列入授予名额；对外授予范围限于侯爵以下。相关称号不构成国家贵族身份、公权身份、法律身份、社会特权或继承性贵族权利。": "名誉爵位称号は、賈氏栄誉体系の内部における礼儀、記念、称呼表現のためのものです。公爵称号は大団長本人の称号であり、授与枠には含まれません。対外的に授与する称号は侯爵以下に限られます。これらの称号は、国家の貴族身分、公的身分、法的身分、社会的特権、または世襲的な貴族権利を意味するものではありません。", "名誉侯爵：5人": "名誉侯爵：5名", "名誉伯爵：10人": "名誉伯爵：10名", "名誉子爵：不限": "名誉子爵：制限なし", "名誉男爵：不限": "名誉男爵：制限なし", "名誉骑士：不限": "名誉騎士：制限なし", "授": "授", "授予规则": "授与規則", "独立授予原则": "独立した授与原則", "名誉骑士称号在获得五等大龙凤章时一并授予。": "名誉騎士の称号は、五等大龍鳳章の受章時にあわせて授与されます。", "勋章晋升与名誉爵位称号授予相互独立，二者不构成自动对应关系。": "勲章の昇級と名誉爵位称号の授与は相互に独立しており、自動的な対応関係を構成しません。", "名誉骑士以上、侯爵以下的头衔，由大团长本人直接授予。": "名誉騎士を超え、侯爵以下の称号は、大団長本人により直接授与されます。", "公爵为大团长本人头衔，不作为对外授予称号。": "公爵は大団長本人の称号であり、対外的な授与称号ではありません。", "所有头衔均为私人荣誉与纪念用途，公开说明应保持中性、克制与准确。": "すべての称号は私的栄誉および記念用途のものであり、公開上の説明は中立的で節度があり、正確な表現を基本とします。", "Ceremony": "授与の場面", "授与场景与礼仪意义": "授与の場面と礼儀的意義", "勋章并非权力凭证，而是富有礼仪感的纪念物与感谢物。它可与授与书、纪念文告、合影和口头致辞共同出现，形成完整、正式而清晰的授与仪式。": "勲章は権力を示す証明ではなく、礼儀性を備えた記念品であり、感謝を形にするものです。授与書、記念文、記念写真、挨拶とともに用いられることで、正式で品位ある授与の場を構成します。", "✓ 家族合作": "✓ 家族協力", "✓ 慈善支持": "✓ 慈善支援", "✓ 国际交流协助": "✓ 国際交流支援", "✓ 教育指导": "✓ 教育指導", "✓ 跨文化合作": "✓ 異文化協力", "✓ 友谊与信任": "✓ 友誼と信頼", "大项链级陈列": "大項鏈級の展示", "用于展示大龙凤章在正式礼仪语境中的整体形象。": "正式な礼儀の場における大龍鳳章の全体像を示す展示です。", "Founder Profile": "発起人略歴", "发起人履历": "発起人略歴", "本页面仅公开履历与发起理念，不公开个人邮箱及其他私人联系信息。": "本ページでは略歴と発起理念のみを公開し、個人メールアドレスその他の私的な連絡先は公開していません。", "发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。": "発起理念：歴史的伝統を土台とし、現代の公益活動と国際交流を実践の方向とする。礼儀的な記念を形式とし、感謝と顕彰を内容として、私的な家門文化の枠組みの中で、協力、配慮、善意への敬意を継続的に表す。", "赴日本留学，开始长期生活与学习经历。": "日本へ留学し、長期的な学びと生活の経験を始めました。", "关西大学": "関西大学", "后毕业于关西大学，并持续关注跨文化交流、国际合作与社会公益。": "その後、関西大学を卒業し、異文化交流、国際協力、社会公益に継続的に関心を寄せてきました。", "公益实践": "公益活動", "长期参与慈善事业以及国际交流与合作，并多次受到日本红十字会表彰。": "慈善活動および国際交流・協力に継続的に取り組み、日本赤十字社から複数回表彰を受けています。", "荣誉经历": "栄誉歴", "获意大利萨伏依家授勋骑士荣誉。": "イタリア・サヴォイア家より騎士の栄誉を授与されています。", "发起理念": "発起理念", "以历史传统为根，以现代公益与国际交流为实践方向，以礼仪性纪念为形式。": "歴史的伝統を土台とし、現代の公益活動と国際交流を実践の方向とし、礼儀的な記念を形式とします。", "Member Center": "会員ページ", "注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。": "登録後、会員ページで個人情報、授与申請の状況、証書記録、内部通知を確認できます。正式版では、登録とログインの処理をバックエンドに送信し、会員情報を Cloudflare D1 データベースに保存します。", "注册账户": "登録", "会员登录": "会員ログイン", "受保护页面": "保護ページ", "登录后显示": "ログイン後に表示", "个人资料与内部内容。": "個人情報と内部コンテンツを表示します。", "授与申请": "授与申請", "预留入口": "準備中", "申请表与审查状态。": "申請フォームと審査状況を表示します。", "证书记录": "証書記録", "后续录入": "後日入力", "受章历史与证书资料。": "受章履歴と証書情報を表示します。", "内部通知": "内部通知", "官方公告": "公式通知", "仪式和规则更新。": "式典および規則の更新を表示します。", "会": "会", "会员姓名": "会員名", "会员等级": "会員区分", "普通会员": "一般会員", "账户状态": "アカウント状態", "待完善资料": "情報未完了", "注册日期": "登録日", "退出登录": "ログアウト", "资料完善": "プロフィール整備", "待完善": "未完了", "下一步可加入头像、身份说明、所属机构等字段。": "次の段階で、プロフィール画像、身分説明、所属機関などの項目を追加できます。", "未提交": "未提出", "提供线上申请表、上传资料和审查状态。": "オンライン申請フォーム、資料アップロード、審査状況を提供します。", "我的证书记录": "自分の証書記録", "暂无记录": "記録なし", "正式授与后显示等级、日期、证书编号和 PDF。": "正式授与後、等級、日付、証書番号、PDFを表示します。", "0 条": "0件", "发布仪式通知、佩用规则更新和文书版本更新。": "式典通知、佩用規則、文書版の更新を表示します。", "Public Notice": "公開情報", "公开信息范围": "公開情報の範囲", "当前官网仅公开勋章制度、名誉头衔、授与理念、发起人履历与制度性质说明。姓名、邮箱及其他私人联系信息暂不公开。": "現在、本サイトでは勲章制度、名誉称号、授与理念、発起人略歴、制度の位置づけのみを公開しています。氏名、メールアドレス、その他の私的な連絡先は公開していません。", "私人荣誉与纪念用途": "私的栄誉および記念用途", "大龙凤章与龙凤章用于礼仪、纪念、感谢、合作与公益精神表达，公开说明以中性、克制、准确为原则。": "大龍鳳章および龍鳳章は、礼儀、記念、感謝、協力、公益精神を表すために用いられます。公開上の説明は、中立的で節度があり、正確な表現を基本とします。", "© 贾氏勋章官方网站. All rights reserved.": "© 賈氏勲章公式サイト. All rights reserved.", "大龙凤章 · 龙凤章 · 名誉头衔 · 授与文书 · 会员中心": "大龍鳳章 · 龍鳳章 · 名誉称号 · 授与文書 · 会員ページ", "Member Access": "会員アクセス", "姓名": "氏名", "邮箱": "メールアドレス", "密码": "パスワード", "登录账户": "ログイン", "创建会员账户": "会員登録", "创建账户": "登録", "正式版注册资料将写入 Cloudflare D1 数据库。密码采用加盐哈希保存，登录状态通过 HttpOnly 安全 Cookie 维持。": "正式版では登録情報を Cloudflare D1 データベースに保存します。パスワードはソルト付きハッシュで保存し、ログイン状態は HttpOnly の安全な Cookie によって維持します。", "请填写姓名、邮箱和密码。": "氏名、メールアドレス、パスワードを入力してください。", "请输入有效邮箱地址。": "有効なメールアドレスを入力してください。", "密码至少需要 6 位。": "パスワードは6文字以上で入力してください。", "密码至少需要 8 位。": "パスワードは8文字以上で入力してください。", "这个邮箱已经注册，可以直接登录。": "このメールアドレスはすでに登録されています。ログインしてください。", "注册成功，已进入会员中心。": "登録が完了しました。会員ページへ移動します。", "请输入邮箱和密码。": "メールアドレスとパスワードを入力してください。", "邮箱或密码不正确。": "メールアドレスまたはパスワードが正しくありません。", "登录成功。": "ログインしました。", "操作失败。": "処理に失敗しました。", "请求失败。": "リクエストに失敗しました。", "请求格式不正确。": "リクエスト形式が正しくありません。", "注册失败。": "登録に失敗しました。", "登录失败。": "ログインに失敗しました。", "没有管理员权限。": "管理者権限がありません。", "读取失败。": "読み込みに失敗しました。", "member": "一般会員", "admin": "管理者"}, "en": {"贾氏勋章官方网站｜大龙凤章 · 龙凤章": "Jia Honours Official Website | Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal", "贾氏勋章官网": "Jia Honours", "大龙凤章 · 龙凤章": "Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal", "首页": "Home", "历史渊源": "Origins", "勋章制度": "Honours", "名誉头衔": "Honorary Titles", "会员中心": "Member Center", "登录": "Log in", "注册": "Register", "退出": "Log out", "贾氏勋章": "Jia Honours", "官方网站": "Official Website", "本网站用于整理贾氏勋章体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、授与文书及相关制度资料。网站内容以礼仪、纪念、感谢、公益与文化承继为中心，构成贾氏私人荣誉体系的官方展示平台。": "This website presents the historical background, institutional structure, visual identity, and awarding principles of the Jia honours system. It introduces the Order of the Great Dragon and Phoenix, the Dragon and Phoenix Medal, award documents, and related institutional materials as a private honours platform centered on ceremony, remembrance, gratitude, public service, and cultural continuity.", "查看勋章制度 →": "View Honours →", "注册会员账户": "Create Member Account", "进入会员中心": "Enter Member Center", "礼仪性": "Ceremonial", "用于私人家门礼仪中的正式纪念表达。": "A formal commemorative expression within a private lineage ceremonial context.", "纪念性": "Commemorative", "围绕关系、贡献、协助、友谊与公益实践。": "Recording relationships, contributions, assistance, friendship, and public service.", "非公权": "Non-public authority", "不构成国家荣典、公权身份或职业资格。": "It does not constitute a state honour, public status, or professional qualification.", "可记录": "Recordable", "授与书、纪念文告、合影和网站记录共同建档。": "Certificates, commemorative notices, photographs, and website records form the archive.", "Origin & Position": "Origins & Position", "历史渊源与基本立场": "Historical Origins and Position", "贾氏勋章体系以历史记忆、家门礼仪、感谢表达、公益精神与国际友谊为核心。": "The Jia honours system is centered on historical memory, lineage ceremony, gratitude, public service, and international friendship.", "源": "Origin", "从周代封国记忆到当代家门礼仪传统": "From Zhou-period memory to modern lineage ceremony", "关于“贾”的早期历史渊源，可上溯至周代贾国与“贾伯”这一历史称谓。在家门传统叙述中，贾国被视为重要的历史身份记忆来源，“贾”也由古代政治地理意义逐渐转化为后世家门文化、姓氏认同与礼仪表达的重要来源。": "The early historical background of the name Jia is associated with the Zhou-period state of Jia and the historical title Jia Bo. In lineage tradition, this memory is treated as an important source of historical identity, linking the name Jia with later lineage culture, surname identity, and ceremonial expression.", "章": "Notice", "公开性质说明": "Public Statement of Nature", "本网站所介绍之大龙凤章与龙凤章，为贾氏私人荣誉与纪念体系，用于礼仪、纪念、感谢、合作与公益精神之表达。相关内容不构成国家荣典、公权身份、职业资格或现实政治主张。": "The Order of the Great Dragon and Phoenix and the Dragon and Phoenix Medal introduced on this website are a private honour and commemorative system of the Jia lineage, intended for ceremony, remembrance, gratitude, cooperation, and public-service spirit. They do not constitute state honours, public authority, professional qualifications, or political claims.", "勋章与奖章制度": "Orders and Medals", "体系包含勋章与奖章两类章饰，大龙凤章设大项链级及一等至五等，龙凤章设金级与银级。": "The system includes an order and a medal. The Order of the Great Dragon and Phoenix has the Grand Collar and First to Fifth Classes; the Dragon and Phoenix Medal has Gold and Silver grades.", "勋": "Order", "勋章序列": "Order Sequence", "大龙凤章": "Order of the Great Dragon and Phoenix", "大龙凤章属于贾氏荣誉体系中的高阶勋章，用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设等方面作出重要贡献者。其视觉语言以蓝色章体、八咫乌与中央龙凤纹章为主要识别特征。": "The Order of the Great Dragon and Phoenix is the higher order within the Jia honours system, recognizing important contributions to public service, international exchange, friendly cooperation, cultural continuity, and the development of lineage ceremony. Its visual identity is defined by the blue body, the Yatagarasu, and the central dragon-and-phoenix emblem.", "大项链级": "Grand Collar", "一等": "First Class", "二等": "Second Class", "三等": "Third Class", "四等": "Fourth Class", "五等": "Fifth Class", "奖": "Medal", "奖章序列": "Medal Sequence", "龙凤章": "Dragon and Phoenix Medal", "龙凤章属于贾氏荣誉体系中的奖章序列，适用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果的感谢与纪念。": "The Dragon and Phoenix Medal belongs to the medal sequence of the Jia honours system and is used for gratitude and remembrance in relation to care, support, cooperation, service, friendship, and staged achievements.", "金级": "Gold Grade", "银级": "Silver Grade", "名誉头衔制度": "Honorary Title System", "名誉头衔属于贾氏私人荣誉体系中的礼仪性称号。大团长本人为公爵，授予范围限于侯爵以下称号。": "Honorary titles are ceremonial designations within the private Jia honours system. The Grand Master personally holds the title of Duke, and titles conferred to others are limited to Marquis and below.", "爵": "Title", "头衔序列": "Title Sequence", "名誉爵位称号": "Honorary Dignities", "名誉爵位称号用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。公爵称号为大团长本人头衔，不列入授予名额；对外授予范围限于侯爵以下。相关称号不构成国家贵族身份、公权身份、法律身份、社会特权或继承性贵族权利。": "Honorary dignities are used only for ceremonial, commemorative, and forms-of-address purposes within the Jia honours system. The title of Duke is reserved for the Grand Master and is not included among titles conferred to others. Titles conferred externally are limited to Marquis and below. They do not constitute state nobility, public authority, legal status, social privilege, or hereditary noble rights.", "名誉侯爵：5人": "Honorary Marquis: 5", "名誉伯爵：10人": "Honorary Count: 10", "名誉子爵：不限": "Honorary Viscount: unlimited", "名誉男爵：不限": "Honorary Baron: unlimited", "名誉骑士：不限": "Honorary Knight: unlimited", "授": "Rules", "授予规则": "Awarding Rules", "独立授予原则": "Independent Awarding Principle", "名誉骑士称号在获得五等大龙凤章时一并授予。": "The honorary title of Knight is conferred together with the Fifth Class of the Order of the Great Dragon and Phoenix.", "勋章晋升与名誉爵位称号授予相互独立，二者不构成自动对应关系。": "Promotion within the order and the granting of honorary dignities are independent and do not automatically correspond to one another.", "名誉骑士以上、侯爵以下的头衔，由大团长本人直接授予。": "Honorary titles above Knight and up to Marquis are conferred directly by the Grand Master.", "公爵为大团长本人头衔，不作为对外授予称号。": "The title of Duke is held by the Grand Master and is not conferred externally.", "所有头衔均为私人荣誉与纪念用途，公开说明应保持中性、克制与准确。": "All titles are for private honour and commemorative use; public descriptions should remain neutral, restrained, and accurate.", "授与场景与礼仪意义": "Awarding Occasions and Ceremonial Meaning", "勋章并非权力凭证，而是富有礼仪感的纪念物与感谢物。它可与授与书、纪念文告、合影和口头致辞共同出现，形成完整、正式而清晰的授与仪式。": "The honour is not a credential of authority, but a ceremonial commemorative object and expression of gratitude. It may appear with a certificate, commemorative notice, group photograph, and spoken address to form a complete and dignified ceremony.", "✓ 家族合作": "✓ Family cooperation", "✓ 慈善支持": "✓ Charitable support", "✓ 国际交流协助": "✓ International exchange support", "✓ 教育指导": "✓ Educational guidance", "✓ 跨文化合作": "✓ Cross-cultural cooperation", "✓ 友谊与信任": "✓ Friendship and trust", "大项链级陈列": "Grand Collar Display", "用于展示大龙凤章在正式礼仪语境中的整体形象。": "A display of the Order of the Great Dragon and Phoenix in a formal ceremonial context.", "发起人履历": "Founder Profile", "本页面仅公开履历与发起理念，不公开个人邮箱及其他私人联系信息。": "This page publishes only the profile and founding principles. Personal email and other private contact details are not disclosed.", "发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。": "Founding principle: rooted in historical tradition, oriented toward modern public service and international exchange, using ceremonial commemoration as form and gratitude and recognition as content within a private lineage-cultural framework.", "赴日本留学，开始长期生活与学习经历。": "Went to Japan for study and began a long-term period of learning and life experience.", "关西大学": "Kansai University", "后毕业于关西大学，并持续关注跨文化交流、国际合作与社会公益。": "Later graduated from Kansai University and has continued to focus on cross-cultural exchange, international cooperation, and public service.", "公益实践": "Public Service", "长期参与慈善事业以及国际交流与合作，并多次受到日本红十字会表彰。": "Has long participated in charitable activities as well as international exchange and cooperation, and has received multiple recognitions from the Japanese Red Cross Society.", "荣誉经历": "Honours", "获意大利萨伏依家授勋骑士荣誉。": "Received a knighthood honour from the Italian House of Savoy.", "发起理念": "Founding Principle", "以历史传统为根，以现代公益与国际交流为实践方向，以礼仪性纪念为形式。": "Rooted in historical tradition, oriented toward modern public service and international exchange, and expressed through ceremonial commemoration.", "注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。": "After registration, members can view personal information, application status, certificate records, and internal notices. The production version submits registration and login requests to backend APIs and stores member data in a Cloudflare D1 database.", "注册账户": "Register", "会员登录": "Member Login", "受保护页面": "Protected Pages", "登录后显示": "Visible after login", "个人资料与内部内容。": "Personal information and internal content.", "授与申请": "Award Application", "预留入口": "Reserved entry", "申请表与审查状态。": "Application form and review status.", "证书记录": "Certificate Records", "后续录入": "To be entered", "受章历史与证书资料。": "Award history and certificate information.", "内部通知": "Internal Notices", "官方公告": "Official notices", "仪式和规则更新。": "Ceremony and rule updates.", "会": "M", "会员姓名": "Member Name", "会员等级": "Member Level", "普通会员": "Standard Member", "账户状态": "Account Status", "待完善资料": "Profile incomplete", "注册日期": "Registration Date", "退出登录": "Log out", "资料完善": "Profile Completion", "待完善": "Pending", "下一步可加入头像、身份说明、所属机构等字段。": "Next, fields such as avatar, identity description, and affiliated organization can be added.", "未提交": "Not submitted", "提供线上申请表、上传资料和审查状态。": "Provides an online application form, document upload, and review status.", "我的证书记录": "My Certificate Records", "暂无记录": "No records", "正式授与后显示等级、日期、证书编号和 PDF。": "After formal awarding, class, date, certificate number, and PDF will be displayed.", "0 条": "0 items", "发布仪式通知、佩用规则更新和文书版本更新。": "Publishes ceremony notices, wearing-rule updates, and document version updates.", "公开信息范围": "Scope of Public Information", "当前官网仅公开勋章制度、名誉头衔、授与理念、发起人履历与制度性质说明。姓名、邮箱及其他私人联系信息暂不公开。": "At present, this website publicly displays only the honours system, honorary titles, awarding principles, founder profile, and the statement of institutional nature. Names, email addresses, and other private contact details are not disclosed.", "私人荣誉与纪念用途": "Private Honour and Commemorative Use", "大龙凤章与龙凤章用于礼仪、纪念、感谢、合作与公益精神表达，公开说明以中性、克制、准确为原则。": "The Order of the Great Dragon and Phoenix and the Dragon and Phoenix Medal are used to express ceremony, remembrance, gratitude, cooperation, and public-service spirit. Public descriptions should remain neutral, restrained, and accurate.", "© 贾氏勋章官方网站. All rights reserved.": "© Jia Honours Official Website. All rights reserved.", "大龙凤章 · 龙凤章 · 名誉头衔 · 授与文书 · 会员中心": "Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal · Honorary Titles · Award Documents · Member Center", "姓名": "Name", "邮箱": "Email", "密码": "Password", "登录账户": "Log in", "创建会员账户": "Create Member Account", "创建账户": "Create Account", "正式版注册资料将写入 Cloudflare D1 数据库。密码采用加盐哈希保存，登录状态通过 HttpOnly 安全 Cookie 维持。": "Registration data will be stored in a Cloudflare D1 database. Passwords are stored using salted hashes, and login sessions are maintained through HttpOnly secure cookies.", "请填写姓名、邮箱和密码。": "Please enter your name, email, and password.", "请输入有效邮箱地址。": "Please enter a valid email address.", "密码至少需要 6 位。": "Password must be at least 6 characters.", "密码至少需要 8 位。": "Password must be at least 8 characters.", "这个邮箱已经注册，可以直接登录。": "This email is already registered. Please log in.", "注册成功，已进入会员中心。": "Registration successful. Entering the member center.", "请输入邮箱和密码。": "Please enter your email and password.", "邮箱或密码不正确。": "Email or password is incorrect.", "登录成功。": "Logged in successfully.", "操作失败。": "Operation failed.", "请求失败。": "Request failed.", "请求格式不正确。": "Invalid request format.", "注册失败。": "Registration failed.", "登录失败。": "Login failed.", "没有管理员权限。": "Administrator permission is required.", "读取失败。": "Failed to read data.", "member": "Standard Member", "admin": "Administrator"}};
+    const TEXT_I18N = {"ja": {"贾氏勋章官方网站｜大龙凤章 · 龙凤章": "賈氏勲章公式サイト｜大龍鳳章 · 龍鳳章", "贾氏勋章官网": "賈氏勲章公式サイト", "大龙凤章 · 龙凤章": "大龍鳳章 · 龍鳳章", "首页": "トップ", "历史渊源": "由来", "勋章制度": "勲章制度", "名誉头衔": "名誉称号", "会员中心": "会員ページ", "登录": "ログイン", "注册": "登録", "退出": "ログアウト", "Official Honours Website": "公式栄誉サイト", "贾氏勋章": "賈氏勲章", "官方网站": "公式サイト", "本网站用于整理贾氏勋章体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、授与文书及相关制度资料。网站内容以礼仪、纪念、感谢、公益与文化承继为中心，构成贾氏私人荣誉体系的官方展示平台。": "本サイトは、賈氏勲章体系の歴史的由来、制度構成、意匠、授与理念を整理し、大龍鳳章、龍鳳章、授与文書および関連資料を紹介する公式サイトです。礼儀、記念、感謝、公益、文化の継承を軸に、賈氏による私的な栄誉・記念体系を分かりやすく示します。", "查看勋章制度 →": "勲章制度を見る →", "注册会员账户": "会員登録", "进入会员中心": "会員ページへ", "礼仪性": "礼儀性", "用于私人家门礼仪中的正式纪念表达。": "私的な家門礼儀の中で、正式な記念表現として用いられます。", "纪念性": "記念性", "围绕关系、贡献、协助、友谊与公益实践。": "関係性、貢献、協力、友誼、公益活動の記録として位置づけられます。", "非公权": "非公的性格", "不构成国家荣典、公权身份或职业资格。": "国家の栄典、公的身分、職業資格を示すものではありません。", "可记录": "記録性", "授与书、纪念文告、合影和网站记录共同建档。": "授与書、記念文、写真、ウェブ上の記録によって保存されます。", "Origin & Position": "由来と位置づけ", "历史渊源与基本立场": "歴史的由来と基本的立場", "贾氏勋章体系以历史记忆、家门礼仪、感谢表达、公益精神与国际友谊为核心。": "賈氏勲章体系は、歴史的記憶、家門礼儀、感謝の表現、公益精神、国際的な友好関係を基礎としています。", "源": "源", "从周代封国记忆到当代家门礼仪传统": "周代の封国記憶から現代の家門礼儀へ", "关于“贾”的早期历史渊源，可上溯至周代贾国与“贾伯”这一历史称谓。在家门传统叙述中，贾国被视为重要的历史身份记忆来源，“贾”也由古代政治地理意义逐渐转化为后世家门文化、姓氏认同与礼仪表达的重要来源。": "「賈」の歴史的由来は、周代の賈国および「賈伯」という称号にまでさかのぼって語られます。賈氏の家門伝統において、賈国は重要な歴史的記憶の源とされ、「賈」という名は、後世の家門文化、姓氏意識、礼儀表現へと受け継がれてきました。", "章": "章", "公开性质说明": "公開上の位置づけ", "本网站所介绍之大龙凤章与龙凤章，为贾氏私人荣誉与纪念体系，用于礼仪、纪念、感谢、合作与公益精神之表达。相关内容不构成国家荣典、公权身份、职业资格或现实政治主张。": "本サイトで紹介する大龍鳳章および龍鳳章は、賈氏による私的な栄誉・記念体系であり、礼儀、記念、感謝、協力、公益精神を表すためのものです。国家の栄典、公的身分、職業資格、または現実政治上の主張を意味するものではありません。", "Honours System": "勲章制度", "勋章与奖章制度": "勲章・賞章制度", "体系包含勋章与奖章两类章饰，大龙凤章设大项链级及一等至五等，龙凤章设金级与银级。": "本体系は勲章と賞章から構成されます。大龍鳳章には大項鏈級および一等から五等、龍鳳章には金級と銀級が設けられています。", "勋": "勲", "勋章序列": "勲章序列", "大龙凤章": "大龍鳳章", "大龙凤章属于贾氏荣誉体系中的高阶勋章，用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设等方面作出重要贡献者。其视觉语言以蓝色章体、八咫乌与中央龙凤纹章为主要识别特征。": "大龍鳳章は、賈氏栄誉体系における高位の勲章であり、公益活動、国際交流、友好協力、文化の継承、家門礼儀の整備などに重要な貢献を行った人物を顕彰するために設けられています。青色の章体、八咫烏、中央の龍鳳紋章を主要な意匠上の特徴としています。", "大项链级": "大項鏈級", "一等": "一等", "二等": "二等", "三等": "三等", "四等": "四等", "五等": "五等", "奖": "賞", "奖章序列": "賞章序列", "龙凤章": "龍鳳章", "龙凤章属于贾氏荣誉体系中的奖章序列，适用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果的感谢与纪念。": "龍鳳章は、賈氏栄誉体系における賞章であり、配慮、支援、協力、奉仕、友誼、段階的な成果に対する感謝と記念のために授与されます。", "金级": "金級", "银级": "銀級", "Honorary Titles": "名誉称号", "名誉头衔制度": "名誉称号制度", "名誉头衔属于贾氏私人荣誉体系中的礼仪性称号。大团长本人为公爵，授予范围限于侯爵以下称号。": "名誉称号は、賈氏の私的栄誉体系における礼儀的な称号です。大団長本人は公爵とし、授与対象となる称号は侯爵以下に限られます。", "爵": "爵", "头衔序列": "称号序列", "名誉爵位称号": "名誉爵位称号", "名誉爵位称号用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。公爵称号为大团长本人头衔，不列入授予名额；对外授予范围限于侯爵以下。相关称号不构成国家贵族身份、公权身份、法律身份、社会特权或继承性贵族权利。": "名誉爵位称号は、賈氏栄誉体系の内部における礼儀、記念、称呼表現のためのものです。公爵称号は大団長本人の称号であり、授与枠には含まれません。対外的に授与する称号は侯爵以下に限られます。これらの称号は、国家の貴族身分、公的身分、法的身分、社会的特権、または世襲的な貴族権利を意味するものではありません。", "名誉侯爵：5人": "名誉侯爵：5名", "名誉伯爵：10人": "名誉伯爵：10名", "名誉子爵：不限": "名誉子爵：制限なし", "名誉男爵：不限": "名誉男爵：制限なし", "名誉骑士：不限": "名誉騎士：制限なし", "授": "授", "授予规则": "授与規則", "独立授予原则": "独立した授与原則", "名誉骑士称号在获得五等大龙凤章时一并授予。": "名誉騎士の称号は、五等大龍鳳章の受章時にあわせて授与されます。", "勋章晋升与名誉爵位称号授予相互独立，二者不构成自动对应关系。": "勲章の昇級と名誉爵位称号の授与は相互に独立しており、自動的な対応関係を構成しません。", "名誉骑士以上、侯爵以下的头衔，由大团长本人直接授予。": "名誉騎士を超え、侯爵以下の称号は、大団長本人により直接授与されます。", "公爵为大团长本人头衔，不作为对外授予称号。": "公爵は大団長本人の称号であり、対外的な授与称号ではありません。", "所有头衔均为私人荣誉与纪念用途，公开说明应保持中性、克制与准确。": "すべての称号は私的栄誉および記念用途のものであり、公開上の説明は中立的で節度があり、正確な表現を基本とします。", "Ceremony": "授与の場面", "授与场景与礼仪意义": "授与の場面と礼儀的意義", "勋章并非权力凭证，而是富有礼仪感的纪念物与感谢物。它可与授与书、纪念文告、合影和口头致辞共同出现，形成完整、正式而清晰的授与仪式。": "勲章は権力を示す証明ではなく、礼儀性を備えた記念品であり、感謝を形にするものです。授与書、記念文、記念写真、挨拶とともに用いられることで、正式で品位ある授与の場を構成します。", "✓ 家族合作": "✓ 家族協力", "✓ 慈善支持": "✓ 慈善支援", "✓ 国际交流协助": "✓ 国際交流支援", "✓ 教育指导": "✓ 教育指導", "✓ 跨文化合作": "✓ 異文化協力", "✓ 友谊与信任": "✓ 友誼と信頼", "大项链级陈列": "大項鏈級の展示", "用于展示大龙凤章在正式礼仪语境中的整体形象。": "正式な礼儀の場における大龍鳳章の全体像を示す展示です。", "Founder Profile": "発起人略歴", "发起人履历": "発起人略歴", "本页面暂不公开姓名、电话等私人信息；官方联系邮箱：jia.honours@gmail.com。": "本ページでは略歴と発起理念のみを公開し、個人メールアドレスその他の私的な連絡先は公開していません。", "发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。": "発起理念：歴史的伝統を土台とし、現代の公益活動と国際交流を実践の方向とする。礼儀的な記念を形式とし、感謝と顕彰を内容として、私的な家門文化の枠組みの中で、協力、配慮、善意への敬意を継続的に表す。", "赴日本留学，开始长期生活与学习经历。": "日本へ留学し、長期的な学びと生活の経験を始めました。", "关西大学": "関西大学", "后毕业于关西大学，并持续关注跨文化交流、国际合作与社会公益。": "その後、関西大学を卒業し、異文化交流、国際協力、社会公益に継続的に関心を寄せてきました。", "公益实践": "公益活動", "长期参与慈善事业以及国际交流与合作，并多次受到日本红十字会表彰。": "慈善活動および国際交流・協力に継続的に取り組み、日本赤十字社から複数回表彰を受けています。", "荣誉经历": "栄誉歴", "获意大利萨伏依家授勋骑士荣誉。": "イタリア・サヴォイア家より騎士の栄誉を授与されています。", "发起理念": "発起理念", "以历史传统为根，以现代公益与国际交流为实践方向，以礼仪性纪念为形式。": "歴史的伝統を土台とし、現代の公益活動と国際交流を実践の方向とし、礼儀的な記念を形式とします。", "Member Center": "会員ページ", "注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。": "登録後、会員ページで個人情報、授与申請の状況、証書記録、内部通知を確認できます。正式版では、登録とログインの処理をバックエンドに送信し、会員情報を Cloudflare D1 データベースに保存します。", "注册账户": "登録", "会员登录": "会員ログイン", "受保护页面": "保護ページ", "登录后显示": "ログイン後に表示", "个人资料与内部内容。": "個人情報と内部コンテンツを表示します。", "授与申请": "授与申請", "预留入口": "準備中", "申请表与审查状态。": "申請フォームと審査状況を表示します。", "证书记录": "証書記録", "后续录入": "後日入力", "受章历史与证书资料。": "受章履歴と証書情報を表示します。", "内部通知": "内部通知", "官方公告": "公式通知", "仪式和规则更新。": "式典および規則の更新を表示します。", "会": "会", "会员姓名": "会員名", "会员等级": "会員区分", "普通会员": "一般会員", "账户状态": "アカウント状態", "待完善资料": "情報未完了", "注册日期": "登録日", "退出登录": "ログアウト", "资料完善": "プロフィール整備", "待完善": "未完了", "下一步可加入头像、身份说明、所属机构等字段。": "次の段階で、プロフィール画像、身分説明、所属機関などの項目を追加できます。", "未提交": "未提出", "提供线上申请表、上传资料和审查状态。": "オンライン申請フォーム、資料アップロード、審査状況を提供します。", "我的证书记录": "自分の証書記録", "暂无记录": "記録なし", "正式授与后显示等级、日期、证书编号和 PDF。": "正式授与後、等級、日付、証書番号、PDFを表示します。", "0 条": "0件", "发布仪式通知、佩用规则更新和文书版本更新。": "式典通知、佩用規則、文書版の更新を表示します。", "Public Notice": "公開情報", "公开信息范围": "公開情報の範囲", "当前官网仅公开勋章制度、名誉头衔、授与理念、发起人履历与制度性质说明。姓名、邮箱及其他私人联系信息暂不公开。": "現在、本サイトでは勲章制度、名誉称号、授与理念、発起人略歴、制度の位置づけのみを公開しています。氏名、メールアドレス、その他の私的な連絡先は公開していません。", "私人荣誉与纪念用途": "私的栄誉および記念用途", "大龙凤章与龙凤章用于礼仪、纪念、感谢、合作与公益精神表达，公开说明以中性、克制、准确为原则。": "大龍鳳章および龍鳳章は、礼儀、記念、感謝、協力、公益精神を表すために用いられます。公開上の説明は、中立的で節度があり、正確な表現を基本とします。", "© 贾氏勋章官方网站. All rights reserved.": "© 賈氏勲章公式サイト. All rights reserved.", "大龙凤章 · 龙凤章 · 名誉头衔 · 授与文书 · 会员中心": "大龍鳳章 · 龍鳳章 · 名誉称号 · 授与文書 · 会員ページ", "Member Access": "会員アクセス", "姓名": "氏名", "邮箱": "メールアドレス", "密码": "パスワード", "登录账户": "ログイン", "创建会员账户": "会員登録", "创建账户": "登録", "正式版注册资料将写入 Cloudflare D1 数据库。密码采用加盐哈希保存，登录状态通过 HttpOnly 安全 Cookie 维持。": "正式版では登録情報を Cloudflare D1 データベースに保存します。パスワードはソルト付きハッシュで保存し、ログイン状態は HttpOnly の安全な Cookie によって維持します。", "请填写姓名、邮箱和密码。": "氏名、メールアドレス、パスワードを入力してください。", "请输入有效邮箱地址。": "有効なメールアドレスを入力してください。", "密码至少需要 6 位。": "パスワードは6文字以上で入力してください。", "密码至少需要 8 位。": "パスワードは8文字以上で入力してください。", "这个邮箱已经注册，可以直接登录。": "このメールアドレスはすでに登録されています。ログインしてください。", "注册成功，已进入会员中心。": "登録が完了しました。会員ページへ移動します。", "请输入邮箱和密码。": "メールアドレスとパスワードを入力してください。", "邮箱或密码不正确。": "メールアドレスまたはパスワードが正しくありません。", "登录成功。": "ログインしました。", "操作失败。": "処理に失敗しました。", "请求失败。": "リクエストに失敗しました。", "请求格式不正确。": "リクエスト形式が正しくありません。", "注册失败。": "登録に失敗しました。", "登录失败。": "ログインに失敗しました。", "没有管理员权限。": "管理者権限がありません。", "读取失败。": "読み込みに失敗しました。", "member": "一般会員", "admin": "管理者"}, "en": {"贾氏勋章官方网站｜大龙凤章 · 龙凤章": "Jia Honours Official Website | Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal", "贾氏勋章官网": "Jia Honours", "大龙凤章 · 龙凤章": "Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal", "首页": "Home", "历史渊源": "Origins", "勋章制度": "Honours", "名誉头衔": "Honorary Titles", "会员中心": "Member Center", "登录": "Log in", "注册": "Register", "退出": "Log out", "贾氏勋章": "Jia Honours", "官方网站": "Official Website", "本网站用于整理贾氏勋章体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、授与文书及相关制度资料。网站内容以礼仪、纪念、感谢、公益与文化承继为中心，构成贾氏私人荣誉体系的官方展示平台。": "This website presents the historical background, institutional structure, visual identity, and awarding principles of the Jia honours system. It introduces the Order of the Great Dragon and Phoenix, the Dragon and Phoenix Medal, award documents, and related institutional materials as a private honours platform centered on ceremony, remembrance, gratitude, public service, and cultural continuity.", "查看勋章制度 →": "View Honours →", "注册会员账户": "Create Member Account", "进入会员中心": "Enter Member Center", "礼仪性": "Ceremonial", "用于私人家门礼仪中的正式纪念表达。": "A formal commemorative expression within a private lineage ceremonial context.", "纪念性": "Commemorative", "围绕关系、贡献、协助、友谊与公益实践。": "Recording relationships, contributions, assistance, friendship, and public service.", "非公权": "Non-public authority", "不构成国家荣典、公权身份或职业资格。": "It does not constitute a state honour, public status, or professional qualification.", "可记录": "Recordable", "授与书、纪念文告、合影和网站记录共同建档。": "Certificates, commemorative notices, photographs, and website records form the archive.", "Origin & Position": "Origins & Position", "历史渊源与基本立场": "Historical Origins and Position", "贾氏勋章体系以历史记忆、家门礼仪、感谢表达、公益精神与国际友谊为核心。": "The Jia honours system is centered on historical memory, lineage ceremony, gratitude, public service, and international friendship.", "源": "Origin", "从周代封国记忆到当代家门礼仪传统": "From Zhou-period memory to modern lineage ceremony", "关于“贾”的早期历史渊源，可上溯至周代贾国与“贾伯”这一历史称谓。在家门传统叙述中，贾国被视为重要的历史身份记忆来源，“贾”也由古代政治地理意义逐渐转化为后世家门文化、姓氏认同与礼仪表达的重要来源。": "The early historical background of the name Jia is associated with the Zhou-period state of Jia and the historical title Jia Bo. In lineage tradition, this memory is treated as an important source of historical identity, linking the name Jia with later lineage culture, surname identity, and ceremonial expression.", "章": "Notice", "公开性质说明": "Public Statement of Nature", "本网站所介绍之大龙凤章与龙凤章，为贾氏私人荣誉与纪念体系，用于礼仪、纪念、感谢、合作与公益精神之表达。相关内容不构成国家荣典、公权身份、职业资格或现实政治主张。": "The Order of the Great Dragon and Phoenix and the Dragon and Phoenix Medal introduced on this website are a private honour and commemorative system of the Jia lineage, intended for ceremony, remembrance, gratitude, cooperation, and public-service spirit. They do not constitute state honours, public authority, professional qualifications, or political claims.", "勋章与奖章制度": "Orders and Medals", "体系包含勋章与奖章两类章饰，大龙凤章设大项链级及一等至五等，龙凤章设金级与银级。": "The system includes an order and a medal. The Order of the Great Dragon and Phoenix has the Grand Collar and First to Fifth Classes; the Dragon and Phoenix Medal has Gold and Silver grades.", "勋": "Order", "勋章序列": "Order Sequence", "大龙凤章": "Order of the Great Dragon and Phoenix", "大龙凤章属于贾氏荣誉体系中的高阶勋章，用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设等方面作出重要贡献者。其视觉语言以蓝色章体、八咫乌与中央龙凤纹章为主要识别特征。": "The Order of the Great Dragon and Phoenix is the higher order within the Jia honours system, recognizing important contributions to public service, international exchange, friendly cooperation, cultural continuity, and the development of lineage ceremony. Its visual identity is defined by the blue body, the Yatagarasu, and the central dragon-and-phoenix emblem.", "大项链级": "Grand Collar", "一等": "First Class", "二等": "Second Class", "三等": "Third Class", "四等": "Fourth Class", "五等": "Fifth Class", "奖": "Medal", "奖章序列": "Medal Sequence", "龙凤章": "Dragon and Phoenix Medal", "龙凤章属于贾氏荣誉体系中的奖章序列，适用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果的感谢与纪念。": "The Dragon and Phoenix Medal belongs to the medal sequence of the Jia honours system and is used for gratitude and remembrance in relation to care, support, cooperation, service, friendship, and staged achievements.", "金级": "Gold Grade", "银级": "Silver Grade", "名誉头衔制度": "Honorary Title System", "名誉头衔属于贾氏私人荣誉体系中的礼仪性称号。大团长本人为公爵，授予范围限于侯爵以下称号。": "Honorary titles are ceremonial designations within the private Jia honours system. The Grand Master personally holds the title of Duke, and titles conferred to others are limited to Marquis and below.", "爵": "Title", "头衔序列": "Title Sequence", "名誉爵位称号": "Honorary Dignities", "名誉爵位称号用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。公爵称号为大团长本人头衔，不列入授予名额；对外授予范围限于侯爵以下。相关称号不构成国家贵族身份、公权身份、法律身份、社会特权或继承性贵族权利。": "Honorary dignities are used only for ceremonial, commemorative, and forms-of-address purposes within the Jia honours system. The title of Duke is reserved for the Grand Master and is not included among titles conferred to others. Titles conferred externally are limited to Marquis and below. They do not constitute state nobility, public authority, legal status, social privilege, or hereditary noble rights.", "名誉侯爵：5人": "Honorary Marquis: 5", "名誉伯爵：10人": "Honorary Count: 10", "名誉子爵：不限": "Honorary Viscount: unlimited", "名誉男爵：不限": "Honorary Baron: unlimited", "名誉骑士：不限": "Honorary Knight: unlimited", "授": "Rules", "授予规则": "Awarding Rules", "独立授予原则": "Independent Awarding Principle", "名誉骑士称号在获得五等大龙凤章时一并授予。": "The honorary title of Knight is conferred together with the Fifth Class of the Order of the Great Dragon and Phoenix.", "勋章晋升与名誉爵位称号授予相互独立，二者不构成自动对应关系。": "Promotion within the order and the granting of honorary dignities are independent and do not automatically correspond to one another.", "名誉骑士以上、侯爵以下的头衔，由大团长本人直接授予。": "Honorary titles above Knight and up to Marquis are conferred directly by the Grand Master.", "公爵为大团长本人头衔，不作为对外授予称号。": "The title of Duke is held by the Grand Master and is not conferred externally.", "所有头衔均为私人荣誉与纪念用途，公开说明应保持中性、克制与准确。": "All titles are for private honour and commemorative use; public descriptions should remain neutral, restrained, and accurate.", "授与场景与礼仪意义": "Awarding Occasions and Ceremonial Meaning", "勋章并非权力凭证，而是富有礼仪感的纪念物与感谢物。它可与授与书、纪念文告、合影和口头致辞共同出现，形成完整、正式而清晰的授与仪式。": "The honour is not a credential of authority, but a ceremonial commemorative object and expression of gratitude. It may appear with a certificate, commemorative notice, group photograph, and spoken address to form a complete and dignified ceremony.", "✓ 家族合作": "✓ Family cooperation", "✓ 慈善支持": "✓ Charitable support", "✓ 国际交流协助": "✓ International exchange support", "✓ 教育指导": "✓ Educational guidance", "✓ 跨文化合作": "✓ Cross-cultural cooperation", "✓ 友谊与信任": "✓ Friendship and trust", "大项链级陈列": "Grand Collar Display", "用于展示大龙凤章在正式礼仪语境中的整体形象。": "A display of the Order of the Great Dragon and Phoenix in a formal ceremonial context.", "发起人履历": "Founder Profile", "本页面暂不公开姓名、电话等私人信息；官方联系邮箱：jia.honours@gmail.com。": "This page publishes only the profile and founding principles. Personal email and other private contact details are not disclosed.", "发起理念：以历史传统为根，以现代公益与国际交流为实践方向；以礼仪性纪念为形式，以感谢与表彰为内容；在私人家门的文化框架中，持续表达对合作、关照与善意的尊重。": "Founding principle: rooted in historical tradition, oriented toward modern public service and international exchange, using ceremonial commemoration as form and gratitude and recognition as content within a private lineage-cultural framework.", "赴日本留学，开始长期生活与学习经历。": "Went to Japan for study and began a long-term period of learning and life experience.", "关西大学": "Kansai University", "后毕业于关西大学，并持续关注跨文化交流、国际合作与社会公益。": "Later graduated from Kansai University and has continued to focus on cross-cultural exchange, international cooperation, and public service.", "公益实践": "Public Service", "长期参与慈善事业以及国际交流与合作，并多次受到日本红十字会表彰。": "Has long participated in charitable activities as well as international exchange and cooperation, and has received multiple recognitions from the Japanese Red Cross Society.", "荣誉经历": "Honours", "获意大利萨伏依家授勋骑士荣誉。": "Received a knighthood honour from the Italian House of Savoy.", "发起理念": "Founding Principle", "以历史传统为根，以现代公益与国际交流为实践方向，以礼仪性纪念为形式。": "Rooted in historical tradition, oriented toward modern public service and international exchange, and expressed through ceremonial commemoration.", "注册后可以进入会员中心，查看个人资料、授与申请状态、证书记录与内部公告。正式版将注册与登录请求提交至后端接口，并由 Cloudflare D1 数据库存储会员资料。": "After registration, members can view personal information, application status, certificate records, and internal notices. The production version submits registration and login requests to backend APIs and stores member data in a Cloudflare D1 database.", "注册账户": "Register", "会员登录": "Member Login", "受保护页面": "Protected Pages", "登录后显示": "Visible after login", "个人资料与内部内容。": "Personal information and internal content.", "授与申请": "Award Application", "预留入口": "Reserved entry", "申请表与审查状态。": "Application form and review status.", "证书记录": "Certificate Records", "后续录入": "To be entered", "受章历史与证书资料。": "Award history and certificate information.", "内部通知": "Internal Notices", "官方公告": "Official notices", "仪式和规则更新。": "Ceremony and rule updates.", "会": "M", "会员姓名": "Member Name", "会员等级": "Member Level", "普通会员": "Standard Member", "账户状态": "Account Status", "待完善资料": "Profile incomplete", "注册日期": "Registration Date", "退出登录": "Log out", "资料完善": "Profile Completion", "待完善": "Pending", "下一步可加入头像、身份说明、所属机构等字段。": "Next, fields such as avatar, identity description, and affiliated organization can be added.", "未提交": "Not submitted", "提供线上申请表、上传资料和审查状态。": "Provides an online application form, document upload, and review status.", "我的证书记录": "My Certificate Records", "暂无记录": "No records", "正式授与后显示等级、日期、证书编号和 PDF。": "After formal awarding, class, date, certificate number, and PDF will be displayed.", "0 条": "0 items", "发布仪式通知、佩用规则更新和文书版本更新。": "Publishes ceremony notices, wearing-rule updates, and document version updates.", "公开信息范围": "Scope of Public Information", "当前官网仅公开勋章制度、名誉头衔、授与理念、发起人履历与制度性质说明。姓名、邮箱及其他私人联系信息暂不公开。": "At present, this website publicly displays only the honours system, honorary titles, awarding principles, founder profile, and the statement of institutional nature. Names, email addresses, and other private contact details are not disclosed.", "私人荣誉与纪念用途": "Private Honour and Commemorative Use", "大龙凤章与龙凤章用于礼仪、纪念、感谢、合作与公益精神表达，公开说明以中性、克制、准确为原则。": "The Order of the Great Dragon and Phoenix and the Dragon and Phoenix Medal are used to express ceremony, remembrance, gratitude, cooperation, and public-service spirit. Public descriptions should remain neutral, restrained, and accurate.", "© 贾氏勋章官方网站. All rights reserved.": "© Jia Honours Official Website. All rights reserved.", "大龙凤章 · 龙凤章 · 名誉头衔 · 授与文书 · 会员中心": "Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal · Honorary Titles · Award Documents · Member Center", "姓名": "Name", "邮箱": "Email", "密码": "Password", "登录账户": "Log in", "创建会员账户": "Create Member Account", "创建账户": "Create Account", "正式版注册资料将写入 Cloudflare D1 数据库。密码采用加盐哈希保存，登录状态通过 HttpOnly 安全 Cookie 维持。": "Registration data will be stored in a Cloudflare D1 database. Passwords are stored using salted hashes, and login sessions are maintained through HttpOnly secure cookies.", "请填写姓名、邮箱和密码。": "Please enter your name, email, and password.", "请输入有效邮箱地址。": "Please enter a valid email address.", "密码至少需要 6 位。": "Password must be at least 6 characters.", "密码至少需要 8 位。": "Password must be at least 8 characters.", "这个邮箱已经注册，可以直接登录。": "This email is already registered. Please log in.", "注册成功，已进入会员中心。": "Registration successful. Entering the member center.", "请输入邮箱和密码。": "Please enter your email and password.", "邮箱或密码不正确。": "Email or password is incorrect.", "登录成功。": "Logged in successfully.", "操作失败。": "Operation failed.", "请求失败。": "Request failed.", "请求格式不正确。": "Invalid request format.", "注册失败。": "Registration failed.", "登录失败。": "Login failed.", "没有管理员权限。": "Administrator permission is required.", "读取失败。": "Failed to read data.", "member": "Standard Member", "admin": "Administrator"}};
 
 
     Object.assign(TEXT_I18N.ja, {
@@ -1027,6 +1134,7 @@
         acceptNode(node) {
           const parent = node.parentElement;
           if (!parent) return NodeFilter.FILTER_REJECT;
+          if (parent.hasAttribute("data-i18n") || parent.hasAttribute("data-i18n-html")) return NodeFilter.FILTER_REJECT;
           const tag = parent.tagName;
           if (tag === "SCRIPT" || tag === "STYLE" || tag === "NOSCRIPT") return NodeFilter.FILTER_REJECT;
           const key = __jiaNormalizeText(node.nodeValue);
@@ -1090,6 +1198,7 @@
       if (select) select.value = lang;
       if (mobileSelect) mobileSelect.value = lang;
       localStorage.setItem("jia_site_lang", lang);
+      if (typeof renderNewsList === "function") renderNewsList(window.__JIA_NEWS_CACHE || [], window.__JIA_NEWS_USER || null);
     }
 
     let mode = "login";
@@ -1161,6 +1270,9 @@
       el.textContent = translateLiteral(text);
       el.className = "msg" + (text ? (ok ? " ok" : " error") : "");
     }
+
+    window.__JIA_NEWS_CACHE = window.__JIA_NEWS_CACHE || [];
+    window.__JIA_NEWS_USER = null;
 
     setLanguage(localStorage.getItem('jia_site_lang') || 'zh');
   </script>
@@ -1367,6 +1479,74 @@
       }
     }
 
+    function currentSiteLang() {
+      return localStorage.getItem("jia_site_lang") || "zh";
+    }
+
+    function uiText(key) {
+      const lang = currentSiteLang();
+      return (I18N[lang] && I18N[lang][key]) || (I18N.zh && I18N.zh[key]) || key;
+    }
+
+    function escapeHtmlText(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function localizedNewsField(item, base) {
+      const lang = currentSiteLang();
+      const key = `${base}${lang.charAt(0).toUpperCase()}${lang.slice(1)}`;
+      return item[key] || item[`${base}Zh`] || item[base] || "";
+    }
+
+    function renderNewsList(items = [], user = null) {
+      const list = document.getElementById("newsList");
+      const memberNotice = document.getElementById("newsMemberNotice");
+      if (!list) return;
+      const newsItems = Array.isArray(items) ? items : [];
+      if (!newsItems.length) {
+        list.innerHTML = `<div class="news-placeholder">${escapeHtmlText(uiText("newsEmpty"))}</div>`;
+      } else {
+        list.innerHTML = newsItems.map((item) => {
+          const isMembers = item.visibility === "members";
+          const title = escapeHtmlText(localizedNewsField(item, "title"));
+          const body = escapeHtmlText(localizedNewsField(item, "body"));
+          const date = escapeHtmlText(item.publishedAt || item.createdAt || "");
+          const visibilityText = escapeHtmlText(uiText(isMembers ? "newsVisibilityMembers" : "newsVisibilityPublic"));
+          return `
+            <article class="news-card ${isMembers ? "members-only" : "public-news"}">
+              <div class="news-meta">
+                <span class="news-visibility ${isMembers ? "member" : "public"}">${visibilityText}</span>
+                <span>${date}</span>
+              </div>
+              <h3>${title}</h3>
+              <p>${body}</p>
+            </article>
+          `;
+        }).join("");
+      }
+      if (memberNotice) memberNotice.classList.toggle("hidden", !!user);
+    }
+
+    async function loadNews(user = null) {
+      const list = document.getElementById("newsList");
+      window.__JIA_NEWS_USER = user || null;
+      if (list && !(window.__JIA_NEWS_CACHE || []).length) {
+        list.innerHTML = `<div class="news-placeholder">${escapeHtmlText(uiText("newsLoading"))}</div>`;
+      }
+      try {
+        const data = await apiRequest("/api/news", { method: "GET" });
+        window.__JIA_NEWS_CACHE = data.news || [];
+        renderNewsList(window.__JIA_NEWS_CACHE, user || null);
+      } catch (err) {
+        if (list) list.innerHTML = `<div class="news-placeholder">${escapeHtmlText(uiText("newsLoadFailed"))}</div>`;
+      }
+    }
+
     async function renderSession() {
       let user = null;
       try {
@@ -1378,13 +1558,25 @@
 
       const loggedOut = document.getElementById("memberLoggedOut");
       const loggedIn = document.getElementById("memberLoggedIn");
+      const loginTop = document.getElementById("loginTop");
+      const registerTop = document.getElementById("registerTop");
+      const memberTop = document.getElementById("memberTop");
       const logoutTop = document.getElementById("logoutTop");
+      const mobileLoginTop = document.getElementById("mobileLoginTop");
+      const mobileMemberTop = document.getElementById("mobileMemberTop");
       const registerHero = document.getElementById("registerHero");
       const memberHero = document.getElementById("memberHero");
 
+      if (loginTop) loginTop.classList.toggle("hidden", !!user);
+      if (registerTop) registerTop.classList.toggle("hidden", !!user);
+      if (memberTop) memberTop.classList.toggle("hidden", !user);
       if (logoutTop) logoutTop.classList.toggle("hidden", !user);
+      if (mobileLoginTop) mobileLoginTop.classList.toggle("hidden", !!user);
+      if (mobileMemberTop) mobileMemberTop.classList.toggle("hidden", !user);
       if (registerHero) registerHero.classList.toggle("hidden", !!user);
       if (memberHero) memberHero.classList.toggle("hidden", !user);
+
+      await loadNews(user);
 
       if (user) {
         loggedOut.classList.add("hidden");
