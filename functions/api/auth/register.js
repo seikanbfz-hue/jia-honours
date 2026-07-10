@@ -45,7 +45,7 @@ export async function onRequestPost({ request, env }) {
       number: body.phoneNumber,
     });
 
-    await verifyTurnstile(request, env, body.turnstileToken, "register");
+    await verifyTurnstile(request, env, body.turnstileToken, "auth");
     await enforceRateLimits(db, env, request, "register", [
       { scope: "ip-1h", limit: 10, windowSeconds: 60 * 60 },
       { scope: "email-1h", value: email, limit: 5, windowSeconds: 60 * 60 },

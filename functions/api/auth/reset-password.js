@@ -27,7 +27,7 @@ export async function onRequestPost({ request, env }) {
     const code = validateVerificationCode(body.verificationCode);
     const password = validatePassword(body.password);
 
-    await verifyTurnstile(request, env, body.turnstileToken, "reset-password");
+    await verifyTurnstile(request, env, body.turnstileToken, "auth");
     await enforceRateLimits(db, env, request, "reset-password", [
       { scope: "ip-1h", limit: 10, windowSeconds: 60 * 60 },
       { scope: "email-1h", value: email, limit: 10, windowSeconds: 60 * 60 },

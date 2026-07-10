@@ -23,7 +23,7 @@ Turnstile is optional until configured. To enable it, set both:
 - `TURNSTILE_SITE_KEY`
 - `TURNSTILE_SECRET_KEY`
 
-After both keys are present, the server rejects protected requests without a valid `turnstileToken`. A one-key-only configuration fails closed instead of silently bypassing verification. The browser reads `GET /api/config` and sends the token in the JSON body. If the widget sets an action, use the endpoint action names `send-code`, `register`, `login`, `send-reset-code`, and `reset-password`. Tokens are single-use; obtain a fresh token for each request.
+After both keys are present, the server rejects protected requests without a valid `turnstileToken`. A one-key-only configuration fails closed instead of silently bypassing verification. The browser reads `GET /api/config`, renders the widget with the required `auth` action, and sends the token in the JSON body. The server rejects a missing or mismatched action. Tokens are single-use; obtain a fresh token for each request.
 
 `TURNSTILE_HOSTNAMES` may be set to a comma-separated host allowlist when the Pages project is served from more than one hostname. Otherwise the request hostname is enforced.
 

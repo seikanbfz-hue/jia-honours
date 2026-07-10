@@ -682,7 +682,7 @@ export async function verifyTurnstile(request, env, token, expectedAction = "") 
   if (!result.hostname || !allowedHosts.includes(String(result.hostname).toLowerCase())) {
     throw new ApiError(400, "TURNSTILE_FAILED", "人机验证未通过，请重试。");
   }
-  if (expectedAction && result.action && result.action !== expectedAction) {
+  if (expectedAction && result.action !== expectedAction) {
     throw new ApiError(400, "TURNSTILE_FAILED", "人机验证未通过，请重试。");
   }
   return result;

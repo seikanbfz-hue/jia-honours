@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="贾氏勋章官方网站，介绍大龙凤章、龙凤章、名誉称号、本家新闻及相关礼仪制度。" />
-  <meta name="theme-color" content="#08233f" />
+  <meta name="theme-color" content="#2b0910" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
   <title>贾氏勋章官方网站｜大龙凤章 · 龙凤章</title>
   <style>
@@ -78,7 +78,7 @@
     @media(max-width:1080px){.lang-select,.menu-toggle{min-height:44px}}
     @media(max-width:680px){.mobile-nav a,.mobile-account .btn{min-height:44px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
-</style>
+</style><link rel="stylesheet" href="assets/roman-imperial.css?v=58">
 </head>
 <body>
   <div class="ceremonial-bar"><div class="wrap"><span data-i18n="ribbonLeft">私人荣誉 · 礼仪纪念 · 公益实践 · 文化传承</span><span data-i18n="ribbonRight">官方邮箱：jia.honours@gmail.com</span></div></div>
@@ -679,6 +679,7 @@
     let TURNSTILE_ENABLED = false;
     let TURNSTILE_SITE_KEY = '';
     let turnstileWidgetId = null;
+    let turnstileWidgetSize = '';
     let turnstileToken = '';
     let turnstileScriptPromise = null;
     let authRequestPending = false;
@@ -729,12 +730,16 @@
         if (placeholderPack[key]) el.setAttribute('placeholder', placeholderPack[key]);
       });
       document.querySelectorAll('.lang-select').forEach(select => { select.value = CURRENT_LANG; });
+      const mobileNav = document.getElementById('mobileNav');
+      const menuToggle = document.getElementById('menuToggle');
+      if (mobileNav?.classList.contains('open') && menuToggle) menuToggle.textContent = '×';
       localStorage.setItem('jia_site_lang', CURRENT_LANG);
       renderCountryCodes(CURRENT_LANG);
       setMode(mode, true);
       if (window.turnstile && turnstileWidgetId !== null) {
         try { window.turnstile.remove(turnstileWidgetId); } catch (e) {}
         turnstileWidgetId = null;
+        turnstileWidgetSize = '';
         turnstileToken = '';
         if (document.getElementById('authModal')?.classList.contains('active')) ensureTurnstileWidget().catch(() => {});
       }
@@ -824,15 +829,25 @@
       container.classList.remove('hidden');
       await loadTurnstileScript();
       if (!window.turnstile) throw new Error('安全验证未完成，请重试。');
+      const widgetSize = container.clientWidth >= 300 ? 'flexible' : 'compact';
+      if (turnstileWidgetId !== null && turnstileWidgetSize !== widgetSize) {
+        try { window.turnstile.remove(turnstileWidgetId); } catch (e) {}
+        turnstileWidgetId = null;
+        turnstileWidgetSize = '';
+        turnstileToken = '';
+      }
       if (turnstileWidgetId === null) {
         turnstileWidgetId = window.turnstile.render(container, {
           sitekey: TURNSTILE_SITE_KEY,
+          size: widgetSize,
+          action: 'auth',
           theme: 'light',
           language: CURRENT_LANG === 'zh' ? 'zh-cn' : CURRENT_LANG,
           callback: token => { turnstileToken = token || ''; },
           'expired-callback': () => { turnstileToken = ''; },
           'error-callback': () => { turnstileToken = ''; }
         });
+        turnstileWidgetSize = widgetSize;
       }
     }
 
@@ -1096,6 +1111,7 @@
       panel.classList.toggle('open', shouldOpen);
       button.setAttribute('aria-expanded', String(shouldOpen));
       button.setAttribute('aria-label', shouldOpen ? t('closeMenu') : t('mobileMenu'));
+      button.textContent = shouldOpen ? '×' : t('mobileMenu');
     }
     document.querySelectorAll('#mobileNav a, #mobileNav button').forEach(control => control.addEventListener('click', () => toggleMobileNav(false)));
     document.getElementById('authModal')?.addEventListener('click', event => {
@@ -1109,6 +1125,9 @@
     });
     window.addEventListener('resize', () => {
       if (window.innerWidth > 1080) toggleMobileNav(false);
+      if (document.getElementById('authModal')?.classList.contains('active') && window.turnstile && TURNSTILE_ENABLED) {
+        ensureTurnstileWidget().catch(() => {});
+      }
     });
     setLanguage(CURRENT_LANG);
     renderSession().then(loadNews);

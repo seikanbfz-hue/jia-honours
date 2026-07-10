@@ -28,7 +28,7 @@ export async function onRequestPost({ request, env }) {
     const email = validateEmail(body.email);
     const fullName = validateFullName(body.fullName, { optional: true });
 
-    await verifyTurnstile(request, env, body.turnstileToken, "send-code");
+    await verifyTurnstile(request, env, body.turnstileToken, "auth");
     await enforceRateLimits(db, env, request, "send-register-code", [
       { scope: "ip-10m", limit: 5, windowSeconds: 10 * 60 },
       { scope: "email-1m", value: email, limit: 1, windowSeconds: 60 },

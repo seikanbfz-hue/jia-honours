@@ -29,7 +29,7 @@ export async function onRequestPost({ request, env }) {
     const body = await readJson(request);
     const email = validateEmail(body.email);
 
-    await verifyTurnstile(request, env, body.turnstileToken, "send-reset-code");
+    await verifyTurnstile(request, env, body.turnstileToken, "auth");
     await enforceRateLimits(db, env, request, "send-reset-code", [
       { scope: "ip-10m", limit: 5, windowSeconds: 10 * 60 },
       { scope: "email-1m", value: email, limit: 1, windowSeconds: 60 },
