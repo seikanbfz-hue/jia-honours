@@ -3,243 +3,127 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="贾氏勋章官方网站，介绍大龙凤章、龙凤章、名誉称号、本家新闻及相关礼仪制度。" />
+  <meta name="theme-color" content="#08233f" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
   <title>贾氏勋章官方网站｜大龙凤章 · 龙凤章</title>
   <style>
-    :root {
-      --paper:#fbf5e8;
-      --paper2:#f2e5c9;
-      --vellum:#fffaf0;
-      --ink:#211a14;
-      --muted:#6f6252;
-      --navy:#0a2545;
-      --navy2:#06182d;
-      --wine:#681f25;
-      --wine2:#411216;
-      --gold:#b78935;
-      --gold2:#dfc06a;
-      --line:#d8c59b;
-      --white:#fff;
-      --danger:#b42318;
-      --success:#067647;
-      --shadow:0 28px 90px rgba(28,20,10,.16);
-      --serif:ui-serif,"Songti SC","Noto Serif SC","Source Han Serif SC","SimSun",Georgia,serif;
-      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","Noto Sans JP","PingFang SC",Arial,sans-serif;
+    :root{
+      --ivory:#f7f0df;--ivory-soft:#fbf7ed;--paper:#fffdf7;--paper-deep:#efe0be;
+      --ink:#21170f;--muted:#6d5f4e;--navy:#08233f;--navy-deep:#04172b;
+      --wine:#6d2026;--wine-deep:#401015;--gold:#b48732;--gold-light:#dfc06b;
+      --line:#d7c397;--line-soft:rgba(183,135,50,.28);--success:#236b4a;--danger:#a92d24;
+      --shadow:0 24px 70px rgba(54,36,14,.11);
+      --serif:ui-serif,"Songti SC","Noto Serif CJK SC","Source Han Serif SC","SimSun",Georgia,serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Noto Sans SC","Noto Sans JP","PingFang SC",Arial,sans-serif;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;color:var(--ink);font-family:var(--serif);line-height:1.75;
-      background:radial-gradient(circle at 20% 0%, rgba(223,192,106,.18), transparent 28%),linear-gradient(180deg,#fff9eb 0%,#f7edd6 42%,#fbf5e8 100%);
-    }
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.32;background-image:linear-gradient(90deg,rgba(80,52,24,.045) 1px,transparent 1px),linear-gradient(rgba(80,52,24,.045) 1px,transparent 1px);background-size:46px 46px;z-index:-1}
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .sans{font-family:var(--sans)}
-    .wrap{width:min(1180px,calc(100% - 42px));margin:0 auto}
-    .top-ribbon{background:linear-gradient(90deg,var(--wine2),var(--wine),var(--wine2));color:#fbe9c2;font-family:var(--sans);font-size:12px;letter-spacing:.12em}
-    .top-ribbon .wrap{min-height:36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .nav-shell{position:sticky;top:0;z-index:60;background:rgba(251,245,232,.91);backdrop-filter:blur(16px);border-bottom:1px solid rgba(216,197,155,.75)}
-    .nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;align-items:center;gap:13px;min-width:210px}
-    .brand-mark{width:54px;height:54px;border-radius:50%;border:1px solid rgba(183,137,53,.55);background:linear-gradient(180deg,#fff,#f8edd0);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(40,26,10,.12)}
-    .brand-mark img{width:43px;height:43px;object-fit:contain}
-    .brand-title{display:block;font-size:18px;font-weight:800;letter-spacing:.11em;line-height:1.2}
-    .brand-sub{display:block;font-family:var(--sans);font-size:11px;color:var(--muted);margin-top:3px;line-height:1.3}
-    .navlinks{display:flex;align-items:center;gap:18px;font-family:var(--sans);font-size:13px;color:#594b3c;white-space:nowrap}
-    .navlinks a{padding:8px 0;border-bottom:1px solid transparent}
-    .navlinks a:hover{color:var(--wine);border-color:var(--gold)}
-    .nav-actions{display:flex;align-items:center;gap:8px;font-family:var(--sans)}
-    .lang{border:1px solid rgba(216,197,155,.9);background:#fff8e8;border-radius:999px;padding:9px 10px;color:#66543f;font-size:12px;outline:none}
-    .btn{border:0;border-radius:999px;padding:11px 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:750;font-size:13px;cursor:pointer;transition:.2s ease;white-space:nowrap}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff;box-shadow:0 16px 34px rgba(10,37,69,.24)}
-    .btn.gold{background:linear-gradient(180deg,#c99f44,#9f7223);color:#fff;box-shadow:0 14px 30px rgba(159,114,35,.22)}
-    .btn.ghost{background:rgba(255,250,240,.8);border:1px solid rgba(216,197,155,.9);color:#3f3328}
-    .btn.big{border-radius:16px;padding:14px 20px;font-size:14px}
+    *{box-sizing:border-box}::selection{background:rgba(180,135,50,.26);color:var(--ink)}
+    html{scroll-behavior:smooth;scroll-padding-top:102px}
+    body{margin:0;color:var(--ink);font-family:var(--serif);line-height:1.78;background:linear-gradient(180deg,#fbf6e9 0%,#f6ecd5 47%,#faf5e8 100%)}
+    body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.2;background-image:radial-gradient(circle at 20% 30%,rgba(91,57,22,.13) 0 .65px,transparent .8px),radial-gradient(circle at 70% 65%,rgba(91,57,22,.09) 0 .55px,transparent .75px);background-size:11px 11px,17px 17px}
+    html[lang="ja"] body{font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",var(--serif)}
+    html[lang="en"] body{font-family:Georgia,"Times New Roman",serif}
+    a{color:inherit;text-decoration:none}img{max-width:100%;display:block}h1,h2,h3{text-wrap:balance}html[lang="en"] p{hyphens:auto}.sans{font-family:var(--sans)}
+    button,select,input{font:inherit}.wrap{width:min(1180px,calc(100% - 44px));margin:0 auto}
     .hidden{display:none!important}
-    .hero{position:relative;overflow:hidden;padding:88px 0 100px;border-bottom:1px solid var(--line)}
-    .hero:after{content:"";position:absolute;right:-12vw;top:-18vw;width:52vw;height:52vw;border-radius:50%;background:radial-gradient(circle,rgba(183,137,53,.18),transparent 62%);z-index:-1}
-    .hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:54px}
-    .proclamation{position:relative;background:linear-gradient(180deg,rgba(255,250,240,.92),rgba(248,235,207,.78));border:1px solid rgba(216,197,155,.86);border-radius:34px;padding:44px;box-shadow:var(--shadow)}
-    .proclamation:before{content:"";position:absolute;inset:14px;border:1px solid rgba(183,137,53,.32);border-radius:24px;pointer-events:none}
-    .kicker{font-family:var(--sans);font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:900;color:var(--gold)}
-    h1{font-size:72px;line-height:1.04;margin:18px 0 24px;letter-spacing:-.045em;color:#1d1711}
-    .lead{font-size:17px;color:#4f4437;margin:0;max-width:640px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-    .seal-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-    .seal-note{font-family:var(--sans);border:1px solid rgba(183,137,53,.36);background:#fff7e6;border-radius:999px;color:#765926;padding:8px 12px;font-size:12px;font-weight:800}
-    .image-frame{position:relative;border-radius:36px;border:1px solid rgba(216,197,155,.96);background:radial-gradient(circle at 50% 22%,#fffdf7 0,#f5e6c7 55%,#e4cf9d 100%);box-shadow:0 35px 100px rgba(30,20,10,.18);padding:22px;overflow:hidden}
-    .image-frame:before{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.72);border-radius:26px;pointer-events:none;z-index:2}
-    .image-frame img{width:100%;height:min(70vh,670px);object-fit:contain;object-position:center;padding:10px;filter:drop-shadow(0 26px 45px rgba(20,12,6,.24));position:relative;z-index:1}
-    .caption{position:absolute;left:32px;right:32px;bottom:28px;background:rgba(10,37,69,.86);color:#fff;border:1px solid rgba(223,192,106,.55);border-radius:20px;padding:16px 18px;display:grid;gap:2px;z-index:3;backdrop-filter:blur(8px)}
-    .caption b{font-size:17px}
-    .caption span{font-family:var(--sans);font-size:12px;color:#ead8af}
-    .section{padding:92px 0}
-    .white{background:rgba(255,250,240,.66);border-top:1px solid rgba(216,197,155,.65);border-bottom:1px solid rgba(216,197,155,.65)}
-    .section-head{display:grid;grid-template-columns:.82fr 1.18fr;gap:34px;align-items:end;margin-bottom:34px}
-    .section-head.center{display:block;text-align:center;max-width:820px;margin:0 auto 42px}
-    h2{font-size:48px;line-height:1.12;margin:10px 0 0;letter-spacing:-.03em;color:#201711}
-    .section-head p{margin:0;color:#665848;font-size:16px}
-    .evidence-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .evidence,.charter,.contact-card,.news-intro,.member-cta{background:rgba(255,250,240,.9);border:1px solid rgba(216,197,155,.8);border-radius:26px;padding:24px;box-shadow:0 12px 38px rgba(38,26,10,.06)}
-    .evidence b{display:block;color:var(--wine);font-size:17px;margin-bottom:8px}
-    .evidence span,.charter p,.contact-card p,.news-intro p,.member-cta p{font-family:var(--sans);font-size:14px;color:#665848;line-height:1.8}
-    .crest-line{display:flex;justify-content:center;margin-top:22px}
-    .crest-line img{width:96px;height:96px;object-fit:contain;opacity:.94}
-    .order-board{display:grid;grid-template-columns:1.12fr .88fr;gap:22px}
-    .order-card{background:linear-gradient(180deg,#fffaf0,#f3e2bd);border:1px solid rgba(216,197,155,.9);border-radius:30px;overflow:hidden;box-shadow:0 18px 55px rgba(42,28,12,.08)}
-    .order-top{padding:30px;border-bottom:1px solid rgba(216,197,155,.72);background:radial-gradient(circle at top right,rgba(183,137,53,.24),transparent 38%);display:flex;justify-content:space-between;gap:20px}
-    .order-top h3{font-size:32px;line-height:1.16;margin:8px 0 4px}
-    .en{font-family:var(--sans);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#76654f}
-    .icon-seal{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--wine);color:#ffe6ad;border:1px solid var(--gold);font-weight:900;font-size:20px;flex:0 0 auto}
-    .order-body{padding:30px}
-    .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-    .tag{font-family:var(--sans);border:1px solid rgba(183,137,53,.38);background:#fff8e8;color:#755825;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:800}
-    .title-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .charter h3{font-size:28px;margin:0 0 12px}
-    .mini-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-    .mini-tag{font-family:var(--sans);font-weight:800;font-size:13px;color:#4d3821;border-left:3px solid var(--gold);background:#fff7e6;padding:9px 12px;border-radius:8px}
-    .news-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:24px;align-items:start}
-    .news-intro{position:sticky;top:118px;background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff;border-color:rgba(223,192,106,.42)}
-    .news-intro h3{font-size:28px;margin:10px 0}
-    .news-intro p{color:#d9d1c5}
-    .news-list{display:grid;gap:16px}
-    .news-card{background:#fffaf0;border:1px solid rgba(216,197,155,.86);border-radius:26px;padding:24px;display:grid;gap:10px;box-shadow:0 12px 35px rgba(36,24,10,.055)}
-    .news-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:var(--sans);font-size:12px;font-weight:900;color:#7d6125;letter-spacing:.04em}
-    .badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;background:#f3e2bd;color:#5a401c;border:1px solid rgba(183,137,53,.32)}
-    .news-card h3{font-size:25px;line-height:1.28;margin:0;color:#211711}
-    .news-card p{font-family:var(--sans);color:#625343;font-size:14px;line-height:1.9;margin:0;white-space:pre-line}
-    .profile-contact{display:grid;grid-template-columns:.95fr 1.05fr;gap:28px;align-items:start}
-    .timeline{display:grid;gap:14px;margin-top:26px}
-    .time{position:relative;background:rgba(255,250,240,.9);border:1px solid rgba(216,197,155,.85);border-radius:22px;padding:20px 22px 20px 58px}
-    .time:before{content:"";position:absolute;left:22px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--wine);box-shadow:0 0 0 6px #f2e5c9;border:1px solid var(--gold)}
-    .time b{display:block;font-size:18px;color:var(--wine);margin-bottom:4px}
-    .time span{color:#625343;font-size:14px}
-    .contact-card{background:linear-gradient(180deg,#fffaf0,#f3e2bd)}
-    .contact-row{display:flex;justify-content:space-between;gap:16px;border-top:1px solid rgba(216,197,155,.75);padding:15px 0;font-family:var(--sans)}
-    .contact-row span:first-child{color:#7b6a55}
-    .contact-row b{text-align:right;color:#23180f}
-    .contact-card h3{font-size:27px;margin:20px 0 10px}
-    .member-cta{margin-top:18px}
-    .footer{background:var(--navy2);color:#f8ebd0;padding:28px 0}
-    .footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-    .footer .brand-title{color:#fff}
-    .footer .brand-sub{color:#d8caa8}
-    .footer-links{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--sans);font-size:13px;color:#d8caa8}
-    .modal{display:none;position:fixed;inset:0;z-index:120;background:rgba(6,24,45,.68);backdrop-filter:blur(8px);align-items:flex-start;justify-content:center;padding:24px 18px;overflow:auto}
-    .modal.active{display:flex}
-    .modal-card{width:min(560px,100%);max-height:calc(100vh - 48px);overflow:auto;background:#fffaf0;border:1px solid rgba(216,197,155,.9);border-radius:28px;box-shadow:0 30px 110px rgba(0,0,0,.32)}
-    .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:26px;border-bottom:1px solid rgba(216,197,155,.75);background:radial-gradient(circle at top right,rgba(183,137,53,.28),transparent 42%),#fff7e6}
-    .modal-head h3{font-size:28px;margin:8px 0 0}
-    .close{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:22px}
-    .form{padding:26px}
-    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;background:#eadabd;border-radius:14px;padding:5px;margin-bottom:20px}
-    .tab{border:0;border-radius:10px;background:transparent;padding:12px;cursor:pointer;font-family:var(--sans);font-weight:900;color:#766550}
-    .tab.active{background:#fffaf0;color:#1f160f;box-shadow:0 4px 14px rgba(28,20,10,.08)}
-    label{display:block;margin:0 0 15px;font-family:var(--sans);font-weight:800;font-size:13px;color:#4e3f30}
-    input,.field-select{width:100%;margin-top:7px;border:1px solid var(--line);border-radius:14px;padding:13px 14px;font-size:14px;background:#fff;outline:none;font-family:var(--sans)}
-    input:focus,.field-select:focus{border-color:var(--navy);box-shadow:0 0 0 4px rgba(10,37,69,.11)}
-    #phoneGroup{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
-    #phoneGroup.hidden{display:none!important}
-    .verification-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
-    .verification-row input{margin-top:0}
-    .code-btn{min-width:118px;border-radius:14px;padding:12px 14px;box-shadow:none}
-    .msg{display:none;border-radius:14px;padding:12px 14px;margin-bottom:16px;font-family:var(--sans);font-size:14px}
-    .msg.error{display:block;background:#fff1f0;color:var(--danger)}
-    .msg.ok{display:block;background:#ecfdf3;color:var(--success)}
-    .muted-note{font-family:var(--sans);font-size:12px;line-height:1.65;color:#746653;text-align:center;margin:14px 0 0}
-    @media (max-width: 1040px){
-      .navlinks{display:none}
-      .hero-grid,.section-head,.order-board,.title-grid,.news-layout,.profile-contact{grid-template-columns:1fr}
-      .news-intro{position:static}
-      .evidence-strip{grid-template-columns:1fr 1fr}
-      h1{font-size:58px}
-      h2{font-size:40px}
-    }
-    @media (max-width: 680px){
-      .wrap{width:min(100% - 28px,1180px)}
-      .top-ribbon .wrap{justify-content:center;text-align:center;flex-direction:column;gap:2px;padding:7px 0;letter-spacing:.05em}
-      .nav{min-height:70px;gap:10px}
-      .brand{min-width:0;flex:1;gap:9px}
-      .brand-mark{width:43px;height:43px;flex:0 0 auto}
-      .brand-mark img{width:34px;height:34px}
-      .brand-title{font-size:14px;letter-spacing:.05em;white-space:nowrap}
-      .brand-sub{display:none}
-      .nav-actions{gap:6px}
-      .nav-actions .btn{padding:9px 11px;font-size:12px}
-      .lang{max-width:82px;padding:8px 6px;font-size:11px}
-      .hero{padding:34px 0 64px}
-      .hero-grid{gap:24px}
-      .image-frame{order:-1;border-radius:24px;padding:12px}
-      .image-frame img{height:auto;max-height:68vh;padding:4px}
-      .caption{position:static;margin-top:8px;border-radius:16px}
-      .proclamation{padding:28px 24px;border-radius:24px}
-      .proclamation:before{inset:10px;border-radius:18px}
-      h1{font-size:43px}
-      h2{font-size:34px}
-      .section{padding:64px 0}
-      .evidence-strip{grid-template-columns:1fr}
-      .order-top{padding:24px}
-      .order-body{padding:24px}
-      .order-top h3{font-size:27px}
-      .charter,.contact-card,.news-intro,.member-cta,.news-card,.evidence{padding:22px}
-      #phoneGroup,.verification-row{grid-template-columns:1fr}
-      .code-btn{width:100%}
-      .footer-grid{align-items:flex-start}
-    }
-  </style>
+    .ceremonial-bar{background:linear-gradient(90deg,var(--wine-deep),var(--wine),var(--wine-deep));color:#f6e7c2;font:600 11px/1.4 var(--sans);letter-spacing:.1em}
+    .ceremonial-bar .wrap{min-height:34px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .site-header{position:sticky;top:0;z-index:80;border-bottom:1px solid rgba(183,135,50,.35);background:rgba(250,245,232,.94);backdrop-filter:blur(18px)}
+    .nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:215px}
+    .brand-mark{width:50px;height:50px;flex:0 0 auto;border:1px solid rgba(180,132,45,.55);border-radius:50%;background:radial-gradient(circle,#fff 0,#f6e9c9 100%);display:grid;place-items:center;box-shadow:0 8px 22px rgba(58,37,12,.09)}
+    .brand-mark img{width:39px;height:39px;object-fit:contain}.brand-title{display:block;font-size:17px;font-weight:800;letter-spacing:.09em;line-height:1.2}.brand-sub{display:block;margin-top:3px;color:var(--muted);font:500 10.5px/1.35 var(--sans)}
+    .navlinks{display:flex;align-items:center;gap:20px;color:#544738;font:650 13px/1.2 var(--sans);white-space:nowrap}
+    .navlinks a{position:relative;padding:12px 0}.navlinks a:after{content:"";position:absolute;left:50%;right:50%;bottom:5px;height:1px;background:var(--gold);transition:.2s ease}.navlinks a:hover:after,.navlinks a:focus-visible:after{left:0;right:0}
+    .nav-actions,.mobile-controls,.mobile-account{display:flex;align-items:center;gap:8px;font-family:var(--sans)}
+    .lang-select{border:1px solid var(--line);border-radius:999px;background:#fffaf0;color:#5d4c39;padding:9px 10px;font:600 12px var(--sans);outline:none}
+    .btn{border:1px solid transparent;border-radius:999px;padding:10px 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font:750 13px/1.2 var(--sans);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;white-space:nowrap}
+    .btn:hover{transform:translateY(-1px)}.btn:focus-visible,.lang-select:focus-visible,.menu-toggle:focus-visible,a:focus-visible{outline:3px solid rgba(180,135,50,.28);outline-offset:3px}
+    .btn.primary{color:#fff;background:linear-gradient(180deg,var(--navy),var(--navy-deep));box-shadow:0 12px 26px rgba(8,35,63,.2)}
+    .btn.gold{color:#fff;background:linear-gradient(180deg,#c49a42,#9d7123);box-shadow:0 12px 26px rgba(157,113,35,.18)}
+    .btn.ghost{color:#3e3124;background:rgba(255,252,245,.82);border-color:var(--line)}.btn.big{border-radius:12px;padding:14px 20px;font-size:14px}
+    .mobile-controls,.mobile-nav{display:none}.menu-toggle{border:1px solid var(--line);border-radius:999px;background:#fffaf0;color:#392c20;padding:9px 12px;font:750 12px var(--sans);cursor:pointer}
+    .hero{position:relative;overflow:hidden;padding:72px 0 84px;border-bottom:1px solid rgba(183,135,50,.34)}
+    .hero:after{content:"";position:absolute;right:-12vw;top:-20vw;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(180,135,50,.16),transparent 64%);z-index:-1}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:48px;align-items:center}
+    .proclamation{position:relative;padding:46px 46px 42px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,rgba(255,253,247,.96),rgba(248,237,211,.86));box-shadow:var(--shadow)}
+    .proclamation:before,.proclamation:after{content:"";position:absolute;pointer-events:none}.proclamation:before{inset:12px;border:1px solid rgba(180,135,50,.28);border-radius:13px}.proclamation:after{width:72px;height:1px;left:46px;top:30px;background:linear-gradient(90deg,var(--gold),transparent)}
+    .kicker{color:var(--gold);font:850 11px/1.3 var(--sans);letter-spacing:.24em;text-transform:uppercase}
+    h1{margin:19px 0 22px;font-size:clamp(48px,5.4vw,72px);line-height:1.02;letter-spacing:-.045em;color:#1e150f}
+    .lead{max-width:650px;margin:0;color:#514536;font-size:17px;line-height:1.9}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:30px}.seal-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}.seal-note{border:1px solid rgba(180,135,50,.35);border-radius:999px;background:#fff9eb;color:#6b4e1e;padding:7px 11px;font:800 11.5px var(--sans)}
+    .image-frame{margin:0;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#fffdf7,#ead5a5);box-shadow:0 28px 78px rgba(52,34,12,.14);padding:16px}
+    .image-stage{position:relative;border:1px solid rgba(255,255,255,.75);border-radius:13px;background:radial-gradient(circle at 50% 15%,#fff 0,#f2e2bd 64%,#dfc58a 100%);padding:14px;overflow:hidden}
+    .image-stage img{width:100%;height:min(68vh,640px);object-fit:contain;object-position:center;filter:drop-shadow(0 20px 32px rgba(28,17,8,.2))}
+    .caption{margin-top:12px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--navy-deep));border:1px solid rgba(223,192,107,.5);color:#fff;padding:14px 17px;display:grid;gap:2px}
+    .caption b{font-size:16px}.caption span{color:#ead9b4;font:500 11.5px/1.5 var(--sans)}
+    .section{padding:84px 0}.section.alt{background:rgba(255,252,244,.62);border-top:1px solid rgba(183,135,50,.26);border-bottom:1px solid rgba(183,135,50,.26)}
+    .section-head{display:grid;grid-template-columns:.82fr 1.18fr;gap:42px;align-items:end;margin-bottom:34px}.section-head.center{display:block;text-align:center;max-width:820px;margin:0 auto 40px}
+    h2{margin:9px 0 0;font-size:clamp(35px,4vw,49px);line-height:1.13;letter-spacing:-.032em;color:#21160f}.section-head p{margin:0;color:#615443;font-size:16px;line-height:1.9}
+    .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin:22px auto 0;color:var(--gold)}.ornament:before,.ornament:after{content:"";width:72px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}.ornament:after{transform:scaleX(-1)}.ornament img{width:64px;height:64px;object-fit:contain}
+    .evidence-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.evidence,.charter,.contact-card,.news-intro,.member-cta{border:1px solid var(--line);border-radius:17px;background:rgba(255,253,247,.9);padding:24px;box-shadow:0 10px 28px rgba(54,36,14,.045)}
+    .evidence,.charter,.order-card,.news-card,.contact-card,.member-cta{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}.evidence:hover,.charter:hover,.order-card:hover,.news-card:hover,.contact-card:hover,.member-cta:hover{transform:translateY(-2px);border-color:rgba(180,135,50,.55);box-shadow:0 16px 38px rgba(54,36,14,.075)}.evidence b{display:block;margin-bottom:8px;color:var(--wine);font-size:17px}.evidence span,.charter p,.contact-card p,.news-intro p,.member-cta p{color:#625442;font:400 14.5px/1.85 var(--sans)}
+    .order-board{display:grid;grid-template-columns:1.08fr .92fr;gap:20px}.order-card{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fffdf7,#f1ddb0);box-shadow:0 14px 38px rgba(54,36,14,.06)}
+    .order-top{display:flex;justify-content:space-between;gap:20px;padding:28px;border-bottom:1px solid rgba(183,135,50,.32);background:radial-gradient(circle at top right,rgba(180,135,50,.21),transparent 42%)}.order-top h3{margin:7px 0 4px;font-size:30px;line-height:1.16}.en{color:#74634f;font:650 10.5px/1.5 var(--sans);letter-spacing:.13em;text-transform:uppercase}.icon-seal{width:54px;height:54px;flex:0 0 auto;border:1px solid var(--gold);border-radius:50%;background:var(--wine);color:#ffe4aa;display:grid;place-items:center;font-weight:900;font-size:18px}.order-body{padding:28px}.order-body p{margin:0;color:#5e503f;font:400 15px/1.9 var(--sans)}
+    .tags,.mini-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.tag{border:1px solid rgba(180,135,50,.38);border-radius:999px;background:#fff8e7;color:#684b1d;padding:7px 12px;font:800 11.5px var(--sans)}
+    .title-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.charter h3{margin:0 0 12px;font-size:27px}.charter p{margin:0}.mini-tag{border-left:3px solid var(--gold);border-radius:7px;background:#fff7e5;color:#4c361e;padding:8px 11px;font:800 12.5px var(--sans)}
+    .news-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:22px;align-items:start}.news-intro{position:sticky;top:112px;color:#fff;background:linear-gradient(150deg,var(--navy),var(--navy-deep));border-color:rgba(223,192,107,.43);padding:28px}.news-intro h3{margin:9px 0 10px;font-size:27px}.news-intro p{color:#d9d0c2;margin:0 0 20px}.news-list{display:grid;gap:14px}.news-card{border:1px solid var(--line);border-radius:17px;background:#fffdf7;padding:24px 26px;box-shadow:0 10px 28px rgba(54,36,14,.04)}.news-meta{display:flex;flex-wrap:wrap;gap:9px;align-items:center;color:#77591f;font:850 11.5px var(--sans);letter-spacing:.04em}.badge{display:inline-flex;border:1px solid rgba(180,135,50,.32);border-radius:999px;background:#f2dfb5;color:#563b17;padding:4px 9px}.news-card h3{margin:10px 0 8px;font-size:24px;line-height:1.35}.news-card p{margin:0;white-space:pre-line;color:#5f5140;font:400 14.5px/1.9 var(--sans)}.news-card.locked{background:rgba(255,250,239,.7);border-style:dashed}.news-card.locked h3{font-size:20px}
+    .profile-contact{display:grid;grid-template-columns:.94fr 1.06fr;gap:26px;align-items:start}.timeline{display:grid;gap:12px;margin-top:28px}.time{position:relative;border:1px solid var(--line);border-radius:15px;background:rgba(255,253,247,.86);padding:18px 20px 18px 50px}.time:before{content:"";position:absolute;left:20px;top:23px;width:10px;height:10px;border:3px solid #ead29a;border-radius:50%;background:var(--wine)}.time b{display:block;margin-bottom:5px;color:#6d2026;font-size:16px}.time span{color:#605241;font-size:14px}
+    .contact-card{background:linear-gradient(160deg,#fffdf7,#f0dba9);padding:30px}.contact-card h2{font-size:39px}.contact-row{display:flex;justify-content:space-between;gap:22px;padding:12px 0;border-bottom:1px solid rgba(183,135,50,.25);font:500 13px var(--sans)}.contact-row span{color:#766653}.contact-row b{text-align:right;color:#25180e}.contact-card h3{margin:22px 0 8px;font-size:25px}.contact-card .btn{margin-top:5px}.member-cta{margin-top:15px;padding:22px}.member-cta h3{margin:0 0 6px;font-size:22px}.member-cta p{margin:0 0 14px}
+    .footer{background:var(--navy-deep);color:#f4e6c7;padding:30px 0}.footer-grid{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}.footer .brand-title{color:#fff}.footer .brand-sub{color:#d7c7a4}.footer-meta{text-align:right;color:#d6c7a8;font:500 12px/1.8 var(--sans)}.footer-meta a{color:#f4e6c7;font-weight:700}.footer-meta small{display:block;color:#a99c83}
+    .modal{display:none;position:fixed;inset:0;z-index:130;align-items:flex-start;justify-content:center;overflow:auto;padding:24px 18px;background:rgba(4,23,43,.72);backdrop-filter:blur(8px)}.modal.active{display:flex}.modal-card{width:min(560px,100%);max-height:calc(100vh - 48px);overflow:auto;border:1px solid var(--line);border-radius:20px;background:#fffaf0;box-shadow:0 32px 110px rgba(0,0,0,.35)}.modal-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:25px;border-bottom:1px solid var(--line);background:radial-gradient(circle at top right,rgba(180,135,50,.27),transparent 42%),#fff7e6}.modal-head h3{margin:7px 0 0;font-size:27px}.close{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:#fff;cursor:pointer;font-size:22px}.form{padding:25px}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:14px;padding:5px;border-radius:12px;background:#ead9b8}.tab{border:0;border-radius:9px;background:transparent;padding:11px;cursor:pointer;color:#75624b;font:850 13px var(--sans)}.tab.active{background:#fffaf0;color:#1f150e;box-shadow:0 3px 12px rgba(45,29,11,.08)}label{display:block;margin:0 0 15px;color:#4d3e2e;font:750 13px var(--sans)}input,.field-select{width:100%;margin-top:7px;border:1px solid var(--line);border-radius:11px;background:#fff;padding:13px 14px;font:500 14px var(--sans);outline:none}input:focus,.field-select:focus{border-color:var(--navy);box-shadow:0 0 0 4px rgba(8,35,63,.1)}#phoneGroup{display:grid;grid-template-columns:1fr 1fr;gap:13px;align-items:end}#phoneGroup.hidden{display:none!important}.verification-row{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:center}.verification-row input{margin-top:0}.code-btn{min-width:132px;border-radius:11px;padding:12px}.msg{display:none;margin-bottom:15px;border-radius:11px;padding:12px 13px;font:500 13px var(--sans)}.msg.error{display:block;background:#fff0ee;color:var(--danger)}.msg.ok{display:block;background:#ecf8f1;color:var(--success)}.auth-links{display:flex;justify-content:center;gap:12px;margin:0 0 16px;font:700 12px var(--sans)}.text-action{border:0;background:transparent;color:var(--navy);padding:6px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}.turnstile-wrap{display:flex;justify-content:center;min-height:65px;margin:2px 0 15px}.muted-note,.policy-links{margin:13px 0 0;text-align:center;color:#746653;font:400 12px/1.65 var(--sans)}.policy-links a{color:var(--navy);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+    @media(max-width:1080px){.navlinks{display:none}.mobile-controls{display:flex}.nav-actions{display:none}.hero-grid,.section-head,.order-board,.title-grid,.news-layout,.profile-contact{grid-template-columns:1fr}.news-intro{position:static}.evidence-strip{grid-template-columns:1fr 1fr}.mobile-nav{display:none;border-top:1px solid rgba(183,135,50,.28);background:#fbf4e5;padding:15px 22px 20px}.mobile-nav.open{display:block}.mobile-nav-grid{width:min(1180px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mobile-nav a{border:1px solid rgba(183,135,50,.28);border-radius:10px;background:#fffaf0;padding:10px 12px;text-align:center;font:700 12px var(--sans)}.mobile-account{justify-content:center;margin-top:11px}.hero{padding-top:58px}}
+    @media(max-width:680px){.wrap{width:min(100% - 28px,1180px)}.ceremonial-bar .wrap{min-height:30px;justify-content:center;text-align:center}.ceremonial-bar [data-i18n="ribbonLeft"]{display:none}.nav{min-height:67px;gap:8px}.brand{min-width:0;flex:1;gap:8px}.brand-mark{width:41px;height:41px}.brand-mark img{width:32px;height:32px}.brand-title{font-size:13px;letter-spacing:.035em;white-space:nowrap}.brand-sub{display:none}.mobile-controls{gap:5px}.lang-select{max-width:78px;padding:7px 5px;font-size:10.5px}.menu-toggle{padding:8px 10px;font-size:11px}.mobile-nav{padding:12px 14px 16px}.mobile-nav-grid{grid-template-columns:1fr 1fr}.mobile-account{display:grid;grid-template-columns:1fr 1fr}.mobile-account .btn{width:100%}.hero{padding:32px 0 58px}.hero-grid{gap:22px}.image-frame{order:-1;padding:10px;border-radius:16px}.image-stage{padding:8px;border-radius:10px}.image-stage img{height:auto;max-height:66vh}.caption{margin-top:8px;padding:12px 13px}.proclamation{padding:31px 24px 27px;border-radius:16px}.proclamation:before{inset:9px;border-radius:10px}.proclamation:after{left:24px;top:22px}.kicker{font-size:9.5px;letter-spacing:.19em}h1{font-size:clamp(39px,12vw,48px);margin:16px 0 18px}.lead{font-size:15px;line-height:1.85}.hero-actions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:24px}.hero-actions .btn{width:100%}.seal-row{gap:6px;margin-top:20px}.seal-note{font-size:10.5px;padding:6px 9px}.section{padding:59px 0}.section-head{gap:14px;margin-bottom:26px}.section-head.center{margin-bottom:30px;text-align:left}.section-head.center .ornament{justify-content:flex-start}.section-head.center .ornament:before{display:none}h2{font-size:33px}.section-head p{font-size:14.5px;line-height:1.85}.evidence-strip{grid-template-columns:1fr;gap:10px}.evidence,.charter,.contact-card,.news-intro,.member-cta,.news-card{padding:20px;border-radius:14px}.order-board,.title-grid{gap:12px}.order-card{border-radius:14px}.order-top,.order-body{padding:21px}.order-top h3{font-size:25px}.icon-seal{width:47px;height:47px}.order-body p{font-size:14px}.news-layout{gap:12px}.news-intro h3{font-size:24px}.news-card h3{font-size:21px}.profile-contact{gap:26px}.timeline{margin-top:20px}.time{padding:16px 16px 16px 44px}.time:before{left:17px}.contact-card h2{font-size:32px}.contact-row{align-items:flex-start}.contact-row b{max-width:62%}.footer-grid{grid-template-columns:1fr;text-align:left}.footer-meta{text-align:left}.footer .brand{min-width:0}#phoneGroup,.verification-row{grid-template-columns:1fr}.code-btn{width:100%}.modal{padding:12px}.modal-card{max-height:calc(100vh - 24px);border-radius:16px}.modal-head,.form{padding:21px}}
+    @media(min-width:681px) and (max-width:1080px){.image-frame{width:min(620px,100%);margin-inline:auto}.image-stage img{height:auto;max-height:none}}
+    @media(max-width:1080px){.lang-select,.menu-toggle{min-height:44px}}
+    @media(max-width:680px){.mobile-nav a,.mobile-account .btn{min-height:44px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+</style>
 </head>
 <body>
-  <div class="top-ribbon"><div class="wrap"><span data-i18n="ribbonLeft">私人荣誉 · 礼仪纪念 · 公益精神 · 文化承继</span><span data-i18n="ribbonRight">官方邮箱：jia.honours@gmail.com</span></div></div>
-  <header class="nav-shell"><div class="wrap nav">
-    <a href="#top" class="brand"><span class="brand-mark"><img src="assets/logo.png" alt="贾氏勋章标志" data-i18n-alt="logoAlt"></span><span><span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span><span class="brand-sub" data-i18n="brandSub">大龙凤章 · 龙凤章</span></span></a>
-    <nav class="navlinks"><a href="#origin" data-i18n="navOrigin">历史渊源</a><a href="#honours" data-i18n="navHonours">勋章制度</a><a href="#titles" data-i18n="navTitles">名誉头衔</a><a href="#news" data-i18n="navNews">新闻公告</a><a href="contact.html" data-i18n="navContact">联系方式</a></nav>
-    <div class="nav-actions"><select class="lang" id="langSelect" onchange="setLanguage(this.value)" aria-label="Language"><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select><button class="btn ghost" id="loginTop" onclick="openAuth('login')" data-i18n="login">登录</button><button class="btn gold" id="registerTop" onclick="openAuth('register')" data-i18n="register">注册</button><a class="btn ghost hidden" id="memberTop" href="member.html" data-i18n="enterMember">进入会员中心</a><button class="btn ghost hidden" id="logoutTop" onclick="logout()" data-i18n="logout">退出</button></div>
-  </div></header>
+  <div class="ceremonial-bar"><div class="wrap"><span data-i18n="ribbonLeft">私人荣誉 · 礼仪纪念 · 公益实践 · 文化传承</span><span data-i18n="ribbonRight">官方邮箱：jia.honours@gmail.com</span></div></div>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="#top" class="brand" aria-label="Jia Honours home"><span class="brand-mark"><img src="assets/logo.png" data-i18n-alt="logoAlt" alt="贾氏勋章标志"></span><span><span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span><span class="brand-sub" data-i18n="brandSub">大龙凤章 · 龙凤章</span></span></a>
+      <nav class="navlinks" aria-label="Primary"><a href="#origin" data-i18n="navOrigin">历史渊源</a><a href="#honours" data-i18n="navHonours">勋章制度</a><a href="#titles" data-i18n="navTitles">名誉称号</a><a href="#news" data-i18n="navNews">新闻公告</a><a href="#contact" data-i18n="navContact">联系方式</a></nav>
+      <div class="nav-actions"><select class="lang-select" id="langSelect" onchange="setLanguage(this.value)" aria-label="Language"><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select><button class="btn ghost" id="loginTop" onclick="openAuth('login')" data-i18n="login">登录</button><button class="btn gold" id="registerTop" onclick="openAuth('register')" data-i18n="register">注册</button><a class="btn ghost hidden" id="memberTop" href="member.html" data-i18n="memberCenter">会员中心</a><button class="btn ghost hidden" id="logoutTop" onclick="logout()" data-i18n="logout">退出</button></div>
+      <div class="mobile-controls"><select class="lang-select" id="mobileLangSelect" onchange="setLanguage(this.value)" aria-label="Language"><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select><button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="菜单" onclick="toggleMobileNav()" data-i18n="mobileMenu">菜单</button></div>
+    </div>
+    <div class="mobile-nav" id="mobileNav"><div class="mobile-nav-grid"><a href="#origin" data-i18n="navOrigin">历史渊源</a><a href="#honours" data-i18n="navHonours">勋章制度</a><a href="#titles" data-i18n="navTitles">名誉称号</a><a href="#news" data-i18n="navNews">新闻公告</a><a href="#contact" data-i18n="navContact">联系方式</a></div><div class="mobile-account"><button class="btn ghost" id="mobileLoginTop" onclick="openAuth('login')" data-i18n="login">登录</button><button class="btn gold" id="mobileRegisterTop" onclick="openAuth('register')" data-i18n="register">注册</button><a class="btn ghost hidden" id="mobileMemberTop" href="member.html" data-i18n="memberCenter">会员中心</a><button class="btn ghost hidden" id="mobileLogoutTop" onclick="logout()" data-i18n="logout">退出</button></div></div>
+  </header>
 
   <main>
     <section id="top" class="hero"><div class="wrap hero-grid">
-      <div class="proclamation"><div class="kicker" data-i18n="heroKicker">Official Honours Website</div><h1 data-i18n-html="heroTitle">贾氏勋章<br>官方网站</h1><p class="lead" data-i18n="heroLead">本网站用于整理贾氏私人荣誉体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、名誉称号、新闻通知及相关制度资料。</p><div class="hero-actions"><a class="btn primary big" href="#honours" data-i18n="heroBtn1">查看勋章制度</a><a class="btn big ghost" href="#news" data-i18n="heroBtn2">阅读新闻公告</a></div><div class="seal-row"><div class="seal-note" data-i18n="seal1">礼仪性</div><div class="seal-note" data-i18n="seal2">纪念性</div><div class="seal-note" data-i18n="seal3">非公权</div></div></div>
-      <div class="image-frame"><img src="assets/grand-collar.jpg" alt="大龙凤章大项链级展示" data-i18n-alt="heroImageAlt"><div class="caption"><b data-i18n="heroCaptionTitle">大龙凤章 · 大项链级</b><span data-i18n="heroCaptionSub">Order of the Great Dragon and Phoenix · Grand Collar</span></div></div>
+      <div class="proclamation"><div class="kicker" data-i18n="heroKicker">Official Honours Website</div><h1 data-i18n-html="heroTitle">贾氏勋章<br>官方网站</h1><p class="lead" data-i18n="heroLead">本网站集中呈现贾氏私人荣誉体系的历史源流、制度架构、章饰设计与授予理念。</p><div class="hero-actions"><a class="btn primary big" href="#honours" data-i18n="heroBtn1">查看勋章制度</a><a class="btn ghost big" href="#news" data-i18n="heroBtn2">阅读新闻公告</a></div><div class="seal-row"><span class="seal-note" data-i18n="seal1">礼仪纪念</span><span class="seal-note" data-i18n="seal2">公益与友好</span><span class="seal-note" data-i18n="seal3">私人荣誉</span></div></div>
+      <figure class="image-frame"><div class="image-stage"><img src="assets/grand-collar.jpg" data-i18n-alt="heroImageAlt" alt="大龙凤章大项链级整体陈列"></div><figcaption class="caption"><b data-i18n="heroCaptionTitle">大龙凤章 · 大项链级</b><span data-i18n="heroCaptionSub">大龙凤章最高等级章饰的整体陈列</span></figcaption></figure>
     </div></section>
 
-    <section id="origin" class="section"><div class="wrap"><div class="section-head"><div><div class="kicker" data-i18n="originKicker">Origin & Position</div><h2 data-i18n="originTitle">历史渊源与基本立场</h2></div><p data-i18n="originLead">以典章说明的方式承接历史叙事，并在页面前段明确私人荣誉、非公权、纪念用途的边界，使访问者先理解制度性质，再进入勋章与称号细节。</p></div><div class="evidence-strip">
-      <div class="evidence"><b data-i18n="evidence1Title">历史记忆</b><span data-i18n="evidence1Text">周代贾国与家门文化叙事作为象征来源。</span></div><div class="evidence"><b data-i18n="evidence2Title">礼仪表达</b><span data-i18n="evidence2Text">用于感谢、纪念、合作与公益精神表达。</span></div><div class="evidence"><b data-i18n="evidence3Title">公开边界</b><span data-i18n="evidence3Text">不构成国家荣典、公权身份或职业资格。</span></div><div class="evidence"><b data-i18n="evidence4Title">记录体系</b><span data-i18n="evidence4Text">以新闻、文书、会员资料和证书记录建档。</span></div>
-    </div></div></section>
+    <section id="origin" class="section"><div class="wrap"><div class="section-head"><div><div class="kicker" data-i18n="originKicker">Origins & Position</div><h2 data-i18n="originTitle">历史渊源与制度定位</h2></div><p data-i18n="originLead">贾氏勋章体系以周代贾国的历史记忆与家门文化为象征源流。</p></div><div class="evidence-strip"><article class="evidence"><b data-i18n="evidence1Title">历史记忆</b><span data-i18n="evidence1Text">周代贾国与“贾伯”的历史记忆，构成家门叙事的象征源流。</span></article><article class="evidence"><b data-i18n="evidence2Title">礼仪表达</b><span data-i18n="evidence2Text">以正式礼仪表达感谢、纪念、合作与公益精神。</span></article><article class="evidence"><b data-i18n="evidence3Title">制度边界</b><span data-i18n="evidence3Text">不构成国家荣典、公权身份、职业资格或法律特权。</span></article><article class="evidence"><b data-i18n="evidence4Title">档案记录</b><span data-i18n="evidence4Text">通过新闻公告、制度资料与会员信息形成持续记录。</span></article></div></div></section>
 
-    <section id="honours" class="section white"><div class="wrap"><div class="section-head center"><div class="kicker" data-i18n="honoursKicker">Honours System</div><h2 data-i18n="honoursTitle">勋章与奖章制度</h2><p data-i18n="honoursLead">制度展示采用高阶勋章与感谢奖章并列的结构，保留清楚的等级信息，同时让版式更接近正式章程摘要。</p><div class="crest-line"><img src="assets/logo-cutout.png" alt=""></div></div>
-      <div class="order-board"><article class="order-card"><div class="order-top"><div><div class="kicker" data-i18n="orderSeq">勋章序列</div><h3 data-i18n="orderTitle">大龙凤章</h3><div class="en" data-i18n="orderEn">Order of the Great Dragon and Phoenix</div></div><div class="icon-seal" data-i18n="orderIcon">勋</div></div><div class="order-body"><p class="sans" data-i18n="orderText">用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设方面作出重要贡献者。</p><div class="tags"><span class="tag" data-i18n="gradeGrand">大项链级</span><span class="tag" data-i18n="grade1">一等</span><span class="tag" data-i18n="grade2">二等</span><span class="tag" data-i18n="grade3">三等</span><span class="tag" data-i18n="grade4">四等</span><span class="tag" data-i18n="grade5">五等</span></div></div></article>
-      <article class="order-card"><div class="order-top"><div><div class="kicker" data-i18n="medalSeq">奖章序列</div><h3 data-i18n="medalTitle">龙凤章</h3><div class="en" data-i18n="medalEn">Medal of the Dragon and Phoenix</div></div><div class="icon-seal" data-i18n="medalIcon">奖</div></div><div class="order-body"><p class="sans" data-i18n="medalText">用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果进行感谢与纪念。</p><div class="tags"><span class="tag" data-i18n="gold">金级</span><span class="tag" data-i18n="silver">银级</span></div></div></article></div>
-    </div></section>
+    <section id="honours" class="section alt"><div class="wrap"><div class="section-head center"><div class="kicker" data-i18n="honoursKicker">Honours System</div><h2 data-i18n="honoursTitle">勋章与奖章制度</h2><p data-i18n="honoursLead">体系由勋章与奖章两部分构成。</p><div class="ornament"><img src="assets/logo-cutout.png" alt="" loading="lazy"></div></div><div class="order-board"><article class="order-card"><div class="order-top"><div><div class="kicker" data-i18n="orderSeq">勋章序列</div><h3 data-i18n="orderTitle">大龙凤章</h3><div class="en" data-i18n="orderEn">Order of the Great Dragon and Phoenix</div></div><div class="icon-seal" data-i18n="orderIcon">勋</div></div><div class="order-body"><p data-i18n="orderText">大龙凤章为体系中的高阶勋章。</p><div class="tags"><span class="tag" data-i18n="gradeGrand">大项链级</span><span class="tag" data-i18n="grade1">一等</span><span class="tag" data-i18n="grade2">二等</span><span class="tag" data-i18n="grade3">三等</span><span class="tag" data-i18n="grade4">四等</span><span class="tag" data-i18n="grade5">五等</span></div></div></article><article class="order-card"><div class="order-top"><div><div class="kicker" data-i18n="medalSeq">奖章序列</div><h3 data-i18n="medalTitle">龙凤章</h3><div class="en" data-i18n="medalEn">Medal of the Dragon and Phoenix</div></div><div class="icon-seal" data-i18n="medalIcon">奖</div></div><div class="order-body"><p data-i18n="medalText">龙凤章为体系中的奖章。</p><div class="tags"><span class="tag" data-i18n="gold">金级</span><span class="tag" data-i18n="silver">银级</span></div></div></article></div></div></section>
 
-    <section id="titles" class="section"><div class="wrap"><div class="section-head"><div><div class="kicker" data-i18n="titlesKicker">Honorary Titles</div><h2 data-i18n="titlesTitle">名誉头衔制度</h2></div><p data-i18n="titlesLead">头衔制度以礼仪称谓和纪念表达为核心。公爵作为发起人头衔保留说明，对外授予范围限于侯爵以下，相关称号不构成国家贵族身份、法律身份或社会特权。</p></div>
-      <div class="title-grid"><div class="charter"><h3 data-i18n="dignitiesTitle">名誉称号</h3><p data-i18n="dignitiesText">用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。称号公开使用时，应保持中性、克制与准确。</p><div class="mini-tags"><span class="mini-tag" data-i18n="marquis">名誉侯爵</span><span class="mini-tag" data-i18n="count">名誉伯爵</span><span class="mini-tag" data-i18n="viscount">名誉子爵</span><span class="mini-tag" data-i18n="baron">名誉男爵</span><span class="mini-tag" data-i18n="knight">名誉骑士</span></div></div><div class="charter"><h3 data-i18n="rulesTitle">授予原则</h3><p data-i18n="rulesText">名誉骑士称号可在获得五等大龙凤章时一并授予；勋章晋升与名誉称号授予相互独立，二者不构成自动对应关系。</p><div class="mini-tags"><span class="mini-tag" data-i18n="privateHonour">私人荣誉</span><span class="mini-tag" data-i18n="commemorativeUse">纪念用途</span><span class="mini-tag" data-i18n="noPublicPower">无公权属性</span></div></div></div>
-    </div></section>
+    <section id="titles" class="section"><div class="wrap"><div class="section-head"><div><div class="kicker" data-i18n="titlesKicker">Honorary Titles</div><h2 data-i18n="titlesTitle">名誉称号制度</h2></div><p data-i18n="titlesLead">名誉称号用于本体系内部的礼仪称谓与纪念表达。</p></div><div class="title-grid"><article class="charter"><h3 data-i18n="dignitiesTitle">名誉称号</h3><p data-i18n="dignitiesText">名誉称号用于礼仪、纪念与正式称谓。</p><div class="mini-tags"><span class="mini-tag" data-i18n="marquis">名誉侯爵</span><span class="mini-tag" data-i18n="count">名誉伯爵</span><span class="mini-tag" data-i18n="viscount">名誉子爵</span><span class="mini-tag" data-i18n="baron">名誉男爵</span><span class="mini-tag" data-i18n="knight">名誉骑士</span></div></article><article class="charter"><h3 data-i18n="rulesTitle">授予原则</h3><p data-i18n="rulesText">名誉骑士称号可随五等大龙凤章一并授予。</p><div class="mini-tags"><span class="mini-tag" data-i18n="privateHonour">私人荣誉</span><span class="mini-tag" data-i18n="commemorativeUse">纪念用途</span><span class="mini-tag" data-i18n="noPublicPower">不具官方地位</span></div></article></div></div></section>
 
-    <section id="news" class="section white"><div class="wrap"><div class="section-head center"><div class="kicker" data-i18n="newsKicker">House News</div><h2 data-i18n="newsTitle">本家官网新闻与公告</h2><p data-i18n="newsLead">新闻区采用公告板形态，区分全员公开与注册用户限定两类内容，方便对外发布、内部通知与后续会员活动管理。</p></div>
-      <div class="news-layout"><div class="news-intro"><div class="kicker" data-i18n="publicMembers">Public & Members</div><h3 data-i18n="newsIntroTitle">新闻、通知与会员公告</h3><p data-i18n="newsIntroText">全员公开内容用于对外发布；注册用户限定内容用于会员活动、制度更新、内部通知与后续发展。</p><a class="btn ghost" href="member.html" data-i18n="enterMember">进入会员中心</a></div><div class="news-list" id="newsList"></div></div>
-    </div></section>
+    <section id="news" class="section alt"><div class="wrap"><div class="section-head center"><div class="kicker" data-i18n="newsKicker">House News</div><h2 data-i18n="newsTitle">本家新闻与公告</h2><p data-i18n="newsLead">本栏发布本家动态、制度公告及会员通知。</p></div><div class="news-layout"><aside class="news-intro"><div class="kicker" data-i18n="publicMembers">Public / Members</div><h3 data-i18n="newsIntroTitle">本家动态与正式通知</h3><p data-i18n="newsIntroText">公开新闻用于对外发布；会员限定通知用于会务联络、活动安排及制度更新。</p><a class="btn ghost" href="member.html" data-i18n="enterMember">进入会员中心</a></aside><div class="news-list" id="newsList"><article class="news-card"><div class="news-meta"><span>2026年7月9日</span><span class="badge" data-i18n="publicNews">公开发布</span></div><h3 data-i18n="newsFallbackTitle">贾氏勋章官方网站正式上线</h3><p data-i18n="newsFallbackText">贾氏勋章官方网站于2026年7月9日正式上线。愿本站成为记录礼仪、传达谢意、延续文化与联结友谊的长期窗口。</p></article></div></div></div></section>
 
-    <section id="contact" class="section"><div class="wrap profile-contact"><div><div class="kicker" data-i18n="founderKicker">Founder Profile</div><h2 data-i18n="founderTitle">发起人履历</h2><div class="timeline"><div class="time"><b data-i18n="time2016Title">2016</b><span class="sans" data-i18n="time2016Text">赴日本留学，开始长期生活与学习经历。</span></div><div class="time"><b data-i18n="kansaiTitle">关西大学</b><span class="sans" data-i18n="kansaiText">毕业于关西大学，持续关注跨文化交流、国际合作与社会公益。</span></div><div class="time"><b data-i18n="publicServiceTitle">公益实践</b><span class="sans" data-i18n="publicServiceText">长期参与慈善事业以及国际交流与合作。</span></div></div></div>
-      <div><div class="contact-card"><div class="kicker" data-i18n="contactKicker">Official Contact</div><h2 data-i18n="contactTitle">官方联系与公开范围</h2><p data-i18n="contactLead">本页暂不展示个人姓名、电话等私人信息。有关官网内容、新闻通知、会员事务与制度说明，可通过官方邮箱联系。</p><div class="contact-row"><span data-i18n="contactOfficeLabel">联系人</span><b data-i18n="contactOffice">大龙凤勋章评议会</b></div><div class="contact-row"><span data-i18n="officialEmailLabel">官方邮箱</span><b>jia.honours@gmail.com</b></div><h3 data-i18n="applicationTitle">申报与审查</h3><p data-i18n="applicationText">有关授与候选、名誉称号及相关事项，须先向大龙凤勋章评议会申报，经详细审查后办理。申报材料须提交履历及相关说明。</p><a class="btn primary" href="contact.html" data-i18n="contactPage">联系页面</a></div><div class="member-cta"><h3 data-i18n="memberCtaTitle">会员中心</h3><p data-i18n="memberCtaText">注册用户可进入会员中心完善资料、查看会员状态，并接收后续面向注册用户公开的通知。</p><button class="btn gold" id="registerCta" onclick="openAuth('register')" data-i18n="register">注册</button><a class="btn ghost" href="member.html" data-i18n="enterMember">进入会员中心</a></div></div>
-    </div></section>
+    <section id="contact" class="section"><div class="wrap profile-contact"><div><div class="kicker" data-i18n="founderKicker">Founder Profile</div><h2 data-i18n="founderTitle">发起人履历</h2><div class="timeline"><article class="time"><b data-i18n="time2016Title">2016</b><span class="sans" data-i18n="time2016Text">2016年赴日本留学，此后长期在日本学习与生活。</span></article><article class="time"><b data-i18n="kansaiTitle">关西大学</b><span class="sans" data-i18n="kansaiText">毕业于关西大学，并持续参与跨文化交流、国际合作与社会公益实践。</span></article><article class="time"><b data-i18n="publicServiceTitle">公益实践</b><span class="sans" data-i18n="publicServiceText">长期参与慈善事业与国际交流合作。</span></article></div></div><div><article class="contact-card"><div class="kicker" data-i18n="contactKicker">Official Contact</div><h2 data-i18n="contactTitle">官方联系方式与公开范围</h2><p data-i18n="contactLead">本网站暂不公开发起人的姓名、电话号码等个人信息。</p><div class="contact-row"><span data-i18n="contactOfficeLabel">联系机构</span><b data-i18n="contactOffice">大龙凤勋章评议会</b></div><div class="contact-row"><span data-i18n="officialEmailLabel">官方邮箱</span><b><a href="mailto:jia.honours@gmail.com">jia.honours@gmail.com</a></b></div><h3 data-i18n="applicationTitle">推荐、申报与审查</h3><p data-i18n="applicationText">本体系不接受以取得荣誉为目的的个人自行申请。</p><a class="btn primary" href="contact.html" data-i18n="contactPage">查看联系方式</a></article><article class="member-cta"><h3 data-i18n="memberCtaTitle">会员中心</h3><p data-i18n="memberCtaText">注册用户可在会员中心完善资料、查看账户状态。</p><div class="hero-actions"><button class="btn gold" id="registerCta" onclick="openAuth('register')" data-i18n="register">注册</button><a class="btn ghost" href="member.html" data-i18n="enterMember">进入会员中心</a></div></article></div></div></section>
   </main>
 
-  <footer class="footer"><div class="wrap footer-grid"><a href="#top" class="brand"><span class="brand-mark"><img src="assets/logo.png" alt=""></span><span><span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span><span class="brand-sub" data-i18n="footerBrandSub">Official Honours Website</span></span></a><div class="footer-links"><a href="#honours" data-i18n="navHonours">勋章制度</a><a href="#news" data-i18n="navNews">新闻公告</a><a href="contact.html" data-i18n="navContact">联系方式</a><a href="privacy.html" data-i18n="privacy">隐私政策</a><a href="terms.html" data-i18n="terms">会员条款</a></div></div></footer>
+  <footer class="footer"><div class="wrap footer-grid"><a href="#top" class="brand"><span class="brand-mark"><img src="assets/logo.png" alt=""></span><span><span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span><span class="brand-sub" data-i18n="footerBrandSub">私人荣誉与礼仪纪念体系</span></span></a><div class="footer-meta"><strong data-i18n="footerOffice">大龙凤勋章评议会</strong><br><a href="mailto:jia.honours@gmail.com">jia.honours@gmail.com</a><small data-i18n="footerCopyright">© 2026 贾氏勋章官方网站。版权所有。</small></div></div></footer>
 
-  <div class="modal" id="authModal"><div class="modal-card"><div class="modal-head"><div><div class="kicker" data-i18n="authKicker">Member Access</div><h3 id="authTitle">会员登录</h3></div><button class="close" onclick="closeAuth()">×</button></div><div class="form"><div class="tabs"><button class="tab active" id="loginTab" onclick="setMode('login')" data-i18n="tabLogin">登录</button><button class="tab" id="registerTab" onclick="setMode('register')" data-i18n="tabRegister">注册</button></div><div class="msg" id="authMsg"></div><form onsubmit="submitAuth(event)"><label id="nameLabel" class="hidden"><span data-i18n="nameLabel">姓名</span><input id="fullName" type="text" placeholder="用于会员中心显示" data-i18n-placeholder="placeholderFullName"></label><label><span data-i18n="emailLabel">邮箱</span><input id="email" type="email" placeholder="name@example.com"></label><label id="emailConfirmLabel" class="hidden"><span data-i18n="emailConfirmLabel">再次确认邮箱</span><input id="emailConfirm" type="email" placeholder="再次输入邮箱" data-i18n-placeholder="placeholderConfirmEmail"></label><div id="phoneGroup" class="hidden"><label><span data-i18n="phoneCountryLabel">电话国家区号</span><select id="phoneCountryCode" class="field-select"></select></label><label><span data-i18n="phoneNumberLabel">电话号码</span><input id="phoneNumber" type="tel" placeholder="例如：8012345678" data-i18n-placeholder="placeholderPhoneNumber"></label></div><label id="verificationLabel" class="hidden"><span data-i18n="verificationLabel">邮箱验证码</span><div class="verification-row"><input id="verificationCode" type="text" inputmode="numeric" maxlength="6" placeholder="6位验证码" data-i18n-placeholder="placeholderVerificationCode"><button class="btn ghost code-btn" type="button" id="sendCodeBtn" onclick="sendVerificationCode()" data-i18n="sendCode">发送验证码</button></div></label><label><span data-i18n="passwordLabel">密码</span><input id="password" type="password" placeholder="至少 8 位" data-i18n-placeholder="placeholderPassword"></label><button class="btn primary big" style="width:100%;" type="submit" id="submitBtn">登录账户</button></form><p class="muted-note" data-i18n="authNote">注册和登录资料将以安全方式保存。请阅读隐私政策与会员条款后使用会员功能。</p></div></div></div>
+  <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal-card"><div class="modal-head"><div><div class="kicker" data-i18n="authKicker">Member Access</div><h3 id="authTitle">会员登录</h3></div><button class="close" type="button" onclick="closeAuth()" aria-label="Close">×</button></div><div class="form"><div class="tabs"><button class="tab active" type="button" id="loginTab" onclick="setMode('login')" data-i18n="tabLogin">登录</button><button class="tab" type="button" id="registerTab" onclick="setMode('register')" data-i18n="tabRegister">注册</button></div><div class="auth-links"><button class="text-action" type="button" id="forgotPasswordBtn" onclick="setMode('reset')" data-i18n="forgotPassword">忘记密码？</button><button class="text-action hidden" type="button" id="backToLoginBtn" onclick="setMode('login')" data-i18n="backToLogin">返回登录</button></div><div class="msg" id="authMsg" aria-live="polite"></div><form onsubmit="submitAuth(event)"><label id="nameLabel" class="hidden"><span data-i18n="nameLabel">姓名</span><input id="fullName" type="text" maxlength="160" autocomplete="name" data-i18n-placeholder="placeholderFullName"></label><label><span data-i18n="emailLabel">电子邮箱</span><input id="email" type="email" maxlength="254" autocomplete="email" placeholder="name@example.com" required></label><label id="emailConfirmLabel" class="hidden"><span data-i18n="emailConfirmLabel">再次确认邮箱</span><input id="emailConfirm" type="email" maxlength="254" autocomplete="email" data-i18n-placeholder="placeholderConfirmEmail"></label><div id="phoneGroup" class="hidden"><label><span data-i18n="phoneCountryLabel">国家或地区电话区号</span><select id="phoneCountryCode" class="field-select"></select></label><label><span data-i18n="phoneNumberLabel">电话号码</span><input id="phoneNumber" type="tel" maxlength="24" autocomplete="tel-national" data-i18n-placeholder="placeholderPhoneNumber"></label></div><label id="verificationLabel" class="hidden"><span id="verificationLabelText" data-i18n="verificationLabel">邮箱验证码</span><div class="verification-row"><input id="verificationCode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" data-i18n-placeholder="placeholderVerificationCode"><button class="btn ghost code-btn" type="button" id="sendCodeBtn" onclick="sendVerificationCode()" data-i18n="sendCode">发送验证码</button></div></label><label><span id="passwordLabelText" data-i18n="passwordLabel">密码</span><input id="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" data-i18n-placeholder="placeholderPassword" required></label><div class="turnstile-wrap hidden" id="turnstileContainer" aria-live="polite"></div><button class="btn primary big" style="width:100%" type="submit" id="submitBtn">登录</button></form><p class="muted-note" data-i18n="authNote">注册资料仅用于账户验证、会员联络与网站安全，并按隐私保护原则处理。</p><p class="policy-links"><a href="privacy.html" data-i18n="privacyLink">隐私说明</a><span aria-hidden="true"> · </span><a href="terms.html" data-i18n="termsLink">会员使用说明</a></p></div></div></div>
 
   <script>
     const I18N = {
   "zh": {
     "title": "贾氏勋章官方网站｜大龙凤章 · 龙凤章",
-    "ribbonLeft": "私人荣誉 · 礼仪纪念 · 公益精神 · 文化承继",
+    "ribbonLeft": "私人荣誉 · 礼仪纪念 · 公益实践 · 文化传承",
     "ribbonRight": "官方邮箱：jia.honours@gmail.com",
     "brandTitle": "贾氏勋章官网",
     "brandSub": "大龙凤章 · 龙凤章",
     "navOrigin": "历史渊源",
     "navHonours": "勋章制度",
-    "navTitles": "名誉头衔",
+    "navTitles": "名誉称号",
     "navNews": "新闻公告",
     "navContact": "联系方式",
     "navMember": "会员中心",
@@ -250,32 +134,32 @@
     "enterMember": "进入会员中心",
     "heroKicker": "Official Honours Website",
     "heroTitle": "贾氏勋章<br>官方网站",
-    "heroLead": "本网站用于整理贾氏私人荣誉体系的历史渊源、制度结构、视觉识别与授与理念，并集中展示大龙凤章、龙凤章、名誉称号、新闻通知及相关制度资料。",
+    "heroLead": "本网站集中介绍贾氏私人荣誉体系的历史源流、制度架构、徽章设计与授予理念，并发布大龙凤章、龙凤章、名誉称号及本家新闻等相关资料。",
     "heroBtn1": "查看勋章制度",
     "heroBtn2": "阅读新闻公告",
-    "seal1": "礼仪性",
-    "seal2": "纪念性",
-    "seal3": "非公权",
+    "seal1": "礼仪纪念",
+    "seal2": "公益与友好",
+    "seal3": "私人荣誉",
     "heroCaptionTitle": "大龙凤章 · 大项链级",
-    "heroCaptionSub": "Order of the Great Dragon and Phoenix · Grand Collar",
-    "originKicker": "Origin & Position",
-    "originTitle": "历史渊源与基本立场",
-    "originLead": "以典章说明的方式承接历史叙事，并在页面前段明确私人荣誉、非公权、纪念用途的边界，使访问者先理解制度性质，再进入勋章与称号细节。",
+    "heroCaptionSub": "大龙凤章最高等级章饰的整体陈列",
+    "originKicker": "Origins & Position",
+    "originTitle": "历史渊源与制度定位",
+    "originLead": "贾氏勋章体系以周代贾国的历史记忆与家门文化传统为象征源流，在当代用于表达礼仪、纪念、感谢、公益与国际友好。该体系由私人设立，属于荣誉与纪念性质。",
     "evidence1Title": "历史记忆",
-    "evidence1Text": "周代贾国与家门文化叙事作为象征来源。",
+    "evidence1Text": "周代贾国与“贾伯”的历史记忆，是家门传统叙事中的象征源流。",
     "evidence2Title": "礼仪表达",
-    "evidence2Text": "用于感谢、纪念、合作与公益精神表达。",
-    "evidence3Title": "公开边界",
-    "evidence3Text": "不构成国家荣典、公权身份或职业资格。",
-    "evidence4Title": "记录体系",
-    "evidence4Text": "以新闻、文书、会员资料和证书记录建档。",
+    "evidence2Text": "以正式礼仪表达感谢、纪念、合作及公益精神。",
+    "evidence3Title": "私人性质",
+    "evidence3Text": "不构成国家荣典、官方身份、职业资格或任何法律特权。",
+    "evidence4Title": "档案记录",
+    "evidence4Text": "通过新闻公告、制度资料与会员信息形成持续、可查的记录。",
     "honoursKicker": "Honours System",
     "honoursTitle": "勋章与奖章制度",
-    "honoursLead": "制度展示采用高阶勋章与感谢奖章并列的结构，保留清楚的等级信息，同时让版式更接近正式章程摘要。",
+    "honoursLead": "本体系由勋章与奖章两部分构成。大龙凤章设大项链级及一等至五等，用于表彰重要贡献；龙凤章设金级与银级，用于表达感谢与纪念。",
     "orderSeq": "勋章序列",
     "orderTitle": "大龙凤章",
     "orderEn": "Order of the Great Dragon and Phoenix",
-    "orderText": "用于表彰在公益事业、国际交流、友好合作、文化传承与家门礼仪建设方面作出重要贡献者。",
+    "orderText": "大龙凤章是本体系的高阶勋章，用于表彰在公益事业、国际交流、友好合作、文化传承及家门礼仪建设等方面作出重要贡献者。",
     "orderIcon": "勋",
     "gradeGrand": "大项链级",
     "grade1": "一等",
@@ -286,252 +170,282 @@
     "medalSeq": "奖章序列",
     "medalTitle": "龙凤章",
     "medalEn": "Medal of the Dragon and Phoenix",
-    "medalText": "用于对关照、支持、协助、合作、服务、友谊表达以及阶段性成果进行感谢与纪念。",
+    "medalText": "龙凤章用于表达对关照、支持、协助、合作、服务与友谊的感谢，并纪念具有意义的阶段成果。",
     "medalIcon": "奖",
     "gold": "金级",
     "silver": "银级",
     "titlesKicker": "Honorary Titles",
-    "titlesTitle": "名誉头衔制度",
-    "titlesLead": "头衔制度以礼仪称谓和纪念表达为核心。公爵作为发起人头衔保留说明，对外授予范围限于侯爵以下，相关称号不构成国家贵族身份、法律身份或社会特权。",
+    "titlesTitle": "名誉称号制度",
+    "titlesLead": "名誉称号用于本体系内部的礼仪称谓与纪念表达。公爵为发起人专用的礼仪称号；对外授予范围限于名誉侯爵及以下。相关称号不构成国家认可的贵族身份、法律地位、社会特权或世袭权利。",
     "dignitiesTitle": "名誉称号",
-    "dignitiesText": "用于贾氏荣誉体系内部的礼仪、纪念与称谓表达。称号公开使用时，应保持中性、克制与准确。",
+    "dignitiesText": "名誉称号用于礼仪、纪念与正式称谓。对外使用时，应明确说明其私人荣誉性质，避免引起有关官方身份或法律地位的误解。",
     "marquis": "名誉侯爵",
     "count": "名誉伯爵",
     "viscount": "名誉子爵",
     "baron": "名誉男爵",
     "knight": "名誉骑士",
     "rulesTitle": "授予原则",
-    "rulesText": "名誉骑士称号可在获得五等大龙凤章时一并授予；勋章晋升与名誉称号授予相互独立，二者不构成自动对应关系。",
+    "rulesText": "名誉骑士称号可随五等大龙凤章一并授予。勋章等级与名誉称号分别审议，二者之间不存在自动对应关系。",
     "privateHonour": "私人荣誉",
     "commemorativeUse": "纪念用途",
-    "noPublicPower": "无公权属性",
+    "noPublicPower": "不具官方地位",
     "newsKicker": "House News",
-    "newsTitle": "本家官网新闻与公告",
-    "newsLead": "新闻区采用公告板形态，区分全员公开与注册用户限定两类内容，方便对外发布、内部通知与后续会员活动管理。",
-    "publicMembers": "Public & Members",
-    "newsIntroTitle": "新闻、通知与会员公告",
-    "newsIntroText": "全员公开内容用于对外发布；注册用户限定内容用于会员活动、制度更新、内部通知与后续发展。",
-    "publicNews": "全员公开",
-    "memberNews": "注册用户限定",
-    "lockedMembersTitle": "会员限定公告",
-    "lockedMembersText": "登录后可查看面向注册用户公开的新闻、通知与会员活动信息。",
-    "newsFallbackTitle": "贾氏勋赏官网正式上线",
-    "newsFallbackText": "贾氏勋赏官网正式上线。愿此一方网页，成为记录礼仪、传递谢意、延续文化与承载友谊的正式窗口。欢迎各位持续关注；若有不足之处，敬请通过官方邮箱与我们联系。",
+    "newsTitle": "本家新闻与公告",
+    "newsLead": "本栏发布本家动态、制度公告及会员通知。公开内容面向所有访问者，会员限定内容仅在登录后显示。",
+    "publicMembers": "Public / Members",
+    "newsIntroTitle": "本家动态与官方通知",
+    "newsIntroText": "公开新闻面向所有访客发布；会员限定通知用于会务联络、活动安排与制度更新。",
+    "publicNews": "公开发布",
+    "memberNews": "会员限定",
+    "lockedMembersTitle": "会员限定通知",
+    "lockedMembersText": "登录会员中心后，可查看会员限定的通知与活动信息。",
+    "newsFallbackTitle": "贾氏勋章官方网站正式上线",
+    "newsFallbackText": "贾氏勋章官方网站于2026年7月9日正式上线。愿本站成为记录礼仪、传达谢意、延续文化与联结友谊的长期窗口。感谢各界持续关注。网站仍在逐步完善，如有建议或发现疏漏，敬请通过官方邮箱联系大龙凤勋章评议会。",
     "founderKicker": "Founder Profile",
     "founderTitle": "发起人履历",
     "time2016Title": "2016",
-    "time2016Text": "赴日本留学，开始长期生活与学习经历。",
+    "time2016Text": "2016年赴日本留学，此后长期在日本学习与生活。",
     "kansaiTitle": "关西大学",
-    "kansaiText": "毕业于关西大学，持续关注跨文化交流、国际合作与社会公益。",
+    "kansaiText": "毕业于关西大学，并持续参与跨文化交流、国际合作与社会公益实践。",
     "publicServiceTitle": "公益实践",
-    "publicServiceText": "长期参与慈善事业以及国际交流与合作。",
+    "publicServiceText": "长期参与慈善事业与国际交流合作，并以实际行动支持公益事业、促进友好交流。",
     "contactKicker": "Official Contact",
-    "contactTitle": "官方联系与公开范围",
-    "contactLead": "本页暂不展示个人姓名、电话等私人信息。有关官网内容、新闻通知、会员事务与制度说明，可通过官方邮箱联系。",
-    "contactOfficeLabel": "联系人",
+    "contactTitle": "官方联系方式与公开范围",
+    "contactLead": "本网站暂不公开发起人的姓名、电话号码等个人信息。有关网站内容、新闻公告、会员事务及制度说明，可通过官方邮箱联系大龙凤勋章评议会。",
+    "contactOfficeLabel": "联系机构",
     "contactOffice": "大龙凤勋章评议会",
     "officialEmailLabel": "官方邮箱",
-    "applicationTitle": "申报与审查",
-    "applicationText": "有关授与候选、名誉称号及相关事项，须先向大龙凤勋章评议会申报，经详细审查后办理。申报材料须提交履历及相关说明。",
+    "applicationTitle": "推荐、申报与审查",
+    "applicationText": "本体系不接受以取得荣誉为目的的个人自行申请。涉及受勋候选人、名誉称号及其他正式事项的推荐或申报，须向大龙凤勋章评议会提交履历及相关说明材料，由评议会进行详细审查并决定是否受理。",
     "memberCtaTitle": "会员中心",
-    "memberCtaText": "注册用户可进入会员中心完善资料、查看会员状态，并接收后续面向注册用户公开的通知。",
-    "footerBrandSub": "Official Honours Website",
+    "memberCtaText": "注册用户可在会员中心完善资料、查看账户状态，并接收面向会员发布的通知。填写会员资料不构成授勋申请。",
+    "footerBrandSub": "私人荣誉与礼仪纪念体系",
     "privacy": "隐私政策",
     "terms": "会员条款",
-    "contactPage": "联系页面",
+    "contactPage": "查看联系方式",
     "authKicker": "Member Access",
     "loginTitle": "会员登录",
-    "registerTitle": "创建会员账户",
+    "registerTitle": "会员注册",
+    "resetTitle": "重置密码",
     "tabLogin": "登录",
     "tabRegister": "注册",
+    "forgotPassword": "忘记密码？",
+    "backToLogin": "返回登录",
     "nameLabel": "姓名",
-    "emailLabel": "邮箱",
+    "emailLabel": "电子邮箱",
     "emailConfirmLabel": "再次确认邮箱",
-    "phoneCountryLabel": "电话国家区号",
+    "phoneCountryLabel": "国家或地区电话区号",
     "phoneNumberLabel": "电话号码",
     "verificationLabel": "邮箱验证码",
+    "resetVerificationLabel": "密码重置验证码",
     "sendCode": "发送验证码",
+    "sendResetCode": "发送重置验证码",
     "resendCode": "重新发送",
     "passwordLabel": "密码",
-    "submitLogin": "登录账户",
-    "submitRegister": "创建账户",
-    "authNote": "注册和登录资料将以安全方式保存。请阅读隐私政策与会员条款后使用会员功能。",
+    "newPasswordLabel": "新密码",
+    "submitLogin": "登录",
+    "submitRegister": "完成注册",
+    "submitReset": "更新密码",
+    "authNote": "注册资料仅用于账户验证、会员联络与网站安全，并依照隐私保护原则处理。",
+    "privacyLink": "隐私说明",
+    "termsLink": "会员使用说明",
     "logoAlt": "贾氏勋章标志",
-    "heroImageAlt": "大龙凤章大项链级整体展示"
+    "heroImageAlt": "大龙凤章大项链级整体陈列",
+    "metaDescription": "贾氏勋章官方网站，介绍大龙凤章、龙凤章、名誉称号、本家新闻及相关礼仪制度。",
+    "mobileMenu": "菜单",
+    "closeMenu": "关闭菜单",
+    "backToTop": "返回顶部",
+    "footerOffice": "大龙凤勋章评议会",
+    "footerCopyright": "© 2026 贾氏勋章官方网站。版权所有。"
   },
   "ja": {
     "title": "賈氏勲章公式サイト｜大龍鳳章・龍鳳章",
-    "ribbonLeft": "私的栄誉 · 儀礼的記念 · 公益精神 · 文化継承",
+    "ribbonLeft": "私的栄誉 · 儀礼と記念 · 公益活動 · 文化継承",
     "ribbonRight": "公式メール：jia.honours@gmail.com",
     "brandTitle": "賈氏勲章公式サイト",
-    "brandSub": "大龍鳳章 · 龍鳳章",
-    "navOrigin": "由来",
+    "brandSub": "大龍鳳章・龍鳳章",
+    "navOrigin": "由来と位置づけ",
     "navHonours": "勲章制度",
     "navTitles": "名誉称号",
-    "navNews": "ニュース",
+    "navNews": "ニュース・お知らせ",
     "navContact": "お問い合わせ",
     "navMember": "会員ページ",
     "login": "ログイン",
-    "register": "登録",
+    "register": "新規登録",
     "logout": "ログアウト",
     "memberCenter": "会員ページ",
     "enterMember": "会員ページへ",
     "heroKicker": "Official Honours Website",
     "heroTitle": "賈氏勲章<br>公式サイト",
-    "heroLead": "本サイトは、賈氏の私的栄誉体系について、歴史的由来、制度構成、意匠、授与理念を整理し、大龍鳳章、龍鳳章、名誉称号、ニュースおよび関連資料を紹介する公式サイトです。",
+    "heroLead": "本サイトは、賈氏が設けた私的な栄誉・記念制度について、歴史的背景、制度構成、意匠、授与理念を紹介し、大龍鳳章、龍鳳章、名誉称号、賈家からのニュースなどを掲載する公式サイトです。",
     "heroBtn1": "勲章制度を見る",
-    "heroBtn2": "ニュースを読む",
-    "seal1": "儀礼性",
-    "seal2": "記念性",
-    "seal3": "非公的性格",
-    "heroCaptionTitle": "大龍鳳章 · 大項鏈級",
-    "heroCaptionSub": "Order of the Great Dragon and Phoenix · Grand Collar",
-    "originKicker": "Origin & Position",
-    "originTitle": "歴史的由来と基本的立場",
-    "originLead": "典章説明に近い構成で歴史的叙述を受け止め、私的栄誉、非公的性格、記念用途という境界を前段で明確に示します。訪問者が制度の性格を理解したうえで、勲章と称号の細部へ進める構成です。",
-    "evidence1Title": "歴史的記憶",
-    "evidence1Text": "周代の賈国と家門文化の叙述を象徴的な源流とします。",
-    "evidence2Title": "儀礼表現",
-    "evidence2Text": "感謝、記念、協力、公益精神を表すために用います。",
-    "evidence3Title": "公開上の境界",
-    "evidence3Text": "国家の栄典、公的身分、職業資格を示すものではありません。",
-    "evidence4Title": "記録体系",
-    "evidence4Text": "ニュース、文書、会員情報、証書記録により整理します。",
+    "heroBtn2": "ニュースを見る",
+    "seal1": "儀礼と記念",
+    "seal2": "公益と友好",
+    "seal3": "私的な制度",
+    "heroCaptionTitle": "大龍鳳章・大頸飾級",
+    "heroCaptionSub": "大龍鳳章の最高位にあたる頸飾の全体展示",
+    "originKicker": "Origins & Position",
+    "originTitle": "歴史的由来と制度上の位置づけ",
+    "originLead": "賈氏勲章制度は、周代の賈国にまつわる歴史的記憶と、賈家に受け継がれる文化的伝統を象徴的な源流としています。現代においては、儀礼、記念、感謝、公益、国際親善を表す私的な栄誉・記念制度として位置づけられています。",
+    "evidence1Title": "歴史的背景",
+    "evidence1Text": "周代の賈国と「賈伯」にまつわる記憶を、賈家の歴史を語る象徴的な源流としています。",
+    "evidence2Title": "儀礼と記念",
+    "evidence2Text": "感謝、記念、協力、公益の精神を正式な儀礼によって表します。",
+    "evidence3Title": "私的な制度",
+    "evidence3Text": "国家の栄典、公式な身分、職業資格、法的特権を付与するものではありません。",
+    "evidence4Title": "記録と案内",
+    "evidence4Text": "ニュース、制度資料、会員情報を継続的に整理・記録します。",
     "honoursKicker": "Honours System",
     "honoursTitle": "勲章・賞章制度",
-    "honoursLead": "高位の勲章と感謝を表す賞章を並列して示し、等級情報を明確に保ちながら、正式な典章概要に近い見え方へ整えています。",
-    "orderSeq": "勲章序列",
+    "honoursLead": "本制度は勲章と賞章から構成されます。大龍鳳章には大頸飾級および一等から五等、龍鳳章には金級と銀級を設け、それぞれ功績の顕彰と感謝・記念の役割を担います。",
+    "orderSeq": "勲章",
     "orderTitle": "大龍鳳章",
     "orderEn": "Order of the Great Dragon and Phoenix",
-    "orderText": "公益活動、国際交流、友好協力、文化継承、家門礼儀の整備に重要な貢献を行った人物を顕彰するために設けられています。",
+    "orderText": "大龍鳳章は本制度の上位勲章であり、公益活動、国際交流、友好協力、文化継承、家門における儀礼の整備などに重要な貢献を果たした方を顕彰するために授与します。",
     "orderIcon": "勲",
-    "gradeGrand": "大項鏈級",
+    "gradeGrand": "大頸飾級",
     "grade1": "一等",
     "grade2": "二等",
     "grade3": "三等",
     "grade4": "四等",
     "grade5": "五等",
-    "medalSeq": "賞章序列",
+    "medalSeq": "賞章",
     "medalTitle": "龍鳳章",
     "medalEn": "Medal of the Dragon and Phoenix",
-    "medalText": "配慮、支援、協力、奉仕、友誼、段階的な成果に対する感謝と記念のために用います。",
+    "medalText": "龍鳳章は、支援、協力、奉仕、友好関係の形成などに対する感謝を表し、意義ある節目や成果を記念するための賞章です。",
     "medalIcon": "賞",
     "gold": "金級",
     "silver": "銀級",
     "titlesKicker": "Honorary Titles",
     "titlesTitle": "名誉称号制度",
-    "titlesLead": "称号制度は、儀礼上の呼称と記念表現を中心とするものです。公爵称号は発起人の称号として説明され、対外的な授与範囲は侯爵以下に限られます。これらの称号は、国家の貴族身分、法的身分、社会的特権を意味しません。",
+    "titlesLead": "名誉称号は、本制度における儀礼上の呼称および記念のために設けられています。公爵の称号は発起人本人のみが用い、対外的に授与する称号は名誉侯爵以下に限ります。これらは、国家により認められた貴族身分、法的地位、社会的特権、世襲権を生じさせるものではありません。",
     "dignitiesTitle": "名誉称号",
-    "dignitiesText": "賈氏栄誉体系の内部における儀礼、記念、呼称表現のために用います。公開上の使用にあたっては、中立的で節度ある正確な表現を基本とします。",
+    "dignitiesText": "儀礼、記念、正式な呼称のために用いる称号です。対外的に用いる際は、私的な栄誉であることを明確にし、公式な身分や法的地位を伴うとの誤解を招かない表現を基本とします。",
     "marquis": "名誉侯爵",
     "count": "名誉伯爵",
     "viscount": "名誉子爵",
     "baron": "名誉男爵",
     "knight": "名誉騎士",
-    "rulesTitle": "授与原則",
-    "rulesText": "名誉騎士の称号は、五等大龍鳳章の受章時にあわせて授与される場合があります。勲章の昇級と名誉称号の授与は相互に独立しており、自動的な対応関係を構成しません。",
-    "privateHonour": "私的栄誉",
+    "rulesTitle": "授与の原則",
+    "rulesText": "名誉騎士の称号は、五等大龍鳳章と併せて授与されることがあります。勲章の等級と名誉称号はそれぞれ個別に審議され、自動的に対応するものではありません。",
+    "privateHonour": "私的な栄誉",
     "commemorativeUse": "記念用途",
-    "noPublicPower": "公的権限なし",
+    "noPublicPower": "公的権限を伴わない",
     "newsKicker": "House News",
-    "newsTitle": "本家公式ニュース・お知らせ",
-    "newsLead": "ニュース欄では、一般公開のお知らせと登録会員向けのお知らせを分けて掲載し、対外発表、内部通知、今後の会員活動を整理します。",
-    "publicMembers": "Public & Members",
-    "newsIntroTitle": "ニュース、通知、会員向けお知らせ",
-    "newsIntroText": "一般公開の内容は対外発表に、登録会員向けの内容は会員活動、制度更新、内部通知、今後の展開に用います。",
+    "newsTitle": "賈家からのニュース・お知らせ",
+    "newsLead": "賈家の動向、制度上のお知らせ、会員向けの連絡を掲載します。一般公開の記事はどなたでも閲覧でき、会員限定の記事はログイン後に表示されます。",
+    "publicMembers": "Public / Members",
+    "newsIntroTitle": "賈家の動向と公式のお知らせ",
+    "newsIntroText": "一般公開の記事は対外向けの発表に、会員限定のお知らせは会務連絡、行事案内、制度更新に用います。",
     "publicNews": "一般公開",
-    "memberNews": "登録会員向け",
-    "lockedMembersTitle": "会員向けお知らせ",
-    "lockedMembersText": "ログイン後、登録会員向けのニュース、通知、会員活動情報を確認できます。",
-    "newsFallbackTitle": "賈氏勲賞公式サイト正式公開のお知らせ",
-    "newsFallbackText": "賈氏勲賞公式サイトを正式に公開いたしました。本サイトが、儀礼を記録し、感謝を伝え、文化を継承し、友誼を保つための正式な窓口となることを願っております。今後ともご関心をお寄せください。お気づきの点がございましたら、公式メールまでご連絡ください。",
+    "memberNews": "会員限定",
+    "lockedMembersTitle": "会員限定のお知らせ",
+    "lockedMembersText": "会員ページへログインすると、会員限定のお知らせや行事情報をご覧いただけます。",
+    "newsFallbackTitle": "賈氏勲章公式サイト開設のお知らせ",
+    "newsFallbackText": "賈氏勲章公式サイトを2026年7月9日に正式開設いたしました。本サイトが、儀礼を記録し、感謝を伝え、文化を受け継ぎ、友好を育むための継続的な窓口となることを願っております。今後ともご関心をお寄せいただければ幸いです。お気づきの点やご意見がございましたら、公式メールを通じて大龍鳳章評議会までお寄せください。",
     "founderKicker": "Founder Profile",
     "founderTitle": "発起人略歴",
     "time2016Title": "2016",
-    "time2016Text": "日本へ留学し、長期的な学びと生活の経験を始めました。",
+    "time2016Text": "2016年に日本へ留学し、以来、日本で学び、生活してきました。",
     "kansaiTitle": "関西大学",
-    "kansaiText": "関西大学を卒業し、異文化交流、国際協力、社会公益に関心を寄せています。",
+    "kansaiText": "関西大学を卒業し、異文化交流、国際協力、社会貢献に継続して取り組んでいます。",
     "publicServiceTitle": "公益活動",
-    "publicServiceText": "慈善活動および国際交流・協力に継続的に取り組んでいます。",
+    "publicServiceText": "慈善活動および国際交流・協力に継続的に参加し、公益への貢献と友好関係の促進を重視しています。",
     "contactKicker": "Official Contact",
-    "contactTitle": "公式連絡先と公開範囲",
-    "contactLead": "本ページでは、個人名、電話番号などの私的連絡先は公開していません。サイト内容、ニュース、会員事項、制度説明については、公式メールにてお問い合わせください。",
-    "contactOfficeLabel": "連絡先",
-    "contactOffice": "大龍鳳勲章評議会",
+    "contactTitle": "公式連絡先と公開情報",
+    "contactLead": "本サイトでは、発起人の氏名や電話番号などの私的情報を公開していません。サイトの内容、ニュース、会員に関する事項、制度の説明については、公式メールを通じて大龍鳳章評議会までお問い合わせください。",
+    "contactOfficeLabel": "連絡窓口",
+    "contactOffice": "大龍鳳章評議会",
     "officialEmailLabel": "公式メール",
-    "applicationTitle": "申出と審査",
-    "applicationText": "授与候補、名誉称号その他の事項については、大龍鳳勲章評議会への申出を受けた後、詳細な審査を行います。申出にあたっては、履歴書および関連説明資料の提出が必要です。",
+    "applicationTitle": "推薦・申出と審査",
+    "applicationText": "栄誉の取得のみを目的とする本人からの申請は受け付けていません。授与候補者、名誉称号その他の正式な事項に関する推薦または申出には、略歴書および関係資料の提出が必要です。大龍鳳章評議会が内容を詳しく審査し、正式な審議に付すかどうかを決定します。",
     "memberCtaTitle": "会員ページ",
-    "memberCtaText": "登録会員は会員ページで情報を整え、会員状態を確認し、今後の登録会員向けお知らせを受け取ることができます。",
-    "footerBrandSub": "Official Honours Website",
+    "memberCtaText": "登録会員は会員ページで情報を登録・更新し、アカウントの状態を確認し、会員向けのお知らせを受け取ることができます。会員情報の登録は勲章の申請ではありません。",
+    "footerBrandSub": "私的な栄誉・記念制度",
     "privacy": "プライバシーポリシー",
     "terms": "会員規約",
-    "contactPage": "お問い合わせ",
+    "contactPage": "お問い合わせの詳細を見る",
     "authKicker": "Member Access",
     "loginTitle": "会員ログイン",
-    "registerTitle": "会員登録",
+    "registerTitle": "新規会員登録",
+    "resetTitle": "パスワードを再設定",
     "tabLogin": "ログイン",
-    "tabRegister": "登録",
+    "tabRegister": "新規登録",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "backToLogin": "ログインに戻る",
     "nameLabel": "氏名",
     "emailLabel": "メールアドレス",
-    "emailConfirmLabel": "メールアドレス確認",
-    "phoneCountryLabel": "国番号",
+    "emailConfirmLabel": "メールアドレス（確認）",
+    "phoneCountryLabel": "国・地域の国番号",
     "phoneNumberLabel": "電話番号",
     "verificationLabel": "メール認証コード",
-    "sendCode": "認証コード送信",
+    "resetVerificationLabel": "再設定用認証コード",
+    "sendCode": "認証コードを送信",
+    "sendResetCode": "再設定コードを送信",
     "resendCode": "再送信",
     "passwordLabel": "パスワード",
+    "newPasswordLabel": "新しいパスワード",
     "submitLogin": "ログイン",
-    "submitRegister": "登録する",
-    "authNote": "登録・ログイン情報は安全な方法で保存されます。会員機能の利用前に、プライバシーポリシーと会員規約をご確認ください。",
-    "logoAlt": "賈氏勲章の標章",
-    "heroImageAlt": "大龍鳳章大項鏈級の全体展示"
+    "submitRegister": "登録を完了する",
+    "submitReset": "パスワードを更新",
+    "authNote": "登録情報は、アカウントの確認、会員への連絡、サイトの安全管理に必要な範囲で取り扱います。",
+    "privacyLink": "個人情報の取扱い",
+    "termsLink": "会員機能の利用案内",
+    "logoAlt": "賈氏勲章の紋章",
+    "heroImageAlt": "大龍鳳章・大頸飾級の全体展示",
+    "metaDescription": "大龍鳳章、龍鳳章、名誉称号、本家からのニュース、関連する儀礼制度を紹介する賈氏勲章公式サイトです。",
+    "mobileMenu": "メニュー",
+    "closeMenu": "メニューを閉じる",
+    "backToTop": "ページ上部へ",
+    "footerOffice": "大龍鳳章評議会",
+    "footerCopyright": "© 2026 賈氏勲章公式サイト. All rights reserved."
   },
   "en": {
-    "title": "Jia Honours Official Website | Order of the Great Dragon and Phoenix",
-    "ribbonLeft": "Private Honour · Ceremony · Public-Service Spirit · Cultural Continuity",
+    "title": "Jia Honours Official Website | Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal",
+    "ribbonLeft": "Private Honours · Ceremony and Remembrance · Public Service · Cultural Continuity",
     "ribbonRight": "Official email: jia.honours@gmail.com",
     "brandTitle": "Jia Honours",
     "brandSub": "Order of the Great Dragon and Phoenix · Dragon and Phoenix Medal",
     "navOrigin": "Origins",
     "navHonours": "Honours",
     "navTitles": "Honorary Titles",
-    "navNews": "News",
-    "navContact": "Contact",
-    "navMember": "Member Center",
+    "navNews": "News & Notices",
+    "navContact": "Official Contact",
+    "navMember": "Member Area",
     "login": "Log in",
     "register": "Register",
     "logout": "Log out",
-    "memberCenter": "Member Center",
-    "enterMember": "Enter Member Center",
+    "memberCenter": "Member Area",
+    "enterMember": "Go to Member Area",
     "heroKicker": "Official Honours Website",
     "heroTitle": "Jia Honours<br>Official Website",
-    "heroLead": "This website presents the historical background, institutional structure, visual identity, and awarding principles of the private Jia honours system, including the Order of the Great Dragon and Phoenix, the Dragon and Phoenix Medal, honorary titles, news notices, and related materials.",
-    "heroBtn1": "View Honours",
-    "heroBtn2": "Read News",
-    "seal1": "Ceremonial",
-    "seal2": "Commemorative",
-    "seal3": "Non-public authority",
+    "heroLead": "This website presents the history, structure, insignia and principles of conferment of the Jia family’s privately established honours and commemorative system. It also publishes official information on the Order of the Great Dragon and Phoenix, the Dragon and Phoenix Medal, honorary titles and house news.",
+    "heroBtn1": "Explore the Honours",
+    "heroBtn2": "Read News & Notices",
+    "seal1": "Ceremony & Remembrance",
+    "seal2": "Public Service & Friendship",
+    "seal3": "Private, Non-Governmental",
     "heroCaptionTitle": "Order of the Great Dragon and Phoenix · Grand Collar",
-    "heroCaptionSub": "A formal ceremonial display of the highest collar class",
-    "originKicker": "Origin & Position",
-    "originTitle": "Historical Origins and Position",
-    "originLead": "The page presents historical narrative in a charter-like manner while making clear, from the beginning, the boundaries of private honour, non-public authority, and commemorative use.",
+    "heroCaptionSub": "Full presentation of the highest class of the Order",
+    "originKicker": "Origins & Position",
+    "originTitle": "Origins and Institutional Status",
+    "originLead": "The Jia honours system draws symbolic inspiration from the historical memory of the Zhou-period State of Jia and the cultural traditions of the Jia family. Today, it is a privately established honours and commemorative system centred on ceremony, gratitude, public service and international friendship.",
     "evidence1Title": "Historical Memory",
-    "evidence1Text": "The Zhou-period State of Jia and lineage-cultural memory serve as symbolic sources.",
+    "evidence1Text": "The State of Jia and the historical title Jia Bo serve as symbolic references within the historical tradition of the Jia family.",
     "evidence2Title": "Ceremonial Expression",
-    "evidence2Text": "Used to express gratitude, remembrance, cooperation, and public-service spirit.",
-    "evidence3Title": "Public Boundary",
-    "evidence3Text": "It does not constitute a state honour, public status, or professional qualification.",
-    "evidence4Title": "Record System",
-    "evidence4Text": "News, documents, member profiles, and certificate records form the archive.",
+    "evidence2Text": "Formal ceremony gives expression to gratitude, remembrance, cooperation and public service.",
+    "evidence3Title": "Private Status",
+    "evidence3Text": "The system confers no state honour, official status, professional qualification or legal privilege.",
+    "evidence4Title": "Documented Record",
+    "evidence4Text": "Official news, institutional materials and member information provide a continuing documentary record.",
     "honoursKicker": "Honours System",
     "honoursTitle": "Orders and Medals",
-    "honoursLead": "The system is presented as a charter-style overview, placing the higher order and the commemorative medal side by side while keeping class information clear.",
-    "orderSeq": "Order Sequence",
+    "honoursLead": "The system comprises an order and a medal. The Order of the Great Dragon and Phoenix is divided into the Grand Collar and First through Fifth Classes; the Dragon and Phoenix Medal is awarded in Gold and Silver grades. The former recognises distinguished service, while the latter expresses gratitude and commemoration.",
+    "orderSeq": "Order",
     "orderTitle": "Order of the Great Dragon and Phoenix",
     "orderEn": "Order of the Great Dragon and Phoenix",
-    "orderText": "Established to recognize important contributions to public service, international exchange, friendly cooperation, cultural continuity, and the development of lineage ceremony.",
+    "orderText": "As the senior order of the system, the Order of the Great Dragon and Phoenix recognises significant contributions to public service, international exchange, friendly cooperation, cultural continuity and the ceremonial traditions of the Jia family.",
     "orderIcon": "O",
     "gradeGrand": "Grand Collar",
     "grade1": "First Class",
@@ -539,103 +453,118 @@
     "grade3": "Third Class",
     "grade4": "Fourth Class",
     "grade5": "Fifth Class",
-    "medalSeq": "Medal Sequence",
+    "medalSeq": "Medal",
     "medalTitle": "Dragon and Phoenix Medal",
     "medalEn": "Medal of the Dragon and Phoenix",
-    "medalText": "Used for gratitude and commemoration in relation to care, support, assistance, cooperation, service, friendship, and staged achievements.",
+    "medalText": "The Dragon and Phoenix Medal expresses gratitude for support, assistance, cooperation, service and friendship, and commemorates meaningful milestones and achievements.",
     "medalIcon": "M",
     "gold": "Gold Grade",
     "silver": "Silver Grade",
     "titlesKicker": "Honorary Titles",
     "titlesTitle": "Honorary Title System",
-    "titlesLead": "The title system centers on ceremonial forms of address and commemorative expression. The title of Duke is described as the founder’s own title; titles conferred externally are limited to Marquis and below, and do not constitute state nobility, legal status, or social privilege.",
+    "titlesLead": "Honorary titles serve ceremonial and commemorative forms of address within the system. The title of Duke is reserved for the founder; titles conferred on others are limited to Honorary Marquis and below. They create no state-recognised nobility, legal status, social privilege or hereditary right.",
     "dignitiesTitle": "Honorary Dignities",
-    "dignitiesText": "Used for ceremonial, commemorative, and forms-of-address purposes within the Jia honours system. Public usage should remain neutral, restrained, and accurate.",
+    "dignitiesText": "These titles are used for ceremonial, commemorative and formal forms of address. Public use should make their private nature clear and avoid implying official status or legal standing.",
     "marquis": "Honorary Marquis",
     "count": "Honorary Count",
     "viscount": "Honorary Viscount",
     "baron": "Honorary Baron",
     "knight": "Honorary Knight",
-    "rulesTitle": "Awarding Principles",
-    "rulesText": "The honorary title of Knight may be conferred together with the Fifth Class of the Order. Promotion within the order and the granting of honorary titles are independent and do not automatically correspond to one another.",
-    "privateHonour": "Private honour",
+    "rulesTitle": "Principles of Conferment",
+    "rulesText": "The honorary title of Knight may be conferred together with the Fifth Class of the Order. Classes of the Order and honorary titles are considered separately and do not correspond automatically.",
+    "privateHonour": "Private honours",
     "commemorativeUse": "Commemorative use",
-    "noPublicPower": "No public authority",
+    "noPublicPower": "No official status",
     "newsKicker": "House News",
-    "newsTitle": "Official House News and Notices",
-    "newsLead": "The news section distinguishes between public notices and registered-member notices, supporting public announcements, internal notices, and future member activities.",
-    "publicMembers": "Public & Members",
-    "newsIntroTitle": "News, Notices, and Member Announcements",
-    "newsIntroText": "Public content is used for general announcements; registered-member content is used for member activities, institutional updates, internal notices, and future development.",
+    "newsTitle": "House News & Official Notices",
+    "newsLead": "This section publishes house news, institutional notices and member communications. Public articles are open to all visitors; member-only items become available after login.",
+    "publicMembers": "Public / Members",
+    "newsIntroTitle": "House Updates and Official Notices",
+    "newsIntroText": "Public articles provide external announcements, while member-only notices cover administration, events and institutional updates.",
     "publicNews": "Public",
     "memberNews": "Members only",
-    "lockedMembersTitle": "Member-only notices",
-    "lockedMembersText": "After logging in, registered members may view member-only news, notices, and activity information.",
-    "newsFallbackTitle": "Jia Honours Official Website Launches",
-    "newsFallbackText": "The Jia Honours official website is now formally online. May this site serve as an official window for recording ceremony, conveying gratitude, continuing culture, and preserving friendship. We welcome your continued attention; if you notice any area for improvement, please contact us by official email.",
+    "lockedMembersTitle": "Member-only notice",
+    "lockedMembersText": "Log in to the member area to view member-only notices and event information.",
+    "newsFallbackTitle": "Launch of the Jia Honours Official Website",
+    "newsFallbackText": "The Jia Honours official website was formally launched on 9 July 2026. May it serve as a lasting place to record ceremony, convey gratitude, sustain cultural traditions and strengthen friendship. We welcome your continued interest. As the website develops, comments and corrections may be sent to the Council of the Order of the Great Dragon and Phoenix through the official email address.",
     "founderKicker": "Founder Profile",
     "founderTitle": "Founder Profile",
     "time2016Title": "2016",
-    "time2016Text": "Went to Japan for study and began a long-term period of learning and life experience.",
+    "time2016Text": "The founder moved to Japan for study in 2016 and has continued to live and pursue academic work there.",
     "kansaiTitle": "Kansai University",
-    "kansaiText": "Graduated from Kansai University and continues to focus on cross-cultural exchange, international cooperation, and public service.",
+    "kansaiText": "A graduate of Kansai University, the founder continues to take part in cross-cultural exchange, international cooperation and public-service activities.",
     "publicServiceTitle": "Public Service",
-    "publicServiceText": "Has long participated in charitable activities as well as international exchange and cooperation.",
+    "publicServiceText": "The founder has maintained a long-standing involvement in charitable work and international exchange, with an emphasis on public benefit and the promotion of friendship.",
     "contactKicker": "Official Contact",
-    "contactTitle": "Official Contact and Public Scope",
-    "contactLead": "This page does not disclose personal names, telephone numbers, or other private contact details. For website content, news notices, membership matters, and institutional explanations, please contact the official email address.",
+    "contactTitle": "Official Contact and Public Information",
+    "contactLead": "The website does not publish the founder’s name, telephone number, or other private details. Questions concerning the website, official notices, membership, or the honours system may be directed to the Council through the official email address.",
     "contactOfficeLabel": "Contact office",
     "contactOffice": "Council of the Order of the Great Dragon and Phoenix",
     "officialEmailLabel": "Official email",
-    "applicationTitle": "Submission and Review",
-    "applicationText": "Matters concerning award candidates, honorary titles, and related affairs must first be submitted to the Council of the Order of the Great Dragon and Phoenix. They will be handled after detailed review. A curriculum vitae and relevant explanatory materials are required.",
-    "memberCtaTitle": "Member Center",
-    "memberCtaText": "Registered users may enter the member center to complete their profile, view member status, and receive future registered-member notices.",
-    "footerBrandSub": "Official Honours Website",
+    "applicationTitle": "Nominations, Submissions and Review",
+    "applicationText": "Self-applications made solely for the purpose of obtaining an honour are not accepted. Formal nominations or submissions concerning prospective recipients, honorary titles or related matters must include a curriculum vitae and supporting information. The Council will conduct a detailed review and determine whether the matter should proceed to formal consideration.",
+    "memberCtaTitle": "Member Area",
+    "memberCtaText": "Registered users may complete or update their profile, view their account status and receive member communications. Completing a member profile does not constitute an application for an honour.",
+    "footerBrandSub": "Private Honours and Commemorative System",
     "privacy": "Privacy Policy",
-    "terms": "Member Terms",
-    "contactPage": "Contact",
+    "terms": "Membership Terms",
+    "contactPage": "View Contact Information",
     "authKicker": "Member Access",
     "loginTitle": "Member Login",
-    "registerTitle": "Create Member Account",
+    "registerTitle": "Member Registration",
+    "resetTitle": "Reset Password",
     "tabLogin": "Log in",
     "tabRegister": "Register",
-    "nameLabel": "Name",
-    "emailLabel": "Email",
-    "emailConfirmLabel": "Confirm Email",
-    "phoneCountryLabel": "Country Calling Code",
-    "phoneNumberLabel": "Phone Number",
-    "verificationLabel": "Email Verification Code",
-    "sendCode": "Send Code",
+    "forgotPassword": "Forgot your password?",
+    "backToLogin": "Back to login",
+    "nameLabel": "Full name",
+    "emailLabel": "Email address",
+    "emailConfirmLabel": "Confirm email address",
+    "phoneCountryLabel": "Country calling code",
+    "phoneNumberLabel": "Phone number",
+    "verificationLabel": "Email verification code",
+    "resetVerificationLabel": "Password-reset code",
+    "sendCode": "Send verification code",
+    "sendResetCode": "Send reset code",
     "resendCode": "Resend",
     "passwordLabel": "Password",
+    "newPasswordLabel": "New password",
     "submitLogin": "Log in",
-    "submitRegister": "Create Account",
-    "authNote": "Registration and login data are stored securely. Please read the Privacy Policy and Member Terms before using member functions.",
-    "logoAlt": "Jia honours emblem",
-    "heroImageAlt": "Full display of the Grand Collar of the Order of the Great Dragon and Phoenix"
+    "submitRegister": "Complete registration",
+    "submitReset": "Update password",
+    "authNote": "Registration details are used only for account verification, member communications and website security, and are handled in accordance with the privacy notice.",
+    "privacyLink": "Privacy Notice",
+    "termsLink": "Member Use Notice",
+    "logoAlt": "Emblem of Jia Honours",
+    "heroImageAlt": "Full display of the Grand Collar of the Order of the Great Dragon and Phoenix",
+    "metaDescription": "The official Jia Honours website, presenting the Order of the Great Dragon and Phoenix, the Dragon and Phoenix Medal, honorary titles, house news and related ceremonial information.",
+    "mobileMenu": "Menu",
+    "closeMenu": "Close menu",
+    "backToTop": "Back to top",
+    "footerOffice": "Council of the Order of the Great Dragon and Phoenix",
+    "footerCopyright": "© 2026 Jia Honours Official Website. All rights reserved."
   }
 };
     const FORM_PLACEHOLDERS = {
   "zh": {
-    "placeholderFullName": "用于会员中心显示",
-    "placeholderConfirmEmail": "再次输入邮箱",
+    "placeholderFullName": "用于会员账户显示",
+    "placeholderConfirmEmail": "再次输入电子邮箱",
     "placeholderPhoneNumber": "例如：8012345678",
-    "placeholderVerificationCode": "6位验证码",
-    "placeholderPassword": "至少 8 位"
+    "placeholderVerificationCode": "请输入6位验证码",
+    "placeholderPassword": "至少 8 个字符"
   },
   "ja": {
-    "placeholderFullName": "会員ページに表示されます",
+    "placeholderFullName": "会員アカウントに表示されます",
     "placeholderConfirmEmail": "メールアドレスを再入力",
     "placeholderPhoneNumber": "例：8012345678",
     "placeholderVerificationCode": "6桁の認証コード",
     "placeholderPassword": "8文字以上"
   },
   "en": {
-    "placeholderFullName": "Displayed in the member center",
-    "placeholderConfirmEmail": "Enter email again",
+    "placeholderFullName": "Displayed in your member account",
+    "placeholderConfirmEmail": "Enter your email address again",
     "placeholderPhoneNumber": "Example: 8012345678",
-    "placeholderVerificationCode": "6-digit code",
+    "placeholderVerificationCode": "Enter the 6-digit code",
     "placeholderPassword": "At least 8 characters"
   }
 };
@@ -644,40 +573,98 @@
   "ja": {
     "请先输入邮箱。": "先にメールアドレスを入力してください。",
     "请输入有效邮箱地址。": "有効なメールアドレスを入力してください。",
-    "两次输入的邮箱不一致。": "入力されたメールアドレスが一致しません。",
+    "两次输入的邮箱不一致。": "メールアドレスが一致していません。",
     "验证码已发送，请检查邮箱。": "認証コードを送信しました。メールをご確認ください。",
-    "验证码发送失败。": "認証コードの送信に失敗しました。",
+    "验证码发送失败。": "認証コードを送信できませんでした。",
     "请填写姓名、邮箱、确认邮箱、电话、验证码和密码。": "氏名、メールアドレス、確認用メールアドレス、電話番号、認証コード、パスワードを入力してください。",
     "请输入邮箱和密码。": "メールアドレスとパスワードを入力してください。",
     "注册成功，已进入会员中心。": "登録が完了しました。会員ページへ移動します。",
     "登录成功。": "ログインしました。",
-    "操作失败。": "処理に失敗しました。",
-    "请求失败。": "リクエストに失敗しました。",
+    "操作失败。": "処理を完了できませんでした。",
+    "请求失败。": "通信に失敗しました。",
     "邮箱验证码不正确。": "メール認証コードが正しくありません。",
-    "邮箱验证码已过期，请重新发送。": "メール認証コードの有効期限が切れました。再送信してください。",
-    "验证码发送过于频繁，请稍后再试。": "認証コードの送信が頻繁すぎます。しばらくしてから再試行してください。",
+    "邮箱验证码已过期，请重新发送。": "メール認証コードの有効期限が切れています。新しいコードを取得してください。",
+    "验证码发送过于频繁，请稍后再试。": "認証コードの送信回数が多すぎます。しばらくしてからお試しください。",
     "请输入有效电话号码。": "有効な電話番号を入力してください。",
     "这个邮箱已经注册，可以直接登录。": "このメールアドレスはすでに登録されています。ログインしてください。",
-    "邮箱或密码不正确。": "メールアドレスまたはパスワードが正しくありません。"
+    "邮箱或密码不正确。": "メールアドレスまたはパスワードが正しくありません。",
+    "重置验证码已发送，请检查邮箱。": "再設定用コードを送信しました。メールをご確認ください。",
+    "密码已更新，请重新登录。": "パスワードを更新しました。新しいパスワードでログインしてください。",
+    "请输入邮箱、验证码和新密码。": "メールアドレス、認証コード、新しいパスワードを入力してください。",
+    "安全验证未完成，请重试。": "セキュリティ確認を完了してから、もう一度お試しください。",
+    "请求超时，请稍后重试。": "通信がタイムアウトしました。しばらくしてからお試しください。",
+    "服务器返回了无效响应。": "サーバーから正しい応答を受信できませんでした。",
+    "操作过于频繁，请稍后再试。": "操作回数が多すぎます。しばらくしてからお試しください。",
+    "验证码尝试次数过多，请重新获取。": "認証コードの試行回数を超えました。新しいコードを取得してください。",
+    "验证码不正确、已过期或已失效。": "認証コードが正しくないか、有効期限切れ、または無効です。",
+    "验证码已失效，请重新获取。": "認証コードは無効です。新しいコードを取得してください。",
+    "验证码应为 6 位数字。": "認証コードは6桁の数字で入力してください。",
+    "密码长度需要为 8 至 128 位。": "パスワードは8～128文字で入力してください。",
+    "请选择有效的国家或地区电话区号。": "有効な国・地域の国番号を選択してください。",
+    "为保护账户安全，请使用密码重置功能设置新密码。": "アカウント保護のため、パスワード再設定から新しいパスワードを設定してください。",
+    "请完成人机验证后重试。": "セキュリティ確認を完了してから再試行してください。",
+    "人机验证未通过，请重试。": "セキュリティ確認に失敗しました。もう一度お試しください。",
+    "人机验证服务暂时不可用，请稍后再试。": "セキュリティ確認サービスを一時的に利用できません。しばらくしてからお試しください。",
+    "邮件服务暂时不可用，请稍后再试。": "メールサービスを一時的に利用できません。しばらくしてからお試しください。",
+    "请求来源验证失败，请刷新页面后重试。": "リクエスト元を確認できませんでした。ページを再読み込みしてお試しください。",
+    "服务暂时不可用，请稍后再试。": "サービスを一時的に利用できません。しばらくしてからお試しください。",
+    "请输入有效姓名。": "有効な氏名を入力してください。",
+    "请求格式不正确。": "リクエスト形式が正しくありません。",
+    "请求内容过大。": "送信内容が大きすぎます。",
+    "请求必须使用 JSON 格式。": "リクエスト形式が正しくありません。",
+    "登录失败，请稍后再试。": "ログインできませんでした。しばらくしてからお試しください。",
+    "注册失败，请稍后再试。": "登録できませんでした。しばらくしてからお試しください。",
+    "验证码发送失败，请稍后再试。": "認証コードを送信できませんでした。しばらくしてからお試しください。",
+    "密码重置验证码发送失败，请稍后再试。": "再設定用コードを送信できませんでした。しばらくしてからお試しください。",
+    "密码重置失败，请稍后再试。": "パスワードを再設定できませんでした。しばらくしてからお試しください。"
   },
   "en": {
-    "请先输入邮箱。": "Please enter your email first.",
+    "请先输入邮箱。": "Please enter your email address first.",
     "请输入有效邮箱地址。": "Please enter a valid email address.",
-    "两次输入的邮箱不一致。": "The two email addresses do not match.",
-    "验证码已发送，请检查邮箱。": "Verification code sent. Please check your inbox.",
-    "验证码发送失败。": "Failed to send verification code.",
-    "请填写姓名、邮箱、确认邮箱、电话、验证码和密码。": "Please enter name, email, confirmed email, phone, verification code, and password.",
-    "请输入邮箱和密码。": "Please enter your email and password.",
-    "注册成功，已进入会员中心。": "Registration successful. Entering the member center.",
-    "登录成功。": "Logged in successfully.",
-    "操作失败。": "Operation failed.",
-    "请求失败。": "Request failed.",
-    "邮箱验证码不正确。": "Email verification code is incorrect.",
-    "邮箱验证码已过期，请重新发送。": "Email verification code has expired. Please request a new one.",
-    "验证码发送过于频繁，请稍后再试。": "Verification codes are being sent too frequently. Please try again later.",
+    "两次输入的邮箱不一致。": "The email addresses do not match.",
+    "验证码已发送，请检查邮箱。": "A verification code has been sent. Please check your inbox.",
+    "验证码发送失败。": "The verification code could not be sent.",
+    "请填写姓名、邮箱、确认邮箱、电话、验证码和密码。": "Please complete your name, email address, email confirmation, phone number, verification code, and password.",
+    "请输入邮箱和密码。": "Please enter your email address and password.",
+    "注册成功，已进入会员中心。": "Registration complete. Redirecting to the member area.",
+    "登录成功。": "You are now logged in.",
+    "操作失败。": "The operation could not be completed.",
+    "请求失败。": "The request failed.",
+    "邮箱验证码不正确。": "The email verification code is incorrect.",
+    "邮箱验证码已过期，请重新发送。": "The email verification code has expired. Please request a new one.",
+    "验证码发送过于频繁，请稍后再试。": "Too many verification codes have been requested. Please try again later.",
     "请输入有效电话号码。": "Please enter a valid phone number.",
-    "这个邮箱已经注册，可以直接登录。": "This email is already registered. Please log in.",
-    "邮箱或密码不正确。": "Email or password is incorrect."
+    "这个邮箱已经注册，可以直接登录。": "This email address is already registered. Please log in.",
+    "邮箱或密码不正确。": "The email address or password is incorrect.",
+    "重置验证码已发送，请检查邮箱。": "A password-reset code has been sent. Please check your inbox.",
+    "密码已更新，请重新登录。": "Your password has been updated. Please log in with the new password.",
+    "请输入邮箱、验证码和新密码。": "Please enter your email address, verification code, and new password.",
+    "安全验证未完成，请重试。": "Please complete the security check and try again.",
+    "请求超时，请稍后重试。": "The request timed out. Please try again shortly.",
+    "服务器返回了无效响应。": "The server returned an invalid response.",
+    "操作过于频繁，请稍后再试。": "Too many attempts have been made. Please try again later.",
+    "验证码尝试次数过多，请重新获取。": "Too many incorrect codes were entered. Please request a new code.",
+    "验证码不正确、已过期或已失效。": "The verification code is incorrect, expired, or no longer valid.",
+    "验证码已失效，请重新获取。": "The verification code is no longer valid. Please request a new code.",
+    "验证码应为 6 位数字。": "The verification code must contain six digits.",
+    "密码长度需要为 8 至 128 位。": "The password must be between 8 and 128 characters.",
+    "请选择有效的国家或地区电话区号。": "Please select a valid country calling code.",
+    "为保护账户安全，请使用密码重置功能设置新密码。": "To protect your account, please use password reset to set a new password.",
+    "请完成人机验证后重试。": "Please complete the security check and try again.",
+    "人机验证未通过，请重试。": "The security check was not successful. Please try again.",
+    "人机验证服务暂时不可用，请稍后再试。": "The security-check service is temporarily unavailable. Please try again later.",
+    "邮件服务暂时不可用，请稍后再试。": "The email service is temporarily unavailable. Please try again later.",
+    "请求来源验证失败，请刷新页面后重试。": "The request source could not be verified. Refresh the page and try again.",
+    "服务暂时不可用，请稍后再试。": "The service is temporarily unavailable. Please try again later.",
+    "请输入有效姓名。": "Please enter a valid name.",
+    "请求格式不正确。": "The request format is invalid.",
+    "请求内容过大。": "The request is too large.",
+    "请求必须使用 JSON 格式。": "The request format is invalid.",
+    "登录失败，请稍后再试。": "Login failed. Please try again later.",
+    "注册失败，请稍后再试。": "Registration failed. Please try again later.",
+    "验证码发送失败，请稍后再试。": "The verification code could not be sent. Please try again later.",
+    "密码重置验证码发送失败，请稍后再试。": "The password-reset code could not be sent. Please try again later.",
+    "密码重置失败，请稍后再试。": "The password could not be reset. Please try again later."
   }
 };
     const COUNTRY_CODES = [{"iso": "JP", "code": "+81", "zh": "日本", "ja": "日本", "en": "Japan"}, {"iso": "CN", "code": "+86", "zh": "中国", "ja": "中国", "en": "China"}, {"iso": "US", "code": "+1", "zh": "美国", "ja": "アメリカ合衆国", "en": "United States"}, {"iso": "HK", "code": "+852", "zh": "中国香港特别行政区", "ja": "中華人民共和国香港特別行政区", "en": "Hong Kong SAR China"}, {"iso": "MO", "code": "+853", "zh": "中国澳门特别行政区", "ja": "中華人民共和国マカオ特別行政区", "en": "Macao SAR China"}, {"iso": "TW", "code": "+886", "zh": "台湾", "ja": "台湾", "en": "Taiwan"}, {"iso": "KR", "code": "+82", "zh": "韩国", "ja": "韓国", "en": "South Korea"}, {"iso": "SG", "code": "+65", "zh": "新加坡", "ja": "シンガポール", "en": "Singapore"}, {"iso": "GB", "code": "+44", "zh": "英国", "ja": "イギリス", "en": "United Kingdom"}, {"iso": "FR", "code": "+33", "zh": "法国", "ja": "フランス", "en": "France"}, {"iso": "DE", "code": "+49", "zh": "德国", "ja": "ドイツ", "en": "Germany"}, {"iso": "IT", "code": "+39", "zh": "意大利", "ja": "イタリア", "en": "Italy"}, {"iso": "AU", "code": "+61", "zh": "澳大利亚", "ja": "オーストラリア", "en": "Australia"}, {"iso": "CA", "code": "+1", "zh": "加拿大", "ja": "カナダ", "en": "Canada"}, {"iso": "AF", "code": "+93", "zh": "阿富汗", "ja": "アフガニスタン", "en": "Afghanistan"}, {"iso": "AL", "code": "+355", "zh": "阿尔巴尼亚", "ja": "アルバニア", "en": "Albania"}, {"iso": "DZ", "code": "+213", "zh": "阿尔及利亚", "ja": "アルジェリア", "en": "Algeria"}, {"iso": "AS", "code": "+1", "zh": "美属萨摩亚", "ja": "米領サモア", "en": "American Samoa"}, {"iso": "AD", "code": "+376", "zh": "安道尔", "ja": "アンドラ", "en": "Andorra"}, {"iso": "AO", "code": "+244", "zh": "安哥拉", "ja": "アンゴラ", "en": "Angola"}, {"iso": "AI", "code": "+1", "zh": "安圭拉", "ja": "アンギラ", "en": "Anguilla"}, {"iso": "AG", "code": "+1", "zh": "安提瓜和巴布达", "ja": "アンティグア・バーブーダ", "en": "Antigua & Barbuda"}, {"iso": "AR", "code": "+54", "zh": "阿根廷", "ja": "アルゼンチン", "en": "Argentina"}, {"iso": "AM", "code": "+374", "zh": "亚美尼亚", "ja": "アルメニア", "en": "Armenia"}, {"iso": "AW", "code": "+297", "zh": "阿鲁巴", "ja": "アルバ", "en": "Aruba"}, {"iso": "AT", "code": "+43", "zh": "奥地利", "ja": "オーストリア", "en": "Austria"}, {"iso": "AZ", "code": "+994", "zh": "阿塞拜疆", "ja": "アゼルバイジャン", "en": "Azerbaijan"}, {"iso": "BS", "code": "+1", "zh": "巴哈马", "ja": "バハマ", "en": "Bahamas"}, {"iso": "BH", "code": "+973", "zh": "巴林", "ja": "バーレーン", "en": "Bahrain"}, {"iso": "BD", "code": "+880", "zh": "孟加拉国", "ja": "バングラデシュ", "en": "Bangladesh"}, {"iso": "BB", "code": "+1", "zh": "巴巴多斯", "ja": "バルバドス", "en": "Barbados"}, {"iso": "BY", "code": "+375", "zh": "白俄罗斯", "ja": "ベラルーシ", "en": "Belarus"}, {"iso": "BE", "code": "+32", "zh": "比利时", "ja": "ベルギー", "en": "Belgium"}, {"iso": "BZ", "code": "+501", "zh": "伯利兹", "ja": "ベリーズ", "en": "Belize"}, {"iso": "BJ", "code": "+229", "zh": "贝宁", "ja": "ベナン", "en": "Benin"}, {"iso": "BM", "code": "+1", "zh": "百慕大", "ja": "バミューダ", "en": "Bermuda"}, {"iso": "BT", "code": "+975", "zh": "不丹", "ja": "ブータン", "en": "Bhutan"}, {"iso": "BO", "code": "+591", "zh": "玻利维亚", "ja": "ボリビア", "en": "Bolivia"}, {"iso": "BA", "code": "+387", "zh": "波斯尼亚和黑塞哥维那", "ja": "ボスニア・ヘルツェゴビナ", "en": "Bosnia & Herzegovina"}, {"iso": "BW", "code": "+267", "zh": "博茨瓦纳", "ja": "ボツワナ", "en": "Botswana"}, {"iso": "BR", "code": "+55", "zh": "巴西", "ja": "ブラジル", "en": "Brazil"}, {"iso": "IO", "code": "+246", "zh": "英属印度洋领地", "ja": "英領インド洋地域", "en": "British Indian Ocean Territory"}, {"iso": "VG", "code": "+1", "zh": "英属维尔京群岛", "ja": "英領ヴァージン諸島", "en": "British Virgin Islands"}, {"iso": "BN", "code": "+673", "zh": "文莱", "ja": "ブルネイ", "en": "Brunei"}, {"iso": "BG", "code": "+359", "zh": "保加利亚", "ja": "ブルガリア", "en": "Bulgaria"}, {"iso": "BF", "code": "+226", "zh": "布基纳法索", "ja": "ブルキナファソ", "en": "Burkina Faso"}, {"iso": "BI", "code": "+257", "zh": "布隆迪", "ja": "ブルンジ", "en": "Burundi"}, {"iso": "KH", "code": "+855", "zh": "柬埔寨", "ja": "カンボジア", "en": "Cambodia"}, {"iso": "CM", "code": "+237", "zh": "喀麦隆", "ja": "カメルーン", "en": "Cameroon"}, {"iso": "CV", "code": "+238", "zh": "佛得角", "ja": "カーボベルデ", "en": "Cape Verde"}, {"iso": "BQ", "code": "+599", "zh": "荷属加勒比区", "ja": "オランダ領カリブ", "en": "Caribbean Netherlands"}, {"iso": "KY", "code": "+1", "zh": "开曼群岛", "ja": "ケイマン諸島", "en": "Cayman Islands"}, {"iso": "CF", "code": "+236", "zh": "中非共和国", "ja": "中央アフリカ共和国", "en": "Central African Republic"}, {"iso": "TD", "code": "+235", "zh": "乍得", "ja": "チャド", "en": "Chad"}, {"iso": "CL", "code": "+56", "zh": "智利", "ja": "チリ", "en": "Chile"}, {"iso": "CX", "code": "+61", "zh": "圣诞岛", "ja": "クリスマス島", "en": "Christmas Island"}, {"iso": "CC", "code": "+61", "zh": "科科斯（基林）群岛", "ja": "ココス(キーリング)諸島", "en": "Cocos (Keeling) Islands"}, {"iso": "CO", "code": "+57", "zh": "哥伦比亚", "ja": "コロンビア", "en": "Colombia"}, {"iso": "KM", "code": "+269", "zh": "科摩罗", "ja": "コモロ", "en": "Comoros"}, {"iso": "CG", "code": "+242", "zh": "刚果（布）", "ja": "コンゴ共和国(ブラザビル)", "en": "Congo - Brazzaville"}, {"iso": "CD", "code": "+243", "zh": "刚果（金）", "ja": "コンゴ民主共和国(キンシャサ)", "en": "Congo - Kinshasa"}, {"iso": "CK", "code": "+682", "zh": "库克群岛", "ja": "クック諸島", "en": "Cook Islands"}, {"iso": "CR", "code": "+506", "zh": "哥斯达黎加", "ja": "コスタリカ", "en": "Costa Rica"}, {"iso": "HR", "code": "+385", "zh": "克罗地亚", "ja": "クロアチア", "en": "Croatia"}, {"iso": "CU", "code": "+53", "zh": "古巴", "ja": "キューバ", "en": "Cuba"}, {"iso": "CW", "code": "+599", "zh": "库拉索", "ja": "キュラソー", "en": "Curaçao"}, {"iso": "CY", "code": "+357", "zh": "塞浦路斯", "ja": "キプロス", "en": "Cyprus"}, {"iso": "CZ", "code": "+420", "zh": "捷克", "ja": "チェコ", "en": "Czechia"}, {"iso": "CI", "code": "+225", "zh": "科特迪瓦", "ja": "コートジボワール", "en": "Côte d’Ivoire"}, {"iso": "DK", "code": "+45", "zh": "丹麦", "ja": "デンマーク", "en": "Denmark"}, {"iso": "DJ", "code": "+253", "zh": "吉布提", "ja": "ジブチ", "en": "Djibouti"}, {"iso": "DM", "code": "+1", "zh": "多米尼克", "ja": "ドミニカ国", "en": "Dominica"}, {"iso": "DO", "code": "+1", "zh": "多米尼加共和国", "ja": "ドミニカ共和国", "en": "Dominican Republic"}, {"iso": "EC", "code": "+593", "zh": "厄瓜多尔", "ja": "エクアドル", "en": "Ecuador"}, {"iso": "EG", "code": "+20", "zh": "埃及", "ja": "エジプト", "en": "Egypt"}, {"iso": "SV", "code": "+503", "zh": "萨尔瓦多", "ja": "エルサルバドル", "en": "El Salvador"}, {"iso": "GQ", "code": "+240", "zh": "赤道几内亚", "ja": "赤道ギニア", "en": "Equatorial Guinea"}, {"iso": "ER", "code": "+291", "zh": "厄立特里亚", "ja": "エリトリア", "en": "Eritrea"}, {"iso": "EE", "code": "+372", "zh": "爱沙尼亚", "ja": "エストニア", "en": "Estonia"}, {"iso": "SZ", "code": "+268", "zh": "斯威士兰", "ja": "エスワティニ", "en": "Eswatini"}, {"iso": "ET", "code": "+251", "zh": "埃塞俄比亚", "ja": "エチオピア", "en": "Ethiopia"}, {"iso": "FK", "code": "+500", "zh": "福克兰群岛", "ja": "フォークランド諸島", "en": "Falkland Islands"}, {"iso": "FO", "code": "+298", "zh": "法罗群岛", "ja": "フェロー諸島", "en": "Faroe Islands"}, {"iso": "FJ", "code": "+679", "zh": "斐济", "ja": "フィジー", "en": "Fiji"}, {"iso": "FI", "code": "+358", "zh": "芬兰", "ja": "フィンランド", "en": "Finland"}, {"iso": "GF", "code": "+594", "zh": "法属圭亚那", "ja": "仏領ギアナ", "en": "French Guiana"}, {"iso": "PF", "code": "+689", "zh": "法属波利尼西亚", "ja": "仏領ポリネシア", "en": "French Polynesia"}, {"iso": "GA", "code": "+241", "zh": "加蓬", "ja": "ガボン", "en": "Gabon"}, {"iso": "GM", "code": "+220", "zh": "冈比亚", "ja": "ガンビア", "en": "Gambia"}, {"iso": "GE", "code": "+995", "zh": "格鲁吉亚", "ja": "ジョージア", "en": "Georgia"}, {"iso": "GH", "code": "+233", "zh": "加纳", "ja": "ガーナ", "en": "Ghana"}, {"iso": "GI", "code": "+350", "zh": "直布罗陀", "ja": "ジブラルタル", "en": "Gibraltar"}, {"iso": "GR", "code": "+30", "zh": "希腊", "ja": "ギリシャ", "en": "Greece"}, {"iso": "GL", "code": "+299", "zh": "格陵兰", "ja": "グリーンランド", "en": "Greenland"}, {"iso": "GD", "code": "+1", "zh": "格林纳达", "ja": "グレナダ", "en": "Grenada"}, {"iso": "GP", "code": "+590", "zh": "瓜德罗普", "ja": "グアドループ", "en": "Guadeloupe"}, {"iso": "GU", "code": "+1", "zh": "关岛", "ja": "グアム", "en": "Guam"}, {"iso": "GT", "code": "+502", "zh": "危地马拉", "ja": "グアテマラ", "en": "Guatemala"}, {"iso": "GG", "code": "+44", "zh": "根西岛", "ja": "ガーンジー", "en": "Guernsey"}, {"iso": "GN", "code": "+224", "zh": "几内亚", "ja": "ギニア", "en": "Guinea"}, {"iso": "GW", "code": "+245", "zh": "几内亚比绍", "ja": "ギニアビサウ", "en": "Guinea-Bissau"}, {"iso": "GY", "code": "+592", "zh": "圭亚那", "ja": "ガイアナ", "en": "Guyana"}, {"iso": "HT", "code": "+509", "zh": "海地", "ja": "ハイチ", "en": "Haiti"}, {"iso": "HN", "code": "+504", "zh": "洪都拉斯", "ja": "ホンジュラス", "en": "Honduras"}, {"iso": "HU", "code": "+36", "zh": "匈牙利", "ja": "ハンガリー", "en": "Hungary"}, {"iso": "IS", "code": "+354", "zh": "冰岛", "ja": "アイスランド", "en": "Iceland"}, {"iso": "IN", "code": "+91", "zh": "印度", "ja": "インド", "en": "India"}, {"iso": "ID", "code": "+62", "zh": "印度尼西亚", "ja": "インドネシア", "en": "Indonesia"}, {"iso": "IR", "code": "+98", "zh": "伊朗", "ja": "イラン", "en": "Iran"}, {"iso": "IQ", "code": "+964", "zh": "伊拉克", "ja": "イラク", "en": "Iraq"}, {"iso": "IE", "code": "+353", "zh": "爱尔兰", "ja": "アイルランド", "en": "Ireland"}, {"iso": "IM", "code": "+44", "zh": "马恩岛", "ja": "マン島", "en": "Isle of Man"}, {"iso": "IL", "code": "+972", "zh": "以色列", "ja": "イスラエル", "en": "Israel"}, {"iso": "JM", "code": "+1", "zh": "牙买加", "ja": "ジャマイカ", "en": "Jamaica"}, {"iso": "JE", "code": "+44", "zh": "泽西岛", "ja": "ジャージー", "en": "Jersey"}, {"iso": "JO", "code": "+962", "zh": "约旦", "ja": "ヨルダン", "en": "Jordan"}, {"iso": "KZ", "code": "+7", "zh": "哈萨克斯坦", "ja": "カザフスタン", "en": "Kazakhstan"}, {"iso": "KE", "code": "+254", "zh": "肯尼亚", "ja": "ケニア", "en": "Kenya"}, {"iso": "KI", "code": "+686", "zh": "基里巴斯", "ja": "キリバス", "en": "Kiribati"}, {"iso": "XK", "code": "+383", "zh": "科索沃", "ja": "コソボ", "en": "Kosovo"}, {"iso": "KW", "code": "+965", "zh": "科威特", "ja": "クウェート", "en": "Kuwait"}, {"iso": "KG", "code": "+996", "zh": "吉尔吉斯斯坦", "ja": "キルギス", "en": "Kyrgyzstan"}, {"iso": "LA", "code": "+856", "zh": "老挝", "ja": "ラオス", "en": "Laos"}, {"iso": "LV", "code": "+371", "zh": "拉脱维亚", "ja": "ラトビア", "en": "Latvia"}, {"iso": "LB", "code": "+961", "zh": "黎巴嫩", "ja": "レバノン", "en": "Lebanon"}, {"iso": "LS", "code": "+266", "zh": "莱索托", "ja": "レソト", "en": "Lesotho"}, {"iso": "LR", "code": "+231", "zh": "利比里亚", "ja": "リベリア", "en": "Liberia"}, {"iso": "LY", "code": "+218", "zh": "利比亚", "ja": "リビア", "en": "Libya"}, {"iso": "LI", "code": "+423", "zh": "列支敦士登", "ja": "リヒテンシュタイン", "en": "Liechtenstein"}, {"iso": "LT", "code": "+370", "zh": "立陶宛", "ja": "リトアニア", "en": "Lithuania"}, {"iso": "LU", "code": "+352", "zh": "卢森堡", "ja": "ルクセンブルク", "en": "Luxembourg"}, {"iso": "MG", "code": "+261", "zh": "马达加斯加", "ja": "マダガスカル", "en": "Madagascar"}, {"iso": "MW", "code": "+265", "zh": "马拉维", "ja": "マラウイ", "en": "Malawi"}, {"iso": "MY", "code": "+60", "zh": "马来西亚", "ja": "マレーシア", "en": "Malaysia"}, {"iso": "MV", "code": "+960", "zh": "马尔代夫", "ja": "モルディブ", "en": "Maldives"}, {"iso": "ML", "code": "+223", "zh": "马里", "ja": "マリ", "en": "Mali"}, {"iso": "MT", "code": "+356", "zh": "马耳他", "ja": "マルタ", "en": "Malta"}, {"iso": "MH", "code": "+692", "zh": "马绍尔群岛", "ja": "マーシャル諸島", "en": "Marshall Islands"}, {"iso": "MQ", "code": "+596", "zh": "马提尼克", "ja": "マルティニーク", "en": "Martinique"}, {"iso": "MR", "code": "+222", "zh": "毛里塔尼亚", "ja": "モーリタニア", "en": "Mauritania"}, {"iso": "MU", "code": "+230", "zh": "毛里求斯", "ja": "モーリシャス", "en": "Mauritius"}, {"iso": "YT", "code": "+262", "zh": "马约特", "ja": "マヨット", "en": "Mayotte"}, {"iso": "MX", "code": "+52", "zh": "墨西哥", "ja": "メキシコ", "en": "Mexico"}, {"iso": "FM", "code": "+691", "zh": "密克罗尼西亚", "ja": "ミクロネシア連邦", "en": "Micronesia"}, {"iso": "MD", "code": "+373", "zh": "摩尔多瓦", "ja": "モルドバ", "en": "Moldova"}, {"iso": "MC", "code": "+377", "zh": "摩纳哥", "ja": "モナコ", "en": "Monaco"}, {"iso": "MN", "code": "+976", "zh": "蒙古", "ja": "モンゴル", "en": "Mongolia"}, {"iso": "ME", "code": "+382", "zh": "黑山", "ja": "モンテネグロ", "en": "Montenegro"}, {"iso": "MS", "code": "+1", "zh": "蒙特塞拉特", "ja": "モントセラト", "en": "Montserrat"}, {"iso": "MA", "code": "+212", "zh": "摩洛哥", "ja": "モロッコ", "en": "Morocco"}, {"iso": "MZ", "code": "+258", "zh": "莫桑比克", "ja": "モザンビーク", "en": "Mozambique"}, {"iso": "MM", "code": "+95", "zh": "缅甸", "ja": "ミャンマー (ビルマ)", "en": "Myanmar (Burma)"}, {"iso": "NA", "code": "+264", "zh": "纳米比亚", "ja": "ナミビア", "en": "Namibia"}, {"iso": "NR", "code": "+674", "zh": "瑙鲁", "ja": "ナウル", "en": "Nauru"}, {"iso": "NP", "code": "+977", "zh": "尼泊尔", "ja": "ネパール", "en": "Nepal"}, {"iso": "NL", "code": "+31", "zh": "荷兰", "ja": "オランダ", "en": "Netherlands"}, {"iso": "NC", "code": "+687", "zh": "新喀里多尼亚", "ja": "ニューカレドニア", "en": "New Caledonia"}, {"iso": "NZ", "code": "+64", "zh": "新西兰", "ja": "ニュージーランド", "en": "New Zealand"}, {"iso": "NI", "code": "+505", "zh": "尼加拉瓜", "ja": "ニカラグア", "en": "Nicaragua"}, {"iso": "NE", "code": "+227", "zh": "尼日尔", "ja": "ニジェール", "en": "Niger"}, {"iso": "NG", "code": "+234", "zh": "尼日利亚", "ja": "ナイジェリア", "en": "Nigeria"}, {"iso": "NU", "code": "+683", "zh": "纽埃", "ja": "ニウエ", "en": "Niue"}, {"iso": "NF", "code": "+672", "zh": "诺福克岛", "ja": "ノーフォーク島", "en": "Norfolk Island"}, {"iso": "KP", "code": "+850", "zh": "朝鲜", "ja": "北朝鮮", "en": "North Korea"}, {"iso": "MK", "code": "+389", "zh": "北马其顿", "ja": "北マケドニア", "en": "North Macedonia"}, {"iso": "MP", "code": "+1", "zh": "北马里亚纳群岛", "ja": "北マリアナ諸島", "en": "Northern Mariana Islands"}, {"iso": "NO", "code": "+47", "zh": "挪威", "ja": "ノルウェー", "en": "Norway"}, {"iso": "OM", "code": "+968", "zh": "阿曼", "ja": "オマーン", "en": "Oman"}, {"iso": "PK", "code": "+92", "zh": "巴基斯坦", "ja": "パキスタン", "en": "Pakistan"}, {"iso": "PW", "code": "+680", "zh": "帕劳", "ja": "パラオ", "en": "Palau"}, {"iso": "PS", "code": "+970", "zh": "巴勒斯坦领土", "ja": "パレスチナ自治区", "en": "Palestinian Territories"}, {"iso": "PA", "code": "+507", "zh": "巴拿马", "ja": "パナマ", "en": "Panama"}, {"iso": "PG", "code": "+675", "zh": "巴布亚新几内亚", "ja": "パプアニューギニア", "en": "Papua New Guinea"}, {"iso": "PY", "code": "+595", "zh": "巴拉圭", "ja": "パラグアイ", "en": "Paraguay"}, {"iso": "PE", "code": "+51", "zh": "秘鲁", "ja": "ペルー", "en": "Peru"}, {"iso": "PH", "code": "+63", "zh": "菲律宾", "ja": "フィリピン", "en": "Philippines"}, {"iso": "PL", "code": "+48", "zh": "波兰", "ja": "ポーランド", "en": "Poland"}, {"iso": "PT", "code": "+351", "zh": "葡萄牙", "ja": "ポルトガル", "en": "Portugal"}, {"iso": "PR", "code": "+1", "zh": "波多黎各", "ja": "プエルトリコ", "en": "Puerto Rico"}, {"iso": "QA", "code": "+974", "zh": "卡塔尔", "ja": "カタール", "en": "Qatar"}, {"iso": "RO", "code": "+40", "zh": "罗马尼亚", "ja": "ルーマニア", "en": "Romania"}, {"iso": "RU", "code": "+7", "zh": "俄罗斯", "ja": "ロシア", "en": "Russia"}, {"iso": "RW", "code": "+250", "zh": "卢旺达", "ja": "ルワンダ", "en": "Rwanda"}, {"iso": "RE", "code": "+262", "zh": "留尼汪", "ja": "レユニオン", "en": "Réunion"}, {"iso": "WS", "code": "+685", "zh": "萨摩亚", "ja": "サモア", "en": "Samoa"}, {"iso": "SM", "code": "+378", "zh": "圣马力诺", "ja": "サンマリノ", "en": "San Marino"}, {"iso": "SA", "code": "+966", "zh": "沙特阿拉伯", "ja": "サウジアラビア", "en": "Saudi Arabia"}, {"iso": "SN", "code": "+221", "zh": "塞内加尔", "ja": "セネガル", "en": "Senegal"}, {"iso": "RS", "code": "+381", "zh": "塞尔维亚", "ja": "セルビア", "en": "Serbia"}, {"iso": "SC", "code": "+248", "zh": "塞舌尔", "ja": "セーシェル", "en": "Seychelles"}, {"iso": "SL", "code": "+232", "zh": "塞拉利昂", "ja": "シエラレオネ", "en": "Sierra Leone"}, {"iso": "SX", "code": "+1", "zh": "荷属圣马丁", "ja": "シント・マールテン", "en": "Sint Maarten"}, {"iso": "SK", "code": "+421", "zh": "斯洛伐克", "ja": "スロバキア", "en": "Slovakia"}, {"iso": "SI", "code": "+386", "zh": "斯洛文尼亚", "ja": "スロベニア", "en": "Slovenia"}, {"iso": "SB", "code": "+677", "zh": "所罗门群岛", "ja": "ソロモン諸島", "en": "Solomon Islands"}, {"iso": "SO", "code": "+252", "zh": "索马里", "ja": "ソマリア", "en": "Somalia"}, {"iso": "ZA", "code": "+27", "zh": "南非", "ja": "南アフリカ", "en": "South Africa"}, {"iso": "SS", "code": "+211", "zh": "南苏丹", "ja": "南スーダン", "en": "South Sudan"}, {"iso": "ES", "code": "+34", "zh": "西班牙", "ja": "スペイン", "en": "Spain"}, {"iso": "LK", "code": "+94", "zh": "斯里兰卡", "ja": "スリランカ", "en": "Sri Lanka"}, {"iso": "BL", "code": "+590", "zh": "圣巴泰勒米", "ja": "サン・バルテルミー", "en": "St. Barthélemy"}, {"iso": "SH", "code": "+290", "zh": "圣赫勒拿", "ja": "セントヘレナ", "en": "St. Helena"}, {"iso": "KN", "code": "+1", "zh": "圣基茨和尼维斯", "ja": "セントクリストファー・ネーヴィス", "en": "St. Kitts & Nevis"}, {"iso": "LC", "code": "+1", "zh": "圣卢西亚", "ja": "セントルシア", "en": "St. Lucia"}, {"iso": "MF", "code": "+590", "zh": "法属圣马丁", "ja": "サン・マルタン", "en": "St. Martin"}, {"iso": "PM", "code": "+508", "zh": "圣皮埃尔和密克隆群岛", "ja": "サンピエール島・ミクロン島", "en": "St. Pierre & Miquelon"}, {"iso": "VC", "code": "+1", "zh": "圣文森特和格林纳丁斯", "ja": "セントビンセント及びグレナディーン諸島", "en": "St. Vincent & Grenadines"}, {"iso": "SD", "code": "+249", "zh": "苏丹", "ja": "スーダン", "en": "Sudan"}, {"iso": "SR", "code": "+597", "zh": "苏里南", "ja": "スリナム", "en": "Suriname"}, {"iso": "SJ", "code": "+47", "zh": "斯瓦尔巴和扬马延", "ja": "スバールバル諸島・ヤンマイエン島", "en": "Svalbard & Jan Mayen"}, {"iso": "SE", "code": "+46", "zh": "瑞典", "ja": "スウェーデン", "en": "Sweden"}, {"iso": "CH", "code": "+41", "zh": "瑞士", "ja": "スイス", "en": "Switzerland"}, {"iso": "SY", "code": "+963", "zh": "叙利亚", "ja": "シリア", "en": "Syria"}, {"iso": "ST", "code": "+239", "zh": "圣多美和普林西比", "ja": "サントメ・プリンシペ", "en": "São Tomé & Príncipe"}, {"iso": "TJ", "code": "+992", "zh": "塔吉克斯坦", "ja": "タジキスタン", "en": "Tajikistan"}, {"iso": "TZ", "code": "+255", "zh": "坦桑尼亚", "ja": "タンザニア", "en": "Tanzania"}, {"iso": "TH", "code": "+66", "zh": "泰国", "ja": "タイ", "en": "Thailand"}, {"iso": "TL", "code": "+670", "zh": "东帝汶", "ja": "東ティモール", "en": "Timor-Leste"}, {"iso": "TG", "code": "+228", "zh": "多哥", "ja": "トーゴ", "en": "Togo"}, {"iso": "TK", "code": "+690", "zh": "托克劳", "ja": "トケラウ", "en": "Tokelau"}, {"iso": "TO", "code": "+676", "zh": "汤加", "ja": "トンガ", "en": "Tonga"}, {"iso": "TT", "code": "+1", "zh": "特立尼达和多巴哥", "ja": "トリニダード・トバゴ", "en": "Trinidad & Tobago"}, {"iso": "TN", "code": "+216", "zh": "突尼斯", "ja": "チュニジア", "en": "Tunisia"}, {"iso": "TM", "code": "+993", "zh": "土库曼斯坦", "ja": "トルクメニスタン", "en": "Turkmenistan"}, {"iso": "TC", "code": "+1", "zh": "特克斯和凯科斯群岛", "ja": "タークス・カイコス諸島", "en": "Turks & Caicos Islands"}, {"iso": "TV", "code": "+688", "zh": "图瓦卢", "ja": "ツバル", "en": "Tuvalu"}, {"iso": "TR", "code": "+90", "zh": "土耳其", "ja": "トルコ", "en": "Türkiye"}, {"iso": "VI", "code": "+1", "zh": "美属维尔京群岛", "ja": "米領ヴァージン諸島", "en": "U.S. Virgin Islands"}, {"iso": "UG", "code": "+256", "zh": "乌干达", "ja": "ウガンダ", "en": "Uganda"}, {"iso": "UA", "code": "+380", "zh": "乌克兰", "ja": "ウクライナ", "en": "Ukraine"}, {"iso": "AE", "code": "+971", "zh": "阿拉伯联合酋长国", "ja": "アラブ首長国連邦", "en": "United Arab Emirates"}, {"iso": "UY", "code": "+598", "zh": "乌拉圭", "ja": "ウルグアイ", "en": "Uruguay"}, {"iso": "UZ", "code": "+998", "zh": "乌兹别克斯坦", "ja": "ウズベキスタン", "en": "Uzbekistan"}, {"iso": "VU", "code": "+678", "zh": "瓦努阿图", "ja": "バヌアツ", "en": "Vanuatu"}, {"iso": "VA", "code": "+39", "zh": "梵蒂冈", "ja": "バチカン市国", "en": "Vatican City"}, {"iso": "VE", "code": "+58", "zh": "委内瑞拉", "ja": "ベネズエラ", "en": "Venezuela"}, {"iso": "VN", "code": "+84", "zh": "越南", "ja": "ベトナム", "en": "Vietnam"}, {"iso": "WF", "code": "+681", "zh": "瓦利斯和富图纳", "ja": "ウォリス・フツナ", "en": "Wallis & Futuna"}, {"iso": "EH", "code": "+212", "zh": "西撒哈拉", "ja": "西サハラ", "en": "Western Sahara"}, {"iso": "YE", "code": "+967", "zh": "也门", "ja": "イエメン", "en": "Yemen"}, {"iso": "ZM", "code": "+260", "zh": "赞比亚", "ja": "ザンビア", "en": "Zambia"}, {"iso": "ZW", "code": "+263", "zh": "津巴布韦", "ja": "ジンバブエ", "en": "Zimbabwe"}, {"iso": "AX", "code": "+358", "zh": "奥兰群岛", "ja": "オーランド諸島", "en": "Åland Islands"}];
@@ -688,6 +675,13 @@
     let verificationCountdown = 0;
     let NEWS_CACHE = null;
     let AUTHENTICATED = false;
+    let TURNSTILE_CONFIG_LOADED = false;
+    let TURNSTILE_ENABLED = false;
+    let TURNSTILE_SITE_KEY = '';
+    let turnstileWidgetId = null;
+    let turnstileToken = '';
+    let turnstileScriptPromise = null;
+    let authRequestPending = false;
 
     const FALLBACK_NEWS = [{
       id: 'launch-fallback',
@@ -715,6 +709,8 @@
       const pack = I18N[CURRENT_LANG] || I18N.zh;
       document.documentElement.lang = CURRENT_LANG === 'zh' ? 'zh-CN' : CURRENT_LANG;
       document.title = pack.title || I18N.zh.title;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription && pack.metaDescription) metaDescription.setAttribute('content', pack.metaDescription);
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (pack[key]) el.textContent = pack[key];
@@ -732,11 +728,16 @@
         const placeholderPack = FORM_PLACEHOLDERS[CURRENT_LANG] || FORM_PLACEHOLDERS.zh;
         if (placeholderPack[key]) el.setAttribute('placeholder', placeholderPack[key]);
       });
-      const select = document.getElementById('langSelect');
-      if (select) select.value = CURRENT_LANG;
+      document.querySelectorAll('.lang-select').forEach(select => { select.value = CURRENT_LANG; });
       localStorage.setItem('jia_site_lang', CURRENT_LANG);
       renderCountryCodes(CURRENT_LANG);
       setMode(mode, true);
+      if (window.turnstile && turnstileWidgetId !== null) {
+        try { window.turnstile.remove(turnstileWidgetId); } catch (e) {}
+        turnstileWidgetId = null;
+        turnstileToken = '';
+        if (document.getElementById('authModal')?.classList.contains('active')) ensureTurnstileWidget().catch(() => {});
+      }
       renderNews();
     }
     function renderCountryCodes(lang = CURRENT_LANG) {
@@ -750,46 +751,154 @@
       }).join('');
       select.value = COUNTRY_CODES.some(item => `${item.iso}|${item.code}` === current) ? current : 'JP|+81';
     }
-    async function apiRequest(path, options = {}) {
-      const response = await fetch(path, {
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
-        ...options
-      });
-      let data = null;
-      try { data = await response.json(); } catch (e) {}
-      if (!response.ok) {
-        const message = data && data.error ? data.error : '请求失败。';
-        throw new Error(message);
+    async function apiRequest(path, options = {}, timeoutMs = 15000) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const response = await fetch(path, {
+          ...options,
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'fetch', ...(options.headers || {}) },
+          signal: options.signal || controller.signal
+        });
+        const contentType = response.headers.get('Content-Type') || '';
+        if (!contentType.toLowerCase().includes('application/json')) {
+          throw new Error('服务器返回了无效响应。');
+        }
+        let data;
+        try { data = await response.json(); } catch (e) { throw new Error('服务器返回了无效响应。'); }
+        if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('服务器返回了无效响应。');
+        if (!response.ok) throw new Error(data.error || '请求失败。');
+        return data;
+      } catch (error) {
+        if (error && error.name === 'AbortError') throw new Error('请求超时，请稍后重试。');
+        throw error;
+      } finally {
+        clearTimeout(timer);
       }
-      return data;
+    }
+
+    async function loadTurnstileConfig() {
+      if (TURNSTILE_CONFIG_LOADED) return;
+      TURNSTILE_CONFIG_LOADED = true;
+      try {
+        const config = await apiRequest('/api/config', { method: 'GET' });
+        TURNSTILE_ENABLED = Boolean(config.turnstileEnabled && config.turnstileSiteKey);
+        TURNSTILE_SITE_KEY = config.turnstileSiteKey || '';
+      } catch (error) {
+        TURNSTILE_CONFIG_LOADED = false;
+        TURNSTILE_ENABLED = false;
+        TURNSTILE_SITE_KEY = '';
+      }
+    }
+
+    function loadTurnstileScript() {
+      if (window.turnstile) return Promise.resolve();
+      if (turnstileScriptPromise) return turnstileScriptPromise;
+      turnstileScriptPromise = new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-jia-turnstile]');
+        if (existing) {
+          existing.addEventListener('load', resolve, { once: true });
+          existing.addEventListener('error', reject, { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.defer = true;
+        script.dataset.jiaTurnstile = '1';
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+      return turnstileScriptPromise;
+    }
+
+    async function ensureTurnstileWidget() {
+      await loadTurnstileConfig();
+      const container = document.getElementById('turnstileContainer');
+      if (!container || !TURNSTILE_ENABLED) {
+        if (container) container.classList.add('hidden');
+        return;
+      }
+      container.classList.remove('hidden');
+      await loadTurnstileScript();
+      if (!window.turnstile) throw new Error('安全验证未完成，请重试。');
+      if (turnstileWidgetId === null) {
+        turnstileWidgetId = window.turnstile.render(container, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: 'light',
+          language: CURRENT_LANG === 'zh' ? 'zh-cn' : CURRENT_LANG,
+          callback: token => { turnstileToken = token || ''; },
+          'expired-callback': () => { turnstileToken = ''; },
+          'error-callback': () => { turnstileToken = ''; }
+        });
+      }
+    }
+
+    function resetTurnstile() {
+      turnstileToken = '';
+      if (window.turnstile && turnstileWidgetId !== null) {
+        try { window.turnstile.reset(turnstileWidgetId); } catch (e) {}
+      }
+    }
+
+    async function securityToken() {
+      await ensureTurnstileWidget();
+      if (TURNSTILE_ENABLED && !turnstileToken) {
+        showMsg('安全验证未完成，请重试。');
+        return null;
+      }
+      return turnstileToken;
     }
     function openAuth(nextMode) {
       setMode(nextMode || 'login');
       renderCountryCodes(CURRENT_LANG);
       document.getElementById('authModal').classList.add('active');
+      ensureTurnstileWidget().catch(() => showMsg('安全验证未完成，请重试。'));
     }
     function closeAuth() {
       document.getElementById('authModal').classList.remove('active');
       showMsg('');
+      resetTurnstile();
     }
     function setMode(nextMode, quiet=false) {
-      mode = nextMode || 'login';
+      mode = ['login','register','reset'].includes(nextMode) ? nextMode : 'login';
       const isRegister = mode === 'register';
+      const isReset = mode === 'reset';
       const loginTab = document.getElementById('loginTab');
       const registerTab = document.getElementById('registerTab');
-      if (loginTab) loginTab.classList.toggle('active', !isRegister);
+      if (loginTab) loginTab.classList.toggle('active', mode === 'login');
       if (registerTab) registerTab.classList.toggle('active', isRegister);
-      ['nameLabel','emailConfirmLabel','phoneGroup','verificationLabel'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle('hidden', !isRegister);
+      document.getElementById('nameLabel')?.classList.toggle('hidden', !isRegister);
+      document.getElementById('emailConfirmLabel')?.classList.toggle('hidden', !isRegister);
+      document.getElementById('phoneGroup')?.classList.toggle('hidden', !isRegister);
+      document.getElementById('verificationLabel')?.classList.toggle('hidden', !(isRegister || isReset));
+      document.getElementById('forgotPasswordBtn')?.classList.toggle('hidden', mode !== 'login');
+      document.getElementById('backToLoginBtn')?.classList.toggle('hidden', !isReset);
+      const required = {
+        fullName: isRegister,
+        emailConfirm: isRegister,
+        phoneNumber: isRegister,
+        verificationCode: isRegister || isReset
+      };
+      Object.entries(required).forEach(([id, value]) => {
+        const field = document.getElementById(id);
+        if (field) field.required = value;
       });
       const authTitle = document.getElementById('authTitle');
       const submitBtn = document.getElementById('submitBtn');
-      if (authTitle) authTitle.textContent = isRegister ? t('registerTitle') : t('loginTitle');
-      if (submitBtn) submitBtn.textContent = isRegister ? t('submitRegister') : t('submitLogin');
+      const password = document.getElementById('password');
+      const passwordLabel = document.getElementById('passwordLabelText');
+      const verificationText = document.getElementById('verificationLabelText');
+      if (authTitle) authTitle.textContent = isRegister ? t('registerTitle') : (isReset ? t('resetTitle') : t('loginTitle'));
+      if (submitBtn) submitBtn.textContent = isRegister ? t('submitRegister') : (isReset ? t('submitReset') : t('submitLogin'));
+      if (passwordLabel) passwordLabel.textContent = isReset ? t('newPasswordLabel') : t('passwordLabel');
+      if (verificationText) verificationText.textContent = isReset ? t('resetVerificationLabel') : t('verificationLabel');
+      if (password) password.autocomplete = isRegister || isReset ? 'new-password' : 'current-password';
       const sendCodeBtn = document.getElementById('sendCodeBtn');
-      if (sendCodeBtn && verificationCountdown <= 0) sendCodeBtn.textContent = t('sendCode');
+      if (sendCodeBtn && verificationCountdown <= 0) sendCodeBtn.textContent = isReset ? t('sendResetCode') : t('sendCode');
+      resetTurnstile();
       if (!quiet) showMsg('');
     }
     function showMsg(text, ok=false) {
@@ -826,17 +935,33 @@
       const emailConfirm = document.getElementById('emailConfirm').value.trim().toLowerCase();
       if (!email) return showMsg('请先输入邮箱。');
       if (!email.includes('@')) return showMsg('请输入有效邮箱地址。');
-      if (emailConfirm && email !== emailConfirm) return showMsg('两次输入的邮箱不一致。');
+      if (mode === 'register' && emailConfirm && email !== emailConfirm) return showMsg('两次输入的邮箱不一致。');
+      const btn = document.getElementById('sendCodeBtn');
+      if (!btn || btn.disabled) return;
+      btn.disabled = true;
       try {
-        await apiRequest('/api/auth/send-code', { method: 'POST', body: JSON.stringify({ email, fullName }) });
-        showMsg('验证码已发送，请检查邮箱。', true);
+        const token = await securityToken();
+        if (token === null) return;
+        const resetMode = mode === 'reset';
+        await apiRequest(resetMode ? '/api/auth/send-reset-code' : '/api/auth/send-code', {
+          method: 'POST',
+          body: JSON.stringify({ email, fullName, turnstileToken: token })
+        });
+        showMsg(resetMode ? '重置验证码已发送，请检查邮箱。' : '验证码已发送，请检查邮箱。', true);
         setCodeButtonCountdown(60);
       } catch (err) {
         showMsg(err.message || '验证码发送失败。');
+      } finally {
+        resetTurnstile();
+        if (verificationCountdown <= 0) {
+          btn.disabled = false;
+          btn.textContent = mode === 'reset' ? t('sendResetCode') : t('sendCode');
+        }
       }
     }
     async function submitAuth(e) {
       e.preventDefault();
+      if (authRequestPending) return;
       const fullName = document.getElementById('fullName').value.trim();
       const email = document.getElementById('email').value.trim().toLowerCase();
       const emailConfirm = document.getElementById('emailConfirm').value.trim().toLowerCase();
@@ -844,7 +969,12 @@
       const verificationCode = document.getElementById('verificationCode').value.trim();
       const phone = getSelectedPhoneCountry();
       const phoneNumber = document.getElementById('phoneNumber').value.trim();
+      const submitBtn = document.getElementById('submitBtn');
+      authRequestPending = true;
+      if (submitBtn) submitBtn.disabled = true;
       try {
+        const token = await securityToken();
+        if (token === null) return;
         if (mode === 'register') {
           if (!fullName || !email || !emailConfirm || !phoneNumber || !verificationCode || !password) {
             return showMsg('请填写姓名、邮箱、确认邮箱、电话、验证码和密码。');
@@ -852,18 +982,32 @@
           if (email !== emailConfirm) return showMsg('两次输入的邮箱不一致。');
           await apiRequest('/api/auth/register', {
             method: 'POST',
-            body: JSON.stringify({ fullName, email, emailConfirm, password, verificationCode, phoneCountryIso: phone.iso, phoneCountryCode: phone.code, phoneNumber })
+            body: JSON.stringify({ fullName, email, emailConfirm, password, verificationCode, phoneCountryIso: phone.iso, phoneCountryCode: phone.code, phoneNumber, turnstileToken: token })
           });
           showMsg('注册成功，已进入会员中心。', true);
           setTimeout(() => { window.location.href = 'member.html'; }, 650);
+        } else if (mode === 'reset') {
+          if (!email || !verificationCode || !password) return showMsg('请输入邮箱、验证码和新密码。');
+          await apiRequest('/api/auth/reset-password', {
+            method: 'POST',
+            body: JSON.stringify({ email, verificationCode, password, turnstileToken: token })
+          });
+          showMsg('密码已更新，请重新登录。', true);
+          document.getElementById('verificationCode').value = '';
+          document.getElementById('password').value = '';
+          setTimeout(() => setMode('login'), 900);
         } else {
           if (!email || !password) return showMsg('请输入邮箱和密码。');
-          await apiRequest('/api/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+          await apiRequest('/api/auth/login', { method: 'POST', body: JSON.stringify({ email, password, turnstileToken: token }) });
           showMsg('登录成功。', true);
           setTimeout(() => { window.location.href = 'member.html'; }, 650);
         }
       } catch (err) {
         showMsg(err.message || '操作失败。');
+      } finally {
+        authRequestPending = false;
+        if (submitBtn) submitBtn.disabled = false;
+        resetTurnstile();
       }
     }
     async function logout() {
@@ -878,15 +1022,17 @@
         user = data.user || null;
       } catch (e) { user = null; }
       AUTHENTICATED = Boolean(user);
-      const loginTop = document.getElementById('loginTop');
-      const registerTop = document.getElementById('registerTop');
-      const memberTop = document.getElementById('memberTop');
-      const logoutTop = document.getElementById('logoutTop');
+      const ids = {
+        login: ['loginTop','mobileLoginTop'],
+        register: ['registerTop','mobileRegisterTop'],
+        member: ['memberTop','mobileMemberTop'],
+        logout: ['logoutTop','mobileLogoutTop']
+      };
+      ids.login.forEach(id => document.getElementById(id)?.classList.toggle('hidden', !!user));
+      ids.register.forEach(id => document.getElementById(id)?.classList.toggle('hidden', !!user));
+      ids.member.forEach(id => document.getElementById(id)?.classList.toggle('hidden', !user));
+      ids.logout.forEach(id => document.getElementById(id)?.classList.toggle('hidden', !user));
       const registerCta = document.getElementById('registerCta');
-      if (loginTop) loginTop.classList.toggle('hidden', !!user);
-      if (registerTop) registerTop.classList.toggle('hidden', !!user);
-      if (memberTop) memberTop.classList.toggle('hidden', !user);
-      if (logoutTop) logoutTop.classList.toggle('hidden', !user);
       if (registerCta) registerCta.classList.toggle('hidden', !!user);
     }
     function newsTitle(item) {
@@ -920,7 +1066,8 @@
       const list = document.getElementById('newsList');
       if (!list) return;
       const items = NEWS_CACHE && NEWS_CACHE.length ? NEWS_CACHE : FALLBACK_NEWS;
-      const cards = items.map(item => {
+      const visibleItems = AUTHENTICATED ? items : items.filter(item => item.visibility !== 'members');
+      const cards = visibleItems.map(item => {
         const isMember = item.visibility === 'members';
         const label = isMember ? t('memberNews') : t('publicNews');
         return `<article class="news-card"><div class="news-meta"><span>${formatDate(item.publishedAt || item.date)}</span><span class="badge">${escapeHtml(label)}</span></div><h3>${escapeHtml(newsTitle(item))}</h3><p>${escapeHtml(newsBody(item))}</p></article>`;
@@ -940,8 +1087,32 @@
       }
       renderNews();
     }
+
+    function toggleMobileNav(force) {
+      const panel = document.getElementById('mobileNav');
+      const button = document.getElementById('menuToggle');
+      if (!panel || !button) return;
+      const shouldOpen = typeof force === 'boolean' ? force : !panel.classList.contains('open');
+      panel.classList.toggle('open', shouldOpen);
+      button.setAttribute('aria-expanded', String(shouldOpen));
+      button.setAttribute('aria-label', shouldOpen ? t('closeMenu') : t('mobileMenu'));
+    }
+    document.querySelectorAll('#mobileNav a, #mobileNav button').forEach(control => control.addEventListener('click', () => toggleMobileNav(false)));
+    document.getElementById('authModal')?.addEventListener('click', event => {
+      if (event.target.id === 'authModal') closeAuth();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeAuth();
+        toggleMobileNav(false);
+      }
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1080) toggleMobileNav(false);
+    });
     setLanguage(CURRENT_LANG);
     renderSession().then(loadNews);
+
   </script>
 </body>
 </html>

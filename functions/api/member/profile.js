@@ -1,4 +1,15 @@
-import { currentUser, d1Error, getDB, json, readJson } from "../../_utils.js";
+import {
+  ApiError,
+  assertSameOrigin,
+  currentUser,
+  enforceRateLimits,
+  ensureCoreSchema,
+  getDB,
+  handleError,
+  json,
+  readJson,
+  requireSecurityEnv,
+} from "../../_utils.js";
 
 const PROFILE_COLUMNS = [
   "display_name",
@@ -11,53 +22,33 @@ const PROFILE_COLUMNS = [
   "biography",
 ];
 
-const PROFILE_COLUMN_DEFINITIONS = {
-  display_name: "TEXT",
-  name_en: "TEXT",
-  nationality: "TEXT",
-  residence_country: "TEXT",
-  occupation: "TEXT",
-  noble_title_status: "TEXT",
-  honours_record_status: "TEXT",
-  biography: "TEXT",
-};
-
-async function ensureProfileTable(db) {
-  await db.prepare(`
-    CREATE TABLE IF NOT EXISTS member_profiles (
-      user_id TEXT PRIMARY KEY,
-      display_name TEXT,
-      name_en TEXT,
-      nationality TEXT,
-      residence_country TEXT,
-      occupation TEXT,
-      noble_title_status TEXT,
-      honours_record_status TEXT,
-      biography TEXT,
-      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY(user_id) REFERENCES users(id)
-    )
-  `).run();
-
-  // If the site already used the older profile table, add the new columns without deleting data.
-  const info = await db.prepare("PRAGMA table_info(member_profiles)").all();
-  const existing = new Set((info.results || []).map((row) => row.name));
-  for (const column of PROFILE_COLUMNS) {
-    if (!existing.has(column)) {
-      await db.prepare(`ALTER TABLE member_profiles ADD COLUMN ${column} ${PROFILE_COLUMN_DEFINITIONS[column]}`).run();
-    }
+function cleanText(value, maxLength, code) {
+  const text = String(value || "").trim().replace(/\r\n/g, "\n");
+  if (!text || text.length > maxLength || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(text)) {
+    throw new ApiError(400, code, "请完整填写正式会员资料，并检查字段长度。");
   }
+  return text;
 }
 
-function cleanText(value, maxLength = 1000) {
+function cleanChoice(value, code) {
   const text = String(value || "").trim();
-  return text.length > maxLength ? text.slice(0, maxLength) : text;
+  if (!["yes", "no", "undisclosed"].includes(text)) {
+    throw new ApiError(400, code, "请完整填写正式会员资料。");
+  }
+  return text;
 }
 
-function cleanChoice(value) {
-  const text = String(value || "").trim();
-  return ["yes", "no", "undisclosed"].includes(text) ? text : "";
+function cleanProfile(body) {
+  return {
+    display_name: cleanText(body.displayName, 160, "INVALID_DISPLAY_NAME"),
+    name_en: cleanText(body.nameEn, 160, "INVALID_ENGLISH_NAME"),
+    nationality: cleanText(body.nationality, 120, "INVALID_NATIONALITY"),
+    residence_country: cleanText(body.residenceCountry, 120, "INVALID_RESIDENCE"),
+    occupation: cleanText(body.occupation, 160, "INVALID_OCCUPATION"),
+    noble_title_status: cleanChoice(body.nobleTitleStatus, "INVALID_NOBLE_STATUS"),
+    honours_record_status: cleanChoice(body.honoursRecordStatus, "INVALID_HONOURS_STATUS"),
+    biography: cleanText(body.biography, 350, "INVALID_BIOGRAPHY"),
+  };
 }
 
 function profileFromRow(row) {
@@ -76,83 +67,54 @@ function profileFromRow(row) {
   };
 }
 
-function cleanProfile(body) {
-  return {
-    display_name: cleanText(body.displayName, 160),
-    name_en: cleanText(body.nameEn, 160),
-    nationality: cleanText(body.nationality, 120),
-    residence_country: cleanText(body.residenceCountry, 120),
-    occupation: cleanText(body.occupation, 160),
-    noble_title_status: cleanChoice(body.nobleTitleStatus),
-    honours_record_status: cleanChoice(body.honoursRecordStatus),
-    biography: cleanText(body.biography, 350),
-  };
-}
-
-function isCompleteProfile(profile) {
-  return PROFILE_COLUMNS.every((column) => Boolean(profile[column]));
-}
-
 export async function onRequestGet({ request, env }) {
   try {
     const user = await currentUser(request, env);
-    if (!user) return json({ error: "请先登录。" }, 401);
-
+    if (!user) throw new ApiError(401, "AUTH_REQUIRED", "请先登录。");
     const db = getDB(env);
-    await ensureProfileTable(db);
-
-    const row = await db.prepare(
-      `SELECT ${PROFILE_COLUMNS.join(", ")}, created_at, updated_at FROM member_profiles WHERE user_id = ?`
-    ).bind(user.id).first();
-
+    await ensureCoreSchema(db);
+    const row = await db.prepare(`
+      SELECT ${PROFILE_COLUMNS.join(", ")}, created_at, updated_at
+      FROM member_profiles WHERE user_id = ?
+    `).bind(user.id).first();
     return json({ profile: profileFromRow(row) });
   } catch (error) {
-    const e = d1Error(error);
-    return json({ error: e.message || "读取失败。" }, 500);
+    return handleError(error, "会员资料读取失败，请稍后再试。", "member/profile:get");
   }
 }
 
 export async function onRequestPost({ request, env }) {
   try {
+    assertSameOrigin(request, env);
+    requireSecurityEnv(env);
     const user = await currentUser(request, env);
-    if (!user) return json({ error: "请先登录。" }, 401);
-
+    if (!user) throw new ApiError(401, "AUTH_REQUIRED", "请先登录。");
     const db = getDB(env);
-    await ensureProfileTable(db);
-
-    const body = await readJson(request);
-    if (!body) return json({ error: "请求格式不正确。" }, 400);
-
+    await ensureCoreSchema(db);
+    await enforceRateLimits(db, env, request, "save-profile", [
+      { scope: "user-1h", value: user.id, limit: 30, windowSeconds: 60 * 60 },
+    ]);
+    const body = await readJson(request, { maxBytes: 24 * 1024 });
     const profile = cleanProfile(body);
-    if (!isCompleteProfile(profile)) return json({ error: "请完整填写正式会员资料。" }, 400);
-    if ((body.biography || "").trim().length > 350) return json({ error: "个人简介不能超过 350 字。" }, 400);
-
     const now = new Date().toISOString();
     const values = PROFILE_COLUMNS.map((column) => profile[column]);
-    const updateAssignments = PROFILE_COLUMNS.map((column) => `${column} = excluded.${column}`).join(", ");
-
-    await db.prepare(
-      `INSERT INTO member_profiles (
-        user_id, ${PROFILE_COLUMNS.join(", ")}, created_at, updated_at
-      ) VALUES (
-        ?, ${PROFILE_COLUMNS.map(() => "?").join(", ")}, ?, ?
-      )
-      ON CONFLICT(user_id) DO UPDATE SET
-        ${updateAssignments},
-        updated_at = excluded.updated_at`
-    ).bind(user.id, ...values, now, now).run();
-
-    await db.prepare("UPDATE users SET member_status = ?, updated_at = ? WHERE id = ?")
-      .bind("正式会员", now, user.id)
-      .run();
-
-    const row = await db.prepare(
-      `SELECT ${PROFILE_COLUMNS.join(", ")}, created_at, updated_at FROM member_profiles WHERE user_id = ?`
-    ).bind(user.id).first();
-
+    const updates = PROFILE_COLUMNS.map((column) => `${column} = excluded.${column}`).join(", ");
+    await db.batch([
+      db.prepare(`
+        INSERT INTO member_profiles (
+          user_id, ${PROFILE_COLUMNS.join(", ")}, created_at, updated_at
+        ) VALUES (?, ${PROFILE_COLUMNS.map(() => "?").join(", ")}, ?, ?)
+        ON CONFLICT(user_id) DO UPDATE SET ${updates}, updated_at = excluded.updated_at
+      `).bind(user.id, ...values, now, now),
+      db.prepare("UPDATE users SET member_status = ?, updated_at = ? WHERE id = ?")
+        .bind("正式会员", now, user.id),
+    ]);
+    const row = await db.prepare(`
+      SELECT ${PROFILE_COLUMNS.join(", ")}, created_at, updated_at
+      FROM member_profiles WHERE user_id = ?
+    `).bind(user.id).first();
     return json({ ok: true, profile: profileFromRow(row), memberStatus: "正式会员" });
   } catch (error) {
-    const e = d1Error(error);
-    return json({ error: e.message || "保存失败。" }, 500);
+    return handleError(error, "会员资料保存失败，请稍后再试。", "member/profile:post");
   }
 }

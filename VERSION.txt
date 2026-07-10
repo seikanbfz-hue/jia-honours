@@ -1,0 +1,4 @@
+Jia Honours complete one-click repair package
+Version: 2026-07-10-v57
+Base: jia-honours-ja-copy-preview-full
+Frontend overlay: jia-honours-v56-language-design-overlay

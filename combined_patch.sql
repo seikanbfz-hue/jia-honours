@@ -1,7 +1,36 @@
--- Combined D1 patch for Jia Honours latest overlay.
--- Safe to run manually in Cloudflare D1 Console. Existing users are preserved.
+-- Non-destructive D1 patch for an existing Jia Honours database.
+-- Safe to re-run. Missing legacy users/email-code columns are added automatically by
+-- functions/_utils.js on the first API request because SQLite has no portable
+-- "ADD COLUMN IF NOT EXISTS" statement.
 
--- Formal member profile table / fields
+CREATE TABLE IF NOT EXISTS sessions (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  token_hash TEXT NOT NULL UNIQUE,
+  ip_hash TEXT,
+  user_agent_hash TEXT,
+  created_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  last_seen_at TEXT,
+  revoked_at TEXT,
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id, expires_at);
+CREATE INDEX IF NOT EXISTS idx_sessions_token ON sessions(token_hash);
+CREATE INDEX IF NOT EXISTS idx_sessions_expiry ON sessions(expires_at);
+
+CREATE TABLE IF NOT EXISTS rate_limits (
+  action TEXT NOT NULL,
+  key_hash TEXT NOT NULL,
+  window_start INTEGER NOT NULL,
+  count INTEGER NOT NULL DEFAULT 0,
+  expires_at INTEGER NOT NULL,
+  PRIMARY KEY(action, key_hash, window_start)
+);
+
+CREATE INDEX IF NOT EXISTS idx_rate_limits_expiry ON rate_limits(expires_at);
+
 CREATE TABLE IF NOT EXISTS member_profiles (
   user_id TEXT PRIMARY KEY,
   display_name TEXT,
@@ -14,10 +43,9 @@ CREATE TABLE IF NOT EXISTS member_profiles (
   biography TEXT,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY(user_id) REFERENCES users(id)
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Site news table
 CREATE TABLE IF NOT EXISTS site_news (
   id TEXT PRIMARY KEY,
   visibility TEXT NOT NULL DEFAULT 'public',
@@ -34,7 +62,13 @@ CREATE TABLE IF NOT EXISTS site_news (
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX IF NOT EXISTS idx_site_news_visibility ON site_news(visibility, is_published, published_at);
+CREATE INDEX IF NOT EXISTS idx_site_news_visibility
+  ON site_news(visibility, is_published, published_at);
+
+CREATE TABLE IF NOT EXISTS app_migrations (
+  name TEXT PRIMARY KEY,
+  applied_at TEXT NOT NULL
+);
 
 INSERT INTO site_news (
   id, visibility, title_zh, title_ja, title_en,
@@ -43,25 +77,30 @@ INSERT INTO site_news (
 ) VALUES (
   'news_20260608_launch',
   'public',
-  '贾氏勋赏官网正式上线',
-  '賈氏勲賞公式サイト公開のお知らせ',
-  'Jia Honours Official Website Launches',
-  '自今日起，贾氏勋赏官网正式上线。本网站将作为贾氏勋章制度、家门礼仪、名誉头衔、会员事务与相关通知的公开整理平台，持续记录制度建设、文化承继与公益交流的进展。
-
-感谢各位的关注与支持。网站初建，仍有需要完善之处；若您在浏览过程中发现内容、文字、排版或功能上的不足，欢迎通过官方邮箱 jia.honours@gmail.com 与我们联系。我们将认真参考来信意见，逐步完善网站内容与会员服务。',
-  '本日、賈氏勲賞公式サイトを公開いたしました。本サイトでは、賈氏勲章制度、家門儀礼、名誉称号、会員に関するお知らせを整理し、制度整備、文化継承、公益交流の歩みを順次記録してまいります。
-
-ご関心をお寄せくださる皆様に、心より御礼申し上げます。開設初期につき、表記、内容、レイアウト、機能面で至らない点が残る場合がございます。お気づきの点がございましたら、公式連絡先 jia.honours@gmail.com までお知らせください。いただいたご意見を参考に、サイト内容と会員向けサービスを整えてまいります。',
-  'The Jia Honours official website is now formally online. This website will serve as the official platform for presenting the Jia honours system, family ceremonial framework, honorary titles, membership matters, and related notices, while recording the continuing development of the institution, cultural continuity, and public-service exchange.
-
-We sincerely thank all visitors for their attention and support. As the website has just been launched, there will still be areas to refine. If you notice any issue regarding content, wording, layout, or functionality, please contact us at jia.honours@gmail.com. We will review feedback carefully and continue improving the website and member services step by step.',
+  '贾氏勋章官方网站正式上线',
+  '賈氏勲章公式サイト開設のお知らせ',
+  'Launch of the Jia Honours Official Website',
+  '贾氏勋章官方网站于2026年7月9日正式上线。愿本站成为记录礼仪、传达谢意、延续文化与联结友谊的长期窗口。感谢各界持续关注。网站仍在逐步完善，如有建议或发现疏漏，敬请通过官方邮箱联系大龙凤勋章评议会。',
+  '賈氏勲章公式サイトを2026年7月9日に正式開設いたしました。本サイトが、儀礼を記録し、感謝を伝え、文化を受け継ぎ、友好を育むための継続的な窓口となることを願っております。今後ともご関心をお寄せいただければ幸いです。お気づきの点やご意見がございましたら、公式メールを通じて大龍鳳章評議会までお寄せください。',
+  'The Jia Honours official website was formally launched on 9 July 2026. May it serve as a lasting place to record ceremony, convey gratitude, sustain cultural traditions and strengthen friendship. We welcome your continued interest. As the website develops, comments and corrections may be sent to the Council of the Order of the Great Dragon and Phoenix through the official email address.',
   1,
   1,
-  '2026-06-08',
+  '2026-07-09',
   CURRENT_TIMESTAMP,
   CURRENT_TIMESTAMP
 )
 ON CONFLICT(id) DO UPDATE SET
+  visibility = 'public',
+  title_zh = excluded.title_zh,
   title_ja = excluded.title_ja,
+  title_en = excluded.title_en,
+  body_zh = excluded.body_zh,
   body_ja = excluded.body_ja,
+  body_en = excluded.body_en,
+  is_published = 1,
+  is_pinned = 1,
+  published_at = excluded.published_at,
   updated_at = CURRENT_TIMESTAMP;
+
+INSERT OR IGNORE INTO app_migrations (name, applied_at)
+VALUES ('2026-07-09-v56-launch-news', CURRENT_TIMESTAMP);
