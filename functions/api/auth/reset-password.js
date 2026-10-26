@@ -7,6 +7,7 @@ import {
   handleError,
   hashPassword,
   json,
+  MAX_VERIFICATION_ATTEMPTS,
   readJson,
   requireSecurityEnv,
   validateEmail,
@@ -48,15 +49,25 @@ export async function onRequestPost({ request, env }) {
           AND EXISTS (
             SELECT 1 FROM email_verification_codes
             WHERE id = ? AND used_at IS NULL
+              AND COALESCE(attempt_count, 0) < ?
+              AND julianday(expires_at) > julianday(?)
           )
-      `).bind(passwordHash, now, now, user.id, codeRow.id),
-      db.prepare("UPDATE email_verification_codes SET used_at = ? WHERE id = ? AND used_at IS NULL")
-        .bind(now, codeRow.id),
-      db.prepare("UPDATE sessions SET revoked_at = ? WHERE user_id = ? AND revoked_at IS NULL")
-        .bind(now, user.id),
+      `).bind(passwordHash, now, now, user.id, codeRow.id, MAX_VERIFICATION_ATTEMPTS, now),
+      db.prepare(`
+        UPDATE email_verification_codes SET used_at = ?
+        WHERE id = ? AND used_at IS NULL
+          AND EXISTS (SELECT 1 FROM users WHERE id = ? AND password_hash = ?)
+      `).bind(now, codeRow.id, user.id, passwordHash),
+      // A concurrent reset can consume the code after verification. Only revoke
+      // sessions if this transaction actually installed this freshly salted hash.
+      db.prepare(`
+        UPDATE sessions SET revoked_at = ? WHERE user_id = ? AND revoked_at IS NULL
+          AND EXISTS (SELECT 1 FROM users WHERE id = ? AND password_hash = ?)
+      `).bind(now, user.id, user.id, passwordHash),
     ]);
     const passwordChanges = Number(results[0] && results[0].meta && results[0].meta.changes);
-    if (Number.isFinite(passwordChanges) && passwordChanges !== 1) {
+    const codeChanges = Number(results[1] && results[1].meta && results[1].meta.changes);
+    if ((Number.isFinite(passwordChanges) && passwordChanges !== 1) || (Number.isFinite(codeChanges) && codeChanges !== 1)) {
       throw new ApiError(409, "VERIFICATION_CODE_USED", "验证码已失效，请重新获取。");
     }
 

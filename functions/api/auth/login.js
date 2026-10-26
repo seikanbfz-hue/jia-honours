@@ -46,7 +46,7 @@ export async function onRequestPost({ request, env }) {
     }
     if (!result.ok) throw new ApiError(401, "INVALID_CREDENTIALS", "邮箱或密码不正确。");
 
-    const token = await createSession(row.id, request, env, db);
+    const token = await createSession(row.id, request, env, db, row.password_hash);
     await db.prepare("UPDATE users SET last_login_at = ?, updated_at = ? WHERE id = ?")
       .bind(new Date().toISOString(), new Date().toISOString(), row.id)
       .run();

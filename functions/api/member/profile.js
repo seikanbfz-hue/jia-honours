@@ -23,7 +23,7 @@ const PROFILE_COLUMNS = [
 ];
 
 function cleanText(value, maxLength, code) {
-  const text = String(value || "").trim().replace(/\r\n/g, "\n");
+  const text = typeof value === "string" ? value.trim().replace(/\r\n/g, "\n") : "";
   if (!text || text.length > maxLength || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(text)) {
     throw new ApiError(400, code, "请完整填写正式会员资料，并检查字段长度。");
   }
@@ -31,7 +31,7 @@ function cleanText(value, maxLength, code) {
 }
 
 function cleanChoice(value, code) {
-  const text = String(value || "").trim();
+  const text = typeof value === "string" ? value.trim() : "";
   if (!["yes", "no", "undisclosed"].includes(text)) {
     throw new ApiError(400, code, "请完整填写正式会员资料。");
   }
@@ -96,19 +96,32 @@ export async function onRequestPost({ request, env }) {
     ]);
     const body = await readJson(request, { maxBytes: 24 * 1024 });
     const profile = cleanProfile(body);
-    const now = new Date().toISOString();
+    const hasExpectedVersion = body.expectedUpdatedAt !== undefined;
+    if (hasExpectedVersion && (typeof body.expectedUpdatedAt !== "string" || body.expectedUpdatedAt.length > 64)) {
+      throw new ApiError(400, "INVALID_PROFILE_VERSION", "资料版本无效，请刷新页面后重试。");
+    }
+    const expectedUpdatedAt = hasExpectedVersion ? body.expectedUpdatedAt : "";
+    const expectedTime = Date.parse(expectedUpdatedAt);
+    // Keep the version distinct even when two saves happen in one millisecond.
+    const now = new Date(Math.max(Date.now(), Number.isFinite(expectedTime) ? expectedTime + 1 : 0)).toISOString();
     const values = PROFILE_COLUMNS.map((column) => profile[column]);
     const updates = PROFILE_COLUMNS.map((column) => `${column} = excluded.${column}`).join(", ");
-    await db.batch([
+    const results = await db.batch([
       db.prepare(`
         INSERT INTO member_profiles (
           user_id, ${PROFILE_COLUMNS.join(", ")}, created_at, updated_at
-        ) VALUES (?, ${PROFILE_COLUMNS.map(() => "?").join(", ")}, ?, ?)
+        ) SELECT ?, ${PROFILE_COLUMNS.map(() => "?").join(", ")}, ?, ?
+        WHERE ? = 0 OR ? = '' OR EXISTS (SELECT 1 FROM member_profiles WHERE user_id = ?)
         ON CONFLICT(user_id) DO UPDATE SET ${updates}, updated_at = excluded.updated_at
-      `).bind(user.id, ...values, now, now),
-      db.prepare("UPDATE users SET member_status = ?, updated_at = ? WHERE id = ?")
+        WHERE ? = 0 OR COALESCE(member_profiles.updated_at, '') = ?
+      `).bind(user.id, ...values, now, now, hasExpectedVersion ? 1 : 0, expectedUpdatedAt,
+        user.id, hasExpectedVersion ? 1 : 0, expectedUpdatedAt),
+      db.prepare("UPDATE users SET member_status = ?, updated_at = ? WHERE id = ? AND changes() = 1")
         .bind("正式会员", now, user.id),
     ]);
+    if (Number(results[0] && results[0].meta && results[0].meta.changes) === 0) {
+      throw new ApiError(409, "PROFILE_CONFLICT", "资料已在其他页面更新，请重新读取后再保存。");
+    }
     const row = await db.prepare(`
       SELECT ${PROFILE_COLUMNS.join(", ")}, created_at, updated_at
       FROM member_profiles WHERE user_id = ?

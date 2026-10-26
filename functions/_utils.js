@@ -6,7 +6,7 @@ const LEGACY_SESSION_COOKIE_NAME = "jia_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 const PASSWORD_PBKDF2_ITERATIONS = 100000;
 const MAX_PBKDF2_ITERATIONS = 100000;
-const MAX_VERIFICATION_ATTEMPTS = 5;
+export const MAX_VERIFICATION_ATTEMPTS = 5;
 const schemaPromises = new WeakMap();
 
 const LAUNCH_NEWS = {
@@ -302,11 +302,7 @@ async function applyLaunchNewsMigration(db) {
         id, visibility, title_zh, title_ja, title_en, body_zh, body_ja, body_en,
         is_published, is_pinned, published_at, created_at, updated_at
       ) VALUES (?, 'public', ?, ?, ?, ?, ?, ?, 1, 1, ?, ?, ?)
-      ON CONFLICT(id) DO UPDATE SET
-        visibility = 'public', title_zh = excluded.title_zh, title_ja = excluded.title_ja,
-        title_en = excluded.title_en, body_zh = excluded.body_zh, body_ja = excluded.body_ja,
-        body_en = excluded.body_en, is_published = 1, is_pinned = 1,
-        published_at = excluded.published_at, updated_at = excluded.updated_at
+      ON CONFLICT(id) DO NOTHING
     `).bind(
       LAUNCH_NEWS.id,
       LAUNCH_NEWS.titleZh,
@@ -342,6 +338,9 @@ export function normalizeEmail(value) {
 }
 
 export function validateEmail(value) {
+  if (typeof value !== "string") {
+    throw new ApiError(400, "INVALID_EMAIL", "请输入有效邮箱地址。");
+  }
   const email = normalizeEmail(value);
   if (email.length < 3 || email.length > 254) {
     throw new ApiError(400, "INVALID_EMAIL", "请输入有效邮箱地址。");
@@ -354,7 +353,11 @@ export function validateEmail(value) {
 }
 
 export function validateFullName(value, { optional = false } = {}) {
-  const name = String(value || "").trim().replace(/\s+/g, " ");
+  if (optional && (value === undefined || value === null)) return "";
+  if (typeof value !== "string") {
+    throw new ApiError(400, "INVALID_NAME", "请输入有效姓名。");
+  }
+  const name = value.trim().replace(/\s+/g, " ");
   if (!name && optional) return "";
   if (!name || name.length > 160 || /[\u0000-\u001f\u007f]/.test(name)) {
     throw new ApiError(400, "INVALID_NAME", "请输入有效姓名。");
@@ -363,15 +366,14 @@ export function validateFullName(value, { optional = false } = {}) {
 }
 
 export function validatePassword(value) {
-  const password = String(value || "");
-  if (password.length < 8 || password.length > 128) {
+  if (typeof value !== "string" || value.length < 8 || value.length > 128) {
     throw new ApiError(400, "INVALID_PASSWORD", "密码长度需要为 8 至 128 位。");
   }
-  return password;
+  return value;
 }
 
 export function validateVerificationCode(value) {
-  const code = String(value || "").trim();
+  const code = typeof value === "string" ? value.trim() : "";
   if (!/^\d{6}$/.test(code)) {
     throw new ApiError(400, "INVALID_VERIFICATION_CODE", "验证码应为 6 位数字。");
   }
@@ -379,9 +381,9 @@ export function validateVerificationCode(value) {
 }
 
 export function validatePhone({ iso, countryCode, number }) {
-  const phoneCountryIso = String(iso || "").trim().toUpperCase();
-  const phoneCountryCode = String(countryCode || "").trim();
-  const rawNumber = String(number || "").trim();
+  const phoneCountryIso = typeof iso === "string" ? iso.trim().toUpperCase() : "";
+  const phoneCountryCode = typeof countryCode === "string" ? countryCode.trim() : "";
+  const rawNumber = typeof number === "string" ? number.trim() : "";
   if (!/^[A-Z]{2}$/.test(phoneCountryIso) || !/^\+\d{1,4}$/.test(phoneCountryCode)) {
     throw new ApiError(400, "INVALID_PHONE", "请选择有效的国家或地区电话区号。");
   }
@@ -551,7 +553,7 @@ export function clearSessionCookies() {
   ];
 }
 
-export async function createSession(userId, request, env, db) {
+export async function createSession(userId, request, env, db, expectedPasswordHash = null) {
   requireSecurityEnv(env);
   await ensureCoreSchema(db);
   const token = randomToken(32);
@@ -565,10 +567,17 @@ export async function createSession(userId, request, env, db) {
   await db.prepare("DELETE FROM sessions WHERE expires_at <= ?")
     .bind(createdAt)
     .run();
-  await db.prepare(`
+  // Check the credential version inside the insert so a concurrent password
+  // reset cannot be followed by a new session authenticated with the old hash.
+  const result = await db.prepare(`
     INSERT INTO sessions (id, user_id, token_hash, ip_hash, user_agent_hash, created_at, expires_at, last_seen_at, revoked_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL)
-  `).bind(randomId("ses"), userId, tokenHash, ipHash, userAgentHash, createdAt, expiresAt, createdAt).run();
+    SELECT ?, ?, ?, ?, ?, ?, ?, ?, NULL
+    FROM users WHERE id = ? AND (? IS NULL OR password_hash = ?)
+  `).bind(randomId("ses"), userId, tokenHash, ipHash, userAgentHash, createdAt, expiresAt, createdAt,
+    userId, expectedPasswordHash, expectedPasswordHash).run();
+  if (Number(result && result.meta && result.meta.changes) === 0) {
+    throw new ApiError(401, "INVALID_CREDENTIALS", "邮箱或密码不正确。");
+  }
   await db.prepare(`
     UPDATE sessions
     SET revoked_at = ?
@@ -786,12 +795,13 @@ export async function verifyEmailCode(db, env, { email, code, purpose }) {
   }
   const expected = await hashVerificationCode(email, code, purpose, env);
   if (!constantTimeEqual(expected, row.code_hash)) {
-    const attempts = Number(row.attempt_count || 0) + 1;
+    // Increment in SQL so concurrent wrong guesses cannot overwrite one another.
     await db.prepare(`
       UPDATE email_verification_codes
-      SET attempt_count = ?, used_at = CASE WHEN ? >= ? THEN ? ELSE used_at END
-      WHERE id = ?
-    `).bind(attempts, attempts, MAX_VERIFICATION_ATTEMPTS, new Date().toISOString(), row.id).run();
+      SET attempt_count = COALESCE(attempt_count, 0) + 1,
+          used_at = CASE WHEN COALESCE(attempt_count, 0) + 1 >= ? THEN ? ELSE used_at END
+      WHERE id = ? AND used_at IS NULL AND COALESCE(attempt_count, 0) < ?
+    `).bind(MAX_VERIFICATION_ATTEMPTS, new Date().toISOString(), row.id, MAX_VERIFICATION_ATTEMPTS).run();
     throw new ApiError(400, "VERIFICATION_CODE_INVALID", "验证码不正确、已过期或已失效。");
   }
   return row;

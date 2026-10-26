@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="贾氏勋章官方网站会员中心，用于会员账户与资料管理。"><meta name="theme-color" content="#2b0910"><link rel="icon" href="assets/logo.png" type="image/png"><title>会员中心｜贾氏勋章官方网站</title><style>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="贾氏勋章官方网站会员中心，用于会员账户与资料管理。"><meta name="theme-color" content="#2b0910"><link rel="icon" href="assets/crest-small.webp" type="image/webp"><title>会员中心｜贾氏勋章官方网站</title><style>
     :root{--ivory:#f7f0df;--paper:#fffdf7;--paper-deep:#efe0be;--ink:#21170f;--muted:#6d5f4e;--navy:#08233f;--navy-deep:#04172b;--wine:#6d2026;--gold:#b48732;--gold-light:#dfc06b;--line:#d7c397;--success:#236b4a;--danger:#a92d24;--shadow:0 22px 64px rgba(54,36,14,.1);--serif:ui-serif,"Songti SC","Noto Serif CJK SC","Source Han Serif SC","SimSun",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Noto Sans SC","Noto Sans JP","PingFang SC",Arial,sans-serif}
     *{box-sizing:border-box}::selection{background:rgba(180,135,50,.26);color:var(--ink)}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:var(--serif);line-height:1.78;background:linear-gradient(180deg,#fbf6e9,#f6ecd5 48%,#faf5e8)}body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.2;background-image:radial-gradient(circle at 20% 30%,rgba(91,57,22,.13) 0 .65px,transparent .8px),radial-gradient(circle at 70% 65%,rgba(91,57,22,.09) 0 .55px,transparent .75px);background-size:11px 11px,17px 17px}html[lang="ja"] body{font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",var(--serif)}html[lang="en"] body{font-family:Georgia,"Times New Roman",serif}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}.sans{font-family:var(--sans)}.wrap{width:min(1120px,calc(100% - 44px));margin:0 auto}.hidden{display:none!important}
     .ceremonial-bar{background:linear-gradient(90deg,#401015,#6d2026,#401015);color:#f6e7c2;font:600 11px/1.4 var(--sans);letter-spacing:.1em}.ceremonial-bar .wrap{min-height:34px;display:flex;justify-content:space-between;align-items:center;gap:18px}.site-header{position:sticky;top:0;z-index:70;background:rgba(250,245,232,.94);border-bottom:1px solid rgba(183,135,50,.35);backdrop-filter:blur(18px)}.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px;min-width:210px}.brand-mark{width:49px;height:49px;flex:0 0 auto;border:1px solid rgba(180,132,45,.55);border-radius:50%;background:radial-gradient(circle,#fff,#f6e9c9);display:grid;place-items:center}.brand-mark img{width:38px;height:38px;object-fit:contain}.brand-title{display:block;font-size:17px;font-weight:800;letter-spacing:.08em;line-height:1.2}.brand-sub{display:block;margin-top:3px;color:var(--muted);font:500 10.5px/1.35 var(--sans)}.navlinks{display:flex;gap:18px;align-items:center;color:#554839;font:650 13px var(--sans)}.navlinks a:hover{color:var(--wine)}.nav-actions{display:flex;gap:8px;align-items:center}.lang-select{border:1px solid var(--line);border-radius:999px;background:#fffaf0;color:#5d4c39;padding:9px 10px;font:600 12px var(--sans)}.btn{border:1px solid transparent;border-radius:999px;padding:10px 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font:750 13px var(--sans);cursor:pointer;transition:.2s ease;white-space:nowrap}.btn:hover{transform:translateY(-1px)}.btn.primary,.btn:not(.ghost):not(.light){color:#fff;background:linear-gradient(180deg,var(--navy),var(--navy-deep));box-shadow:0 11px 24px rgba(8,35,63,.18)}.btn.gold{background:linear-gradient(180deg,#c49a42,#9d7123);color:#fff}.btn.ghost,.btn.light{background:#fffaf0;border-color:var(--line);color:#3e3124;box-shadow:none}.btn.square{border-radius:11px;padding:13px 18px}.mobile-lang,.mobile-menu{display:none}.mobile-nav-panel{display:none;border-top:1px solid rgba(183,135,50,.28);background:#fbf4e5;padding:12px 14px 16px}.mobile-nav-panel.open{display:none}.mobile-nav-panel .links{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mobile-nav-panel a,.mobile-nav-panel button{border:1px solid rgba(183,135,50,.3);border-radius:10px;background:#fffaf0;padding:10px;text-align:center;font:700 12px var(--sans);color:#3e3124}.mobile-nav-panel .account-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.member-menu-toggle{display:none}
@@ -11,14 +11,98 @@
     .modal{display:none;position:fixed;inset:0;z-index:120;align-items:flex-start;justify-content:center;overflow:auto;padding:24px 18px;background:rgba(4,23,43,.72);backdrop-filter:blur(8px)}.modal.active{display:flex}.modal-card{width:min(560px,100%);max-height:calc(100vh - 48px);overflow:auto;border:1px solid var(--line);border-radius:20px;background:#fffaf0;box-shadow:0 32px 110px rgba(0,0,0,.35)}.modal-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:25px;border-bottom:1px solid var(--line);background:radial-gradient(circle at top right,rgba(180,135,50,.27),transparent 42%),#fff7e6}.modal-head h3{margin:7px 0 0;font-size:27px}.close{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:#fff;cursor:pointer;font-size:22px}.form{padding:25px}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:14px;padding:5px;border-radius:12px;background:#ead9b8}.tab{border:0;border-radius:9px;background:transparent;padding:11px;cursor:pointer;color:#75624b;font:850 13px var(--sans)}.tab.active{background:#fffaf0;color:#1f150e}.form label{display:block;margin:0 0 15px;color:#4d3e2e;font:750 13px var(--sans)}.form input,.form .field-select{margin-top:7px}.verification-row{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:center}.verification-row input{margin-top:0}.code-btn{min-width:132px;border-radius:11px;padding:12px}#phoneGroup{display:grid;grid-template-columns:1fr 1fr;gap:13px;align-items:end}#phoneGroup.hidden{display:none!important}.auth-links{display:flex;justify-content:center;gap:12px;margin:0 0 16px;font:700 12px var(--sans)}.text-action{border:0;background:transparent;color:var(--navy);padding:6px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}.turnstile-wrap{display:flex;justify-content:center;min-height:65px;margin:2px 0 15px}.muted-note,.policy-links{margin:13px 0 0;text-align:center;color:#746653;font:400 12px/1.65 var(--sans)}.policy-links a{color:var(--navy);font-weight:700;text-decoration:underline;text-underline-offset:3px}
     @media(max-width:1080px){.navlinks,.nav-actions{display:none}.mobile-lang,.mobile-menu,.member-menu-toggle{display:block}.mobile-nav-panel.open{display:block}.mobile-menu{padding:9px 12px}.mobile-lang{width:86px;max-width:86px;flex:0 0 auto}.mobile-lang,.member-menu-toggle{min-height:44px}.member-menu-toggle{min-width:44px}.member-grid,.login-panel{grid-template-columns:1fr}.account-card{position:static}.footer-grid{grid-template-columns:1fr}.footer-meta{text-align:left}}
     @media(max-width:680px){.wrap{width:min(100% - 28px,1120px)}.ceremonial-bar .wrap{min-height:30px;justify-content:center;text-align:center}.ceremonial-bar span:first-child{display:none}.nav{min-height:67px;gap:7px}.brand{min-width:0;flex:1;gap:8px}.brand-mark{width:41px;height:41px}.brand-mark img{width:32px;height:32px}.brand-title{font-size:13px;letter-spacing:.03em;white-space:nowrap}.brand-sub{display:none}.mobile-lang{max-width:78px;padding:7px 5px;font-size:10.5px;min-height:44px}.mobile-menu{font-size:11px;min-width:44px;min-height:44px}.mobile-nav-panel a,.mobile-nav-panel button{min-height:44px}.member-hero{padding:42px 0 34px}.member-hero h1{font-size:39px}.member-hero p{font-size:14.5px}.member-section{padding:36px 0 58px}.panel,.account-card,.profile-card{border-radius:14px;padding:21px}.panel h2{font-size:29px}.panel-actions{display:grid}.panel-actions .btn{width:100%}.access-note{padding:19px}.profile-head h2{font-size:27px}.profile-grid{grid-template-columns:1fr}.profile-grid label.full{grid-column:auto}.profile-actions{display:grid}.profile-actions .btn{width:100%;white-space:normal;line-height:1.35}.account-row{align-items:flex-start}.account-row b{max-width:58%}#phoneGroup,.verification-row{grid-template-columns:1fr}.code-btn{width:100%}.modal{padding:12px}.modal-card{max-height:calc(100vh - 24px);border-radius:16px}.modal-head,.form{padding:21px}}
-</style><link rel="stylesheet" href="assets/roman-imperial.css?v=58"></head>
+</style><link rel="stylesheet" href="assets/roman-imperial.css?v=58"><link rel="stylesheet" href="assets/refinement.css?v=20261026"><link rel="canonical" href="https://www.jia-honours.com/member.html"></head>
 <body>
   <div class="ceremonial-bar"><div class="wrap"><span>Member Area · Jia Honours</span><span>jia.honours@gmail.com</span></div></div>
-  <header class="site-header"><div class="wrap nav"><a class="brand" href="index.html#top"><span class="brand-mark"><img src="assets/logo.png" data-i18n-alt="logoAlt" alt="贾氏勋章标志"></span><span><span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span><span class="brand-sub" data-i18n="brandSub">大龙凤章 · 龙凤章</span></span></a><nav class="navlinks sans"><a href="index.html#top" data-i18n="navHome">首页</a><a href="index.html#origin" data-i18n="navOrigin">历史渊源</a><a href="index.html#honours" data-i18n="navHonours">勋章制度</a><a href="index.html#titles" data-i18n="navTitles">名誉称号</a><a href="index.html#news" data-i18n="navNews">新闻公告</a><a href="contact.html" data-i18n="navContact">联系方式</a></nav><div class="nav-actions sans"><select class="lang-select" id="langSelect" onchange="setLanguage(this.value, true)" aria-label="Language"><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select><button class="btn ghost" id="loginTop" onclick="openAuth('login')" data-i18n="login">登录</button><button class="btn gold" id="registerTop" onclick="openAuth('register')" data-i18n="register">注册</button><a class="btn ghost hidden" id="memberTop" href="member.html" data-i18n="navMember">会员中心</a><button class="btn ghost hidden" id="logoutTop" onclick="logout()" data-i18n="logout">退出</button></div><select class="lang-select mobile-lang" id="mobileLangSelect" onchange="setLanguage(this.value, true)" aria-label="Language"><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select><button class="btn ghost mobile-menu member-menu-toggle" id="memberMenuToggle" type="button" onclick="toggleMemberMobileNav()" aria-expanded="false">☰</button></div><div class="mobile-nav-panel" id="memberMobileNav"><div class="links"><a href="index.html#top" data-i18n="navHome">首页</a><a href="index.html#origin" data-i18n="navOrigin">历史渊源</a><a href="index.html#honours" data-i18n="navHonours">勋章制度</a><a href="index.html#titles" data-i18n="navTitles">名誉称号</a><a href="index.html#news" data-i18n="navNews">新闻公告</a><a href="contact.html" data-i18n="navContact">联系方式</a></div><div class="account-actions"><button id="mobileLoginTop" onclick="openAuth('login')" data-i18n="login">登录</button><button id="mobileRegisterTop" onclick="openAuth('register')" data-i18n="register">注册</button><a class="hidden" id="mobileMemberTop" href="member.html" data-i18n="navMember">会员中心</a><button class="hidden" id="mobileLogoutTop" onclick="logout()" data-i18n="logout">退出</button></div></div></header>
-  <main><section class="member-hero"><div class="wrap"><div class="kicker">Member Area</div><h1 data-i18n="memberTitle">会员中心</h1><p data-i18n="memberLead">会员中心用于账户管理、会员资料登记与内部联络。</p></div></section><section class="member-section"><div class="wrap"><div id="memberLoggedOut" class="login-panel"><article class="panel"><div class="kicker">Member Access</div><h2 data-i18n="loggedOutTitle">登录后管理会员资料</h2><p data-i18n="loggedOutText">完成注册并登录后，可以登记或修改会员资料、查看账户状态。</p><div class="panel-actions"><button class="btn primary square" onclick="openAuth('register')" data-i18n="registerAccountShort">注册账户</button><button class="btn ghost square" onclick="openAuth('login')" data-i18n="memberLogin">会员登录</button></div></article><div class="access-notes"><article class="access-note"><b data-i18n="accessPoint1Title">账户安全</b><span data-i18n="accessPoint1Text">登录状态通过安全 Cookie 维持。</span></article><article class="access-note"><b data-i18n="accessPoint2Title">资料登记</b><span data-i18n="accessPoint2Text">资料仅用于会员管理与活动联络。</span></article></div></div><div id="memberLoggedIn" class="member-grid hidden"><aside class="account-card"><div class="account-emblem">会</div><div class="kicker" style="margin-top:18px" data-i18n="accountSummary">账户概况</div><h2 id="profileName">会员姓名</h2><p class="account-email" id="profileEmail"></p><div class="account-rows"><div class="account-row"><span data-i18n="memberRoleLabel">会员类别</span><b id="profileRole" data-i18n="roleMember">注册会员</b></div><div class="account-row"><span data-i18n="memberStatusLabel">账户状态</span><b id="profileStatus" data-i18n="statusPending">待完善资料</b></div><div class="account-row"><span data-i18n="memberDateLabel">注册日期</span><b id="profileDate">-</b></div></div><button class="btn ghost square" onclick="logout()" data-i18n="logoutAccount">退出登录</button></aside><article class="profile-card member-profile-form sans"><div class="profile-head"><div><div class="kicker" data-i18n="profileFormEyebrow">Member Profile</div><h2 data-i18n="profileFormTitle">正式会员资料</h2><p data-i18n="profileFormLead">填写并保存以下资料后，账户状态将更新为正式会员。</p></div></div><div class="msg" id="profileFormMsg" aria-live="polite"></div><form id="memberProfileForm" onsubmit="saveMemberProfile(event)"><div class="profile-notice" data-i18n="profileFormNotice">目前大龙凤章及龙凤章不接受以取得荣誉为目的的个人自行申请。</div><div class="profile-grid"><label><span data-i18n="profileDisplayName">姓名</span><input id="mpDisplayName" type="text" autocomplete="name" required></label><label><span data-i18n="profileNameEn">英文姓名</span><input id="mpNameEn" type="text" autocomplete="name" required></label><label><span data-i18n="profileNationality">国籍</span><input id="mpNationality" type="text" required></label><label><span data-i18n="profileResidenceCountry">现居住国家</span><input id="mpResidenceCountry" type="text" required></label><label><span data-i18n="profileOccupation">职业</span><input id="mpOccupation" type="text" required></label><label><span data-i18n="profileNobleTitleStatus">是否持有贵族头衔</span><select id="mpNobleTitleStatus" class="field-select" required><option value="" data-i18n="profileSelectPlaceholder">请选择</option><option value="yes" data-i18n="profileYes">有</option><option value="no" data-i18n="profileNo">无</option><option value="undisclosed" data-i18n="profileUndisclosed">不便公开</option></select></label><label><span data-i18n="profileHonoursRecordStatus">是否具有受勋经历</span><select id="mpHonoursRecordStatus" class="field-select" required><option value="" data-i18n="profileSelectPlaceholder">请选择</option><option value="yes" data-i18n="profileYes">有</option><option value="no" data-i18n="profileNo">无</option><option value="undisclosed" data-i18n="profileUndisclosed">不便公开</option></select></label><label class="full"><span data-i18n="profileBiography">个人简介（350字以内）</span><textarea id="mpBiography" maxlength="350" oninput="updateBioCount()" required></textarea><small class="profile-note" id="profileBioCount">0 / 350</small></label></div><div class="profile-actions"><button class="btn primary square" type="submit" id="profileSaveBtn" data-i18n="profileSaveButton">保存并完成正式会员登记</button><button class="btn ghost square hidden" type="button" id="profileEditBtn" onclick="enableMemberProfileEdit()" data-i18n="profileEditButton">修改资料</button><span class="profile-note" id="profileUpdatedAt"></span></div></form></article></div></div></section></main>
-  <footer class="footer"><div class="wrap footer-grid"><a href="index.html#top" class="brand"><span class="brand-mark"><img src="assets/logo.png" alt=""></span><span><span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span><span class="brand-sub">Member Area</span></span></a><div class="footer-meta"><strong data-i18n="footerOffice">大龙凤勋章评议会</strong><br><a href="mailto:jia.honours@gmail.com">jia.honours@gmail.com</a><small data-i18n="footerCopyright">© 2026 贾氏勋章官方网站。版权所有。</small></div></div></footer>
-  <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal-card"><div class="modal-head"><div><div class="kicker">Member Access</div><h3 id="authTitle">会员登录</h3></div><button class="close" type="button" onclick="closeAuth()" aria-label="Close">×</button></div><div class="form"><div class="tabs"><button class="tab active" type="button" id="loginTab" onclick="setMode('login')" data-i18n="login">登录</button><button class="tab" type="button" id="registerTab" onclick="setMode('register')" data-i18n="register">注册</button></div><div class="auth-links"><button class="text-action" type="button" id="forgotPasswordBtn" onclick="setMode('reset')" data-i18n="forgotPassword">忘记密码？</button><button class="text-action hidden" type="button" id="backToLoginBtn" onclick="setMode('login')" data-i18n="backToLogin">返回登录</button></div><div class="msg" id="authMsg" aria-live="polite"></div><form onsubmit="submitAuth(event)"><label id="nameLabel" class="hidden"><span data-i18n="profileDisplayName">姓名</span><input id="fullName" type="text" maxlength="160" autocomplete="name" data-i18n-placeholder="placeholderFullName"></label><label><span data-i18n="emailLabel">电子邮箱</span><input id="email" type="email" maxlength="254" autocomplete="email" placeholder="name@example.com" required></label><label id="emailConfirmLabel" class="hidden"><span data-i18n="emailConfirmLabel">再次确认邮箱</span><input id="emailConfirm" type="email" maxlength="254" autocomplete="email" data-i18n-placeholder="placeholderConfirmEmail"></label><div id="phoneGroup" class="hidden"><label><span data-i18n="phoneCountryLabel">国家／地区区号</span><select id="phoneCountryCode" class="field-select"></select></label><label><span data-i18n="phoneNumberLabel">电话号码</span><input id="phoneNumber" type="tel" maxlength="24" autocomplete="tel-national" data-i18n-placeholder="placeholderPhoneNumber"></label></div><label id="verificationLabel" class="hidden"><span id="verificationLabelText" data-i18n="verificationLabel">邮箱验证码</span><div class="verification-row"><input id="verificationCode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" data-i18n-placeholder="placeholderVerificationCode"><button class="btn ghost code-btn" type="button" id="sendCodeBtn" onclick="sendVerificationCode()" data-i18n="sendCode">发送验证码</button></div></label><label><span id="passwordLabelText" data-i18n="passwordLabel">密码</span><input id="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" data-i18n-placeholder="placeholderPassword" required></label><div class="turnstile-wrap hidden" id="turnstileContainer" aria-live="polite"></div><button class="btn primary square" style="width:100%" type="submit" id="submitBtn">登录</button></form><p class="muted-note" data-i18n="authSecurityNote">注册资料仅用于账户验证、会员联络与网站安全。</p><p class="policy-links"><a href="privacy.html" data-i18n="privacyLink">隐私说明</a><span aria-hidden="true"> · </span><a href="terms.html" data-i18n="termsLink">会员使用说明</a></p></div></div></div>
+  <header class="site-header"><div class="wrap nav"><a class="brand" href="index.html#top"><span class="brand-mark"><img src="assets/crest-small.webp" width="160" height="160" data-i18n-alt="logoAlt" alt="贾氏勋章标志"></span><span><span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span><span class="brand-sub" data-i18n="brandSub">大龙凤章 · 龙凤章</span></span></a><nav class="navlinks sans"><a href="index.html#top" data-i18n="navHome">首页</a><a href="index.html#origin" data-i18n="navOrigin">历史渊源</a><a href="index.html#honours" data-i18n="navHonours">勋章制度</a><a href="index.html#titles" data-i18n="navTitles">名誉称号</a><a href="index.html#news" data-i18n="navNews">新闻公告</a><a href="contact.html" data-i18n="navContact">联系方式</a></nav><div class="nav-actions sans"><select class="lang-select" id="langSelect" onchange="setLanguage(this.value, true)" aria-label="Language"><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select><button class="btn ghost" id="loginTop" onclick="openAuth('login')" data-i18n="login">登录</button><button class="btn gold" id="registerTop" onclick="openAuth('register')" data-i18n="register">注册</button><a class="btn ghost hidden" id="memberTop" href="member.html" data-i18n="navMember">会员中心</a><button class="btn ghost hidden" id="logoutTop" onclick="logout()" data-i18n="logout">退出</button></div><select class="lang-select mobile-lang" id="mobileLangSelect" onchange="setLanguage(this.value, true)" aria-label="Language"><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select><button class="btn ghost mobile-menu member-menu-toggle" id="memberMenuToggle" aria-controls="memberMobileNav" type="button" onclick="toggleMemberMobileNav()" aria-expanded="false">☰</button></div><div class="mobile-nav-panel" id="memberMobileNav"><div class="links"><a href="index.html#top" data-i18n="navHome">首页</a><a href="index.html#origin" data-i18n="navOrigin">历史渊源</a><a href="index.html#honours" data-i18n="navHonours">勋章制度</a><a href="index.html#titles" data-i18n="navTitles">名誉称号</a><a href="index.html#news" data-i18n="navNews">新闻公告</a><a href="contact.html" data-i18n="navContact">联系方式</a></div><div class="account-actions"><button id="mobileLoginTop" onclick="openAuth('login')" data-i18n="login">登录</button><button id="mobileRegisterTop" onclick="openAuth('register')" data-i18n="register">注册</button><a class="hidden" id="mobileMemberTop" href="member.html" data-i18n="navMember">会员中心</a><button class="hidden" id="mobileLogoutTop" onclick="logout()" data-i18n="logout">退出</button></div></div></header>
+  <div id="sessionMsg" class="wrap msg" role="status" aria-live="polite"></div>
+  <main><section class="member-hero"><div class="wrap"><div class="kicker">Member Area</div><h1 data-i18n="memberTitle">会员中心</h1><p data-i18n="memberLead">会员中心用于账户管理、会员资料登记与内部联络。</p></div></section><section class="member-section"><div class="wrap"><div id="memberLoggedOut" class="login-panel"><article class="panel"><div class="kicker">Member Access</div><h2 data-i18n="loggedOutTitle">登录后管理会员资料</h2><p data-i18n="loggedOutText">完成注册并登录后，可以登记或修改会员资料、查看账户状态。</p><div class="panel-actions"><button class="btn primary square" onclick="openAuth('register')" data-i18n="registerAccountShort">注册账户</button><button class="btn ghost square" onclick="openAuth('login')" data-i18n="memberLogin">会员登录</button></div></article><div class="access-notes"><article class="access-note"><b data-i18n="accessPoint1Title">账户安全</b><span data-i18n="accessPoint1Text">登录状态通过安全 Cookie 维持。</span></article><article class="access-note"><b data-i18n="accessPoint2Title">资料登记</b><span data-i18n="accessPoint2Text">资料仅用于会员管理与活动联络。</span></article></div></div><div id="memberLoggedIn" class="member-grid hidden"><aside class="account-card"><div class="account-emblem" aria-hidden="true">会</div><div class="kicker" style="margin-top:18px" data-i18n="accountSummary">账户概况</div><h2 id="profileName">会员姓名</h2><p class="account-email" id="profileEmail"></p><div class="account-rows"><div class="account-row"><span data-i18n="memberRoleLabel">会员类别</span><b id="profileRole">注册会员</b></div><div class="account-row"><span data-i18n="memberStatusLabel">账户状态</span><b id="profileStatus">待完善资料</b></div><div class="account-row"><span data-i18n="memberDateLabel">注册日期</span><b id="profileDate">-</b></div></div><button class="btn ghost square" onclick="logout()" data-i18n="logoutAccount">退出登录</button></aside><article class="profile-card member-profile-form sans"><div class="profile-head"><div><div class="kicker" data-i18n="profileFormEyebrow">Member Profile</div><h2 data-i18n="profileFormTitle">正式会员资料</h2><p data-i18n="profileFormLead">填写并保存以下资料后，账户状态将更新为正式会员。</p></div></div><div class="msg" id="profileFormMsg" aria-live="polite"></div><form id="memberProfileForm" onsubmit="saveMemberProfile(event)"><div class="profile-notice" data-i18n="profileFormNotice">目前大龙凤章及龙凤章不接受以取得荣誉为目的的个人自行申请。</div><div class="profile-grid"><label><span data-i18n="profileDisplayName">姓名</span><input id="mpDisplayName" type="text" autocomplete="name" required></label><label><span data-i18n="profileNameEn">英文姓名</span><input id="mpNameEn" type="text" autocomplete="name" required></label><label><span data-i18n="profileNationality">国籍</span><input id="mpNationality" type="text" required></label><label><span data-i18n="profileResidenceCountry">现居住国家</span><input id="mpResidenceCountry" type="text" required></label><label><span data-i18n="profileOccupation">职业</span><input id="mpOccupation" type="text" required></label><label><span data-i18n="profileNobleTitleStatus">是否持有贵族头衔</span><select id="mpNobleTitleStatus" class="field-select" required><option value="" data-i18n="profileSelectPlaceholder">请选择</option><option value="yes" data-i18n="profileYes">有</option><option value="no" data-i18n="profileNo">无</option><option value="undisclosed" data-i18n="profileUndisclosed">不便公开</option></select></label><label><span data-i18n="profileHonoursRecordStatus">是否具有受勋经历</span><select id="mpHonoursRecordStatus" class="field-select" required><option value="" data-i18n="profileSelectPlaceholder">请选择</option><option value="yes" data-i18n="profileYes">有</option><option value="no" data-i18n="profileNo">无</option><option value="undisclosed" data-i18n="profileUndisclosed">不便公开</option></select></label><label class="full"><span data-i18n="profileBiography">个人简介（350字以内）</span><textarea id="mpBiography" maxlength="350" oninput="updateBioCount()" required></textarea><small class="profile-note" id="profileBioCount">0 / 350</small></label></div><div class="profile-actions"><button class="btn primary square" type="submit" id="profileSaveBtn" data-i18n="profileSaveButton">保存并完成正式会员登记</button><button class="btn ghost square hidden" type="button" id="profileEditBtn" onclick="enableMemberProfileEdit()" data-i18n="profileEditButton">修改资料</button><button class="btn ghost square hidden" type="button" id="profileReloadBtn" onclick="loadMemberProfile()" data-i18n="profileReload">重新读取资料</button><span class="profile-note" id="profileUpdatedAt"></span></div></form></article></div></div></section></main>
+  <footer class="footer"><div class="wrap footer-grid"><a href="index.html#top" class="brand"><span class="brand-mark"><img src="assets/crest-small.webp" width="160" height="160" alt=""></span><span><span class="brand-title" data-i18n="brandTitle">贾氏勋章官网</span><span class="brand-sub">Member Area</span></span></a><div class="footer-meta"><strong data-i18n="footerOffice">大龙凤勋章评议会</strong><br><a href="mailto:jia.honours@gmail.com">jia.honours@gmail.com</a><small data-i18n="footerCopyright">© 2026 贾氏勋章官方网站。版权所有。</small></div></div></footer>
+  <div class="modal" id="authModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal-card"><div class="modal-head"><div><div class="kicker">Member Access</div><h3 id="authTitle">会员登录</h3></div><button class="close" type="button" onclick="closeAuth()" aria-label="关闭对话框" data-auth-close>×</button></div><div class="form"><div class="tabs"><button class="tab active" type="button" id="loginTab" onclick="setMode('login')" data-i18n="login">登录</button><button class="tab" type="button" id="registerTab" onclick="setMode('register')" data-i18n="register">注册</button></div><div class="auth-links"><button class="text-action" type="button" id="forgotPasswordBtn" onclick="setMode('reset')" data-i18n="forgotPassword">忘记密码？</button><button class="text-action hidden" type="button" id="backToLoginBtn" onclick="setMode('login')" data-i18n="backToLogin">返回登录</button></div><div class="msg" id="authMsg" aria-live="polite"></div><form onsubmit="submitAuth(event)"><label id="nameLabel" class="hidden"><span data-i18n="profileDisplayName">姓名</span><input id="fullName" type="text" maxlength="160" autocomplete="name" data-i18n-placeholder="placeholderFullName"></label><label><span data-i18n="emailLabel">电子邮箱</span><input id="email" type="email" maxlength="254" autocomplete="email" placeholder="name@example.com" required></label><label id="emailConfirmLabel" class="hidden"><span data-i18n="emailConfirmLabel">再次确认邮箱</span><input id="emailConfirm" type="email" maxlength="254" autocomplete="email" data-i18n-placeholder="placeholderConfirmEmail"></label><div id="phoneGroup" class="hidden"><label><span data-i18n="phoneCountryLabel">国家／地区区号</span><select id="phoneCountryCode" class="field-select"></select></label><label><span data-i18n="phoneNumberLabel">电话号码</span><input id="phoneNumber" type="tel" maxlength="24" autocomplete="tel-national" data-i18n-placeholder="placeholderPhoneNumber"></label></div><label id="verificationLabel" class="hidden"><span id="verificationLabelText" data-i18n="verificationLabel">邮箱验证码</span><div class="verification-row"><input id="verificationCode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" data-i18n-placeholder="placeholderVerificationCode"><button class="btn ghost code-btn" type="button" id="sendCodeBtn" onclick="sendVerificationCode()" data-i18n="sendCode">发送验证码</button></div></label><label><span id="passwordLabelText" data-i18n="passwordLabel">密码</span><input id="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" data-i18n-placeholder="placeholderPassword" required></label><div class="turnstile-wrap hidden" id="turnstileContainer" aria-live="polite"></div><button class="btn primary square" style="width:100%" type="submit" id="submitBtn">登录</button></form><p class="muted-note" data-i18n="authSecurityNote">注册资料仅用于账户验证、会员联络与网站安全。</p><p class="policy-links"><a href="privacy.html" data-i18n="privacyLink">隐私说明</a><span aria-hidden="true"> · </span><a href="terms.html" data-i18n="termsLink">会员使用说明</a></p></div></div></div>
   <script>
+
+    // Keep language switching available when browser storage is unavailable.
+    let siteLanguage = 'zh';
+    try { siteLanguage = localStorage.getItem('jia_site_lang') || 'zh'; } catch (_) {}
+    if (!['zh', 'ja', 'en'].includes(siteLanguage)) siteLanguage = 'zh';
+    function readSiteLanguage() { return siteLanguage; }
+    function writeSiteLanguage(lang) {
+      siteLanguage = ['zh', 'ja', 'en'].includes(lang) ? lang : 'zh';
+      try { localStorage.setItem('jia_site_lang', siteLanguage); } catch (_) {}
+    }
+
+    function formatMemberDate(value, includeTime = false) {
+      const raw = typeof value === 'string' ? value.trim() : '';
+      if (!/^\d{4}-\d{2}-\d{2}(?:[T ]\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?)?$/.test(raw)) return '—';
+      const calendarDay = raw.slice(0, 10);
+      const calendarDate = new Date(calendarDay + 'T00:00:00Z');
+      if (Number.isNaN(calendarDate.getTime()) || calendarDate.toISOString().slice(0, 10) !== calendarDay) return '—';
+      const dateOnly = raw.length === 10;
+      // SQLite's unzoned timestamps are UTC; calendar-only dates retain their day.
+      const normalized = dateOnly ? calendarDay + 'T00:00:00Z' : raw.replace(' ', 'T') + (/(?:Z|[+-]\d{2}:?\d{2})$/.test(raw) ? '' : 'Z');
+      const date = new Date(normalized);
+      if (Number.isNaN(date.getTime())) return '—';
+      const locale = { zh: 'zh-CN', ja: 'ja-JP', en: 'en-GB' }[readSiteLanguage()];
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      if (dateOnly) options.timeZone = 'UTC';
+      else if (includeTime) { options.hour = '2-digit'; options.minute = '2-digit'; }
+      return new Intl.DateTimeFormat(locale, options).format(date);
+    }
+
+    let authReturnFocus = null;
+    let authBackground = [];
+    let authBodyOverflow = '';
+    let authCodePending = false;
+    function activateAuthDialog() {
+      const modal = document.getElementById('authModal');
+      if (!modal.classList.contains('active')) {
+        authReturnFocus = document.activeElement;
+        authBodyOverflow = document.body.style.overflow;
+        authBackground = Array.from(document.body.children)
+          .filter(el => el !== modal && !['SCRIPT', 'STYLE'].includes(el.tagName))
+          .map(el => ({ el, inert: el.inert }));
+        authBackground.forEach(({ el }) => { el.inert = true; });
+      }
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.getElementById(mode === 'register' ? 'fullName' : 'email')?.focus();
+    }
+    function deactivateAuthDialog() {
+      const modal = document.getElementById('authModal');
+      if (!modal.classList.contains('active')) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      authBackground.forEach(({ el, inert }) => { el.inert = inert; });
+      authBackground = [];
+      document.body.style.overflow = authBodyOverflow;
+      const returnTarget = [authReturnFocus, document.getElementById('memberMenuToggle'), document.getElementById('menuToggle'), document.getElementById('loginTop')].find(el => el?.isConnected && el.getClientRects().length);
+      returnTarget?.focus();
+      document.getElementById('password').value = '';
+      document.getElementById('verificationCode').value = '';
+    }
+    function refreshAuthBusy() {
+      const busy = authRequestPending || authCodePending;
+      ['loginTab', 'registerTab', 'forgotPasswordBtn', 'backToLoginBtn', 'submitBtn'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.disabled = busy;
+      });
+      document.getElementById('authModal').setAttribute('aria-busy', String(busy));
+    }
+    document.addEventListener('keydown', event => {
+      const modal = document.getElementById('authModal');
+      if (event.key !== 'Tab' || !modal.classList.contains('active')) return;
+      const controls = Array.from(modal.querySelectorAll('a[href], button, input, select, textarea, iframe, [tabindex]'))
+        .filter(el => !el.disabled && el.tabIndex >= 0 && el.getClientRects().length);
+      const first = controls[0], last = controls[controls.length - 1];
+      if (!first) return;
+      if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+        event.preventDefault(); first.focus();
+      }
+    });
+
 
     const I18N = {
       zh: {
@@ -272,7 +356,7 @@
 
     const COUNTRY_CODES = [{"iso": "JP", "code": "+81", "zh": "日本", "ja": "日本", "en": "Japan"}, {"iso": "CN", "code": "+86", "zh": "中国", "ja": "中国", "en": "China"}, {"iso": "US", "code": "+1", "zh": "美国", "ja": "アメリカ合衆国", "en": "United States"}, {"iso": "HK", "code": "+852", "zh": "中国香港特别行政区", "ja": "中華人民共和国香港特別行政区", "en": "Hong Kong SAR China"}, {"iso": "MO", "code": "+853", "zh": "中国澳门特别行政区", "ja": "中華人民共和国マカオ特別行政区", "en": "Macao SAR China"}, {"iso": "TW", "code": "+886", "zh": "台湾", "ja": "台湾", "en": "Taiwan"}, {"iso": "KR", "code": "+82", "zh": "韩国", "ja": "韓国", "en": "South Korea"}, {"iso": "SG", "code": "+65", "zh": "新加坡", "ja": "シンガポール", "en": "Singapore"}, {"iso": "GB", "code": "+44", "zh": "英国", "ja": "イギリス", "en": "United Kingdom"}, {"iso": "FR", "code": "+33", "zh": "法国", "ja": "フランス", "en": "France"}, {"iso": "DE", "code": "+49", "zh": "德国", "ja": "ドイツ", "en": "Germany"}, {"iso": "IT", "code": "+39", "zh": "意大利", "ja": "イタリア", "en": "Italy"}, {"iso": "AU", "code": "+61", "zh": "澳大利亚", "ja": "オーストラリア", "en": "Australia"}, {"iso": "CA", "code": "+1", "zh": "加拿大", "ja": "カナダ", "en": "Canada"}, {"iso": "AF", "code": "+93", "zh": "阿富汗", "ja": "アフガニスタン", "en": "Afghanistan"}, {"iso": "AL", "code": "+355", "zh": "阿尔巴尼亚", "ja": "アルバニア", "en": "Albania"}, {"iso": "DZ", "code": "+213", "zh": "阿尔及利亚", "ja": "アルジェリア", "en": "Algeria"}, {"iso": "AS", "code": "+1", "zh": "美属萨摩亚", "ja": "米領サモア", "en": "American Samoa"}, {"iso": "AD", "code": "+376", "zh": "安道尔", "ja": "アンドラ", "en": "Andorra"}, {"iso": "AO", "code": "+244", "zh": "安哥拉", "ja": "アンゴラ", "en": "Angola"}, {"iso": "AI", "code": "+1", "zh": "安圭拉", "ja": "アンギラ", "en": "Anguilla"}, {"iso": "AG", "code": "+1", "zh": "安提瓜和巴布达", "ja": "アンティグア・バーブーダ", "en": "Antigua & Barbuda"}, {"iso": "AR", "code": "+54", "zh": "阿根廷", "ja": "アルゼンチン", "en": "Argentina"}, {"iso": "AM", "code": "+374", "zh": "亚美尼亚", "ja": "アルメニア", "en": "Armenia"}, {"iso": "AW", "code": "+297", "zh": "阿鲁巴", "ja": "アルバ", "en": "Aruba"}, {"iso": "AT", "code": "+43", "zh": "奥地利", "ja": "オーストリア", "en": "Austria"}, {"iso": "AZ", "code": "+994", "zh": "阿塞拜疆", "ja": "アゼルバイジャン", "en": "Azerbaijan"}, {"iso": "BS", "code": "+1", "zh": "巴哈马", "ja": "バハマ", "en": "Bahamas"}, {"iso": "BH", "code": "+973", "zh": "巴林", "ja": "バーレーン", "en": "Bahrain"}, {"iso": "BD", "code": "+880", "zh": "孟加拉国", "ja": "バングラデシュ", "en": "Bangladesh"}, {"iso": "BB", "code": "+1", "zh": "巴巴多斯", "ja": "バルバドス", "en": "Barbados"}, {"iso": "BY", "code": "+375", "zh": "白俄罗斯", "ja": "ベラルーシ", "en": "Belarus"}, {"iso": "BE", "code": "+32", "zh": "比利时", "ja": "ベルギー", "en": "Belgium"}, {"iso": "BZ", "code": "+501", "zh": "伯利兹", "ja": "ベリーズ", "en": "Belize"}, {"iso": "BJ", "code": "+229", "zh": "贝宁", "ja": "ベナン", "en": "Benin"}, {"iso": "BM", "code": "+1", "zh": "百慕大", "ja": "バミューダ", "en": "Bermuda"}, {"iso": "BT", "code": "+975", "zh": "不丹", "ja": "ブータン", "en": "Bhutan"}, {"iso": "BO", "code": "+591", "zh": "玻利维亚", "ja": "ボリビア", "en": "Bolivia"}, {"iso": "BA", "code": "+387", "zh": "波斯尼亚和黑塞哥维那", "ja": "ボスニア・ヘルツェゴビナ", "en": "Bosnia & Herzegovina"}, {"iso": "BW", "code": "+267", "zh": "博茨瓦纳", "ja": "ボツワナ", "en": "Botswana"}, {"iso": "BR", "code": "+55", "zh": "巴西", "ja": "ブラジル", "en": "Brazil"}, {"iso": "IO", "code": "+246", "zh": "英属印度洋领地", "ja": "英領インド洋地域", "en": "British Indian Ocean Territory"}, {"iso": "VG", "code": "+1", "zh": "英属维尔京群岛", "ja": "英領ヴァージン諸島", "en": "British Virgin Islands"}, {"iso": "BN", "code": "+673", "zh": "文莱", "ja": "ブルネイ", "en": "Brunei"}, {"iso": "BG", "code": "+359", "zh": "保加利亚", "ja": "ブルガリア", "en": "Bulgaria"}, {"iso": "BF", "code": "+226", "zh": "布基纳法索", "ja": "ブルキナファソ", "en": "Burkina Faso"}, {"iso": "BI", "code": "+257", "zh": "布隆迪", "ja": "ブルンジ", "en": "Burundi"}, {"iso": "KH", "code": "+855", "zh": "柬埔寨", "ja": "カンボジア", "en": "Cambodia"}, {"iso": "CM", "code": "+237", "zh": "喀麦隆", "ja": "カメルーン", "en": "Cameroon"}, {"iso": "CV", "code": "+238", "zh": "佛得角", "ja": "カーボベルデ", "en": "Cape Verde"}, {"iso": "BQ", "code": "+599", "zh": "荷属加勒比区", "ja": "オランダ領カリブ", "en": "Caribbean Netherlands"}, {"iso": "KY", "code": "+1", "zh": "开曼群岛", "ja": "ケイマン諸島", "en": "Cayman Islands"}, {"iso": "CF", "code": "+236", "zh": "中非共和国", "ja": "中央アフリカ共和国", "en": "Central African Republic"}, {"iso": "TD", "code": "+235", "zh": "乍得", "ja": "チャド", "en": "Chad"}, {"iso": "CL", "code": "+56", "zh": "智利", "ja": "チリ", "en": "Chile"}, {"iso": "CX", "code": "+61", "zh": "圣诞岛", "ja": "クリスマス島", "en": "Christmas Island"}, {"iso": "CC", "code": "+61", "zh": "科科斯（基林）群岛", "ja": "ココス(キーリング)諸島", "en": "Cocos (Keeling) Islands"}, {"iso": "CO", "code": "+57", "zh": "哥伦比亚", "ja": "コロンビア", "en": "Colombia"}, {"iso": "KM", "code": "+269", "zh": "科摩罗", "ja": "コモロ", "en": "Comoros"}, {"iso": "CG", "code": "+242", "zh": "刚果（布）", "ja": "コンゴ共和国(ブラザビル)", "en": "Congo - Brazzaville"}, {"iso": "CD", "code": "+243", "zh": "刚果（金）", "ja": "コンゴ民主共和国(キンシャサ)", "en": "Congo - Kinshasa"}, {"iso": "CK", "code": "+682", "zh": "库克群岛", "ja": "クック諸島", "en": "Cook Islands"}, {"iso": "CR", "code": "+506", "zh": "哥斯达黎加", "ja": "コスタリカ", "en": "Costa Rica"}, {"iso": "HR", "code": "+385", "zh": "克罗地亚", "ja": "クロアチア", "en": "Croatia"}, {"iso": "CU", "code": "+53", "zh": "古巴", "ja": "キューバ", "en": "Cuba"}, {"iso": "CW", "code": "+599", "zh": "库拉索", "ja": "キュラソー", "en": "Curaçao"}, {"iso": "CY", "code": "+357", "zh": "塞浦路斯", "ja": "キプロス", "en": "Cyprus"}, {"iso": "CZ", "code": "+420", "zh": "捷克", "ja": "チェコ", "en": "Czechia"}, {"iso": "CI", "code": "+225", "zh": "科特迪瓦", "ja": "コートジボワール", "en": "Côte d’Ivoire"}, {"iso": "DK", "code": "+45", "zh": "丹麦", "ja": "デンマーク", "en": "Denmark"}, {"iso": "DJ", "code": "+253", "zh": "吉布提", "ja": "ジブチ", "en": "Djibouti"}, {"iso": "DM", "code": "+1", "zh": "多米尼克", "ja": "ドミニカ国", "en": "Dominica"}, {"iso": "DO", "code": "+1", "zh": "多米尼加共和国", "ja": "ドミニカ共和国", "en": "Dominican Republic"}, {"iso": "EC", "code": "+593", "zh": "厄瓜多尔", "ja": "エクアドル", "en": "Ecuador"}, {"iso": "EG", "code": "+20", "zh": "埃及", "ja": "エジプト", "en": "Egypt"}, {"iso": "SV", "code": "+503", "zh": "萨尔瓦多", "ja": "エルサルバドル", "en": "El Salvador"}, {"iso": "GQ", "code": "+240", "zh": "赤道几内亚", "ja": "赤道ギニア", "en": "Equatorial Guinea"}, {"iso": "ER", "code": "+291", "zh": "厄立特里亚", "ja": "エリトリア", "en": "Eritrea"}, {"iso": "EE", "code": "+372", "zh": "爱沙尼亚", "ja": "エストニア", "en": "Estonia"}, {"iso": "SZ", "code": "+268", "zh": "斯威士兰", "ja": "エスワティニ", "en": "Eswatini"}, {"iso": "ET", "code": "+251", "zh": "埃塞俄比亚", "ja": "エチオピア", "en": "Ethiopia"}, {"iso": "FK", "code": "+500", "zh": "福克兰群岛", "ja": "フォークランド諸島", "en": "Falkland Islands"}, {"iso": "FO", "code": "+298", "zh": "法罗群岛", "ja": "フェロー諸島", "en": "Faroe Islands"}, {"iso": "FJ", "code": "+679", "zh": "斐济", "ja": "フィジー", "en": "Fiji"}, {"iso": "FI", "code": "+358", "zh": "芬兰", "ja": "フィンランド", "en": "Finland"}, {"iso": "GF", "code": "+594", "zh": "法属圭亚那", "ja": "仏領ギアナ", "en": "French Guiana"}, {"iso": "PF", "code": "+689", "zh": "法属波利尼西亚", "ja": "仏領ポリネシア", "en": "French Polynesia"}, {"iso": "GA", "code": "+241", "zh": "加蓬", "ja": "ガボン", "en": "Gabon"}, {"iso": "GM", "code": "+220", "zh": "冈比亚", "ja": "ガンビア", "en": "Gambia"}, {"iso": "GE", "code": "+995", "zh": "格鲁吉亚", "ja": "ジョージア", "en": "Georgia"}, {"iso": "GH", "code": "+233", "zh": "加纳", "ja": "ガーナ", "en": "Ghana"}, {"iso": "GI", "code": "+350", "zh": "直布罗陀", "ja": "ジブラルタル", "en": "Gibraltar"}, {"iso": "GR", "code": "+30", "zh": "希腊", "ja": "ギリシャ", "en": "Greece"}, {"iso": "GL", "code": "+299", "zh": "格陵兰", "ja": "グリーンランド", "en": "Greenland"}, {"iso": "GD", "code": "+1", "zh": "格林纳达", "ja": "グレナダ", "en": "Grenada"}, {"iso": "GP", "code": "+590", "zh": "瓜德罗普", "ja": "グアドループ", "en": "Guadeloupe"}, {"iso": "GU", "code": "+1", "zh": "关岛", "ja": "グアム", "en": "Guam"}, {"iso": "GT", "code": "+502", "zh": "危地马拉", "ja": "グアテマラ", "en": "Guatemala"}, {"iso": "GG", "code": "+44", "zh": "根西岛", "ja": "ガーンジー", "en": "Guernsey"}, {"iso": "GN", "code": "+224", "zh": "几内亚", "ja": "ギニア", "en": "Guinea"}, {"iso": "GW", "code": "+245", "zh": "几内亚比绍", "ja": "ギニアビサウ", "en": "Guinea-Bissau"}, {"iso": "GY", "code": "+592", "zh": "圭亚那", "ja": "ガイアナ", "en": "Guyana"}, {"iso": "HT", "code": "+509", "zh": "海地", "ja": "ハイチ", "en": "Haiti"}, {"iso": "HN", "code": "+504", "zh": "洪都拉斯", "ja": "ホンジュラス", "en": "Honduras"}, {"iso": "HU", "code": "+36", "zh": "匈牙利", "ja": "ハンガリー", "en": "Hungary"}, {"iso": "IS", "code": "+354", "zh": "冰岛", "ja": "アイスランド", "en": "Iceland"}, {"iso": "IN", "code": "+91", "zh": "印度", "ja": "インド", "en": "India"}, {"iso": "ID", "code": "+62", "zh": "印度尼西亚", "ja": "インドネシア", "en": "Indonesia"}, {"iso": "IR", "code": "+98", "zh": "伊朗", "ja": "イラン", "en": "Iran"}, {"iso": "IQ", "code": "+964", "zh": "伊拉克", "ja": "イラク", "en": "Iraq"}, {"iso": "IE", "code": "+353", "zh": "爱尔兰", "ja": "アイルランド", "en": "Ireland"}, {"iso": "IM", "code": "+44", "zh": "马恩岛", "ja": "マン島", "en": "Isle of Man"}, {"iso": "IL", "code": "+972", "zh": "以色列", "ja": "イスラエル", "en": "Israel"}, {"iso": "JM", "code": "+1", "zh": "牙买加", "ja": "ジャマイカ", "en": "Jamaica"}, {"iso": "JE", "code": "+44", "zh": "泽西岛", "ja": "ジャージー", "en": "Jersey"}, {"iso": "JO", "code": "+962", "zh": "约旦", "ja": "ヨルダン", "en": "Jordan"}, {"iso": "KZ", "code": "+7", "zh": "哈萨克斯坦", "ja": "カザフスタン", "en": "Kazakhstan"}, {"iso": "KE", "code": "+254", "zh": "肯尼亚", "ja": "ケニア", "en": "Kenya"}, {"iso": "KI", "code": "+686", "zh": "基里巴斯", "ja": "キリバス", "en": "Kiribati"}, {"iso": "XK", "code": "+383", "zh": "科索沃", "ja": "コソボ", "en": "Kosovo"}, {"iso": "KW", "code": "+965", "zh": "科威特", "ja": "クウェート", "en": "Kuwait"}, {"iso": "KG", "code": "+996", "zh": "吉尔吉斯斯坦", "ja": "キルギス", "en": "Kyrgyzstan"}, {"iso": "LA", "code": "+856", "zh": "老挝", "ja": "ラオス", "en": "Laos"}, {"iso": "LV", "code": "+371", "zh": "拉脱维亚", "ja": "ラトビア", "en": "Latvia"}, {"iso": "LB", "code": "+961", "zh": "黎巴嫩", "ja": "レバノン", "en": "Lebanon"}, {"iso": "LS", "code": "+266", "zh": "莱索托", "ja": "レソト", "en": "Lesotho"}, {"iso": "LR", "code": "+231", "zh": "利比里亚", "ja": "リベリア", "en": "Liberia"}, {"iso": "LY", "code": "+218", "zh": "利比亚", "ja": "リビア", "en": "Libya"}, {"iso": "LI", "code": "+423", "zh": "列支敦士登", "ja": "リヒテンシュタイン", "en": "Liechtenstein"}, {"iso": "LT", "code": "+370", "zh": "立陶宛", "ja": "リトアニア", "en": "Lithuania"}, {"iso": "LU", "code": "+352", "zh": "卢森堡", "ja": "ルクセンブルク", "en": "Luxembourg"}, {"iso": "MG", "code": "+261", "zh": "马达加斯加", "ja": "マダガスカル", "en": "Madagascar"}, {"iso": "MW", "code": "+265", "zh": "马拉维", "ja": "マラウイ", "en": "Malawi"}, {"iso": "MY", "code": "+60", "zh": "马来西亚", "ja": "マレーシア", "en": "Malaysia"}, {"iso": "MV", "code": "+960", "zh": "马尔代夫", "ja": "モルディブ", "en": "Maldives"}, {"iso": "ML", "code": "+223", "zh": "马里", "ja": "マリ", "en": "Mali"}, {"iso": "MT", "code": "+356", "zh": "马耳他", "ja": "マルタ", "en": "Malta"}, {"iso": "MH", "code": "+692", "zh": "马绍尔群岛", "ja": "マーシャル諸島", "en": "Marshall Islands"}, {"iso": "MQ", "code": "+596", "zh": "马提尼克", "ja": "マルティニーク", "en": "Martinique"}, {"iso": "MR", "code": "+222", "zh": "毛里塔尼亚", "ja": "モーリタニア", "en": "Mauritania"}, {"iso": "MU", "code": "+230", "zh": "毛里求斯", "ja": "モーリシャス", "en": "Mauritius"}, {"iso": "YT", "code": "+262", "zh": "马约特", "ja": "マヨット", "en": "Mayotte"}, {"iso": "MX", "code": "+52", "zh": "墨西哥", "ja": "メキシコ", "en": "Mexico"}, {"iso": "FM", "code": "+691", "zh": "密克罗尼西亚", "ja": "ミクロネシア連邦", "en": "Micronesia"}, {"iso": "MD", "code": "+373", "zh": "摩尔多瓦", "ja": "モルドバ", "en": "Moldova"}, {"iso": "MC", "code": "+377", "zh": "摩纳哥", "ja": "モナコ", "en": "Monaco"}, {"iso": "MN", "code": "+976", "zh": "蒙古", "ja": "モンゴル", "en": "Mongolia"}, {"iso": "ME", "code": "+382", "zh": "黑山", "ja": "モンテネグロ", "en": "Montenegro"}, {"iso": "MS", "code": "+1", "zh": "蒙特塞拉特", "ja": "モントセラト", "en": "Montserrat"}, {"iso": "MA", "code": "+212", "zh": "摩洛哥", "ja": "モロッコ", "en": "Morocco"}, {"iso": "MZ", "code": "+258", "zh": "莫桑比克", "ja": "モザンビーク", "en": "Mozambique"}, {"iso": "MM", "code": "+95", "zh": "缅甸", "ja": "ミャンマー (ビルマ)", "en": "Myanmar (Burma)"}, {"iso": "NA", "code": "+264", "zh": "纳米比亚", "ja": "ナミビア", "en": "Namibia"}, {"iso": "NR", "code": "+674", "zh": "瑙鲁", "ja": "ナウル", "en": "Nauru"}, {"iso": "NP", "code": "+977", "zh": "尼泊尔", "ja": "ネパール", "en": "Nepal"}, {"iso": "NL", "code": "+31", "zh": "荷兰", "ja": "オランダ", "en": "Netherlands"}, {"iso": "NC", "code": "+687", "zh": "新喀里多尼亚", "ja": "ニューカレドニア", "en": "New Caledonia"}, {"iso": "NZ", "code": "+64", "zh": "新西兰", "ja": "ニュージーランド", "en": "New Zealand"}, {"iso": "NI", "code": "+505", "zh": "尼加拉瓜", "ja": "ニカラグア", "en": "Nicaragua"}, {"iso": "NE", "code": "+227", "zh": "尼日尔", "ja": "ニジェール", "en": "Niger"}, {"iso": "NG", "code": "+234", "zh": "尼日利亚", "ja": "ナイジェリア", "en": "Nigeria"}, {"iso": "NU", "code": "+683", "zh": "纽埃", "ja": "ニウエ", "en": "Niue"}, {"iso": "NF", "code": "+672", "zh": "诺福克岛", "ja": "ノーフォーク島", "en": "Norfolk Island"}, {"iso": "KP", "code": "+850", "zh": "朝鲜", "ja": "北朝鮮", "en": "North Korea"}, {"iso": "MK", "code": "+389", "zh": "北马其顿", "ja": "北マケドニア", "en": "North Macedonia"}, {"iso": "MP", "code": "+1", "zh": "北马里亚纳群岛", "ja": "北マリアナ諸島", "en": "Northern Mariana Islands"}, {"iso": "NO", "code": "+47", "zh": "挪威", "ja": "ノルウェー", "en": "Norway"}, {"iso": "OM", "code": "+968", "zh": "阿曼", "ja": "オマーン", "en": "Oman"}, {"iso": "PK", "code": "+92", "zh": "巴基斯坦", "ja": "パキスタン", "en": "Pakistan"}, {"iso": "PW", "code": "+680", "zh": "帕劳", "ja": "パラオ", "en": "Palau"}, {"iso": "PS", "code": "+970", "zh": "巴勒斯坦领土", "ja": "パレスチナ自治区", "en": "Palestinian Territories"}, {"iso": "PA", "code": "+507", "zh": "巴拿马", "ja": "パナマ", "en": "Panama"}, {"iso": "PG", "code": "+675", "zh": "巴布亚新几内亚", "ja": "パプアニューギニア", "en": "Papua New Guinea"}, {"iso": "PY", "code": "+595", "zh": "巴拉圭", "ja": "パラグアイ", "en": "Paraguay"}, {"iso": "PE", "code": "+51", "zh": "秘鲁", "ja": "ペルー", "en": "Peru"}, {"iso": "PH", "code": "+63", "zh": "菲律宾", "ja": "フィリピン", "en": "Philippines"}, {"iso": "PL", "code": "+48", "zh": "波兰", "ja": "ポーランド", "en": "Poland"}, {"iso": "PT", "code": "+351", "zh": "葡萄牙", "ja": "ポルトガル", "en": "Portugal"}, {"iso": "PR", "code": "+1", "zh": "波多黎各", "ja": "プエルトリコ", "en": "Puerto Rico"}, {"iso": "QA", "code": "+974", "zh": "卡塔尔", "ja": "カタール", "en": "Qatar"}, {"iso": "RO", "code": "+40", "zh": "罗马尼亚", "ja": "ルーマニア", "en": "Romania"}, {"iso": "RU", "code": "+7", "zh": "俄罗斯", "ja": "ロシア", "en": "Russia"}, {"iso": "RW", "code": "+250", "zh": "卢旺达", "ja": "ルワンダ", "en": "Rwanda"}, {"iso": "RE", "code": "+262", "zh": "留尼汪", "ja": "レユニオン", "en": "Réunion"}, {"iso": "WS", "code": "+685", "zh": "萨摩亚", "ja": "サモア", "en": "Samoa"}, {"iso": "SM", "code": "+378", "zh": "圣马力诺", "ja": "サンマリノ", "en": "San Marino"}, {"iso": "SA", "code": "+966", "zh": "沙特阿拉伯", "ja": "サウジアラビア", "en": "Saudi Arabia"}, {"iso": "SN", "code": "+221", "zh": "塞内加尔", "ja": "セネガル", "en": "Senegal"}, {"iso": "RS", "code": "+381", "zh": "塞尔维亚", "ja": "セルビア", "en": "Serbia"}, {"iso": "SC", "code": "+248", "zh": "塞舌尔", "ja": "セーシェル", "en": "Seychelles"}, {"iso": "SL", "code": "+232", "zh": "塞拉利昂", "ja": "シエラレオネ", "en": "Sierra Leone"}, {"iso": "SX", "code": "+1", "zh": "荷属圣马丁", "ja": "シント・マールテン", "en": "Sint Maarten"}, {"iso": "SK", "code": "+421", "zh": "斯洛伐克", "ja": "スロバキア", "en": "Slovakia"}, {"iso": "SI", "code": "+386", "zh": "斯洛文尼亚", "ja": "スロベニア", "en": "Slovenia"}, {"iso": "SB", "code": "+677", "zh": "所罗门群岛", "ja": "ソロモン諸島", "en": "Solomon Islands"}, {"iso": "SO", "code": "+252", "zh": "索马里", "ja": "ソマリア", "en": "Somalia"}, {"iso": "ZA", "code": "+27", "zh": "南非", "ja": "南アフリカ", "en": "South Africa"}, {"iso": "SS", "code": "+211", "zh": "南苏丹", "ja": "南スーダン", "en": "South Sudan"}, {"iso": "ES", "code": "+34", "zh": "西班牙", "ja": "スペイン", "en": "Spain"}, {"iso": "LK", "code": "+94", "zh": "斯里兰卡", "ja": "スリランカ", "en": "Sri Lanka"}, {"iso": "BL", "code": "+590", "zh": "圣巴泰勒米", "ja": "サン・バルテルミー", "en": "St. Barthélemy"}, {"iso": "SH", "code": "+290", "zh": "圣赫勒拿", "ja": "セントヘレナ", "en": "St. Helena"}, {"iso": "KN", "code": "+1", "zh": "圣基茨和尼维斯", "ja": "セントクリストファー・ネーヴィス", "en": "St. Kitts & Nevis"}, {"iso": "LC", "code": "+1", "zh": "圣卢西亚", "ja": "セントルシア", "en": "St. Lucia"}, {"iso": "MF", "code": "+590", "zh": "法属圣马丁", "ja": "サン・マルタン", "en": "St. Martin"}, {"iso": "PM", "code": "+508", "zh": "圣皮埃尔和密克隆群岛", "ja": "サンピエール島・ミクロン島", "en": "St. Pierre & Miquelon"}, {"iso": "VC", "code": "+1", "zh": "圣文森特和格林纳丁斯", "ja": "セントビンセント及びグレナディーン諸島", "en": "St. Vincent & Grenadines"}, {"iso": "SD", "code": "+249", "zh": "苏丹", "ja": "スーダン", "en": "Sudan"}, {"iso": "SR", "code": "+597", "zh": "苏里南", "ja": "スリナム", "en": "Suriname"}, {"iso": "SJ", "code": "+47", "zh": "斯瓦尔巴和扬马延", "ja": "スバールバル諸島・ヤンマイエン島", "en": "Svalbard & Jan Mayen"}, {"iso": "SE", "code": "+46", "zh": "瑞典", "ja": "スウェーデン", "en": "Sweden"}, {"iso": "CH", "code": "+41", "zh": "瑞士", "ja": "スイス", "en": "Switzerland"}, {"iso": "SY", "code": "+963", "zh": "叙利亚", "ja": "シリア", "en": "Syria"}, {"iso": "ST", "code": "+239", "zh": "圣多美和普林西比", "ja": "サントメ・プリンシペ", "en": "São Tomé & Príncipe"}, {"iso": "TJ", "code": "+992", "zh": "塔吉克斯坦", "ja": "タジキスタン", "en": "Tajikistan"}, {"iso": "TZ", "code": "+255", "zh": "坦桑尼亚", "ja": "タンザニア", "en": "Tanzania"}, {"iso": "TH", "code": "+66", "zh": "泰国", "ja": "タイ", "en": "Thailand"}, {"iso": "TL", "code": "+670", "zh": "东帝汶", "ja": "東ティモール", "en": "Timor-Leste"}, {"iso": "TG", "code": "+228", "zh": "多哥", "ja": "トーゴ", "en": "Togo"}, {"iso": "TK", "code": "+690", "zh": "托克劳", "ja": "トケラウ", "en": "Tokelau"}, {"iso": "TO", "code": "+676", "zh": "汤加", "ja": "トンガ", "en": "Tonga"}, {"iso": "TT", "code": "+1", "zh": "特立尼达和多巴哥", "ja": "トリニダード・トバゴ", "en": "Trinidad & Tobago"}, {"iso": "TN", "code": "+216", "zh": "突尼斯", "ja": "チュニジア", "en": "Tunisia"}, {"iso": "TM", "code": "+993", "zh": "土库曼斯坦", "ja": "トルクメニスタン", "en": "Turkmenistan"}, {"iso": "TC", "code": "+1", "zh": "特克斯和凯科斯群岛", "ja": "タークス・カイコス諸島", "en": "Turks & Caicos Islands"}, {"iso": "TV", "code": "+688", "zh": "图瓦卢", "ja": "ツバル", "en": "Tuvalu"}, {"iso": "TR", "code": "+90", "zh": "土耳其", "ja": "トルコ", "en": "Türkiye"}, {"iso": "VI", "code": "+1", "zh": "美属维尔京群岛", "ja": "米領ヴァージン諸島", "en": "U.S. Virgin Islands"}, {"iso": "UG", "code": "+256", "zh": "乌干达", "ja": "ウガンダ", "en": "Uganda"}, {"iso": "UA", "code": "+380", "zh": "乌克兰", "ja": "ウクライナ", "en": "Ukraine"}, {"iso": "AE", "code": "+971", "zh": "阿拉伯联合酋长国", "ja": "アラブ首長国連邦", "en": "United Arab Emirates"}, {"iso": "UY", "code": "+598", "zh": "乌拉圭", "ja": "ウルグアイ", "en": "Uruguay"}, {"iso": "UZ", "code": "+998", "zh": "乌兹别克斯坦", "ja": "ウズベキスタン", "en": "Uzbekistan"}, {"iso": "VU", "code": "+678", "zh": "瓦努阿图", "ja": "バヌアツ", "en": "Vanuatu"}, {"iso": "VA", "code": "+39", "zh": "梵蒂冈", "ja": "バチカン市国", "en": "Vatican City"}, {"iso": "VE", "code": "+58", "zh": "委内瑞拉", "ja": "ベネズエラ", "en": "Venezuela"}, {"iso": "VN", "code": "+84", "zh": "越南", "ja": "ベトナム", "en": "Vietnam"}, {"iso": "WF", "code": "+681", "zh": "瓦利斯和富图纳", "ja": "ウォリス・フツナ", "en": "Wallis & Futuna"}, {"iso": "EH", "code": "+212", "zh": "西撒哈拉", "ja": "西サハラ", "en": "Western Sahara"}, {"iso": "YE", "code": "+967", "zh": "也门", "ja": "イエメン", "en": "Yemen"}, {"iso": "ZM", "code": "+260", "zh": "赞比亚", "ja": "ザンビア", "en": "Zambia"}, {"iso": "ZW", "code": "+263", "zh": "津巴布韦", "ja": "ジンバブエ", "en": "Zimbabwe"}, {"iso": "AX", "code": "+358", "zh": "奥兰群岛", "ja": "オーランド諸島", "en": "Åland Islands"}];
 
-    function renderCountryCodes(lang = localStorage.getItem("jia_site_lang") || "zh") {
+    function renderCountryCodes(lang = readSiteLanguage()) {
       const select = document.getElementById("phoneCountryCode");
       if (!select) return;
       const current = select.value || "JP|+81";
@@ -378,7 +462,7 @@
       }
     }
 
-    function translateLiteral(text, lang = localStorage.getItem("jia_site_lang") || "zh") {
+    function translateLiteral(text, lang = readSiteLanguage()) {
       const key = __jiaNormalizeText(text);
       if (!key) return text;
       if (lang === "zh") return key;
@@ -386,6 +470,8 @@
     }
 
     function setLanguage(lang, refreshSession = false) {
+      lang = ['zh', 'ja', 'en'].includes(lang) ? lang : 'zh';
+      writeSiteLanguage(lang);
       __jiaInitTextNodes();
       const pack = I18N[lang] || I18N.zh;
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
@@ -418,12 +504,12 @@
       });
 
       document.querySelectorAll('.lang-select').forEach(select => { select.value = lang; });
-      localStorage.setItem("jia_site_lang", lang);
+      writeSiteLanguage(lang);
       if (typeof setMode === "function") setMode(mode, true);
       const profileForm = document.getElementById("memberProfileForm");
       const profileUpdated = document.getElementById("profileUpdatedAt");
       if (profileForm && profileUpdated && profileForm.dataset.updatedAt) {
-        profileUpdated.textContent = `${pack.lastUpdatedLabel || ""}${profileForm.dataset.updatedAt}`;
+        profileUpdated.textContent = `${pack.lastUpdatedLabel || ""}${formatMemberDate(profileForm.dataset.updatedAt, true)}`;
       }
       if (window.turnstile && typeof turnstileWidgetId !== "undefined" && turnstileWidgetId !== null) {
         try { window.turnstile.remove(turnstileWidgetId); } catch (e) {}
@@ -433,11 +519,23 @@
         if (document.getElementById('authModal')?.classList.contains('active') && typeof ensureTurnstileWidget === 'function') ensureTurnstileWidget().catch(() => {});
       }
       if (typeof renderNewsList === "function") renderNewsList(window.__JIA_NEWS_CACHE || [], window.__JIA_NEWS_USER || null);
-      if (refreshSession && typeof renderSession === "function") renderSession().catch(() => {});
+      const labels = { zh: ['关闭对话框', '选择语言', '打开菜单', '关闭菜单'], ja: ['ダイアログを閉じる', '言語を選択', 'メニューを開く', 'メニューを閉じる'], en: ['Close dialog', 'Choose language', 'Open menu', 'Close menu'] }[readSiteLanguage()];
+      document.querySelector('[data-auth-close]')?.setAttribute('aria-label', labels[0]);
+      document.querySelectorAll('.lang-select').forEach(el => el.setAttribute('aria-label', labels[1]));
+      const navButton = document.getElementById('memberMenuToggle') || document.getElementById('menuToggle');
+      if (navButton) navButton.setAttribute('aria-label', labels[navButton.getAttribute('aria-expanded') === 'true' ? 3 : 2]);
+      const message = document.getElementById('authMsg');
+      if (message?.dataset.message) showMsg(message.dataset.message, message.classList.contains('ok'));
+      // Translate the cached account only: fetching here would discard unsaved edits.
+      if (typeof renderAccountSummary === 'function') renderAccountSummary();
+      const profileMessage = document.getElementById('profileFormMsg');
+      if (profileMessage?.dataset.message) profileMessage.textContent = translateLiteral(profileMessage.dataset.message);
+
     }
 
     let mode = "login";
     let TURNSTILE_CONFIG_LOADED = false;
+    let turnstileConfigPromise = null;
     let TURNSTILE_ENABLED = false;
     let TURNSTILE_SITE_KEY = "";
     let turnstileWidgetId = null;
@@ -447,7 +545,7 @@
     let authRequestPending = false;
 
     function memberText(key) {
-      const lang = localStorage.getItem("jia_site_lang") || "zh";
+      const lang = readSiteLanguage();
       return (I18N[lang] && I18N[lang][key]) || (I18N.zh && I18N.zh[key]) || key;
     }
 
@@ -550,20 +648,23 @@
 
     function openAuth(nextMode) {
       setMode(nextMode || "login");
-      renderCountryCodes(localStorage.getItem("jia_site_lang") || "zh");
-      document.getElementById("authModal").classList.add("active");
-      setTimeout(() => renderCountryCodes(localStorage.getItem("jia_site_lang") || "zh"), 0);
+      renderCountryCodes(readSiteLanguage());
+      activateAuthDialog();
+      setTimeout(() => renderCountryCodes(readSiteLanguage()), 0);
       if (typeof ensureTurnstileWidget === "function") ensureTurnstileWidget().catch(() => showMsg("安全验证未完成，请重试。"));
     }
     function closeAuth() {
-      document.getElementById("authModal").classList.remove("active");
+      deactivateAuthDialog();
       showMsg("");
       if (typeof resetTurnstile === "function") resetTurnstile();
     }
     function setMode(nextMode, quiet = false) {
+      if (!quiet && (authRequestPending || authCodePending)) return;
       mode = ["login", "register", "reset"].includes(nextMode) ? nextMode : "login";
       const isRegister = mode === "register";
       const isReset = mode === "reset";
+      document.getElementById('loginTab').setAttribute('aria-pressed', String(mode === 'login'));
+      document.getElementById('registerTab').setAttribute('aria-pressed', String(isRegister));
       document.getElementById("loginTab").classList.toggle("active", mode === "login");
       document.getElementById("registerTab").classList.toggle("active", isRegister);
       document.getElementById("nameLabel").classList.toggle("hidden", !isRegister);
@@ -573,7 +674,7 @@
       document.getElementById("forgotPasswordBtn").classList.toggle("hidden", mode !== "login");
       document.getElementById("backToLoginBtn").classList.toggle("hidden", !isReset);
       const required = { fullName: isRegister, emailConfirm: isRegister, phoneNumber: isRegister, verificationCode: isRegister || isReset };
-      Object.entries(required).forEach(([id, value]) => { const field = document.getElementById(id); if (field) field.required = value; });
+      Object.entries(required).forEach(([id, value]) => { const field = document.getElementById(id); if (field) { field.required = value; field.disabled = !value; } });
       document.getElementById("authTitle").textContent = memberText(isRegister ? "registerTitle" : (isReset ? "resetTitle" : "loginTitle"));
       document.getElementById("submitBtn").textContent = memberText(isRegister ? "submitRegister" : (isReset ? "submitReset" : "submitLogin"));
       document.getElementById("passwordLabelText").textContent = memberText(isReset ? "newPasswordLabel" : "passwordLabel");
@@ -581,12 +682,13 @@
       document.getElementById("password").autocomplete = isRegister || isReset ? "new-password" : "current-password";
       const sendCodeBtn = document.getElementById("sendCodeBtn");
       if (sendCodeBtn && (typeof verificationCountdown === "undefined" || verificationCountdown <= 0)) sendCodeBtn.textContent = memberText(isReset ? "sendResetCode" : "sendCode");
-      renderCountryCodes(localStorage.getItem("jia_site_lang") || "zh");
+      renderCountryCodes(readSiteLanguage());
       if (typeof resetTurnstile === "function") resetTurnstile();
-      if (!quiet) showMsg("");
+      if (!quiet) { showMsg(''); if (document.getElementById('authModal').classList.contains('active')) document.getElementById(isRegister ? 'fullName' : 'email').focus(); }
     }
     function showMsg(text, ok=false) {
       const el = document.getElementById("authMsg");
+      el.dataset.message = text || '';
       el.textContent = translateLiteral(text);
       el.className = "msg" + (text ? (ok ? " ok" : " error") : "");
     }
@@ -734,7 +836,20 @@
       "最后更新：":"Last updated: "
     });
 
-    setLanguage(localStorage.getItem('jia_site_lang') || 'zh');
+    Object.assign(I18N.zh, { profileReload: '重新读取资料' });
+    Object.assign(I18N.ja, { profileReload: '会員情報を再読み込み' });
+    Object.assign(I18N.en, { profileReload: 'Reload profile' });
+    Object.assign(TEXT_I18N.ja, {
+      '资料已在其他页面更新，请刷新后重试。': '別のページで会員情報が更新されました。再読み込みしてから再試行してください。',
+      '资料已在其他页面更新，请重新读取后再保存。': '別のページで会員情報が更新されました。再読み込みしてから保存してください。',
+      '资料已在其他页面更新。请先复制保留本页填写的内容，再重新读取资料后修改。': '別のページで会員情報が更新されました。このページの入力内容をコピーして保管し、再読み込みしてから修正してください。'
+    });
+    Object.assign(TEXT_I18N.en, {
+      '资料已在其他页面更新，请刷新后重试。': 'Your profile was updated in another page. Reload it and try again.',
+      '资料已在其他页面更新，请重新读取后再保存。': 'Your profile was updated in another page. Reload it before saving.',
+      '资料已在其他页面更新。请先复制保留本页填写的内容，再重新读取资料后修改。': 'Your profile was updated in another page. Copy your current edits before reloading the profile, then apply them again.'
+    });
+    setLanguage(readSiteLanguage());
   </script>
   <script>
     // Production auth mode: Cloudflare Pages Functions + D1 database + email verification.
@@ -758,7 +873,7 @@
         let data;
         try { data = await response.json(); } catch (e) { throw new Error("服务器返回了无效响应。"); }
         if (!data || typeof data !== "object" || Array.isArray(data)) throw new Error("服务器返回了无效响应。");
-        if (!response.ok) throw new Error(data.error || "请求失败。");
+        if (!response.ok) { const error = new Error(data.error || "请求失败。"); error.status = response.status; throw error; }
         return data;
       } catch (error) {
         if (error && error.name === "AbortError") throw new Error("请求超时，请稍后重试。");
@@ -770,16 +885,21 @@
 
     async function loadTurnstileConfig() {
       if (TURNSTILE_CONFIG_LOADED) return;
-      TURNSTILE_CONFIG_LOADED = true;
-      try {
-        const config = await apiRequest("/api/config", { method: "GET" });
-        TURNSTILE_ENABLED = Boolean(config.turnstileEnabled && config.turnstileSiteKey);
-        TURNSTILE_SITE_KEY = config.turnstileSiteKey || "";
-      } catch (error) {
-        TURNSTILE_CONFIG_LOADED = false;
-        TURNSTILE_ENABLED = false;
-        TURNSTILE_SITE_KEY = "";
-      }
+      if (turnstileConfigPromise) return turnstileConfigPromise;
+      turnstileConfigPromise = (async () => {
+        try {
+          const config = await apiRequest('/api/config', { method: 'GET' });
+          TURNSTILE_ENABLED = Boolean(config.turnstileEnabled && config.turnstileSiteKey);
+          TURNSTILE_SITE_KEY = config.turnstileSiteKey || '';
+          TURNSTILE_CONFIG_LOADED = true;
+        } catch (error) {
+          TURNSTILE_CONFIG_LOADED = false;
+          throw error;
+        } finally {
+          turnstileConfigPromise = null;
+        }
+      })();
+      return turnstileConfigPromise;
     }
 
     function loadTurnstileScript() {
@@ -800,6 +920,11 @@
         script.onload = resolve;
         script.onerror = reject;
         document.head.appendChild(script);
+      });
+      turnstileScriptPromise = turnstileScriptPromise.catch(error => {
+        document.querySelector('script[data-jia-turnstile]')?.remove();
+        turnstileScriptPromise = null;
+        throw error;
       });
       return turnstileScriptPromise;
     }
@@ -822,7 +947,7 @@
         turnstileToken = "";
       }
       if (turnstileWidgetId === null) {
-        const lang = localStorage.getItem("jia_site_lang") || "zh";
+        const lang = readSiteLanguage();
         turnstileWidgetId = window.turnstile.render(container, {
           sitekey: TURNSTILE_SITE_KEY,
           size: widgetSize,
@@ -863,6 +988,7 @@
       const btn = document.getElementById("sendCodeBtn");
       if (!btn) return;
       verificationCountdown = seconds;
+      btn.textContent = `${seconds}s`;
       btn.disabled = true;
       clearInterval(verificationCountdownTimer);
       verificationCountdownTimer = setInterval(() => {
@@ -878,21 +1004,25 @@
     }
 
     async function sendVerificationCode() {
+      if (authRequestPending || authCodePending) return;
+      const requestMode = mode;
       const fullName = document.getElementById("fullName").value.trim();
       const email = document.getElementById("email").value.trim().toLowerCase();
       const emailConfirm = document.getElementById("emailConfirm").value.trim().toLowerCase();
 
       if (!email) return showMsg("请先输入邮箱。");
-      if (!email.includes("@")) return showMsg("请输入有效邮箱地址。");
+      if (!document.getElementById("email").checkValidity()) return showMsg("请输入有效邮箱地址。");
       if (mode === "register" && emailConfirm && email !== emailConfirm) return showMsg("两次输入的邮箱不一致。");
       const btn = document.getElementById("sendCodeBtn");
       if (!btn || btn.disabled) return;
       btn.disabled = true;
+      authCodePending = true;
+      refreshAuthBusy();
 
       try {
         const token = await securityToken();
         if (token === null) return;
-        const resetMode = mode === "reset";
+        const resetMode = requestMode === "reset";
         await apiRequest(resetMode ? "/api/auth/send-reset-code" : "/api/auth/send-code", {
           method: "POST",
           body: JSON.stringify({ email, fullName, turnstileToken: token })
@@ -902,6 +1032,8 @@
       } catch (err) {
         showMsg(err.message || "验证码发送失败。");
       } finally {
+        authCodePending = false;
+        refreshAuthBusy();
         resetTurnstile();
         if (verificationCountdown <= 0) {
           btn.disabled = false;
@@ -912,7 +1044,8 @@
 
     async function submitAuth(e) {
       e.preventDefault();
-      if (authRequestPending) return;
+      if (authRequestPending || authCodePending) return;
+      const requestMode = mode;
       const fullName = document.getElementById("fullName").value.trim();
       const email = document.getElementById("email").value.trim().toLowerCase();
       const emailConfirm = document.getElementById("emailConfirm").value.trim().toLowerCase();
@@ -922,12 +1055,13 @@
       const phoneNumber = document.getElementById("phoneNumber").value.trim();
       const submitBtn = document.getElementById("submitBtn");
       authRequestPending = true;
+      refreshAuthBusy();
       if (submitBtn) submitBtn.disabled = true;
 
       try {
         const token = await securityToken();
         if (token === null) return;
-        if (mode === "register") {
+        if (requestMode === "register") {
           if (!fullName || !email || !emailConfirm || !phoneNumber || !verificationCode || !password) {
             return showMsg("请填写姓名、邮箱、确认邮箱、电话、验证码和密码。");
           }
@@ -949,7 +1083,7 @@
           });
           showMsg("注册成功，已进入会员中心。", true);
           setTimeout(() => { closeAuth(); if (window.location.pathname.endsWith("/member.html")) { renderSession(); } else { window.location.href = "member.html"; } }, 500);
-        } else if (mode === "reset") {
+        } else if (requestMode === "reset") {
           if (!email || !verificationCode || !password) return showMsg("请输入邮箱、验证码和新密码。");
           await apiRequest("/api/auth/reset-password", {
             method: "POST",
@@ -972,15 +1106,32 @@
         showMsg(err.message || "操作失败。");
       } finally {
         authRequestPending = false;
+        refreshAuthBusy();
         if (submitBtn) submitBtn.disabled = false;
         resetTurnstile();
       }
     }
 
+    function showSessionError(error) {
+      const box = document.getElementById('sessionMsg');
+      box.replaceChildren();
+      box.className = error ? 'wrap msg error' : 'wrap msg';
+      if (!error) return;
+      const labels = {
+        zh: ['账户服务暂时不可用，请检查网络后重试。', '重试'],
+        ja: ['アカウントサービスに接続できません。通信環境を確認して再試行してください。', '再試行'],
+        en: ['Account services are unavailable. Check your connection and try again.', 'Retry']
+      }[readSiteLanguage()];
+      box.append(document.createTextNode(labels[0] + ' '));
+      const retry = document.createElement('button');
+      retry.type = 'button'; retry.className = 'text-action'; retry.textContent = labels[1];
+      retry.onclick = () => renderSession();
+      box.append(retry);
+    }
     async function logout() {
       try {
         await apiRequest("/api/auth/logout", { method: "POST", body: JSON.stringify({}) });
-      } catch (e) {}
+      } catch (error) { showSessionError(error); return; }
       renderSession();
     }
 
@@ -1009,12 +1160,17 @@
       if (field) field.maxLength = maxLength;
     });
 
+    let profileLoaded = false;
+    let profileSavePending = false;
+    let profileRequestId = 0;
+
     function setProfileMsg(text, ok = false) {
       const el = document.getElementById("profileFormMsg");
       if (!el) return;
+      el.dataset.message = text || "";
       el.textContent = text ? translateLiteral(text) : "";
       el.className = "msg" + (text ? (ok ? " ok" : " error") : "");
-      if (text) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (text) el.scrollIntoView({ block: "nearest" });
     }
 
     function updateBioCount() {
@@ -1047,11 +1203,15 @@
     }
 
     function enableMemberProfileEdit() {
+      if (!profileLoaded || profileSavePending) return;
       setMemberProfileEditing(true);
       setProfileMsg("现在可以修改资料。", true);
+      document.getElementById("mpDisplayName")?.focus();
     }
 
     function fillMemberProfileForm(profile = {}) {
+      window.__JIA_MEMBER_PROFILE = window.__JIA_SESSION_USER ? { userId: window.__JIA_SESSION_USER.id, profile } : null;
+      renderAccountSummary();
       Object.entries(MEMBER_PROFILE_FIELD_IDS).forEach(([key, id]) => {
         const el = document.getElementById(id);
         if (el) el.value = profile[key] || "";
@@ -1061,7 +1221,7 @@
       if (form) form.dataset.updatedAt = profile.updatedAt || "";
       const updated = document.getElementById("profileUpdatedAt");
       if (updated) {
-        updated.textContent = profile.updatedAt ? `${memberText("lastUpdatedLabel")}${profile.updatedAt}` : translateLiteral("尚未填写正式会员资料。");
+        updated.textContent = profile.updatedAt ? `${memberText("lastUpdatedLabel")}${formatMemberDate(profile.updatedAt, true)}` : translateLiteral("尚未填写正式会员资料。");
       }
       setMemberProfileEditing(!memberProfileExists(profile));
     }
@@ -1077,24 +1237,46 @@
     }
 
     async function loadMemberProfile() {
-      const form = document.getElementById("memberProfileForm");
-      if (!form) return;
-      setProfileMsg("");
+      const form = document.getElementById('memberProfileForm');
+      if (!form || profileSavePending) return;
+      const requestId = ++profileRequestId;
+      const userId = window.__JIA_SESSION_USER?.id;
+      profileLoaded = false;
+      setMemberProfileEditing(false);
+      document.getElementById('profileEditBtn').disabled = true;
+      document.getElementById('profileReloadBtn').classList.add('hidden');
+      form.setAttribute('aria-busy', 'true');
+      setProfileMsg('');
       try {
-        const data = await apiRequest("/api/member/profile", { method: "GET" });
-        fillMemberProfileForm(data.profile || {});
+        const data = await apiRequest('/api/member/profile', { method: 'GET' });
+        if (requestId !== profileRequestId || userId !== window.__JIA_SESSION_USER?.id) return;
+        if (!data.profile || typeof data.profile !== 'object' || Array.isArray(data.profile)) throw new Error('服务器返回了无效响应。');
+        profileLoaded = true;
+        fillMemberProfileForm(data.profile);
       } catch (err) {
-        setMemberProfileEditing(false);
-        setProfileMsg(err.message || "读取失败。");
+        if (requestId !== profileRequestId) return;
+        document.getElementById('profileReloadBtn').classList.remove('hidden');
+        setProfileMsg(err.message || '读取失败。');
+      } finally {
+        if (requestId === profileRequestId) {
+          form.setAttribute('aria-busy', 'false');
+          document.getElementById('profileEditBtn').disabled = !profileLoaded;
+        }
       }
     }
 
     async function saveMemberProfile(e) {
       e.preventDefault();
+      if (!profileLoaded || profileSavePending || document.getElementById("memberProfileForm").dataset.editing !== "1") return;
       const data = collectMemberProfileForm();
       const requiredKeys = Object.keys(MEMBER_PROFILE_FIELD_IDS);
       if (requiredKeys.some((key) => !data[key])) return setProfileMsg("请完整填写正式会员资料。");
       if ((data.biography || "").length > 350) return setProfileMsg("个人简介不能超过 350 字。");
+      profileSavePending = true;
+      const savingUserId = window.__JIA_SESSION_USER?.id;
+      const form = document.getElementById('memberProfileForm');
+      form.setAttribute('aria-busy', 'true');
+      Object.values(MEMBER_PROFILE_FIELD_IDS).forEach(id => { document.getElementById(id).disabled = true; });
       const btn = document.getElementById("profileSaveBtn");
       if (btn) {
         btn.disabled = true;
@@ -1107,23 +1289,33 @@
           method: "POST",
           body: JSON.stringify(data)
         });
+        if (savingUserId !== window.__JIA_SESSION_USER?.id) return;
         fillMemberProfileForm(result.profile || {});
         const statusEl = document.getElementById("profileStatus");
-        if (statusEl) statusEl.textContent = translateLiteral("正式会员");
+        if (window.__JIA_SESSION_USER) window.__JIA_SESSION_USER.memberStatus = result.memberStatus || "正式会员";
+        renderAccountSummary();
         setMemberProfileEditing(false);
         setProfileMsg("保存成功。账号状态已更新为正式会员。", true);
       } catch (err) {
-        setProfileMsg(err.message || "保存失败。");
+        if (err.status === 409) {
+          document.getElementById('profileReloadBtn').classList.remove('hidden');
+          setProfileMsg('资料已在其他页面更新。请先复制保留本页填写的内容，再重新读取资料后修改。');
+        } else setProfileMsg(err.message || "保存失败。");
       } finally {
+        profileSavePending = false;
+        form.setAttribute('aria-busy', 'false');
+        if (profileLoaded && form.dataset.editing === '1') {
+          Object.values(MEMBER_PROFILE_FIELD_IDS).forEach(id => { document.getElementById(id).disabled = false; });
+        }
         if (btn) {
           btn.disabled = false;
-          btn.textContent = btn.dataset.originalText || translateLiteral("保存并成为正式会员");
+          btn.textContent = memberText("profileSaveButton");
         }
       }
     }
 
     function currentSiteLang() {
-      return localStorage.getItem("jia_site_lang") || "zh";
+      return readSiteLanguage();
     }
 
     function uiText(key) {
@@ -1190,14 +1382,44 @@
       }
     }
 
+    function renderAccountSummary() {
+      const user = window.__JIA_SESSION_USER;
+      if (!user) return;
+        const nameEl = document.getElementById("profileName");
+        const emailEl = document.getElementById("profileEmail");
+        const roleEl = document.getElementById("profileRole");
+        const statusEl = document.getElementById("profileStatus");
+        const dateEl = document.getElementById("profileDate");
+        const memberProfile = window.__JIA_MEMBER_PROFILE;
+        const displayName = memberProfile?.userId === user.id ? memberProfile.profile.displayName : '';
+        if (nameEl) nameEl.textContent = displayName || user.fullName || memberText('memberNameLabel');
+        if (emailEl) emailEl.textContent = user.email || "";
+        if (roleEl) {
+          const roleCode = String(user.role || "").trim().toLowerCase();
+          roleEl.textContent = roleCode === "admin"
+            ? memberText("roleAdmin")
+            : roleCode === "member"
+              ? memberText("roleMember")
+              : translateLiteral(user.role || "普通会员");
+        }
+        if (statusEl) statusEl.textContent = translateLiteral(user.memberStatus || "待完善资料");
+        if (dateEl) dateEl.textContent = formatMemberDate(user.createdAt);
+    }
+
+    let sessionRequestId = 0;
     async function renderSession() {
+      const requestId = ++sessionRequestId;
       let user = null;
       try {
         const data = await apiRequest("/api/auth/me", { method: "GET" });
         user = data.user || null;
-      } catch (e) {
-        user = null;
+      } catch (error) {
+        if (requestId === sessionRequestId) showSessionError(error);
+        return;
       }
+      if (requestId !== sessionRequestId) return;
+      showSessionError(null);
+      window.__JIA_SESSION_USER = user;
 
       const loggedOut = document.getElementById("memberLoggedOut");
       const loggedIn = document.getElementById("memberLoggedIn");
@@ -1228,25 +1450,13 @@
       if (user) {
         loggedOut.classList.add("hidden");
         loggedIn.classList.remove("hidden");
-        const nameEl = document.getElementById("profileName");
-        const emailEl = document.getElementById("profileEmail");
-        const roleEl = document.getElementById("profileRole");
-        const statusEl = document.getElementById("profileStatus");
-        const dateEl = document.getElementById("profileDate");
-        if (nameEl) nameEl.textContent = user.fullName || "会员";
-        if (emailEl) emailEl.textContent = user.email || "";
-        if (roleEl) {
-          const roleCode = String(user.role || "").trim().toLowerCase();
-          roleEl.textContent = roleCode === "admin"
-            ? memberText("roleAdmin")
-            : roleCode === "member"
-              ? memberText("roleMember")
-              : translateLiteral(user.role || "普通会员");
-        }
-        if (statusEl) statusEl.textContent = translateLiteral(user.memberStatus || "待完善资料");
-        if (dateEl) dateEl.textContent = user.createdAt || "-";
+        renderAccountSummary();
         await loadMemberProfile();
       } else {
+        profileRequestId += 1;
+        profileLoaded = false;
+        fillMemberProfileForm({});
+        setProfileMsg('');
         loggedOut.classList.remove("hidden");
         loggedIn.classList.add("hidden");
       }
@@ -1259,6 +1469,8 @@
       const open = typeof force === "boolean" ? force : !panel.classList.contains("open");
       panel.classList.toggle("open", open);
       button.setAttribute("aria-expanded", String(open));
+      const labels = { zh: ['打开菜单', '关闭菜单'], ja: ['メニューを開く', 'メニューを閉じる'], en: ['Open menu', 'Close menu'] }[readSiteLanguage()];
+      button.setAttribute('aria-label', labels[open ? 1 : 0]);
       button.textContent = open ? "×" : "☰";
     }
     document.querySelectorAll("#memberMobileNav a, #memberMobileNav button").forEach(control => control.addEventListener("click", () => toggleMemberMobileNav(false)));

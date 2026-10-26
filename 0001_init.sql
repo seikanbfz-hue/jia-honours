@@ -171,18 +171,7 @@ INSERT INTO site_news (
   CURRENT_TIMESTAMP,
   CURRENT_TIMESTAMP
 )
-ON CONFLICT(id) DO UPDATE SET
-  visibility = 'public',
-  title_zh = excluded.title_zh,
-  title_ja = excluded.title_ja,
-  title_en = excluded.title_en,
-  body_zh = excluded.body_zh,
-  body_ja = excluded.body_ja,
-  body_en = excluded.body_en,
-  is_published = 1,
-  is_pinned = 1,
-  published_at = excluded.published_at,
-  updated_at = CURRENT_TIMESTAMP;
+ON CONFLICT(id) DO NOTHING;
 
 INSERT OR IGNORE INTO app_migrations (name, applied_at)
 VALUES ('2026-07-09-v56-launch-news', CURRENT_TIMESTAMP);

@@ -9,6 +9,7 @@ import {
   handleError,
   hashPassword,
   json,
+  MAX_VERIFICATION_ATTEMPTS,
   publicUser,
   randomId,
   readJson,
@@ -60,8 +61,8 @@ export async function onRequestPost({ request, env }) {
       purpose: "register",
     });
     const id = randomId("usr");
-    const now = new Date().toISOString();
     const passwordHash = await hashPassword(password);
+    const now = new Date().toISOString();
     const role = adminEmails(env).includes(email) ? "admin" : "member";
 
     try {
@@ -76,6 +77,8 @@ export async function onRequestPost({ request, env }) {
           WHERE EXISTS (
             SELECT 1 FROM email_verification_codes
             WHERE id = ? AND used_at IS NULL
+              AND COALESCE(attempt_count, 0) < ?
+              AND julianday(expires_at) > julianday(?)
           )
         `).bind(
           id,
@@ -90,10 +93,15 @@ export async function onRequestPost({ request, env }) {
           role,
           now,
           now,
-          codeRow.id
+          codeRow.id,
+          MAX_VERIFICATION_ATTEMPTS,
+          now
         ),
-        db.prepare("UPDATE email_verification_codes SET used_at = ? WHERE id = ? AND used_at IS NULL")
-          .bind(now, codeRow.id),
+        db.prepare(`
+          UPDATE email_verification_codes SET used_at = ?
+          WHERE id = ? AND used_at IS NULL
+            AND EXISTS (SELECT 1 FROM users WHERE id = ?)
+        `).bind(now, codeRow.id, id),
       ]);
       const userChanges = Number(results[0] && results[0].meta && results[0].meta.changes);
       const codeChanges = Number(results[1] && results[1].meta && results[1].meta.changes);
@@ -113,7 +121,7 @@ export async function onRequestPost({ request, env }) {
              email_verified_at, role, member_status, created_at
       FROM users WHERE id = ?
     `).bind(id).first();
-    const token = await createSession(id, request, env, db);
+    const token = await createSession(id, request, env, db, passwordHash);
     return json({ user: publicUser(row) }, 201, { "Set-Cookie": sessionCookie(token) });
   } catch (error) {
     return handleError(error, "注册失败，请稍后再试。", "auth/register");
