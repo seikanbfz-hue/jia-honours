@@ -125,7 +125,7 @@ input, .field-select, textarea, .profile-grid input, .profile-grid select, .prof
 .skip-link:focus { top: 12px; }
 .detail-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 28px; }
 .detail-gallery figure { margin: 0; min-width: 0; }
-.detail-gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #e7dfd1; border-radius: 2px; }
+.detail-gallery img { display: block; width: 100%; height: auto; border-radius: 2px; }
 .detail-gallery figcaption { padding-top: 10px; color: #695d50; font: 500 13px/1.6 var(--sans); }
 .detail-gallery a { display: block; }
 @media (min-width: 681px) and (max-width: 1080px) {
@@ -163,7 +163,6 @@ input, .field-select, textarea, .profile-grid input, .profile-grid select, .prof
   .modal-card { max-height: calc(100dvh - 24px); }
   .form input, .form select, .profile-grid input, .profile-grid select, .profile-grid textarea { font-size: 16px; }
   .detail-gallery { grid-template-columns: 1fr; gap: 22px; }
-  .detail-gallery img { max-height: 290px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

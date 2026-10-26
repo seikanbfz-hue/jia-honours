@@ -15,9 +15,16 @@ const LAUNCH_NEWS = {
   titleJa: "賈氏勲章公式サイト開設のお知らせ",
   titleEn: "Launch of the Jia Honours Official Website",
   bodyZh: "贾氏勋章官方网站于2026年7月9日正式上线。愿本站成为记录礼仪、传达谢意、延续文化与联结友谊的长期窗口。感谢各界持续关注。网站仍在逐步完善，如有建议或发现疏漏，敬请通过官方邮箱联系大龙凤勋章评议会。",
-  bodyJa: "賈氏勲章公式サイトを2026年7月9日に正式開設いたしました。本サイトが、儀礼を記録し、感謝を伝え、文化を受け継ぎ、友好を育むための継続的な窓口となることを願っております。今後ともご関心をお寄せいただければ幸いです。お気づきの点やご意見がございましたら、公式メールを通じて大龍鳳章評議会までお寄せください。",
-  bodyEn: "The Jia Honours official website was formally launched on 9 July 2026. May it serve as a lasting place to record ceremony, convey gratitude, sustain cultural traditions and strengthen friendship. We welcome your continued interest. As the website develops, comments and corrections may be sent to the Council of the Order of the Great Dragon and Phoenix through the official email address.",
+  bodyJa: "賈氏勲章公式サイトを2026年7月9日に正式に開設いたしました。本サイトが、儀礼を記録し、感謝を伝え、文化を受け継ぎ、友好を育むための継続的な窓口となることを願っております。日頃よりご関心をお寄せいただき、ありがとうございます。本サイトは引き続き整備を進めております。お気づきの点やご意見がございましたら、公式メールアドレス宛てに大龍鳳章評議会までお寄せください。",
+  bodyEn: "The Jia Honours official website was formally launched on 9 July 2026. We hope it will provide a lasting record of ceremonies, a way to express gratitude, and a place to preserve cultural traditions and strengthen friendships. Thank you for your continued interest. As we continue to improve the website, please send any suggestions or corrections to the Council of the Order of the Great Dragon and Phoenix at the official email address.",
   publishedAt: "2026-07-09",
+};
+
+// Exact text from the previous release. These values only identify untouched
+// translations for the narrowly scoped one-time copyedit below.
+const PREVIOUS_LAUNCH_TRANSLATIONS = {
+  ja: "賈氏勲章公式サイトを2026年7月9日に正式開設いたしました。本サイトが、儀礼を記録し、感謝を伝え、文化を受け継ぎ、友好を育むための継続的な窓口となることを願っております。今後ともご関心をお寄せいただければ幸いです。お気づきの点やご意見がございましたら、公式メールを通じて大龍鳳章評議会までお寄せください。",
+  en: "The Jia Honours official website was formally launched on 9 July 2026. May it serve as a lasting place to record ceremony, convey gratitude, sustain cultural traditions and strengthen friendship. We welcome your continued interest. As the website develops, comments and corrections may be sent to the Council of the Order of the Great Dragon and Phoenix through the official email address.",
 };
 
 export class ApiError extends Error {
@@ -274,6 +281,7 @@ async function applyCoreSchema(db) {
   ]);
 
   await applyLaunchNewsMigration(db);
+  await applyLaunchNewsTranslationMigration(db);
 }
 
 async function ensureColumns(db, table, definitions) {
@@ -316,6 +324,34 @@ async function applyLaunchNewsMigration(db) {
       now
     ),
     db.prepare("INSERT OR IGNORE INTO app_migrations (name, applied_at) VALUES (?, ?)").bind(migrationName, now),
+  ]);
+}
+
+async function applyLaunchNewsTranslationMigration(db) {
+  const migrationName = "2026-10-26-launch-news-translations";
+  const applied = await db.prepare("SELECT name FROM app_migrations WHERE name = ?").bind(migrationName).first();
+  if (applied) return;
+
+  // Update each translation independently only when the article's original
+  // Chinese identity and that language's previous text still match exactly.
+  // Preserve all publishing metadata, Chinese text and editorial changes.
+  await db.batch([
+    db.prepare(`
+      UPDATE site_news SET body_ja = ?
+      WHERE id COLLATE BINARY = ? AND title_zh COLLATE BINARY = ?
+        AND body_zh COLLATE BINARY = ? AND body_ja COLLATE BINARY = ?
+        AND NOT EXISTS (SELECT 1 FROM app_migrations WHERE name = ?)
+    `).bind(LAUNCH_NEWS.bodyJa, LAUNCH_NEWS.id, LAUNCH_NEWS.titleZh, LAUNCH_NEWS.bodyZh,
+      PREVIOUS_LAUNCH_TRANSLATIONS.ja, migrationName),
+    db.prepare(`
+      UPDATE site_news SET body_en = ?
+      WHERE id COLLATE BINARY = ? AND title_zh COLLATE BINARY = ?
+        AND body_zh COLLATE BINARY = ? AND body_en COLLATE BINARY = ?
+        AND NOT EXISTS (SELECT 1 FROM app_migrations WHERE name = ?)
+    `).bind(LAUNCH_NEWS.bodyEn, LAUNCH_NEWS.id, LAUNCH_NEWS.titleZh, LAUNCH_NEWS.bodyZh,
+      PREVIOUS_LAUNCH_TRANSLATIONS.en, migrationName),
+    db.prepare("INSERT OR IGNORE INTO app_migrations (name, applied_at) VALUES (?, ?)")
+      .bind(migrationName, new Date().toISOString()),
   ]);
 }
 

@@ -1,3 +1,3 @@
-Jia Honours — 2026-10-26 website review and refinement
-Version: 2026-10-26
-Base commit: 75bda23ccc253e75ff1ef7b058a2719696e0ef60
+Jia Honours — gallery proportions and trilingual copy review
+Version: 2026-10-26-r2
+Base commit: 12d44ab7627bb6248a1f4e55996faf1519e2f394
