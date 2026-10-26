@@ -79,7 +79,7 @@
     @media(max-width:680px){.mobile-nav a,.mobile-account .btn{min-height:44px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 </style><link rel="stylesheet" href="assets/roman-imperial.css?v=58">
-<link rel="stylesheet" href="assets/refinement.css?v=20261026-2"><link rel="canonical" href="https://www.jia-honours.com/"></head>
+<link rel="stylesheet" href="assets/refinement.css?v=20261026-2"><link rel="stylesheet" href="assets/vision-film.css?v=20261027-1"><link rel="canonical" href="https://www.jia-honours.com/"></head>
 <body>
   <div class="ceremonial-bar"><div class="wrap"><span data-i18n="ribbonLeft">私人荣誉 · 礼仪纪念 · 公益实践 · 文化传承</span><span data-i18n="ribbonRight">官方邮箱：jia.honours@gmail.com</span></div></div>
   <header class="site-header">
@@ -98,6 +98,18 @@
       <div class="proclamation"><div class="kicker" data-i18n="heroKicker">Official Honours Website</div><h1 data-i18n-html="heroTitle">贾氏勋章<br>官方网站</h1><p class="lead" data-i18n="heroLead">本网站集中介绍贾氏私人荣誉体系的历史源流、制度架构、章饰设计与授予理念，并发布大龙凤章、龙凤章、名誉称号及贾氏动态等相关资料。</p><div class="hero-actions"><a class="btn primary big" href="#honours" data-i18n="heroBtn1">查看勋章制度</a><a class="btn ghost big" href="#news" data-i18n="heroBtn2">阅读新闻公告</a></div><div class="seal-row"><span class="seal-note" data-i18n="seal1">礼仪纪念</span><span class="seal-note" data-i18n="seal2">公益与友好</span><span class="seal-note" data-i18n="seal3">私人荣誉</span></div></div>
       <figure class="image-frame"><div class="image-stage"><img src="assets/grand-collar.webp" width="1051" height="1400" fetchpriority="high" data-i18n-alt="heroImageAlt" alt="大龙凤章大项链级整体陈列"></div><figcaption class="caption"><b data-i18n="heroCaptionTitle">大龙凤章 · 大项链级</b><span data-i18n="heroCaptionSub">大龙凤章最高等级章饰的整体陈列</span></figcaption></figure>
     </div></section>
+
+    <section id="vision-film" class="vision-film" aria-labelledby="vision-film-title">
+      <div class="wrap"><div class="vision-film-inner">
+        <div class="vision-film-heading"><div><div class="kicker" data-film-copy="kicker">OUR VISION</div><h2 id="vision-film-title" data-film-copy="title">荣誉的下一程</h2></div><p data-film-copy="description">以家族、慈善与文化传承，展望荣誉的下一程。</p></div>
+        <div class="vision-film-card">
+          <div id="vision-film-player" class="vision-film-player"></div>
+          <noscript><p class="vision-film-noscript">请启用 JavaScript 以观看影片。 / Enable JavaScript to watch the film. / 映像を見るには JavaScript を有効にしてください。</p></noscript>
+          <div class="vision-film-meta"><p data-film-copy="note">组织愿景 · AI 概念影像 · 59 秒</p><a id="vision-film-external" target="_blank" rel="noopener noreferrer" data-film-copy="external" hidden>在 YouTube 观看中文版</a></div>
+        </div>
+        <p id="vision-film-privacy" class="vision-film-privacy" data-film-copy="privacy" hidden>点击播放后将连接 YouTube。</p>
+      </div></div>
+    </section>
 
     <section id="origin" class="section"><div class="wrap"><div class="section-head"><div><div class="kicker" data-i18n="originKicker">Origins & Position</div><h2 data-i18n="originTitle">历史渊源与制度定位</h2></div><p data-i18n="originLead">贾氏勋章体系以周代贾国的历史记忆与家族文化传统为象征源流，在当代用于表达礼仪、纪念、感谢、公益与国际友好。该体系由私人设立，具有荣誉与纪念性质。</p></div><div class="evidence-strip"><article class="evidence"><b data-i18n="evidence1Title">历史记忆</b><span data-i18n="evidence1Text">周代贾国与“贾伯”的历史记忆，是家族传统叙事中的象征源流。</span></article><article class="evidence"><b data-i18n="evidence2Title">礼仪表达</b><span data-i18n="evidence2Text">以正式礼仪表达感谢、纪念、合作与公益精神。</span></article><article class="evidence"><b data-i18n="evidence3Title">制度边界</b><span data-i18n="evidence3Text">不构成国家荣典、公权身份、职业资格或法律特权。</span></article><article class="evidence"><b data-i18n="evidence4Title">档案记录</b><span data-i18n="evidence4Text">通过新闻公告、制度资料与会员信息形成持续记录。</span></article></div></div></section>
 
@@ -118,12 +130,15 @@
 
   <div class="modal" id="authModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal-card"><div class="modal-head"><div><div class="kicker" data-i18n="authKicker">Member Access</div><h3 id="authTitle">会员登录</h3></div><button class="close" type="button" onclick="closeAuth()" aria-label="关闭对话框" data-auth-close>×</button></div><div class="form"><div class="tabs"><button class="tab active" type="button" id="loginTab" onclick="setMode('login')" data-i18n="tabLogin">登录</button><button class="tab" type="button" id="registerTab" onclick="setMode('register')" data-i18n="tabRegister">注册</button></div><div class="auth-links"><button class="text-action" type="button" id="forgotPasswordBtn" onclick="setMode('reset')" data-i18n="forgotPassword">忘记密码？</button><button class="text-action hidden" type="button" id="backToLoginBtn" onclick="setMode('login')" data-i18n="backToLogin">返回登录</button></div><div class="msg" id="authMsg" aria-live="polite"></div><form onsubmit="submitAuth(event)"><label id="nameLabel" class="hidden"><span data-i18n="nameLabel">姓名</span><input id="fullName" type="text" maxlength="160" autocomplete="name" data-i18n-placeholder="placeholderFullName"></label><label><span data-i18n="emailLabel">电子邮箱</span><input id="email" type="email" maxlength="254" autocomplete="email" placeholder="name@example.com" required></label><label id="emailConfirmLabel" class="hidden"><span data-i18n="emailConfirmLabel">再次确认邮箱</span><input id="emailConfirm" type="email" maxlength="254" autocomplete="email" data-i18n-placeholder="placeholderConfirmEmail"></label><div id="phoneGroup" class="hidden"><label><span data-i18n="phoneCountryLabel">国家或地区电话区号</span><select id="phoneCountryCode" class="field-select"></select></label><label><span data-i18n="phoneNumberLabel">电话号码</span><input id="phoneNumber" type="tel" maxlength="24" autocomplete="tel-national" data-i18n-placeholder="placeholderPhoneNumber"></label></div><label id="verificationLabel" class="hidden"><span id="verificationLabelText" data-i18n="verificationLabel">邮箱验证码</span><div class="verification-row"><input id="verificationCode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" data-i18n-placeholder="placeholderVerificationCode"><button class="btn ghost code-btn" type="button" id="sendCodeBtn" onclick="sendVerificationCode()" data-i18n="sendCode">发送验证码</button></div></label><label><span id="passwordLabelText" data-i18n="passwordLabel">密码</span><input id="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" data-i18n-placeholder="placeholderPassword" required></label><div class="turnstile-wrap hidden" id="turnstileContainer" aria-live="polite"></div><button class="btn primary big" style="width:100%" type="submit" id="submitBtn">登录</button></form><p class="muted-note" data-i18n="authNote">注册资料仅用于账户验证、会员联络与网站安全，并按隐私保护原则处理。</p><p class="policy-links"><a href="privacy.html" data-i18n="privacyLink">隐私说明</a><span aria-hidden="true"> · </span><a href="terms.html" data-i18n="termsLink">会员使用说明</a></p></div></div></div>
 
+  <script src="assets/vision-film.js?v=20261027-1"></script>
   <script>
 
     // Keep language switching available when browser storage is unavailable.
     let siteLanguage = 'zh';
     try { siteLanguage = localStorage.getItem('jia_site_lang') || 'zh'; } catch (_) {}
     if (!['zh', 'ja', 'en'].includes(siteLanguage)) siteLanguage = 'zh';
+    const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
+    if (['zh', 'ja', 'en'].includes(requestedLanguage)) siteLanguage = requestedLanguage;
     function readSiteLanguage() { return siteLanguage; }
     function writeSiteLanguage(lang) {
       siteLanguage = ['zh', 'ja', 'en'].includes(lang) ? lang : 'zh';
@@ -815,6 +830,7 @@
       const menuToggle = document.getElementById('menuToggle');
       if (mobileNav?.classList.contains('open') && menuToggle) menuToggle.textContent = '×';
       writeSiteLanguage(CURRENT_LANG);
+      if (window.JiaVisionFilm) window.JiaVisionFilm.render(CURRENT_LANG);
       renderCountryCodes(CURRENT_LANG);
       setMode(mode, true);
       if (window.turnstile && turnstileWidgetId !== null) {
